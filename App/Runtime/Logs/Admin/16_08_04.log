@@ -1,0 +1,42 @@
+[ 2016-08-04T13:34:56+08:00 ] 127.0.0.1 /index.php/admin/sms/test
+ERR: 非法操作:test
+
+[ 2016-08-04T13:35:29+08:00 ] 127.0.0.1 /index.php/Admin/AboutUs/company.html
+ERR: 无法加载控制器:AboutUs
+
+[ 2016-08-04T13:35:31+08:00 ] 127.0.0.1 /index.php/Admin/AboutUs/subcatalog.html
+ERR: 无法加载控制器:AboutUs
+
+[ 2016-08-04T13:35:32+08:00 ] 127.0.0.1 /index.php/Admin/AboutUs/company.html
+ERR: 无法加载控制器:AboutUs
+
+[ 2016-08-04T13:35:32+08:00 ] 127.0.0.1 /index.php/Admin/AboutUs/catalog.html
+ERR: 无法加载控制器:AboutUs
+
+[ 2016-08-04T14:55:26+08:00 ] 127.0.0.1 /index.php/Admin/AboutUs/company.html
+ERR: 无法加载控制器:AboutUs
+
+[ 2016-08-04T14:55:28+08:00 ] 127.0.0.1 /index.php/Admin/AboutUs/catalog.html
+ERR: 无法加载控制器:AboutUs
+
+[ 2016-08-04T14:55:29+08:00 ] 127.0.0.1 /index.php/Admin/AboutUs/subcatalog.html
+ERR: 无法加载控制器:AboutUs
+
+[ 2016-08-04T14:55:33+08:00 ] 127.0.0.1 /index.php/Admin/news/lst.html
+ERR: 无法加载控制器:News
+
+[ 2016-08-04T16:23:01+08:00 ] 127.0.0.1 /index.php/Admin/Sms/search
+ERR: 参数错误或者未定义:condition
+
+[ 2016-08-04T16:23:40+08:00 ] 127.0.0.1 /index.php/Admin/Sms/search
+ERR: 参数错误或者未定义:condition
+
+[ 2016-08-04T16:23:46+08:00 ] 127.0.0.1 /index.php/Admin/Sms/search
+ERR: 参数错误或者未定义:condition
+
+[ 2016-08-04T16:56:21+08:00 ] 127.0.0.1 /index.php/Admin/Sms/search/send_type/1
+ERR: 模板不存在:./App/Admin/View/Sms/search.phtml
+
+[ 2016-08-04T16:59:08+08:00 ] 127.0.0.1 /index.php/Admin/Sms/search/send_type/1
+ERR: 模板不存在:./App/Admin/View/Sms/index.phtml
+

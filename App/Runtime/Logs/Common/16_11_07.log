@@ -1,0 +1,6 @@
+[ 2016-11-07T13:53:47+08:00 ] 127.0.0.1 /favicon.ico
+ERR: 无法加载模块:Favicon
+
+[ 2016-11-07T16:08:37+08:00 ] 127.0.0.1 /phpqrcode/index.php
+ERR: 无法加载模块:Phpqrcode
+

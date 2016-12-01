@@ -1,0 +1,61 @@
+<?php
+/**
+ * 跃飞科技版权所有 @2016
+ * User: zhong
+ * Date: 2016/8/13
+ * Time: 17:22
+ */
+namespace Admin\Model;
+use Think\Model\RelationModel;
+class AdminMemberModel extends RelationModel
+{
+    protected $_validate = array(
+        array('username',"require","用户名必须!"),
+        array('password',"require","密码必须!"),
+    );
+
+    protected $_auto = array(
+        array('salt','getSalt',self::MODEL_INSERT,'callback'),
+        array('password','my_md5',self::MODEL_INSERT,'callback'),
+    );
+
+    //关联属性
+    protected $_link = array(
+        'role' => array(
+            'mapping_type'  =>  self::MANY_TO_MANY,
+            'foreign_key' => 'admin_member_id',
+            'relation_foreign_key' => 'role_id',
+            'relation_table' => 'tp_admin_role',
+            'mapping_fields'=>'id,name,remark'
+        )
+    );
+
+    /**
+     * 管理员密码加密算法
+     * @param $password
+     * @return string
+     */
+    public function my_md5($password)
+    {
+        $this->password = md5(md5($password.$this->salt));
+        return $this->password;
+    }
+
+
+    /**
+     * 获取加密KEY
+     */
+    public function getSalt()
+    {
+        $arr=range('a','z');
+        $arr2 = range(1,9);
+        $arr = array_merge($arr,$arr2);
+        shuffle($arr);
+        return  substr(implode('', $arr), 10,6);
+    }
+
+
+
+
+
+}

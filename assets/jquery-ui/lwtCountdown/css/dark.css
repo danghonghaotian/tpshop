@@ -1,0 +1,74 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: Tahoma;
+}
+
+body {
+	text-align: center;
+	background-color: #2e2e2e;
+}
+
+h1 {
+	font-size: 38pt;
+	border-bottom: 1px solid #ddd;
+	margin: 0;
+}
+
+h2.subtitle {
+	margin-top: 0px;
+	margin-bottom: 40px;
+}
+
+#container {
+	margin: 100px auto;
+	width: 700px;
+	color: #eee;
+}
+
+#countdown_dashboard {
+	height: 96px;
+	margin-left: 125px;
+}
+
+.dash {
+	width: 138px;
+	height: 96px;
+	background: transparent url('../images/dark_dash.png') 0 0 no-repeat;
+	float: left;
+	margin-left: 2px;
+	padding-left: 4px;
+	position: relative;
+	color: #333;
+}
+
+.dash .digit {
+	font: bold 48pt Verdana;
+	font-weight: bold;
+	float: left;
+	width: 59px;
+	text-align: center;
+	position: relative;
+}
+
+.dash_title {
+	display: none;
+}
+
+.dev_comment {
+	clear: left;
+	font-size: 14pt;
+	color: #fff;
+	text-align: center;
+	padding-top: 10px;
+	margin: 20px 10px;
+}
+
+#loading {
+	text-align: center;
+	margin: 10px;
+	display: none;
+	position: absolute;
+	width: 100%;
+	top: 60px;
+}

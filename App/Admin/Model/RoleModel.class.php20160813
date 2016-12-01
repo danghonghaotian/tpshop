@@ -1,0 +1,18 @@
+<?php
+/**
+ * 跃飞科技版权所有 @2016
+ * User: zhong
+ * Date: 2016/8/13
+ * Time: 14:43
+ */
+namespace Admin\Model;
+use Think\Model;
+class RoleModel extends Model
+{
+//    private $node_id;
+    protected $_validate = array(
+        array('name',"require","角色名称必须!"),
+        array('name',"/^[a-z]{2,15}$/i","角色名称是英文哦!"),
+//        array('node_id',"require","要选择权限哦"),
+    );
+}

@@ -1,0 +1,46 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 商品类型 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="<?php echo C('css');?>/general.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo C('css');?>/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/GoodsType/add")?>">添加商品类型</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -商品类型 </span>
+    <div style="clear:both"></div>
+</h1>
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>商品类型名称</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($data as $k => $v): ?>
+            <tr>
+                <td class="first-cell">
+                    <?php echo $v['type_name']; ?>
+                </td>
+                <td align="center">
+                    <a href="<?php echo U("Admin/Attribute/lst",array('type_id'=>$v['id'])); ?>" title="属性列表">属性列表</a> |
+                    <a href="<?php echo U("Admin/GoodsType/save",array('id'=>$v['id'])); ?>" title="编辑">编辑</a> |
+                    <a onclick="return confirm('确定要删除吗？相关属性也将被删除');" href="<?php echo U("Admin/GoodsType/delete",array('id'=>$v['id'])); ?>" title="编辑">移除</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td align="right" nowrap="true" colspan="2">
+                    <div id="turn-page">
+                        <?php echo $page; ?>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

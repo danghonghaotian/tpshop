@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 文章分类 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/ArticleCat/add")?>">添加文章分类</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -文章分类 </span>
+    <div style="clear:both"></div>
+</h1>
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>文章分类名称</th>
+                <th>分类类型</th>
+                <th>描述</th>
+                <th>排序</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($article_cat_data as $k => $v):?>
+            <tr>
+                <td class="first-cell" style="padding-left: <?php echo 25*$v['level']?>px">
+                   <span>- </span> <?php echo $v['cat_name'];?>
+                </td>
+                <td align="center">
+                    <?php echo $cat_type[$v['cat_type']]?>
+                </td>
+                <td align="center"><?php echo $v['cat_desc']?></td>
+                <td align="center"><?php echo $v['sort_order']?></td>
+                <td align="center">
+                    <a href="<?php echo U("Admin/ArticleCat/save/",array("cat_id"=>$v['cat_id']))?>" title="编辑">编辑</a>
+                    <?php if($v['cat_type']==1 || $v['cat_type']==5 ):?>
+                    | <a onclick="return confirm('确定要删除吗,删除分类的同时会删除该分类下的所有文章');" href="<?php echo U("Admin/ArticleCat/delete/",array("cat_id"=>$v['cat_id']))?>" title="移除">移除</a>
+                    <?php endif;?>
+                </td>
+            </tr>
+            <?php endforeach;?>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

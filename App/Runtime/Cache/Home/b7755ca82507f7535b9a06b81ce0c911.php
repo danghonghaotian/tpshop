@@ -1,0 +1,108 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<script type="text/javascript" src="<?php echo C('f-js')?>/jquery-1.8.3.min.js"></script>
+	<title>城市级联选择</title>
+</head>
+<body>
+	地址：
+	<select name="country" id="country">
+		<option value="-1">国家</option>
+		<option value="<?= $country['region_id']; ?>"><?= $country['region_name'];?></option>
+	</select>
+	<select name="province" id="province">
+		<option value="-1">省份</option>
+	</select>
+	<select name="city" id="city">
+		<option value="-1">城市</option>
+	</select>
+	<select name="town" id="town">
+		<option value="-1">县城</option>
+	</select>
+
+	<script>
+	$(function(){
+		//国家改变
+		$('#country').change(function(){
+			var countryId = $(this).val();
+			$.ajax({
+			   type: "POST",
+			   url: "<?php echo U(MODULE_NAME . '/Region/getProvince');?>",
+			   data: {countryId:countryId},
+			   success: function(msg){
+			   	 //删除大于0的选项
+			   	 $('#province').find('option:gt(0)').remove();
+			   	 $('#city').find('option:gt(0)').remove();
+			   	 $('#town').find('option:gt(0)').remove();
+			   	 if(msg != '')
+			   	 {
+				     //返回的省份数据插入到省份选项
+				     var provinceData = $.parseJSON(msg);
+				     var str = '';
+				     $.each(provinceData,function(i,province){
+				     	str+='<option value="'+province.region_id+'">'+province.region_name+'</option>'
+				     });
+				     $('#province').append(str);
+			   	 }
+			   }
+			});
+		});
+
+		//省份改变
+		$('#province').change(function(){
+			var provinceId = $(this).val();
+			$.ajax({
+			   type: "POST",
+			   url: "<?php echo U(MODULE_NAME . '/Region/getCity');?>",
+			   data: {provinceId:provinceId},
+			   success: function(msg){
+			   	 //删除大于0的选项
+			   	 $('#city').find('option:gt(0)').remove();
+			   	 $('#town').find('option:gt(0)').remove();
+			   	 if(msg != '')
+			   	 {
+				     //返回的省份数据插入到省份选项
+				     var cityData = $.parseJSON(msg);
+				     var str = '';
+				     $.each(cityData,function(i,city){
+				     	str+='<option value="'+city.region_id+'">'+city.region_name+'</option>'
+				     });
+				     $('#city').append(str);
+			   	 }
+			   }
+			});
+		});
+
+
+		//城市改变
+		$('#city').change(function(){
+			var cityId = $(this).val();
+			$.ajax({
+			   type: "POST",
+			   url: "<?php echo U(MODULE_NAME . '/Region/getTown');?>",
+			   data: {cityId:cityId},
+			   success: function(msg){
+
+			   	 //删除大于0的选项
+			   	 $('#town').find('option:gt(0)').remove();
+			   	 if(msg != '')
+			   	 {
+				     //返回的县城数据插入到县城选项
+				     var townData = $.parseJSON(msg);
+				     var str = '';
+				     $.each(townData,function(i,town){
+				     	str+='<option value="'+town.region_id+'">'+town.region_name+'</option>'
+				     });
+				     $('#town').append(str);
+			   	 }
+			   }
+			});
+		});
+
+		
+	});
+	</script>
+
+</body>
+</html>

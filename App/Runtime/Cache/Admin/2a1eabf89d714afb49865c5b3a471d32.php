@@ -1,0 +1,60 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 会员列表 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="<?php echo C('css');?>/general.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo C('css');?>/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/User/add")?>">添加会员</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -会员列表 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="form-div">
+    <form action="" name="searchForm">
+        <img src="<?php echo C('img');?>/icon_search.gif" width="26" height="22" border="0" alt="search" />
+        <input type="text" name="brand_name" size="15" />
+        <input type="submit" value=" 搜索 " class="button" />
+    </form>
+</div>
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>会员名称</th>
+                <th>邮箱</th>
+                <th>手机号码</th>
+                <th>注册时间</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($user as $k=>$v):?>
+            <tr>
+                <td class="first-cell" style="color: green;">
+                    <?php echo $v['username'];?>
+                </td>
+                <td align="left">
+                    <?php echo $v['email'];?>
+                </td>
+                <td align="center"> <?php echo $v['phone_number'];?></td>
+                <td align="center"> <?php echo date('Y-m-d H:i:s',$v['reg_time']);?></td>
+                <td align="center">
+                    <a href="<?php echo U("Admin/User/save",array('user_id'=>$v['user_id']))?>" title="编辑">编辑</a> |
+                    <a href="<?php echo U("Admin/User/delete",array('user_id'=>$v['user_id']))?>" title="删除会员">移除</a>
+                </td>
+            </tr>
+            <?php endforeach;?>
+            <tr>
+                <td align="center" colspan="5">
+                  <?php echo $page;?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

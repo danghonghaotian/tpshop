@@ -1,0 +1,36 @@
+@charset "utf-8";
+.fix{width: 100%;height: auto;}
+.flo{background-color: #fff;border:none;z-index:99;width: 600px;height: 200px;left:50%;top: 15%;margin-left:-300px!important;margin-top:-20px!important;margin-top:0px;position:fixed!important;
+position:absolute;
+_top:expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);
+}
+#queryContextbg{background-color: #000;width: 100%;height: 100%;left:0;top:0;filter:alpha(opacity=50);opacity:0.5;z-index:1;position:fixed!important;position:absolute;}
+#queryContext {height: 400px;overflow:hidden; }
+#queryContext .header,#queryContext .footer{width: 100%;height: 50px;overflow: hidden;}
+#queryContext .tbody{width: 100%;height: 300px;overflow: scroll;overflow-x: hidden;}
+#queryContext .header .th{background-color:#f5f5f5;}
+#queryContext .header .th h2{font-size:2em;text-align:left;color:#666666;float:left;margin:0 20px;line-height: 2em;}
+#queryContext .header .th span{font-size:1.1em;color: #3fa5ef;float:left;margin:1.5em 0 0 0;}
+#queryContext .header .th .close{width: 16px;height: 16px;float: right;background-image: url(bg.png);display:block;margin: 1em;}
+
+
+#queryContext .tbody .kd_tb{width: 100%;height: auto;margin: 0 auto;border: none;background-color: #fff;}
+#queryContext .tbody .kd_tb td,#queryContext .kd_tb th{border: none;padding:0px 2px;background-image: none;}
+#queryContext .tbody .kd_tb .th{background-color:#f5f5f5;}
+#queryContext .tbody .kd_tb td{height: 32px;margin: 0px;height: 0px;}
+#queryContext .tbody .kd_tb .td1{width: 10%;}
+#queryContext .tbody .kd_tb .td2{width: 15%;}
+#queryContext .tbody .kd_tb .td3{width: 15%;}
+#queryContext .tbody .kd_tb .td4{width: 60%;}
+#queryContext .tbody .kd_tb td b{width: 12px;height:36px; background-image: url(bg.png);background-repeat: no-repeat;display: block;margin: 0 10px;}
+#queryContext .tbody .kd_tb td .fir{background-position:0 -26px;}
+#queryContext .tbody .kd_tb td .mid{background-position:0 -68px;}
+#queryContext .tbody .kd_tb td .end{background-position:0 -110px;}
+#queryContext .tbody .kd_tb .cur{font-weight: bolder;color: #019aea;}
+#queryContext .footer .info{text-align: center;line-height: 50px; }
+#queryContext .footer .info .cp{font-weight: bolder;color: #019aea;}
+
+#queryContext .tbody .errmsg{color: red;text-align: center;margin: 20px;font-size: 1.2em;}
+#queryContext .tbody .errmsg a{color:#3fa5ef; }

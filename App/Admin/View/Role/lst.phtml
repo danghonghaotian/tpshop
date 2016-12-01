@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 角色列表 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Role/add")?>">添加角色</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -角色列表 </span>
+    <div style="clear:both"></div>
+</h1>
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>角色名</th>
+                <th>角色描述</th>
+                <th>使用状态</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($role_data as $k=>$v):?>
+            <tr>
+                <td class="first-cell" align="center">
+                   <?php echo $v['name']?>
+                </td>
+                <td align="center">
+                    <?php echo $v['remark']?>
+                </td>
+                <td align="center">
+                    <?php if($v['status'] == 1):?>
+                        开启
+                        <?php elseif ($v['status'] ==0): ?>
+                        关闭
+                    <?php endif;?>
+                </td>
+                <td align="center">
+                    <a href="<?php echo U("Admin/Role/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
+                    <a  onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Role/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
+                </td>
+            </tr>
+            <?php endforeach;?>
+        </table>
+    </div>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 添加会员 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+<!--    <link rel="stylesheet" href="{:C('jq-ui')}/jquery-validation-1.15.0/demo/milk/milk.css"/>-->
+    <script src="{:C('jq-ui')}/jquery-validation-1.15.0/lib/jquery.js"></script>
+    <script src="{:C('jq-ui')}/jquery-validation-1.15.0/lib/jquery.mockjax.js"></script>
+    <script src="{:C('jq-ui')}/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.mockjax({
+                url: "emails.action",
+                response: function(settings) {
+                    var email = settings.data.email,
+                        emails = ["glen@marketo.com", "george@bush.gov", "me@god.com", "aboutface@cooper.com", "steam@valve.com", "bill@gates.com"];
+                    this.responseText = "true";
+                    if ($.inArray(email, emails) !== -1) {
+                        this.responseText = "false";
+                    }
+                },
+                responseTime: 500
+            });
+
+            $.mockjax({
+                url: "users.action",
+                response: function(settings) {
+                    var user = settings.data.username,
+                        users = ["asdf", "Peter", "Peter2", "George"];
+                    this.responseText = "true";
+                    if ($.inArray(user, users) !== -1) {
+                        this.responseText = "false";
+                    }
+                },
+                responseTime: 500
+            });
+
+            // validate signup form on keyup and submit
+            var validator = $("#user").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        minlength: 2,
+                        remote: "users.action"
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    phone_number:{
+                        required:true,
+//                        length: 11
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        remote: "emails.action"
+                    },
+                },
+                messages: {
+                    username: {
+                        required: "会员名称必填",
+                        minlength: jQuery.validator.format("会员名称至少 {0} 位"),
+                        remote: jQuery.validator.format("{0} 已被占用")
+                    },
+                    password: {
+                        required: "密码必填",
+                        minlength: jQuery.validator.format("密码不得少于{0}位")
+                    },
+                    phone_number: {
+                        required: "手机号码必填",
+//                        length: jQuery.validator.format("手机号码不正确")
+                    },
+                    email: {
+                        required: "邮箱格式不正确",
+                        minlength: "邮箱格式不正确",
+                        remote: jQuery.validator.format("{0} is already in use")
+                    },
+                },
+                // the errorPlacement has to take the table layout into account
+                errorPlacement: function(error, element) {
+                    if (element.is(":radio"))
+                        error.appendTo(element.parent().next().next());
+                    else if (element.is(":checkbox"))
+                        error.appendTo(element.next());
+                    else
+                        error.appendTo(element.parent().next());
+                },
+                // specifying a submitHandler prevents the default submit, good for the demo
+                submitHandler: function() {
+                   location.href = 'http://www.tpshop.com/index.php/Admin/User/add.html';
+                },
+                // set this class to error-labels to indicate valid fields
+                success: function(label) {
+                    // set &nbsp; as text for IE
+                    label.html("&nbsp;").addClass("checked");
+                },
+                highlight: function(element, errorClass) {
+                    $(element).parent().next().find("." + errorClass).removeClass("checked");
+                }
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/User/lst") ?>">会员列表</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 添加会员 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/User/add") ?>" id="user" >
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">会员名称</td>
+                <td width="22%">
+                    <input type="text" id="username" name="username" maxlength="60" size="40" value="" />
+                </td>
+                <td align="left" class="status" style="color: red"></td>
+            </tr>
+            <tr>
+                <td class="label">会员密码</td>
+                <td>
+                    <input type="text" id="password" name="password" maxlength="60" size="40" value="" />
+                </td>
+                <td align="left" class="status" style="color: red"></td>
+            </tr>
+            <tr>
+                <td class="label">手机号码</td>
+                <td>
+                    <input type="text" id="phone_number" name="phone_number" maxlength="60" size="40" value="" />
+                </td>
+                <td align="left" class="status" style="color: red"></td>
+            </tr>
+            <tr>
+                <td class="label">邮箱地址</td>
+                <td>
+                    <input type="text" id="email" name="email" maxlength="60" size="40" value="" />
+                </td>
+                <td align="left" class="status" style="color: red"></td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

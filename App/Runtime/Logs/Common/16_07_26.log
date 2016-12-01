@@ -1,0 +1,18 @@
+[ 2016-07-26T11:58:08+08:00 ] 127.0.0.1 /index.php/top.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+ERR: 无法加载模块:Top
+
+[ 2016-07-26T11:58:08+08:00 ] 127.0.0.1 /index.php/main.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+ERR: 无法加载模块:Main
+
+[ 2016-07-26T11:58:08+08:00 ] 127.0.0.1 /index.php/menu.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+ERR: 无法加载模块:Menu
+

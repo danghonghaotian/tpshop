@@ -1,0 +1,154 @@
+[ 2016-12-01T08:51:21+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.1248s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 1  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:51:22+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:51:25+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:51:27+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 1  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:52:38+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015600s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015600s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:52:39+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0156s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 1  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:57:23+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:57:26+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-12-01T08:57:27+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 1  [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-12-01T08:57:28+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:57:52+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 1  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T08:57:53+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T09:04:28+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-12-01T09:11:20+08:00 ] 127.0.0.1 /index.php/Admin/Goods/ajaxGetAttrForm/type_id/3
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8192] mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead E:\php\tpshop\ThinkPHP\Library\Think\Session\Driver\Db.class.php 第 96 行.
+SQL: SHOW COLUMNS FROM `tp_attribute` [ RunTime:0.0370s ]
+SQL: SELECT * FROM `tp_attribute` WHERE `goods_type_id` = 3  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+

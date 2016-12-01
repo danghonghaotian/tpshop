@@ -1,0 +1,36 @@
+[ 2016-08-13T11:04:07+08:00 ] 127.0.0.1 /index.php/Admin/Node/save.html
+ERR: 参数错误或者未定义:id
+
+[ 2016-08-13T11:04:25+08:00 ] 127.0.0.1 /index.php/Admin/Node/save.html
+ERR: 参数错误或者未定义:id
+
+[ 2016-08-13T11:41:25+08:00 ] 127.0.0.1 /index.php/Admin/Role/lst.html
+ERR: 无法加载控制器:Role
+
+[ 2016-08-13T11:41:29+08:00 ] 127.0.0.1 /index.php/Admin/Role/lst.html
+ERR: 无法加载控制器:Role
+
+[ 2016-08-13T12:24:42+08:00 ] 127.0.0.1 /index.php/Admin/company/lst.html
+ERR: 无法加载控制器:Company
+
+[ 2016-08-13T12:24:42+08:00 ] 127.0.0.1 /index.php/Admin/company/lst.html
+ERR: 无法加载控制器:Company
+
+[ 2016-08-13T12:24:43+08:00 ] 127.0.0.1 /index.php/Admin/company/lst.html
+ERR: 无法加载控制器:Company
+
+[ 2016-08-13T16:09:38+08:00 ] 127.0.0.1 /index.php/Admin/Role/save/id/2.html
+ERR: Think\Model:filed方法不存在！
+
+[ 2016-08-13T16:10:07+08:00 ] 127.0.0.1 /index.php/Admin/Role/save/id/2.html
+ERR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'title' in 'field list'
+
+[ 2016-08-13T16:17:16+08:00 ] 127.0.0.1 /index.php/Admin/Role/save/id/2.html
+ERR: Think\Controller:assgin方法不存在！
+
+[ 2016-08-13T17:16:21+08:00 ] 127.0.0.1 /index.php/Admin/company/lst.html
+ERR: 无法加载控制器:Company
+
+[ 2016-08-13T17:37:40+08:00 ] 127.0.0.1 /index.php/Admin/company/lst.html
+ERR: 无法加载控制器:Company
+

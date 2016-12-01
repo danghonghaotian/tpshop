@@ -1,0 +1,17 @@
+*{margin:0px;padding: 0px;}
+#preview{ float:left;text-align:center; width:425px;}
+.jqzoom{ width:425px; height:425px; position:relative;position:relative;padding:0;}
+.jqzoom img{width: 100%;height: 100%;}
+.zoomdiv{ left:859px; height:500px; width:500px;}
+#spec-n5{width:425px; height:82px; padding-top:6px; overflow:hidden;}
+#spec-n5 .control { background: url(../images/pb_LHY_arrow_ico.png) no-repeat 0px 20px; width: 15px; height: 70px;float:left; cursor:pointer;}
+#spec-n5 #spec-right {background-position: -31px 20px;}
+#spec-list{ float: left; overflow: hidden; margin-left: 2px; display: inline; position: relative; width: 385px; margin-right: 6px;height: 82px;}
+#spec-list ul {width: 999999px;}
+#spec-list ul li{ float: left; display: inline; width: 75px; margin-right: 20px;}
+#spec-list ul li img{ padding:2px ; border:1px solid #ccc; width:75px; height:75px;}
+.zoomdiv{z-index:100;position:absolute;top:1px;left:0px;width:400px;height:400px;border:1px solid #e4e4e4;display:none;text-align:center;overflow: hidden;}
+.bigimg{width:800px;height:800px;}
+.jqZoomPup{z-index:10;visibility:hidden;position:absolute;top:0px;left:0px;width:50px;height:50px;border:1px solid #aaa;background:#FEDE4F 50% top no-repeat;opacity:0.5;-moz-opacity:0.5;-khtml-opacity:0.5;filter:alpha(Opacity=50);cursor:move;}
+#spec-list div{ margin-top:0; *margin-left:0;}
+#spec-list ul li.active img{border:1px solid red;}

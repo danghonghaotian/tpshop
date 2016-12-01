@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 添加新文章 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+    <script src="{:C('js')}/jquery-1.4.2.min.js"></script>
+    <script src="{:C('ueditor')}/ueditor.config.js"></script>
+    <script src="{:C('ueditor')}/ueditor.all.min.js"></script>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Article/lst")?>">文章列表</a>
+    </span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 添加新文章 </span>
+    <div style="clear:both"></div>
+</h1>
+
+<div class="tab-div">
+    <div id="tabbar-div">
+        <p>
+            <span class="tab-front">通用信息</span>
+            <span class="tab-back">文章内容</span>
+        </p>
+    </div>
+    <form enctype="multipart/form-data" action="<?php echo U("Admin/Article/add")?>" method="post">
+        <div class="tabbody-div">
+            <table cellspacing="1" cellpadding="3" width="100%">
+                <tr>
+                    <td class="label">文章标题</td>
+                    <td>
+                        <input type="text" name="title" maxlength="60" size="40" value="" />
+                        <span class="require-field">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">文章分类</td>
+                    <td>
+                        <select name="cat_id">
+                            <option  value="">请选择...</option>
+                            <?php foreach ($article_cat_data as $k=>$v): ?>
+                                <option  value="<?php echo $v['cat_id'];?>" style="padding-left: <?php echo 25*$v['level']?>px"><?php echo $v['cat_name'];?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <span class="require-field">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">文章重要性</td>
+                    <td>
+                        <input type="radio" name="article_type" value="0" checked="checked" /> 普通
+                        <input type="radio" name="article_type" value="1"  /> 置顶
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">是否显示</td>
+                    <td>
+                        <input type="radio" name="is_open" value="1" checked="checked" /> 显示
+                        <input type="radio" name="is_open" value="0"  /> 不显示
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">关键字</td>
+                    <td>
+                        <input type="text" name="keywords" maxlength="200" size="60" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">网页描述</td>
+                    <td>
+                        <textarea  name="description" cols="60" rows="4"  ></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tabbody-div" style="display: none">
+            <textarea name="content" id="content"></textarea>
+            <script>
+                // 把textarea替换成一个编辑器
+                UE.getEditor('content',{
+                    initialFrameWidth:"100%",
+                    initialFrameHeight:"300"
+                });
+            </script>
+        </div>
+        <div class="button-div">
+            <input type="submit" value=" 确定 " class="button"/>
+            <input type="reset" value=" 重置 " class="button" />
+        </div>
+    </form>
+</div>
+
+<script>
+    $(function () {
+        $("#tabbar-div p span").click(function(){
+            // 先去掉原选中状态
+            $(".tab-front").removeClass("tab-front").addClass("tab-back");
+            // 把当前按钮变成选中状态
+            $(this).removeClass("tab-back").addClass("tab-front");
+            // 当前是第几个按钮
+            var i = $(this).index();
+            // 先隐藏所有的div
+            $(".tabbody-div").hide();
+            // 显示相应的div
+            $(".tabbody-div").eq(i).show();
+        });
+    })
+</script>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

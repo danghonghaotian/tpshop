@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="create_partner_trade_by_buyer-JAVA-GBK">
+        <wb-resource deploy-path="/" source-path="/WebRoot"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="context-root" value="create_partner_trade_by_buyer-JAVA-GBK"/>
+        <property name="java-output-path" value="/create_partner_trade_by_buyer-JAVA-GBK/build/classes"/>
+    </wb-module>
+</project-modules>

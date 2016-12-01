@@ -1,0 +1,18 @@
+/*
+ * 跃飞科技版权所有 @2016
+ */
+
+.tbltree-indent {width:16px; height: 16px; display: inline-block; position: relative;}
+
+.tbltree-expander {width:16px; height: 16px; display: inline-block; position: relative; cursor: pointer;}
+
+.tbltree-expander-expanded{background-image: url(../images/collapse.png); vertical-align: middle;}
+.tbltree-expander-collapsed{background-image: url(../images/expand.png); vertical-align: middle;}
+
+.tbltree-level-pickers {float: left;}
+.tbltree-level-pickers .tbltree-level-item {cursor: pointer;}
+.tbltree-count-wrap {
+	font-style: italic;
+	font-size: 10px;
+	float: right;
+}

@@ -1,0 +1,179 @@
+<!doctype html>
+<html>  
+	<head>
+    <meta charset="utf-8">
+		<title>基于html5的非常好用的统计图表插件-jQ酷</title>
+		<script src="js/Chart.min.js"></script>
+		<meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
+		<style type="text/css">
+      .box{width:1000px;height:1000px; margin:30px auto;}
+			canvas{ margin:10px;}
+      p{text-align:center;}
+      ul li{ list-style:none; float:left; width:300px; height:230px; margin:15px 30px;}
+      .clear{clear:both;}
+      h1{text-align:center; margin:20px auto;}
+		</style>
+	</head>
+	<body>
+    
+		<div class="box" >
+    <h1>非常好用的统计图表插件</h1>
+			<ul>
+      <li>
+        <canvas id="doughnut" ></canvas>
+        <p>1、环状图</p>
+      </li>
+      <li>
+        <canvas id="line" ></canvas>
+        <p>2、曲线图</p>
+      </li>
+      <li>
+        <canvas id="polarArea" ></canvas>
+        <p>3、极状图</p>
+      </li>
+      <li>
+        <canvas id="bar" ></canvas>
+        <p>4、柱形图</p>
+      </li>
+      <li>
+        <canvas id="pie" ></canvas>
+        <p>5、饼图</p>
+      </li
+      ><li>
+        <canvas id="radar" ></canvas>
+        <p>6、雷达图</p>
+      </li>
+      </ul>
+      <div class="clear"></div>
+      <p>本内容由<a href="http://www.jqcool.net">jQ酷</a>收集整理</p>
+		</div>
+	<script type="text/javascript">
+		var doughnutData = [
+				{
+					value: 30,
+					color:"#F7464A"
+				},
+				{
+					value : 50,
+					color : "#46BFBD"
+				},
+				{
+					value : 100,
+					color : "#FDB45C"
+				},
+				{
+					value : 40,
+					color : "#949FB1"
+				},
+				{
+					value : 120,
+					color : "#4D5360"
+				}
+			
+			];
+		var lineChartData = {
+			labels : ["","","","","","",""],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					data : [65,59,90,81,56,55,40]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					data : [28,48,40,19,96,27,100]
+				}
+			]
+			
+		};
+		var pieData = [
+				{
+					value: 30,
+					color:"#F38630"
+				},
+				{
+					value : 50,
+					color : "#E0E4CC"
+				},
+				{
+					value : 100,
+					color : "#69D2E7"
+				}
+			
+			];
+		var barChartData = {
+			labels : ["January","February","March","April","May","June","July"],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					data : [65,59,90,81,56,55,40]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					data : [28,48,40,19,96,27,100]
+				}
+			]
+			
+		};
+	var chartData = [
+			{
+				value : Math.random(),
+				color: "#D97041"
+			},
+			{
+				value : Math.random(),
+				color: "#C7604C"
+			},
+			{
+				value : Math.random(),
+				color: "#21323D"
+			},
+			{
+				value : Math.random(),
+				color: "#9D9B7F"
+			},
+			{
+				value : Math.random(),
+				color: "#7D4F6D"
+			},
+			{
+				value : Math.random(),
+				color: "#584A5E"
+			}
+		];
+		var radarChartData = {
+			labels : ["","","","","","",""],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					data : [65,59,90,81,56,55,40]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					data : [28,48,40,19,96,27,100]
+				}
+			]
+			
+		};
+	new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
+	new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+	new Chart(document.getElementById("radar").getContext("2d")).Radar(radarChartData);
+	new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(chartData);
+	new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+	new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+	</script>
+	</body>
+</html>
