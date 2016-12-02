@@ -110,4 +110,22 @@ class GoodsController extends AdminController
             echo 'error';
         }
     }
+
+    /**
+     * 上传单张图片
+     */
+    public function ajaxUpload()
+    {
+        dump($_FILES);
+        $goodsModel = D('Goods');
+        $goodsModel->uploadImgToTmpDir();
+    }
+
+    /**
+     * 批量上传图片商品图片相册
+     */
+    public function ajaxBUpload()
+    {
+        dump($_FILES);
+    }
 }
