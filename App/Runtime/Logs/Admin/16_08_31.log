@@ -1,6 +1,0 @@
-[ 2016-08-31T15:38:06+08:00 ] 127.0.0.1 /index.php/Admin/Manager/login.html
-ERR: SQLSTATE[HY000] [1049] Unknown database 'tpshop'
-
-[ 2016-08-31T15:49:42+08:00 ] 127.0.0.1 /index.php/Admin/User/comment.html
-ERR: 非法操作:comment
-
