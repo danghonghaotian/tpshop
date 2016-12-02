@@ -1,0 +1,4 @@
+# ignore files
+
+/.htaccess
+/App/Runtime/*
