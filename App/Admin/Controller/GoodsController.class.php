@@ -116,7 +116,6 @@ class GoodsController extends AdminController
      */
     public function ajaxUpload()
     {
-        header('content-type:text/html;charset=utf-8');
         // 读取上传图片的配置
         $config = C('UPLOAD_CONFIG');
         // 设置上传路径
@@ -139,7 +138,7 @@ class GoodsController extends AdminController
         // 设置模型原图地址
         $url = $info['img']['savepath'] . $info['img']['savename'];
 
-        $thumb_path = C('ROOT_PATH').$config['savePath'].$imgName.'/thumb/100/';
+        $thumb_path = $config['savePath'].$imgName.'/thumb/100/';
         $thumb_path = iconv('utf-8', 'gb2312',  $thumb_path);
 //        echo $thumb_path;die;
         if(!is_dir($thumb_path))
@@ -147,8 +146,8 @@ class GoodsController extends AdminController
         $thumb_url = $config['savePath'].$imgName.'/thumb/100/'.$info['img']['savename'];
 //        $thumb_url = iconv('utf-8', 'gb2312', $thumb_url);
         $image = new \Think\Image();
-        $image->open($url);
-        $image->thumb(100, 100)->save($thumb_url);
+        $image->open(C('ROOT_PATH').$url);
+        $image->thumb(100, 100)->save('.'.$thumb_url);
 //        die;
         // 在子窗口中的执行JS把数据放到父窗口的表单中
         $js = '<script>';
@@ -171,7 +170,7 @@ JS;
         // 读取上传图片的配置
         $config = C('UPLOAD_CONFIG');
         // 设置上传路径
-        $config['savePath'] = './assets/admin/tmp/';
+        $config['savePath'] = '/assets/admin/tmp/';
         $upload = new \Think\Upload($config);
         //图片名称
         $imgName = current(explode('.', $_FILES['img']['name']));
@@ -195,12 +194,12 @@ JS;
             mkdir($thumb_path, 0777,true);
         $thumb_url = $config['savePath'].$imgName.'/thumb/100/'.$info['img']['savename'];
         $image = new \Think\Image();
-        $image->open($url);
-        $image->thumb(100, 100)->save($thumb_url);
+        $image->open(C('ROOT_PATH').$url);
+        $image->thumb(100, 100)->save('.'.$thumb_url);
 //        die;
         // 在子窗口中的执行JS把数据放到父窗口的表单中
         $js = '<script>';
-        $img = "<li><input type='hidden' name='GoodsPic[]' value='$url' /><img src='/$thumb_url' /><br /><a onclick='this.parentNode.parentNode.removeChild(this.parentNode);' href='javascript:void(0);'>[-]</a></li>";
+        $img = "<li><input type='hidden' name='GoodsPic[]' value='$url' /><img src='$thumb_url' /><br /><a onclick='this.parentNode.parentNode.removeChild(this.parentNode);' href='javascript:void(0);'>[-]</a></li>";
         $js .=<<<JS
 		parent.document.getElementById("bpre_img").innerHTML += "$img";
 		parent.document.getElementById("bupload").style.display="none";
