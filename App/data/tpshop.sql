@@ -53,3 +53,17 @@ CREATE TABLE tp_goods_attr
 	foreign key (goods_id) references tp_goods(id) on delete cascade,
 	foreign key (attr_id) references tp_attribute(id) on delete cascade
 )engine=InnoDB default charset=utf8 comment '商品属性表';
+
+# 2016-12-5
+DROP TABLE IF EXISTS tp_member_price;
+CREATE TABLE `tp_member_price` (
+  `price_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `goods_id` mediumint(8) unsigned NOT NULL DEFAULT '0' comment '商品id',
+  `user_rank` smallint(5)  unsigned NOT NULL  comment '会员级别',
+  `user_price` decimal(10,2) NOT NULL DEFAULT '0.00' comment '会员价格',
+  PRIMARY KEY (`price_id`),
+  KEY `goods_id` (`goods_id`),
+  KEY `user_rank` (`user_rank`),
+  foreign key (goods_id) references tp_goods(id) on delete cascade,
+	foreign key (user_rank) references tp_user_rank(id) on delete cascade
+) engine=InnoDB default charset=utf8 comment '会员价格表';
