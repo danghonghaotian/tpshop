@@ -113,6 +113,7 @@
                         <input type="text" name="keywords" value="" size="40" /> 用空格分隔
                     </td>
                 </tr>
+                <input type="hidden" id="logo" size="40" name="Info[logo]" />
                 <tr>
                     <td class="label">商品图片：</td>
                     <td>
@@ -188,7 +189,7 @@
 <?php include_once "/assets/template/footer.php";?>
 </body>
 </html>
-<iframe style="display:;" name="ifr"></iframe>
+<iframe style="display:none;" name="ifr"></iframe>
 <div id="upload" style="position:absolute;display:none;padding:10px;border:1px solid #CCC;background:#FFF;width:360px;">
     <form id="pre_form" target="ifr" method="POST" action="<?php echo U('Admin/Goods/ajaxUpload');?>" enctype="multipart/form-data">
         图片：<input type="file" name="img" onchange="ajaxUpload();"/><input type="submit" value="上传" />

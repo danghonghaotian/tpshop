@@ -116,9 +116,51 @@ class GoodsController extends AdminController
      */
     public function ajaxUpload()
     {
-        dump($_FILES);
-        $goodsModel = D('Goods');
-        $goodsModel->uploadImgToTmpDir();
+        header('content-type:text/html;charset=utf-8');
+        // 读取上传图片的配置
+        $config = C('UPLOAD_CONFIG');
+        // 设置上传路径
+        $config['savePath'] = './assets/admin/tmp/';
+        $upload = new \Think\Upload($config);
+        //图片名称
+        $imgName = current(explode('.', $_FILES['img']['name']));
+        //上传生成的子目录位置
+        $upload->subName =  $imgName.'/original';
+        //如果已经存在该文件，先删除再重新上传，也就是同名覆盖
+        $uploadFile =C('ROOT_PATH').$config['savePath'].$imgName.'/original/'.$_FILES['img']['name'];
+        if(file_exists($uploadFile))
+        {
+            unlink($uploadFile);
+        }
+        // 执行上传
+        $info = $upload->upload();
+        if(!$info)
+            die($upload->getError());
+        // 设置模型原图地址
+        $url = $info['img']['savepath'] . $info['img']['savename'];
+
+        $thumb_path = C('ROOT_PATH').$config['savePath'].$imgName.'/thumb/100/';
+        $thumb_path = iconv('utf-8', 'gb2312',  $thumb_path);
+//        echo $thumb_path;die;
+        if(!is_dir($thumb_path))
+            mkdir($thumb_path, 0777,true);
+        $thumb_url = $config['savePath'].$imgName.'/thumb/100/'.$info['img']['savename'];
+//        $thumb_url = iconv('utf-8', 'gb2312', $thumb_url);
+        $image = new \Think\Image();
+        $image->open($url);
+        $image->thumb(100, 100)->save($thumb_url);
+//        die;
+        // 在子窗口中的执行JS把数据放到父窗口的表单中
+        $js = '<script>';
+        $js .=<<<JS
+		parent.document.getElementById("logo").value='$url';
+		parent.document.getElementById("pre_img").src='/$thumb_url';
+		parent.document.getElementById("upload").style.display="none";
+		parent.document.getElementById("pre_form").reset();
+		
+JS;
+        $js .= '</script>';
+        echo $js;
     }
 
     /**
@@ -126,6 +168,45 @@ class GoodsController extends AdminController
      */
     public function ajaxBUpload()
     {
-        dump($_FILES);
+        // 读取上传图片的配置
+        $config = C('UPLOAD_CONFIG');
+        // 设置上传路径
+        $config['savePath'] = './assets/admin/tmp/';
+        $upload = new \Think\Upload($config);
+        //图片名称
+        $imgName = current(explode('.', $_FILES['img']['name']));
+        //上传生成的子目录位置
+        $upload->subName =  $imgName.'/original';
+        //如果已经存在该文件，先删除再重新上传，也就是同名覆盖
+        $uploadFile =C('ROOT_PATH').$config['savePath'].$imgName.'/original/'.$_FILES['img']['name'];
+        if(file_exists($uploadFile))
+        {
+            unlink($uploadFile);
+        }
+        // 执行上传
+        $info = $upload->upload();
+        if(!$info)
+            die($upload->getError());
+        // 设置模型原图地址
+        $url = $info['img']['savepath'] . $info['img']['savename'];
+        $thumb_path = C('ROOT_PATH').$config['savePath'].$imgName.'/thumb/100/';
+        $thumb_path = iconv('utf-8', 'gb2312',  $thumb_path);
+        if(!is_dir($thumb_path))
+            mkdir($thumb_path, 0777,true);
+        $thumb_url = $config['savePath'].$imgName.'/thumb/100/'.$info['img']['savename'];
+        $image = new \Think\Image();
+        $image->open($url);
+        $image->thumb(100, 100)->save($thumb_url);
+//        die;
+        // 在子窗口中的执行JS把数据放到父窗口的表单中
+        $js = '<script>';
+        $img = "<li><input type='hidden' name='GoodsPic[]' value='$url' /><img src='/$thumb_url' /><br /><a onclick='this.parentNode.parentNode.removeChild(this.parentNode);' href='javascript:void(0);'>[-]</a></li>";
+        $js .=<<<JS
+		parent.document.getElementById("bpre_img").innerHTML += "$img";
+		parent.document.getElementById("bupload").style.display="none";
+		parent.document.getElementById("bpre_form").reset();
+JS;
+        $js .= '</script>';
+        echo $js;
     }
 }

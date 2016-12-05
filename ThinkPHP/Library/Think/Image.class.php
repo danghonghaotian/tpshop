@@ -76,6 +76,7 @@ class Image{
      * @return Object          当前图片处理库对象
      */
     public function open($imgname){
+        $imgname =  iconv('utf-8','gb2312',$imgname);
         $this->img->open($imgname);
         return $this;
     }
@@ -89,6 +90,7 @@ class Image{
      * @return Object             当前图片处理库对象
      */
     public function save($imgname, $type = null, $quality=80,$interlace = true){
+        $imgname =  iconv('utf-8','gb2312',$imgname);
         $this->img->save($imgname, $type, $quality,$interlace);
         return $this;
     }

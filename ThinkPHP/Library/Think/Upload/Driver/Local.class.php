@@ -80,7 +80,9 @@ class Local{
         }
 
         /* 移动文件 */
-        if (!move_uploaded_file($file['tmp_name'], $filename)) {
+//        if (!move_uploaded_file($file['tmp_name'], $filename)) {
+        //解决上传带有中文的命的图片，生成文件夹乱码
+        if (!move_uploaded_file($file['tmp_name'], iconv('utf-8','gb2312',$filename))){
             $this->error = '文件上传保存错误！';
             return false;
         }
@@ -94,6 +96,7 @@ class Local{
      * @return boolean          创建状态，true-成功，false-失败
      */
     public function mkdir($savepath){
+        $savepath =  iconv('utf-8','gb2312',$savepath);
         $dir = $this->rootPath . $savepath;
         if(is_dir($dir)){
             return true;
