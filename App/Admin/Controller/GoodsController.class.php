@@ -120,7 +120,7 @@ class GoodsController extends AdminController
         // 读取上传图片的配置
         $config = C('UPLOAD_CONFIG');
         // 设置上传路径
-        $config['savePath'] = './assets/admin/tmp/';
+        $config['savePath'] = '/assets/admin/tmp/';
         $upload = new \Think\Upload($config);
         //图片名称
         $imgName = current(explode('.', $_FILES['img']['name']));
@@ -154,7 +154,7 @@ class GoodsController extends AdminController
         $js = '<script>';
         $js .=<<<JS
 		parent.document.getElementById("logo").value='$url';
-		parent.document.getElementById("pre_img").src='/$thumb_url';
+		parent.document.getElementById("pre_img").src='$thumb_url';
 		parent.document.getElementById("upload").style.display="none";
 		parent.document.getElementById("pre_form").reset();
 		

@@ -75,4 +75,33 @@ class GoodsModel extends Model
             return $msg;
         }
     }
+
+    /**
+     * 清除指定目录的所有文件
+     * @param  [string] $dir 要清除的目录名
+     * @return  void   没有返回值
+     */
+    public function clearPic($dir)
+    {
+        $dh=opendir($dir);
+        while (!!$file = readdir($dh))
+        {
+            if($file!="." && $file!="..")
+            {
+                $fullpath=$dir."/".$file;
+                if(!is_dir($fullpath))
+                {
+                    unlink($fullpath);   //删除不是目录的文件，如tmp/20141231142112.JPG
+                }
+                else
+                {
+                    $this->clearPic($fullpath);  //递归删除子目录下的文件，$fullpath=tmp/1
+                    rmdir($fullpath);  //删除空目录
+                }
+            }
+        }
+        closedir($dh);
+    }
+
+
 }
