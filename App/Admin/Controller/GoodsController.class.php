@@ -138,13 +138,11 @@ class GoodsController extends AdminController
         // 设置模型原图地址
         $url = $info['img']['savepath'] . $info['img']['savename'];
 
-        $thumb_path = $config['savePath'].$imgName.'/thumb/100/';
+        $thumb_path = C('ROOT_PATH').$config['savePath'].$imgName.'/thumb/100/';
         $thumb_path = iconv('utf-8', 'gb2312',  $thumb_path);
-//        echo $thumb_path;die;
         if(!is_dir($thumb_path))
             mkdir($thumb_path, 0777,true);
         $thumb_url = $config['savePath'].$imgName.'/thumb/100/'.$info['img']['savename'];
-//        $thumb_url = iconv('utf-8', 'gb2312', $thumb_url);
         $image = new \Think\Image();
         $image->open(C('ROOT_PATH').$url);
         $image->thumb(100, 100)->save('.'.$thumb_url);
