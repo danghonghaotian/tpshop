@@ -7,7 +7,6 @@
  */
 namespace Admin\Model;
 use Think\Model;
-use Think\Think;
 
 class GoodsModel extends Model
 {
@@ -102,6 +101,132 @@ class GoodsModel extends Model
         }
         closedir($dh);
     }
+
+    /**
+     * 添加商品
+     * 商品基本信息
+     * 商品会员价格信息
+     * 商品属性信息
+     * 商品相册信息
+     */
+    public function add()
+    {
+        if(($goods_id = parent::add()) === FALSE)
+        {
+           return false;
+        }
+    }
+
+    /**
+     * 上传图片
+     * 新添加的图片或者修改时都用到
+     */
+    public function upload()
+    {
+        // 如果上传了图片，并且图片是在临时目录中的（说明是新上传的）那么就修改
+        if($this->logo && strpos($this->logo, 'tmp') !== FALSE)
+        {
+            // 判断是修改商品就先删除原图： 所有修改的表单中都会有一个id的隐藏域
+            if(isset($this->id))
+            {
+                // 修改就删除原图
+                if(isset($_POST['old_pic']))
+                {
+                    foreach ($_POST['old_pic'] as $v)
+                    {
+                        $v = C('ROOT_PATH').$v;
+                        if(file_exists($v))
+                        {
+                            unlink($v);
+                        }
+                    }
+                }
+            }
+            // 移动原图并生成缩略图
+            $arr = $this->_moveAndThumb($this->logo);
+            // 把图片的地址赋给模型
+            $this->logo = $arr[0];
+            $this->sm_logo = $arr[1];
+            $this->sm1_logo = $arr[2];
+            $this->sm2_logo = $arr[3];
+        }
+    }
+
+    /**
+     * 把图片移动并生成缩略图
+     * @param $img
+     * @return array
+     */
+    private function _moveAndThumb($img)
+    {
+        // 从图片路径中取出图片的名称
+        $skuName = substr(strrchr($img, '/'),1);
+
+        //图片存储目录算法,取出sku
+        if(count(explode('_',$skuName)) == 1)
+        {
+            $sku = current(explode('.',$skuName));
+        }
+        else
+        {
+            $sku = current(explode('_',$skuName));
+        }
+        //优化代码
+        $rootPath = C('ROOT_PATH');
+        // 构造图片存放目录的路径
+        $dir =$rootPath."/assets/admin/product/{$sku}/original";
+        if(!is_dir($dir))
+        {
+            mkdir($dir, 0777,true);
+        }
+        // 构造移动之后的图片的路径
+        $imgName = $dir.'/'.$skuName;
+        // 执行移动
+        copy($rootPath.$img, $imgName);
+        // 生成三张缩略图的路径，以及新图片的名称
+        $thumb_dir1 = $rootPath."/assets/admin/product/{$sku}/thumb/600x";
+        $thumb_dir2 = $rootPath."/assets/admin/product/{$sku}/thumb/300x";
+        $thumb_dir3 = $rootPath."/assets/admin/product/{$sku}/thumb/100x";
+
+        if(!is_dir($thumb_dir1))
+        {
+            mkdir($thumb_dir1, 0777,true);
+        }
+        if(!is_dir($thumb_dir2))
+        {
+            mkdir($thumb_dir2, 0777,true);
+        }
+        if(!is_dir($thumb_dir3))
+        {
+            mkdir($thumb_dir3, 0777,true);
+        }
+        $img1 = $thumb_dir1.'/'.$skuName;
+        $img2 = $thumb_dir2.'/'.$skuName;
+        $img3 = $thumb_dir3.'/'.$skuName;
+        $image = new \Think\Image();
+        $image->open($imgName);
+        $image->thumb(600, 600)->save($img3);
+        $image->thumb(300, 300)->save($img2);
+        $image->thumb(100, 100)->save($img1);
+
+        //不要带硬盘路径的图片
+        $imgName = substr($imgName,strlen($rootPath));
+        $img1 = substr($img1,strlen($rootPath));
+        $img2 = substr($img2,strlen($rootPath));
+        $img3 = substr($img3,strlen($rootPath));
+
+        $imgArr =  array(
+            $imgName,
+            $img1,
+            $img2,
+            $img3,
+        );
+
+        return $imgArr;
+    }
+
+
+
 
 
 }

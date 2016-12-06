@@ -23,7 +23,13 @@ class GoodsController extends AdminController
     {
         if(IS_POST)
         {
-            dump($_POST);
+//            dump($_POST);
+            $goodsModel = D('goods');
+            if($goodsModel->create($_POST['goods']))
+            {
+                //上传图片
+                $goodsModel->upload();
+            }
         }
         //商品分类
         $categoryModel = D('Category');
