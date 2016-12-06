@@ -29,6 +29,14 @@ CREATE TABLE tp_goods
 	key type_id(type_id)
 )engine=InnoDB default charset=utf8 comment '商品表';
 
+#2016-12-6
+ALTER TABLE `tp_goods`
+ADD COLUMN `goods_number`  smallint(5) UNSIGNED NOT NULL AFTER `goods_name`;
+ALTER TABLE `tp_goods`
+MODIFY COLUMN `goods_number`  smallint(5) UNSIGNED NOT NULL COMMENT '商品数量' AFTER `goods_name`;
+
+
+
 # 2016-12-02
 CREATE TABLE tp_goods_gallery
 (
@@ -53,6 +61,11 @@ CREATE TABLE tp_goods_attr
 	foreign key (goods_id) references tp_goods(id) on delete cascade,
 	foreign key (attr_id) references tp_attribute(id) on delete cascade
 )engine=InnoDB default charset=utf8 comment '商品属性表';
+
+#2016-12-6
+ALTER TABLE `tp_goods_attr`
+ADD COLUMN `attr_price`  decimal(8,2) UNSIGNED NOT NULL DEFAULT 0 COMMENT '属性额外价' AFTER `attr_value`;
+
 
 # 2016-12-5
 DROP TABLE IF EXISTS tp_member_price;

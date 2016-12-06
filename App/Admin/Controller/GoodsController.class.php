@@ -21,6 +21,10 @@ class GoodsController extends AdminController
 
     public function add()
     {
+        if(IS_POST)
+        {
+            dump($_POST);
+        }
         //商品分类
         $categoryModel = D('Category');
         $categoryData = $categoryModel->select();
@@ -76,28 +80,28 @@ class GoodsController extends AdminController
                {
                    $attrValue = explode(',',$v['attr_value']);
                    $str = '';
-                   $str .="<tr><td class='label'><a onclick='addANewAttRow(this)' href='javascript:void(0);'>[+]</a>{$v['attr_name']}</td><td><select name='attr_value[]' style='width: 120px;'>";
+                   $str .="<tr><td class='label'><a onclick='addANewAttRow(this)' href='javascript:void(0);'>[+]</a>{$v['attr_name']}</td><td><select name='goods_attr[attr_value][{$v['id']}][]' style='width: 120px;'>";
                    foreach ($attrValue as $v1)
                    {
-                       $str .= "<option value=''>$v1</option>";
+                       $str .= "<option value='".$v1."'>$v1</option>";
                    }
-                   $str .="</select> 属性价格<input type='text'name='' size='6' /></td></tr>";
+                   $str .="</select> 属性价格<input type='text'name='goods_attr[attr_price][{$v['id']}][]' size='6' /></td></tr>";
                    echo $str;
                }
                if($v['attr_type'] == self::UNIQUE)//唯一属性
                {
                    if(empty($v['attr_value']))
                    {
-                       echo "<tr><td class='label'>{$v['attr_name']}</td><td><input type='text' name='attr_value[]' value=''/></td>";
+                       echo "<tr><td class='label'>{$v['attr_name']}</td><td><input type='text' name='goods_attr[attr_value][{$v['id']}][]' value=''/></td>";
                    }
                    else
                    {
                        $attrValue = explode(',',$v['attr_value']);
                        $str = '';
-                       $str .="<tr><td class='label'>{$v['attr_name']}</td><td><select name='attr_value[]'>";
+                       $str .="<tr><td class='label'>{$v['attr_name']}</td><td><select name='goods_attr[attr_value][{$v['id']}][]'>";
                        foreach ($attrValue as $v1)
                        {
-                           $str .= "<option value=''>$v1</option>";
+                           $str .= "<option value='".$v1."'>$v1</option>";
                        }
                        $str .="</select></td></tr>";
                        echo $str;
@@ -215,7 +219,7 @@ JS;
         $image->thumb(100, 100)->save('.'.$thumb_url);
         // 在子窗口中的执行JS把数据放到父窗口的表单中
         $js = '<script>';
-        $img = "<li><input type='hidden' name='GoodsPic[]' value='$url' /><img src='$thumb_url' /><br /><a onclick='this.parentNode.parentNode.removeChild(this.parentNode);' href='javascript:void(0);'>[-]</a></li>";
+        $img = "<li><input type='hidden' name='goods_gallery[]' value='$url' /><img src='$thumb_url' /><br /><a onclick='this.parentNode.parentNode.removeChild(this.parentNode);' href='javascript:void(0);'>[-]</a></li>";
         $js .=<<<JS
 		parent.document.getElementById("bpre_img").innerHTML += "$img";
 		parent.document.getElementById("bupload").style.display="none";
