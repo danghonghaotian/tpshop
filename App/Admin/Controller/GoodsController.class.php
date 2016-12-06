@@ -122,7 +122,17 @@ class GoodsController extends AdminController
         $config['savePath'] = '/assets/admin/tmp/';
         $upload = new \Think\Upload($config);
         //图片名称
-        $imgName = current(explode('.', $_FILES['img']['name']));
+        $skuName = $_FILES['img']['name'];
+        //图片存储目录算法
+        if(count(explode('_',$skuName)) == 1)
+        {
+            $imgName = current(explode('.',$skuName));
+        }
+        else
+        {
+            $imgName = current(explode('_',$skuName));
+        }
+
         //上传生成的子目录位置
         $upload->subName =  $imgName.'/original';
         //如果已经存在该文件，先删除再重新上传，也就是同名覆盖
@@ -146,7 +156,6 @@ class GoodsController extends AdminController
         $image = new \Think\Image();
         $image->open(C('ROOT_PATH').$url);
         $image->thumb(100, 100)->save('.'.$thumb_url);
-//        die;
         // 在子窗口中的执行JS把数据放到父窗口的表单中
         $js = '<script>';
         $js .=<<<JS
@@ -171,7 +180,17 @@ JS;
         $config['savePath'] = '/assets/admin/tmp/';
         $upload = new \Think\Upload($config);
         //图片名称
-        $imgName = current(explode('.', $_FILES['img']['name']));
+        $skuName = $_FILES['img']['name'];
+        //图片存储目录算法
+        if(count(explode('_',$skuName)) == 1)
+        {
+            $imgName = current(explode('.',$skuName));
+        }
+        else
+        {
+            $imgName = current(explode('_',$skuName));
+        }
+
         //上传生成的子目录位置
         $upload->subName =  $imgName.'/original';
         //如果已经存在该文件，先删除再重新上传，也就是同名覆盖
@@ -194,7 +213,6 @@ JS;
         $image = new \Think\Image();
         $image->open(C('ROOT_PATH').$url);
         $image->thumb(100, 100)->save('.'.$thumb_url);
-//        die;
         // 在子窗口中的执行JS把数据放到父窗口的表单中
         $js = '<script>';
         $img = "<li><input type='hidden' name='GoodsPic[]' value='$url' /><img src='$thumb_url' /><br /><a onclick='this.parentNode.parentNode.removeChild(this.parentNode);' href='javascript:void(0);'>[-]</a></li>";
