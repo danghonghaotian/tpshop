@@ -46,6 +46,7 @@ class AdminController extends Controller
                     }
                 }
             }
+            session('re_login','session超时，请重新登录');
             $url = U('Admin/Manager/login');
             echo "<script>window.open('$url', '_parent')</script>";
 //            $this->error('必须先登录', U('Admin/Manager/login'));

@@ -16,6 +16,18 @@
             <td style="padding-left: 50px">
                 <table>
                     <tr>
+                        <td colspan="2" style="color: red;text-align: center">
+                            <?php
+                            $re_login = session('re_login');
+                            if(isset( $re_login))
+                            {
+                                echo $re_login;
+                                session('re_login',null); //销毁
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>管理员姓名：</td>
                         <td>
                             <input type="text" name="username" />
