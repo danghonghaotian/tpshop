@@ -58,8 +58,8 @@
                 <td align="center"><?php echo $v['goods_sn'];?></td>
                 <td align="center"><?php echo $v['is_on_sale']==1?'上架':'下架'?></td>
                 <td align="center">
-                    <a href="<?php echo U("Admin/Goods/save",array('goods_id'=>$v['goods_id']))?>" title="编辑">编辑</a> |
-                    <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Goods/delete",array('goods_id'=>$v['goods_id']))?>" title="删除">移除</a>
+                    <a href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
+                    <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Goods/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
                 </td>
             </tr>
             <?php endforeach;?>
