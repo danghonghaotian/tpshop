@@ -111,10 +111,81 @@ class GoodsModel extends Model
      */
     public function add()
     {
+        //插入商品基本信息goods表
         if(($goods_id = parent::add()) === FALSE)
         {
            return false;
         }
+
+        //插入会员价格信息member_price表
+        if(isset($_POST['member_price']))
+        {
+            $memberPriceModel = M('MemberPrice');
+            foreach ($_POST['member_price'] as $k => $v)
+            {
+                $v = trim($v);
+                if(!$v)
+                {
+                    continue ;  //没有会员价格跳过不插入记录
+                }
+               $memberPriceModel->data(array(
+                    'goods_id'=>$goods_id,
+                    'user_rank'=>$k,
+                    'user_price'=>$v,
+                ))->add();
+            }
+        }
+
+        //添加数据到商品属性表goods_attr
+        if(isset($_POST['goods_attr']))
+        {
+            $gaModel = M('GoodsAttr');
+            foreach ($_POST['goods_attr']['attr_value'] as $k => $v)
+            {
+                if(is_array($v)) //单选属性
+                {
+                    // 如果一个属性有多个值就循环每个值，一个值一条记录
+                    foreach ($v as $k1 => $v1)
+                    {
+                       $gaModel->data(array(
+                            'goods_id'=>$goods_id,
+                            'attr_id'=>$k,
+                            'attr_value'=>$v1,
+                            'attr_price'=>$_POST['goods_attr']['attr_price'][$k],
+                        ))->add();
+                    }
+                }
+                else //唯一属性
+                {
+                    $gaModel->data(array(
+                        'goods_id'=>$goods_id,
+                        'attr_id'=>$k,
+                        'attr_value'=>$v,
+                        'attr_price'=>0.00,
+                    ))->add();
+                }
+            }
+        }
+
+        //添加商品相册中的数据 goods_gallery表
+        if(isset($_POST['goods_gallery']))
+        {
+            $gpModel = M('GoodsGallery');
+            foreach ($_POST['goods_gallery'] as $v)
+            {
+                // 先把图片移动到商品目录并生成缩略图
+                $arr = $this->_moveAndThumb($v);
+                $gpModel->data(array(
+                    'goods_id'=>$goods_id,
+                    'sm_logo'=>$arr[1],
+                    'sm1_logo'=>$arr[2],
+                    'sm2_logo'=>$arr[3],
+                    'logo'=>$arr[0],
+                ))->add();
+            }
+        }
+        return $goods_id;
+
     }
 
     /**

@@ -24,11 +24,30 @@ class GoodsController extends AdminController
         if(IS_POST)
         {
 //            dump($_POST);
+//            file_put_contents('E:/backup/desktop/data1.txt', json_encode($_POST));
+//            die;
             $goodsModel = D('goods');
             if($goodsModel->create($_POST['goods']))
             {
                 //上传图片
                 $goodsModel->upload();
+                // 插入数据库
+                if(($goods_id=$goodsModel->add()) !== FALSE)
+                {
+                    $this->success('添加成功', U('lst'));
+                    exit;
+                }
+                else
+                {
+                    if(APP_DEBUG)
+                    {
+                        echo 'SQL为：'.$goodsModel->getLastSql().' - ERROR:'.mysql_error();
+                    }
+                    else
+                    {
+                        $this->error('发生失败，请重试！');
+                    }
+                }
             }
         }
         //商品分类
@@ -98,13 +117,13 @@ class GoodsController extends AdminController
                {
                    if(empty($v['attr_value']))
                    {
-                       echo "<tr><td class='label'>{$v['attr_name']}</td><td><input type='text' name='goods_attr[attr_value][{$v['id']}][]' value=''/></td>";
+                       echo "<tr><td class='label'>{$v['attr_name']}</td><td><input type='text' name='goods_attr[attr_value][{$v['id']}]' value=''/></td>";
                    }
                    else
                    {
                        $attrValue = explode(',',$v['attr_value']);
                        $str = '';
-                       $str .="<tr><td class='label'>{$v['attr_name']}</td><td><select name='goods_attr[attr_value][{$v['id']}][]'>";
+                       $str .="<tr><td class='label'>{$v['attr_name']}</td><td><select name='goods_attr[attr_value][{$v['id']}]'>";
                        foreach ($attrValue as $v1)
                        {
                            $str .= "<option value='".$v1."'>$v1</option>";
