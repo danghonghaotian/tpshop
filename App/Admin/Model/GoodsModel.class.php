@@ -151,7 +151,7 @@ class GoodsModel extends Model
                             'goods_id'=>$goods_id,
                             'attr_id'=>$k,
                             'attr_value'=>$v1,
-                            'attr_price'=>$_POST['goods_attr']['attr_price'][$k],
+                            'attr_price'=>$_POST['goods_attr']['attr_price'][$k][$k1],
                         ))->add();
                     }
                 }
@@ -276,9 +276,9 @@ class GoodsModel extends Model
         $img3 = $thumb_dir3.'/'.$skuName;
         $image = new \Think\Image();
         $image->open($imgName);
-        $image->thumb(600, 600)->save($img3);
+        $image->thumb(600, 600)->save($img1);
         $image->thumb(300, 300)->save($img2);
-        $image->thumb(100, 100)->save($img1);
+        $image->thumb(100, 100)->save($img3);
 
         //不要带硬盘路径的图片
         $imgName = substr($imgName,strlen($rootPath));
@@ -288,12 +288,36 @@ class GoodsModel extends Model
 
         $imgArr =  array(
             $imgName,
-            $img1,
-            $img2,
-            $img3,
+            $img3, //100x
+            $img2, //300x
+            $img1, //600x
         );
 
         return $imgArr;
+    }
+
+
+    /**
+     * @param int $is_delete 0正常商品 1回收站商品
+     * @return array
+     */
+    public function search($is_delete = 0)
+    {
+        // 搜索所有的数据,如果需要搜索其他字段需要自己添加
+        $where = 'is_delete='.$is_delete;
+        //1 . 算出总的记录数
+        $count = $this->where($where)->count();
+        // 2. 生成翻页类的对象
+        $page = new \Admin\Component\Page($count,C('PAGE_SIZE'));
+        $page->config['header'] = '个商品';
+        // 3. 生成翻页的字符串：上一页、下一页
+        $pageStr = $page->fpage();
+        // 4. 取出当前页的数据
+        $data = $this->where($where)->limit( $page->limit)->order('id desc')->select();
+        return array(
+            'page' => $pageStr,
+            'data' => $data,
+        );
     }
 
 

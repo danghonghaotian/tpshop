@@ -16,6 +16,10 @@ class GoodsController extends AdminController
     public function lst()
     {
         $this->assign('title','商品列表');
+        $goodsModel = D('Goods');
+        $data = $goodsModel->search();
+        $this->assign('data', $data['data']);
+        $this->assign('page', $data['page']);
         $this->display();
     }
 

@@ -141,11 +141,12 @@ h1 .action-span1 {
   line-height: 22px;
 }
 
-.list-div td.first-cell{
+.list-div td.first-cell,.list-div td.goods_pic{
   font-weight: bold;
   padding-left: 10px;
   position:relative;
 }
+
 
 .list-div input {
   vertical-align: middle;

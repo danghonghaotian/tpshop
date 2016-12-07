@@ -35,6 +35,10 @@ ADD COLUMN `goods_number`  smallint(5) UNSIGNED NOT NULL AFTER `goods_name`;
 ALTER TABLE `tp_goods`
 MODIFY COLUMN `goods_number`  smallint(5) UNSIGNED NOT NULL COMMENT '商品数量' AFTER `goods_name`;
 
+#修改商品sku长度
+ALTER TABLE `tp_goods`
+MODIFY COLUMN `goods_sn`  char(13) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品货号' AFTER `shop_price`;
+
 
 
 # 2016-12-02
