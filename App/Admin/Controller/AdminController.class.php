@@ -1,7 +1,7 @@
 <?php
 /**
  * 跃飞科技版权所有 @2016
- * User: zhong
+ * User: 钟贵廷
  * Date: 2016/8/16
  * Time: 11:28
  */
@@ -46,7 +46,9 @@ class AdminController extends Controller
                     }
                 }
             }
-            $this->error('必须先登录', U('Admin/Manager/login'));
+            $url = U('Admin/Manager/login');
+            echo "<script>window.open('$url', '_parent')</script>";
+//            $this->error('必须先登录', U('Admin/Manager/login'));
         }
         $this->checkPrivilege();
     }
