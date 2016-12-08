@@ -75,8 +75,29 @@ class GoodsController extends AdminController
         $this->display();
     }
 
-    public function save()
+    public function save($id)
     {
+        //商品基本信息
+        $goodsModel = D('Goods');
+        $goods = $goodsModel->find($id);
+        $this->assign('goods',$goods);
+        //商品分类
+        $categoryModel = D('Category');
+        $categoryData = $categoryModel->select();
+        $categoryData = $categoryModel ->tree($categoryData);
+        $this->assign('categoryData',$categoryData);
+        //商品品牌
+        $brandModel = D('Brand');
+        $brandData = $brandModel->order('brand_name asc')->select();
+        $this->assign('brandData',$brandData);
+        //会员价格
+        $userRankModel =  D('UserRank');
+        $userRankData =  $userRankModel->select();
+        $this->assign('userRankData',$userRankData);
+        //商品类型
+        $goodsTypeModel = D('GoodsType');
+        $goodsTypeData = $goodsTypeModel->select();
+        $this->assign('goodsTypeData',$goodsTypeData);
         $this->display();
     }
 

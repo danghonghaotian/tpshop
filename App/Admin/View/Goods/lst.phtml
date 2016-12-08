@@ -55,7 +55,14 @@
             <?php foreach ($data as $k=>$v):?>
             <tr>
                 <td align="center"><input type="checkbox" name="goods_id[]" value="<?php echo $v['id'];?>"/><?php echo $v['id'];?></td>
-                <td align="center" class="goods_pic"><a  href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>"><?php echo $v['goods_name'];?></a><img src="<?php echo $v['sm_logo'];?>" class="goods_thumb"/></td>
+                <td align="center" class="goods_pic">
+                    <a  href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>">
+                        <?php echo $v['goods_name'];?>
+                    </a>
+                    <?php if(!empty($v['sm_logo'])):?>
+                    <img src="<?php echo $v['sm_logo'];?>" class="goods_thumb"/>
+                    <?php endif; ?>
+                </td>
                 <td align="center"><?php echo $v['goods_number'];?></td>
                 <td align="center"><?php echo $v['market_price'];?></td>
                 <td align="center"><?php echo $v['shop_price'];?></td>
