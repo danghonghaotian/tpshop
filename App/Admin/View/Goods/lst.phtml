@@ -8,7 +8,11 @@
     <script type="text/javascript" src="{:C('js')}/jquery.js"></script>
     <style type="text/css">
         /*first-cell做相对定位，这边做绝对定位*/
-        .goods_thumb{display: none; position: absolute;z-index: 3;left: 60px;}
+        .goods_thumb{display: none; position: absolute;z-index: 3;left: 0px;top:-3px}
+        .goods_pic{
+            cursor: pointer;
+        };
+        .goods_pic a {text-decoration: none}
     </style>
     <script type="text/javascript">
         //鼠标滑过显示品牌图片的动态效果
@@ -51,7 +55,7 @@
             <?php foreach ($data as $k=>$v):?>
             <tr>
                 <td align="center"><input type="checkbox" name="goods_id[]" value="<?php echo $v['id'];?>"/><?php echo $v['id'];?></td>
-                <td align="center" class="goods_pic"><?php echo $v['goods_name'];?><img src="<?php echo $v['sm_logo'];?>" class="goods_thumb"/></td>
+                <td align="center" class="goods_pic"><a  href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>"><?php echo $v['goods_name'];?></a><img src="<?php echo $v['sm_logo'];?>" class="goods_thumb"/></td>
                 <td align="center"><?php echo $v['goods_number'];?></td>
                 <td align="center"><?php echo $v['market_price'];?></td>
                 <td align="center"><?php echo $v['shop_price'];?></td>
