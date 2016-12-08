@@ -137,11 +137,6 @@
                         <input type="radio" <?php if($goods[no_postage] == 0):?> checked="checked"<?php endif;?> name="goods[no_postage]" value="0"/> 否
                     </td>
                 </tr>
-
-
-
-
-
             </table>
 
     </div>
@@ -164,7 +159,7 @@
             <?php foreach ($userRankData as $k => $v): ?>
             <tr>
                 <td class="label"><?php echo $v['level_name'];?>:</td>
-                <td><input type="text" name="member_price[<?php echo $v['id']?>]" /></td>
+                <td><input type="text" name="member_price[<?php echo $v['id']?>]"  value="<?php echo $mpData[$v['id']]?>"/></td>
             </tr>
             <?php endforeach;?>
 
@@ -179,11 +174,106 @@
                     <select id="type_id" name="goods[type_id]">
                         <option value="">请选择商品类型</option>
                         <?php foreach ($goodsTypeData as $k=>$v):?>
-                        <option value="<?php echo $v['id']?>"><?php echo $v['type_name']?></option>
+                        <option
+                            <?php if($v['id'] ==  $goods['type_id']):?>
+                                selected="selected"
+                            <?php endif;?>
+                            value="<?php echo $v['id']?>"><?php echo $v['type_name']?></option>
                         <?php endforeach;?>
                     </select>
                 </td>
             </tr>
+            <?php
+            if($goods['type_id'] != '')
+            {
+                $type_id = $goods['type_id'];
+                // 取出当前商品所有的属性
+                $goodsAttrModel  = D('GoodsAttr');
+                $goodsAttrData = $goodsAttrModel->where(array('goods_id'=>$goods['id']))->select();
+//                dump($goodsAttrData);
+
+                $AttributeModel = D('Attribute');
+                $attributeData = $AttributeModel->where(array('goods_type_id'=>$type_id))->select();
+//                dump($attributeData);
+                foreach ($attributeData as $k=>$v)
+                {
+
+                    if($v['attr_type'] == 0) //唯一属性
+                    {
+                        // 找出当前这件商品这个属性的值是多少
+                        foreach ($goodsAttrData as $k1 => $v1)
+                        {
+                            if($v1['attr_id'] == $v['id'])
+                            {
+                                $_attrVal = $v1['attr_value'];
+                                break ;
+                            }
+                        }
+
+                        if(empty($v['attr_value']))
+                        {
+                            echo '<tr><td class="label">'.$v['attr_name'].'</td><td><input type="text" value="'.$_attrVal.'"/></td></tr>';
+                        }
+                        else
+                        {
+                            echo '<tr><td class="label">'.$v['attr_name'].'</td><td>';
+                            $_val = explode(',', trim($v['attr_value']));
+                            echo '<select style="width:120px;" name="goods_attr['.$v['id'].']">';
+                            foreach ($_val as $k1 => $v1)
+                            {
+                                if($v1 == $_attrVal)
+                                    $selected = ' selected="selected" ';
+                                else
+                                    $selected = '';
+                                echo '<option '.$selected.' value="'.$v1.'">'.$v1.'</option>';
+                            }
+                            echo '</select>';
+                            echo '</td></tr>';
+                        }
+                    }
+
+                    if($v['attr_type'] == 1) //单选属性
+                    {
+                        // 这个属性用来判断是否第一次遇到某一个属性
+                        $_hasArr = array();
+                        // 如果属性是多选的属性那么就有可能需要输出多个select框，所以这里要循环商品拥有的所有的属性
+                        foreach ($goodsAttrData as $k2 => $v2)
+                        {
+                            if($v2['attr_id'] != $v['id'])
+                                continue ;
+                            // 判断这个属性是否是第一次遇到
+                            if(!in_array($v['id'], $_hasArr))
+                            {
+                                $_hasArr[] = $v['id'];
+                                $_atext = '[+]';
+                            }
+                            else
+                                $_atext = '[-]';
+                            $_val = explode(',', trim($v['attr_value']));
+                            echo '<tr><td class="label">'.$v['attr_name'].'</td><td>';
+                            // 输出属性的下拉框
+                            echo '<a href="javascript:void(0);" onclick="addANewAttRow(this)">'.$_atext.'</a>
+			                <select style="width:120px;"  name="goods_attr['.$v['id'].'][]">';
+                            foreach ($_val as $k1 => $v1)
+                            {
+                                if($v1 == $v2['attr_value'])
+                                    $selected = ' selected="selected" ';
+                                else
+                                    $selected = '';
+                                echo '<option '.$selected.' value="'.$v1.'">'.$v1.'</option>';
+                            }
+                            echo '</select>
+                            <input value="'.$v2['attr_price'].'" type="text" name="attr_price['.$v['id'].'][]" />
+                            ';
+                            echo '</td></tr>';
+                        }
+
+                    }
+                }
+            }
+
+            ?>
+
         </table>
 
     </div>

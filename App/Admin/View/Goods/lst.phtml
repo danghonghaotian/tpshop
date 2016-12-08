@@ -8,7 +8,7 @@
     <script type="text/javascript" src="{:C('js')}/jquery.js"></script>
     <style type="text/css">
         /*first-cell做相对定位，这边做绝对定位*/
-        .goods_thumb{display: none; position: absolute;z-index: 3;left: 0px;top:-3px}
+        .goods_thumb{display: none; position: absolute;z-index: 3;left: -100px;top:-3px}
         .goods_pic{
             cursor: pointer;
         };
@@ -54,8 +54,8 @@
             </tr>
             <?php foreach ($data as $k=>$v):?>
             <tr>
-                <td align="center"><input type="checkbox" name="goods_id[]" value="<?php echo $v['id'];?>"/><?php echo $v['id'];?></td>
-                <td align="center" class="goods_pic">
+                <td align="left"><input type="checkbox" name="goods_id[]" value="<?php echo $v['id'];?>"/><?php echo $v['id'];?></td>
+                <td align="left" class="goods_pic">
                     <a  href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>">
                         <?php echo $v['goods_name'];?>
                     </a>
@@ -67,10 +67,16 @@
                 <td align="center"><?php echo $v['market_price'];?></td>
                 <td align="center"><?php echo $v['shop_price'];?></td>
                 <td align="center"><?php echo $v['goods_sn'];?></td>
-                <td align="center"><?php echo $v['is_on_sale']==1?'上架':'下架'?></td>
                 <td align="center">
-                    <a href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
-                    <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Goods/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
+                    <?php if($v['is_on_sale']==1):?>
+                    <img src="<?php echo C('img')?>/yes.gif" />
+                    <?php else:?>
+                    <img src="<?php echo C('img')?>/no.gif" />
+                    <?php endif;?>
+                </td>
+                <td align="center">
+                    <a href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>" title="编辑"> <img src="<?php echo C('img')?>/icon_edit.gif" /></a>
+                    <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Goods/delete",array('id'=>$v['id']))?>" title="删除"><img src="<?php echo C('img')?>/icon_trash.gif" /></a>
                 </td>
             </tr>
             <?php endforeach;?>

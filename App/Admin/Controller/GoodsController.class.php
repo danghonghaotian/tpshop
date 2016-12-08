@@ -90,12 +90,23 @@ class GoodsController extends AdminController
         $brandModel = D('Brand');
         $brandData = $brandModel->order('brand_name asc')->select();
         $this->assign('brandData',$brandData);
-        //会员价格
+        //会员等级
         $userRankModel =  D('UserRank');
         $userRankData =  $userRankModel->select();
         $this->assign('userRankData',$userRankData);
+        // 取出这件商品的会员价格的数据
+        $mp = D('MemberPrice');
+        $_mpData = $mp->where('goods_id='.$id)->select();
+        $mpData = array();
+        // 处理一下会员价格的数组
+        foreach ($_mpData as $v)
+        {
+            $mpData[$v['user_rank']] = $v['user_price'];
+        }
+        $this->assign('mpData', $mpData);
         //商品类型
         $goodsTypeModel = D('GoodsType');
+
         $goodsTypeData = $goodsTypeModel->select();
         $this->assign('goodsTypeData',$goodsTypeData);
         $this->display();
