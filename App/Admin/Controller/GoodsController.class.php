@@ -106,9 +106,14 @@ class GoodsController extends AdminController
         $this->assign('mpData', $mpData);
         //商品类型
         $goodsTypeModel = D('GoodsType');
-
         $goodsTypeData = $goodsTypeModel->select();
         $this->assign('goodsTypeData',$goodsTypeData);
+
+        // 取出这件商品所有的图片
+        $ggModel = M('GoodsGallery');
+        $gpData = $ggModel->where(array('goods_id'=>$id))->select();
+        $this->assign('gpData', $gpData);
+
         $this->display();
     }
 

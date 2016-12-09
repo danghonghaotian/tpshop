@@ -283,7 +283,15 @@
     <div class="tabbody-div" style="display:none;">
         <div class="gallery" style="margin-top: 20px;margin-left: 50px;">
             <input id="selBImg" type="button" value="选择图片" />
-            <ul id="bpre_img"></ul>
+            <ul id="bpre_img">
+                <?php foreach ($gpData as $k => $v): ?>
+                    <li>
+                        <input type="hidden" name="OldGoodsPic[]" value="<?php echo $v['id']; ?>" />
+                        <img src="<?php echo $v['sm_logo']; ?>" /><br />
+                        <a onclick="this.parentNode.parentNode.removeChild(this.parentNode);" href="javascript:void(0);">[-]</a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </div>
     <div style="clear: both"></div>
