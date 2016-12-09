@@ -23,6 +23,72 @@
                 $(this).find('img').hide();
             });
         })
+
+        $(function () {
+            //单选不为真，取消全选
+            var checkSize = 0;
+            batchSelect(checkSize);
+            $("#allCheck").click(function () {
+                if($(this).attr("checked"))
+                {
+                    $(".goods_id").attr("checked","checked");
+                    checkSize = $('.goods_id').size();
+                }
+                else
+                {
+                    $(".goods_id").attr("checked","");
+                    checkSize = 0;
+                }
+                batchSelect(checkSize);
+            });
+
+            $('.goods_id').click(function () {
+
+                if(!$(this).attr("checked"))
+                {
+                    $("#allCheck").attr("checked","");
+                    checkSize--;
+                    if(checkSize < 0)
+                    {
+                        checkSize = 0;
+                    }
+//                alert(checkSize);
+                }
+                else
+                {
+                    checkSize++;
+                    if(checkSize > $('.goods_id').size())
+                    {
+                        checkSize = $('.goods_id').size();
+                    }
+//                alert(checkSize);
+                    if(checkSize ==  $('.goods_id').size())
+                    {
+                        $("#allCheck").attr("checked","checked");
+                    }
+                }
+                batchSelect(checkSize);
+            });
+
+        });
+        //批量删除效果
+        function batchSelect(num) {
+            if(num > 0)
+            {
+                $('#batch').attr("disabled","");
+            }
+            else
+            {
+                $('#batch').attr("disabled","disabled");
+            }
+        }
+
+        //类型跳转
+        $('#sendType').change(function () {
+            location.href =  '<?php echo U("Admin/Sms/search","",false);?>'+"/send_type/"+$(this).val();
+        });
+
+
     </script>
 </head>
 <body>
@@ -43,7 +109,7 @@
     <div class="list-div" id="listDiv">
         <table cellpadding="3" cellspacing="1">
             <tr>
-                <th><input type="checkbox" class="goods_id"/>商品id</th>
+                <th><input id="allCheck" type="checkbox" class="goods_id"/>商品id</th>
                 <th>商品名称</th>
                 <th>库存量</th>
                 <th>市场价</th>
@@ -54,7 +120,7 @@
             </tr>
             <?php foreach ($data as $k=>$v):?>
             <tr>
-                <td align="left"><input type="checkbox" name="goods_id[]" value="<?php echo $v['id'];?>"/><?php echo $v['id'];?></td>
+                <td align="left"><input class="goods_id"  type="checkbox" name="goods_id[]" value="<?php echo $v['id'];?>"/><?php echo $v['id'];?></td>
                 <td align="left" class="goods_pic">
                     <a  href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>">
                         <?php echo $v['goods_name'];?>
@@ -81,10 +147,9 @@
             </tr>
             <?php endforeach;?>
             <tr>
-                <td align="center" nowrap="true" colspan="8">
-                    <div id="turn-page">
-                        <?php echo $page;?>
-                    </div>
+                <td width="12%"><input onclick="return confirm('确定要删除吗');" id="batch" type="submit" value="批量删除"></td>
+                <td align="center" nowrap="true" colspan="7">
+                    <?php echo $page; ?>
                 </td>
             </tr>
         </table>
