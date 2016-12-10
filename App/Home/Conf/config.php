@@ -15,4 +15,6 @@ return array(
         //'静态地址'    =>     '静态规则',
 //        'read'=>array('{id}',60)
     ),
+    'company' =>'丹宏昊天',
+
 );

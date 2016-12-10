@@ -20,8 +20,17 @@ class GoodsController extends CommonController {
     /**
      * 商品详细页
      */
-    public function detail()
+    public function detail($id)
     {
+        //商品基本信息
+        $goodsModel = D('Goods');
+        $goodsInfo = $goodsModel->find($id);
+        $this->assign('goodsInfo',$goodsInfo);
+        //商品相册
+        $goodsGalleryModel = M('GoodsGallery');
+        $goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$id))->select();
+        $this->assign('goodsGallery',$goodsGallery);
+
         $this->display();
     }
 

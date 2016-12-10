@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>商品页面</title>
+	<title><?php echo $goodsInfo['goods_name'];?> - <?php echo C('company');?></title>
 	<link rel="stylesheet" href="<?php echo C('f-css')?>/base.css" type="text/css">
 	<link rel="stylesheet" href="<?php echo C('f-css')?>/global.css" type="text/css">
 	<link rel="stylesheet" href="<?php echo C('f-css')?>/header.css" type="text/css">
@@ -568,14 +568,20 @@
 		<div class="goods_content fl mt10 ml10">
 			<!-- 商品概要信息 start -->
 			<div class="summary">
-				<h3><strong>ThinkPad X230(23063T4）12.5英寸笔记本（i5-3230M 8GB 500G HD4000 指纹蓝牙 WIN8PRC 一年质保）</strong></h3>
+				<h3><strong><?php echo $goodsInfo['goods_name'];?></strong></h3>
 
 				<!-- 图片预览区域 start -->
 				<div class="preview fl">
 					<div class="midpic">
-						<a href="<?php echo C('f-img')?>/preview_l1.jpg" class="jqzoom" rel="gal1">   <!-- 第一幅图片的大图 class 和 rel属性不能更改 -->
-							<img src="<?php echo C('f-img')?>/preview_m1.jpg" alt="" />               <!-- 第一幅图片的中图 -->
-						</a>
+						<?php if(!empty($goodsGallery)):?> <!--商品相册中有图片---->
+							<a href="<?php echo $goodsGallery[0]['sm2_logo']?>" class="jqzoom" rel="gal1">   <!-- 第一幅图片的大图 class 和 rel属性不能更改 -->
+								<img src="<?php echo $goodsGallery[0]['sm1_logo']?>" alt="" />               <!-- 第一幅图片的中图 -->
+							</a>
+						<?php else: ?>  <!--商品相册中没有图片，取商品logo---->
+							<a href="<?php echo $goodsInfo['sm2_logo']?>" class="jqzoom" rel="gal1">   <!-- 第一幅图片的大图 class 和 rel属性不能更改 -->
+								<img src="<?php echo $goodsInfo['sm1_logo']?>" alt="" />               <!-- 第一幅图片的中图 -->
+							</a>
+						<?php endif;?>
 					</div>
 
 					<!--使用说明：此处的预览图效果有三种类型的图片，大图，中图，和小图，取得图片之后，分配到模板的时候，把第一幅图片分配到 上面的midpic 中，其中大图分配到 a 标签的href属性，中图分配到 img 的src上。 下面的smallpic 则表示小图区域，格式固定，在 a 标签的 rel属性中，分别指定了中图（smallimage）和大图（largeimage），img标签则显示小图，按此格式循环生成即可，但在第一个li上，要加上cur类，同时在第一个li 的a标签中，添加类 zoomThumbActive  -->
@@ -585,47 +591,17 @@
 						<a href="javascript:;" id="forward" class="on"></a>
 						<div class="smallpic_wrap">
 							<ul>
-								<li class="cur">
-									<a class="zoomThumbActive" href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m1.jpg',largeimage: '<?php echo C('f-img')?>/preview_l1.jpg'}"><img src="<?php echo C('f-img')?>/preview_s1.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m2.jpg',largeimage: '<?php echo C('f-img')?>/preview_l2.jpg'}"><img src="<?php echo C('f-img')?>/preview_s2.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);"
-									rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m3.jpg',largeimage: '<?php echo C('f-img')?>/preview_l3.jpg'}">
-	    							<img src="<?php echo C('f-img')?>/preview_s3.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);"
-									rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m4.jpg',largeimage: '<?php echo C('f-img')?>/preview_l4.jpg'}">
-	    							<img src="<?php echo C('f-img')?>/preview_s4.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);"
-									rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m5.jpg',largeimage: '<?php echo C('f-img')?>/preview_l5.jpg'}">
-	    							<img src="<?php echo C('f-img')?>/preview_s5.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);"
-									rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m6.jpg',largeimage: '<?php echo C('f-img')?>/preview_l6.jpg'}">
-	    							<img src="<?php echo C('f-img')?>/preview_s6.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);"
-									rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m7.jpg',largeimage: '<?php echo C('f-img')?>/preview_l7.jpg'}">
-	    							<img src="<?php echo C('f-img')?>/preview_s7.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);"
-									rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m8.jpg',largeimage: '<?php echo C('f-img')?>/preview_l8.jpg'}">
-	    							<img src="<?php echo C('f-img')?>/preview_s8.jpg"></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);"
-									rel="{gallery: 'gal1', smallimage: '<?php echo C('f-img')?>/preview_m9.jpg',largeimage: '<?php echo C('f-img')?>/preview_l9.jpg'}">
-	    							<img src="<?php echo C('f-img')?>/preview_s9.jpg"></a>
-								</li>
+								<?php if(!empty($goodsGallery)):?> <!--商品相册中有图片---->
+									<?php foreach ($goodsGallery as $k =>$v):?>
+									<li <?php if($k == 0):?>class="cur" <?php endif;?>>
+										<a  <?php if($k == 0):?>class="zoomThumbActive" <?php endif;?> href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '<?php echo $v['sm1_logo']?>',largeimage: '<?php echo $v['sm2_logo']?>'}"><img src="<?php echo $v['sm_logo']?>"></a>
+									</li>
+									<?php endforeach;?>
+								<?php else: ?>  <!--商品相册中没有图片，取商品logo---->
+									<li class="cur">
+										<a class="zoomThumbActive"  href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '<?php echo $goodsInfo['sm1_logo']?>',largeimage: '<?php echo $goodsInfo['sm2_logo']?>'}"><img src="<?php echo $goodsInfo['sm_logo']?>"></a>
+									</li>
+								<?php endif;?>
 							</ul>
 						</div>
 
@@ -636,9 +612,9 @@
 				<!-- 商品基本信息区域 start -->
 				<div class="goodsinfo fl ml10">
 					<ul>
-						<li><span>商品编号： </span>971344</li>
-						<li class="market_price"><span>定价：</span><em>￥6399.00</em></li>
-						<li class="shop_price"><span>本店价：</span> <strong>￥6299.00</strong> <a href="">(降价通知)</a></li>
+						<li><span>商品编号： </span><?php echo $goodsInfo['goods_sn']?></li>
+						<li class="market_price"><span>定价：</span><em>￥<?php echo $goodsInfo['market_price'];?></em></li>
+						<li class="shop_price"><span>本店价：</span> <strong>￥<?php echo $goodsInfo['shop_price'];?></strong> <a href="">(降价通知)</a></li>
 						<li><span>上架时间：</span>2012-09-12</li>
 						<li class="star"><span>商品评分：</span> <strong></strong><a href="">(已有21人评价)</a></li> <!-- 此处的星级切换css即可 默认为5星 star4 表示4星 star3 表示3星 star2表示2星 star1表示1星 -->
 					</ul>
@@ -728,23 +704,7 @@
 
 						<div class="desc mt10">
 							<!-- 此处的内容 一般是通过在线编辑器添加保存到数据库，然后直接从数据库中读出 -->
-							<img src="<?php echo C('f-img')?>/desc1.jpg" alt="" />
-							<p style="height:10px;"></p>
-							<img src="<?php echo C('f-img')?>/desc2.jpg" alt="" />
-							<p style="height:10px;"></p>
-							<img src="<?php echo C('f-img')?>/desc3.jpg" alt="" />
-							<p style="height:10px;"></p>
-							<img src="<?php echo C('f-img')?>/desc4.jpg" alt="" />
-							<p style="height:10px;"></p>
-							<img src="<?php echo C('f-img')?>/desc5.jpg" alt="" />
-							<p style="height:10px;"></p>
-							<img src="<?php echo C('f-img')?>/desc6.jpg" alt="" />
-							<p style="height:10px;"></p>
-							<img src="<?php echo C('f-img')?>/desc7.jpg" alt="" />
-							<p style="height:10px;"></p>
-							<img src="<?php echo C('f-img')?>/desc8.jpg" alt="" />
-							<p style="height:10px;"></p>
-							<img src="<?php echo C('f-img')?>/desc9.jpg" alt="" />
+							<?php echo $goodsInfo['goods_desc'];?>
 						</div>
 					</div>
 					<!-- 商品介绍 end -->
