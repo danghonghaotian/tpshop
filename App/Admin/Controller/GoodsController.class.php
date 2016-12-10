@@ -176,7 +176,7 @@ class GoodsController extends AdminController
      */
     public function trashList($keyword = '')
     {
-        $this->assign('title','商品列表');
+        $this->assign('title','商品回收站');
         $goodsModel = D('Goods');
         $data = $goodsModel->search(trim($keyword),1);
         $this->assign('data', $data['data']);
