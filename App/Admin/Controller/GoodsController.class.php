@@ -17,7 +17,7 @@ class GoodsController extends AdminController
     {
         $this->assign('title','商品列表');
         $goodsModel = D('Goods');
-        $data = $goodsModel->search(0,trim($keyword));
+        $data = $goodsModel->search(trim($keyword));
         $this->assign('data', $data['data']);
         $this->assign('page', $data['page']);
         $this->display();
@@ -117,6 +117,18 @@ class GoodsController extends AdminController
         $this->display();
     }
 
+    /**
+     * 商品回收
+     * @param $id
+     */
+    public function trash($id)
+    {
+        $goodsModel = M('Goods');
+        $goodsModel->where(array('id'=>$id))->setField('is_delete',1);
+        $this->success("已放到商品回收站");
+    }
+
+
     public function delete()
     {
 
@@ -125,9 +137,25 @@ class GoodsController extends AdminController
     /**
      * 回收站列表
      */
-    public function trashList()
+    public function trashList($keyword = '')
     {
+        $this->assign('title','商品列表');
+        $goodsModel = D('Goods');
+        $data = $goodsModel->search(trim($keyword),1);
+        $this->assign('data', $data['data']);
+        $this->assign('page', $data['page']);
+        $this->display();
+    }
 
+    /**
+     * 恢复删除的商品
+     * @param $id
+     */
+    public function recovery($id)
+    {
+        $goodsModel = M('Goods');
+        $goodsModel->where(array('id'=>$id))->setField('is_delete',0);
+        $this->success("商品已恢复");
     }
 
     /**
