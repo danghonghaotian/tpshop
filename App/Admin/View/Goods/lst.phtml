@@ -141,8 +141,12 @@
                     <?php endif;?>
                 </td>
                 <td align="center">
+                    <a href="<?php echo U("Home/Goods/detail",array('id'=>$v['id']))?>"  target="_blank" title="查看"> <img src="<?php echo C('img')?>/icon_view.gif" /></a>
                     <a href="<?php echo U("Admin/Goods/save",array('id'=>$v['id']))?>" title="编辑"> <img src="<?php echo C('img')?>/icon_edit.gif" /></a>
                     <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Goods/trash",array('id'=>$v['id']))?>" title="删除"><img src="<?php echo C('img')?>/icon_trash.gif" /></a>
+                    <?php if(D('Goods')->haveRadioType($v['id'])):?>
+                    <a  href="<?php echo U("Admin/Goods/productList",array('id'=>$v['id']))?>" title="商品货号"><img src="<?php echo C('img')?>/icon_docs.gif" /></a>
+                    <?php endif;?>
                 </td>
             </tr>
             <?php endforeach;?>

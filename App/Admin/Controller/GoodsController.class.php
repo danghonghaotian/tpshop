@@ -359,4 +359,16 @@ JS;
         $js .= '</script>';
         echo $js;
     }
+
+    /**
+     * 商品货号列表
+     * @param $id
+     */
+    public function productList($id)
+    {
+
+        echo '商品货号';
+    }
+
+
 }

@@ -322,6 +322,37 @@ class GoodsModel extends Model
     }
 
 
+    /**
+     * 判断一件商品是否有单选属性，如果有的话，可以设置商品货号
+     * @param $goods_id
+     * @return bool
+     */
+    public function haveRadioType($goods_id)
+    {
+        $goodsAttrModel = M('GoodsAttr');
+        $gaArr = $goodsAttrModel->where(array('goods_id'=>$goods_id))->field('attr_id')->group('attr_id')->select();
+        $data = array();
+        foreach ($gaArr as $k=>$v)
+        {
+            foreach ($v as $v1)
+            {
+                $data[$k] = $v1;
+            }
+        }
+        $attributeModel = M('Attribute');
+        $attrData = $attributeModel->where(array('id'=>array('in',$data)))->field('attr_type')->group('attr_type')->select();
+
+        if(in_array(array('attr_type'=>1), $attrData))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
 
 
 
