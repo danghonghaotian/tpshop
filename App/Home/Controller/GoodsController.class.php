@@ -31,6 +31,10 @@ class GoodsController extends CommonController {
         $goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$id))->select();
         $this->assign('goodsGallery',$goodsGallery);
 
+        //商品属性(单选属性)
+        $data =  $goodsModel->getGoodsAttrRadioData($id);
+        $this->assign('goods_attr',$data);
+
         $this->display();
     }
 

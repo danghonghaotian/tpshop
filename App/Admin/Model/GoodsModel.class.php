@@ -353,6 +353,23 @@ class GoodsModel extends Model
     }
 
 
+    /**
+     * 获取商品的单选属性数据
+     * @param $id
+     * @return array
+     */
+    public function getGoodsAttrRadioData($id)
+    {
+        $sql = 'SELECT a.id,a.goods_id,a.attr_id,a.attr_value,a.attr_price,b.attr_name,b.attr_type,b.goods_type_id from tp_goods_attr as a LEFT JOIN tp_attribute as b on  a.attr_id = b.id WHERE goods_id ='.$id.' and attr_type = 1';
+        $attr =  M()->query($sql);
+        $data = array();
+        foreach ($attr as $k=>$v)
+        {
+            $data[$v['attr_name']][] = array($v['attr_id'],$v['attr_value']);
+        }
+        return $data;
+    }
+
 
 
 

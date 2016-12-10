@@ -620,30 +620,19 @@
 					</ul>
 					<form action="<?php echo U('Home/Cart/flow1');?>" method="post" class="choose">
 						<ul>
+							<?php foreach ($goods_attr as $k=>$v):?>
 							<li class="product">
 								<dl>
-									<dt>颜色：</dt>
+									<dt><?php echo $k;?>：</dt>
 									<dd>
-										<a class="selected" href="javascript:;">黑色 <input type="radio" name="color" value="黑色" checked="checked" /></a>
-										<a href="javascript:;">白色 <input type="radio" name="color" value="白色" /></a>
-										<a href="javascript:;">蓝色 <input type="radio" name="color" value="蓝色" /></a>
-										<input type="hidden" name="" value="" />
+										<?php foreach ($v as $k1=>$v1):?>
+										<a <?php if($k1 == 0):?>class="selected" <?php endif;?> href="javascript:;"><?php echo $v1[1];?> <input type="radio" name="goods_attr_id[<?php echo $v1[0]?>]" value="<?php echo $v1[1]?>" <?php if($k1 == 0):?>checked="checked"<?php endif;?>  /></a>
+										<?php endforeach;?>
 									</dd>
 								</dl>
 							</li>
+							<?php endforeach;?>
 
-							<li class="product">
-								<dl>
-									<dt>版本：</dt>
-									<dd>
-										<a href="javascript:;">i3 4G内存版 <input type="radio" name="ver" value="" /></a>
-										<a href="javascript:;">i5 4G内存版 <input type="radio" name="ver" value=""  /></a>
-										<a class="selected" href="javascript:;">i5 8G内存版<input type="radio" name="ver" value="" checked="checked" /></a>
-										<a href="javascript:;">SSD超极本 <input type="radio" name="ver" value="" /></a>
-										<input type="hidden" name="" value="" />
-									</dd>
-								</dl>
-							</li>
 
 							<li>
 								<dl>
