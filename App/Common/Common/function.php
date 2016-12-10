@@ -483,5 +483,15 @@ function generatePDF($title,$content,$file='example.pdf')
     $pdf->Output($file, 'I');
 }
 
+/**
+ * 判断当前服务器使用协议类型
+ * @return string
+ */
+function http_type()
+{
+    $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+    return $http_type;
+}
+
 
 ?>

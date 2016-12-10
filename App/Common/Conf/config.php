@@ -2,7 +2,8 @@
 /**
  * 跃飞科技版权所有 @2016
  */
-$website = "http://www.tpshop.com";
+//$website = "http://www.tpshop.com";
+$website = http_type().$_SERVER['SERVER_NAME'];
 return array(
 	//'配置项'=>'配置值'
     //数据库配置

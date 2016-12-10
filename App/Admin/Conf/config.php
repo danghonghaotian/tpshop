@@ -6,7 +6,8 @@
  * Time: 13:53
  */
 $menu = require 'menu.php'; //后台菜单配置
-$website = "http://www.tpshop.com";
+//$website = "http://www.tpshop.com";
+$website = http_type().$_SERVER['SERVER_NAME'];
 $config = array(
     //样式配置信息
 
@@ -30,7 +31,8 @@ $config = array(
         'rootPath'      =>  './', //保存根路径
     ),
     //根物理路径
-    'ROOT_PATH' => str_replace('\\','/',realpath(C('website'))),
+//    'ROOT_PATH' => str_replace('\\','/',realpath(C('website'))),
+    'ROOT_PATH' => $_SERVER['DOCUMENT_ROOT'],
 //    'LOAD_EXT_CONFIG' => 'menu', //扩展配置
 
 );
