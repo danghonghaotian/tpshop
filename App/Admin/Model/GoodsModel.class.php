@@ -301,10 +301,11 @@ class GoodsModel extends Model
      * @param int $is_delete 0正常商品 1回收站商品
      * @return array
      */
-    public function search($is_delete = 0)
+    public function search($is_delete,$keyword ='')
     {
         // 搜索所有的数据,如果需要搜索其他字段需要自己添加
-        $where = 'is_delete='.$is_delete;
+        $where = "is_delete = $is_delete";
+        $where .= " and goods_name like '%$keyword%' or goods_sn like '%$keyword%'";
         //1 . 算出总的记录数
         $count = $this->where($where)->count();
         // 2. 生成翻页类的对象

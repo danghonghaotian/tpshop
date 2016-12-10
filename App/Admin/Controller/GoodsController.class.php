@@ -13,11 +13,11 @@ class GoodsController extends AdminController
     const RADIO = 1; //单选属性
     const UNIQUE = 0; //唯一属性
 
-    public function lst()
+    public function lst($keyword = '')
     {
         $this->assign('title','商品列表');
         $goodsModel = D('Goods');
-        $data = $goodsModel->search();
+        $data = $goodsModel->search(0,trim($keyword));
         $this->assign('data', $data['data']);
         $this->assign('page', $data['page']);
         $this->display();
