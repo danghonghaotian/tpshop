@@ -28,4 +28,26 @@ class GoodsModel extends Model
         }
         return $data;
     }
+
+    /**
+     * 根据子类id找出所有包含子类与父类的数组
+     * @param $cate
+     * @param $id
+     * @return array
+     */
+    public function getAllParentCatByCatId($cate, $id)
+    {
+        $arr = array();
+        foreach($cate as $v)
+        {
+            if($v['id'] == $id)
+            {
+                $arr = array_merge($arr, self::getAllParentCatByCatId($cate, $v['parent_id']));
+                $arr[] = $v;
+            }
+        }
+        return $arr;
+    }
+
+
 }

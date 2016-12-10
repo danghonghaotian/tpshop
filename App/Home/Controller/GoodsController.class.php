@@ -34,6 +34,12 @@ class GoodsController extends CommonController {
         //商品属性(单选属性)
         $data =  $goodsModel->getGoodsAttrRadioData($id);
         $this->assign('goods_attr',$data);
+        
+        //面包屑
+        $categoryModel = M('Category');
+        $category = $categoryModel ->select();
+        $cate = $goodsModel->getAllParentCatByCatId($category, $goodsInfo['cat_id']);
+        $this->assign('cate',$cate);
 
         $this->display();
     }
