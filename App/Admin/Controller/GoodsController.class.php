@@ -128,10 +128,47 @@ class GoodsController extends AdminController
         $this->success("已放到商品回收站");
     }
 
-
-    public function delete()
+    /**
+     * 批量放到回收站
+     */
+    public function batchTrash()
     {
+        if(I('post.goods_id'))
+        {
+            $idArr =  I('post.goods_id');
+            $ids = implode(',',$idArr );
+            $goodsModel = M("Goods");
+            $goodsModel->where(array('id'=>array('in',$ids)))->save(array('is_delete'=>1));
+            $this->success("批量回收成功！");
+        }
+    }
 
+
+    /**
+     * 删除单条商品
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $goodsModel = M("Goods");
+        $goodsModel->delete($id);
+        $this->success('删除成功!');
+    }
+
+
+    /**
+     * 商品批量删除
+     */
+    public function batchDel()
+    {
+        $goodsModel = M("Goods");
+        if(I('post.goods_id'))
+        {
+            $idArr = I('post.goods_id');
+            $ids = implode(',',$idArr);
+            $goodsModel->delete($ids);
+            $this->success('批量删除成功！');
+        }
     }
 
     /**

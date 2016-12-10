@@ -105,7 +105,7 @@
         <input type="submit" value=" 搜索 " class="button" />
     </form>
 </div>
-<form method="post" action="" name="listForm">
+<form method="post" action="<?php echo U('Admin/Goods/batchTrash');?>" name="listForm">
     <div class="list-div" id="listDiv">
         <table cellpadding="3" cellspacing="1">
             <tr>
@@ -147,7 +147,7 @@
             </tr>
             <?php endforeach;?>
             <tr>
-                <td width="12%"><input onclick="return confirm('确定要删除吗');" id="batch" type="submit" value="批量删除"></td>
+                <td width="12%"><input onclick="return confirm('确定要放到回收站吗?');" id="batch" type="submit" value="批量回收"></td>
                 <td align="center" nowrap="true" colspan="7">
                     <?php echo $page; ?>
                 </td>

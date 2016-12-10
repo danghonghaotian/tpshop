@@ -54,6 +54,13 @@ CREATE TABLE tp_goods_gallery
 	key goods_id(goods_id)
 )engine=MyISAM default charset=utf8 comment '商品图片表';
 
+#删除商品的时候，不删除图片，这样删掉数据表数据就行了 2016-2-10
+ALTER TABLE `tp_goods_gallery`
+ENGINE=InnoDB;
+
+ALTER TABLE `tp_goods_gallery` ADD CONSTRAINT `tp_goods_gallery_id` FOREIGN KEY (`goods_id`) REFERENCES `tp_goods` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+
 # 2016-12-02
 CREATE TABLE tp_goods_attr
 (
