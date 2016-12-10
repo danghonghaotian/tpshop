@@ -6,7 +6,6 @@
  * Time: 15:56
  */
 namespace Admin\Model;
-use Admin\Controller\BrandController;
 use Think\Model;
 use Think\Think;
 
