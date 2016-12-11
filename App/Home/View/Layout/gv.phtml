@@ -164,9 +164,9 @@
 
 			<div class="navitems fl">
 				<ul class="fl">
-					<li class="current"><a href="<?php echo getWebsite();?>">首页</a></li>
+					<li <?php if(isHome()):?>class="current" <?php endif;?>><a href="<?php echo getWebsite();?>">首页</a></li>
 					<?php foreach($middleNav as $k=>$v ):?>
-					<li><a href="<?php echo $v['url'];?>" <?php if($v['open_new'] == 1):?>target="_blank" <?php endif;?>><?php echo $v['name']?></a></li>
+					<li <?php if(isCurrent($v['url'])):?>class="current" <?php endif;?>><a href="<?php echo $v['url'];?>" <?php if($v['open_new'] == 1):?>target="_blank" <?php endif;?>><?php echo $v['name']?></a></li>
 					<?php endforeach;?>
 
 				</ul>

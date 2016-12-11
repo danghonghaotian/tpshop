@@ -519,5 +519,22 @@ function isHome()
     }
 }
 
+/**
+ * 判断当前导航栏是否选中
+ * @param $url
+ * @return bool
+ */
+function isCurrent($url)
+{
+    if(strpos($_SERVER['REQUEST_URI'],$url) !== false)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 
 ?>
