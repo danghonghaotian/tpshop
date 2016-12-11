@@ -84,7 +84,7 @@ class GoodsModel extends Model
         //1 . 算出总的记录数
         $count = $this->where($where)->count();
         // 2. 生成翻页类的对象
-        $page = new \Home\Component\Page($count,1);
+        $page = new \Home\Component\Page($count,C('goods_page'));
         $page->config['header'] = '个商品';
         // 3. 生成翻页的字符串：上一页、下一页
         $pageStr = $page->fpage(array(3,4,5,6,7,0,8));
