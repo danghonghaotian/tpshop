@@ -14,9 +14,9 @@
     <div style="clear:both"></div>
 </h1>
 <div class="form-div">
-    <form action="" name="searchForm">
+    <form action="<?php echo U('Admin/User/lst');?>" name="searchForm" method="get">
         <img src="{:C('img')}/icon_search.gif" width="26" height="22" border="0" alt="search" />
-        <input type="text" name="brand_name" size="15" />
+        <input type="text" name="keyword" size="50" placeholder="会员名称|邮箱|手机号码" value="<?php echo $_GET['keyword']?>"/>
         <input type="submit" value=" 搜索 " class="button" />
     </form>
 </div>

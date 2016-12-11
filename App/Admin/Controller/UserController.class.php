@@ -13,10 +13,10 @@ class UserController extends AdminController
     /**
      * 会员列表
      */
-    public function lst()
+    public function lst($keyword = '')
     {
         $userModel = D('User');
-        $data = $userModel -> search();
+        $data = $userModel -> search(trim($keyword));
         $this->assign('user', $data['data']);
         $this->assign('page', $data['page']);
         $this->display();

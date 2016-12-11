@@ -83,10 +83,11 @@ class UserModel extends Model
      * 搜索
      * @return array
      */
-    public function search()
+    public function search($keyword)
     {
         // 搜索所有的数据,如果需要搜索其他字段需要自己添加
         $where = 1;
+        $where .= " and (username like '%$keyword%' or email like '%$keyword%' or phone_number like '%$keyword%')";
         /** 翻页 **********/
         //1 . 算出总的记录数
         $count = $this->where($where)->count();
