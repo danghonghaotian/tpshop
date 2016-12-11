@@ -36,6 +36,14 @@ class CommonController extends Controller
             $middleNav = $navModel->where(array('position'=>'middle','is_show'=>1))->order('view_order asc')->select();
             $this->assign('middleNav',$middleNav);
 
+            //底部导航栏
+            $bottomNav = $navModel->where(array('position'=>'bottom','is_show'=>1))->order('view_order asc')->select();
+            $this->assign('bottomNav',$bottomNav);
+
+            //顶部导航栏
+            $topNav = $navModel->where(array('position'=>'top','is_show'=>1))->order('view_order asc')->select();
+            $this->assign('topNav',$topNav);
+
 
             //底部帮助信息
             // 购物保障5
