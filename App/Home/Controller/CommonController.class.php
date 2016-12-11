@@ -22,5 +22,25 @@ class CommonController extends Controller
         {
            $this->redirect('Mobile/index/index');
         }
+        else //给模板的公共部分赋值
+        {
+            //全部分类数据
+            $goodsModel = D('Goods');
+            $categoryModel = M('Category');
+            $category = $categoryModel ->select();
+            $cateAll = $goodsModel->getChildArr($category);
+            $this->assign('cateAll',$cateAll);
+
+            //底部帮助信息
+            // 购物保障5
+            $articleModel = M('Article');
+            $shop_help = $articleModel->field(array('article_id','title'))->where(array('cat_id'=>5))->select();
+            $this->assign('shop_help',$shop_help);
+
+            //配送方式
+            $delivery = $articleModel->field(array('article_id','title'))->where(array('cat_id'=>8))->select();
+            $this->assign('delivery',$delivery);
+        }
+
     }
 }

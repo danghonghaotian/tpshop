@@ -19,9 +19,7 @@ class GoodsController extends CommonController {
         $categoryModel = M('Category');
         $category = $categoryModel ->select();
         $ids = $goodsModel->getAllIdByPid($category,$cid);
-//        dump($ids);
         $goods = $goodsModel->search($ids);
-//        die;
         $this->assign('goods',$goods['data']);
         $this->assign('page',$goods['page']);
 
@@ -32,20 +30,6 @@ class GoodsController extends CommonController {
         //分类标题
         $cateData = $categoryModel->find($cid);
         $this->assign('title',$cateData['cat_name']);
-
-        //分类数据
-        $cateAll = $goodsModel->getChildArr($category);
-        $this->assign('cateAll',$cateAll);
-
-        //底部帮助信息
-        // 购物保障5
-        $articleModel = M('Article');
-        $shop_help = $articleModel->field(array('article_id','title'))->where(array('cat_id'=>5))->select();
-        $this->assign('shop_help',$shop_help);
-
-        //配送方式
-        $delivery = $articleModel->field(array('article_id','title'))->where(array('cat_id'=>8))->select();
-        $this->assign('delivery',$delivery);
 
 
         $this->display();
@@ -75,21 +59,7 @@ class GoodsController extends CommonController {
         $cate = $goodsModel->getAllParentCatByCatId($category, $goodsInfo['cat_id']);
 //        dump($cate);
         $this->assign('cate',$cate);
-
-        //分类数据
-        $cateAll = $goodsModel->getChildArr($category);
-        $this->assign('cateAll',$cateAll);
-
-        //底部帮助信息
-        // 购物保障5
-        $articleModel = M('Article');
-        $shop_help = $articleModel->field(array('article_id','title'))->where(array('cat_id'=>5))->select();
-        $this->assign('shop_help',$shop_help);
-
-        //配送方式
-        $delivery = $articleModel->field(array('article_id','title'))->where(array('cat_id'=>8))->select();
-        $this->assign('delivery',$delivery);
-
+        
         $this->display();
     }
 
