@@ -4,6 +4,14 @@ use Think\Controller;
 class IndexController extends CommonController {
     public function index()
     {
+        //全部分类数据
+        $goodsModel = D('Goods');
+        $categoryModel = M('Category');
+        $category = $categoryModel ->select();
+        $cateAll = $goodsModel->getChildArr($category);
+        $this->assign('cateAll',$cateAll);
+
+
         $this->display();
     }
 

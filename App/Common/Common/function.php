@@ -503,5 +503,21 @@ function getWebsite()
     return http_type().$_SERVER['SERVER_NAME'];
 }
 
+/**
+ * 判断是否是首页
+ * @return bool
+ */
+function isHome()
+{
+    if(MODULE_NAME == 'Home' && CONTROLLER_NAME == 'Index' && ACTION_NAME == 'index')
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 
 ?>
