@@ -51,6 +51,10 @@ class Page {
         {
             $page = $this->pageNum;
         }
+        if(empty($page))
+        {
+            $page = 1;
+        }
         $this->page = $page;
         $this->limit = $this->setLimit();
     }

@@ -81,19 +81,46 @@ class GoodsModel extends Model
     {
         // 搜索所有的数据,如果需要搜索其他字段需要自己添加
         $where = array('cat_id'=> array('in',$ids),'is_on_sale'=>1,'is_delete'=>0);
+//        dump($where);die;
         //1 . 算出总的记录数
         $count = $this->where($where)->count();
+//        echo $count;
+//        die;
         // 2. 生成翻页类的对象
         $page = new \Home\Component\Page($count,C('goods_page'));
         $page->config['header'] = '个商品';
         // 3. 生成翻页的字符串：上一页、下一页
         $pageStr = $page->fpage(array(3,4,5,6,7,0,8));
+//        echo $page->limit;die;
         // 4. 取出当前页的数据
         $data = $this->field(array('id','goods_name','market_price','shop_price','sm1_logo'))->where($where)->limit( $page->limit)->order('id desc')->select();
+//        echo $this->getLastSql();die;
         return array(
             'page' => $pageStr,
             'data' => $data,
         );
+    }
+
+
+    /**
+     * 构造含有child下标的数组
+     * @param $cate
+     * @param string $name
+     * @param int $pid
+     * @return array
+     */
+    public function getChildArr($cate, $name = 'child', $pid = 0)
+    {
+        $arr = array();
+        foreach($cate as $v)
+        {
+            if($v['parent_id'] == $pid)
+            {
+                $v[$name] = self::getChildArr($cate, $name, $v['id']);
+                $arr[] = $v;
+            }
+        }
+        return $arr;
     }
     
     

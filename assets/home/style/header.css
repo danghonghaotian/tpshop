@@ -90,7 +90,7 @@
 .cat_detail{width: 550px;padding:0 8px; display: none; position: absolute; left:181px; z-index: 100020; top:3px; border:1px solid #c30; background: #fff; min-height: 402px; _height:402px;}
 .cat_detail dl{padding:7px 0; border-top: 1px dotted #EED6B7; clear: both; height: 26px;}
 .cat_detail dl.dl_1st{border-top: none;}
-.cat_detail dt{float: left; display: inline; width: 60px; text-align: right; margin-right: 10px; line-height: 22px; }
+.cat_detail dt{float: left; display: inline; width: 110px; text-align: right; margin-right: 10px; line-height: 22px; }
 .cat_detail dt a{color:#c00; font-weight: bold;}
 .cat_detail dd a{float: left; display: inline; border-left: 1px solid #ccc; height: 14px; line-height: 14px; margin:4px 0; padding:0 9px; }
 
