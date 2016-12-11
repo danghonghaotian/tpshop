@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo C('shopName');?> - 添加新导航栏 </title>
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Nav/lst") ?>">导航栏列表</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 添加导航栏 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/Nav/add") ?>">
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">导航栏名称</td>
+                <td>
+                    <input type="text" name="name" maxlength="60" value="" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">链接地址</td>
+                <td>
+                    <input type="text" name="url" maxlength="255" size="80" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">排序</td>
+                <td>
+                    <input type="text" name="view_order" maxlength="4" size="4" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否显示</td>
+                <td>
+                    <input type="radio" name="is_show" value="1" checked="checked" /> 是
+                    <input type="radio" name="is_show" value="0"  /> 否
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否新窗口</td>
+                <td>
+                    <input type="radio" name="open_new" value="1" checked="checked" /> 是
+                    <input type="radio" name="open_new" value="0"  /> 否
+                </td>
+            </tr>
+            <tr>
+                <td class="label">位置</td>
+                <td>
+                    <select name="position">
+                        <option value="top">顶部</option>
+                        <option value="middle">中间</option>
+                        <option value="bottom">底部 </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

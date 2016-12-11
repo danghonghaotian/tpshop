@@ -96,3 +96,27 @@ CREATE TABLE `tp_member_price` (
   foreign key (goods_id) references tp_goods(id) on delete cascade,
 	foreign key (user_rank) references tp_user_rank(id) on delete cascade
 ) engine=InnoDB default charset=utf8 comment '会员价格表';
+
+
+#tp_nav 2016-12-11
+ALTER TABLE `ecs_nav`
+DROP COLUMN `ctype`,
+DROP COLUMN `cid`;
+ALTER TABLE `tp_nav`
+CHANGE COLUMN `ifshow` `is_show`  tinyint(1) NOT NULL AFTER `name`,
+CHANGE COLUMN `vieworder` `view_order`  tinyint(1) NOT NULL AFTER `is_show`,
+CHANGE COLUMN `opennew` `open_new`  tinyint(1) NOT NULL AFTER `view_order`;
+ALTER TABLE `tp_nav`
+MODIFY COLUMN `id`  mediumint(8) NOT NULL AUTO_INCREMENT COMMENT 'id' FIRST ,
+MODIFY COLUMN `name`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '导航栏名称' AFTER `id`,
+MODIFY COLUMN `is_show`  tinyint(1) NOT NULL COMMENT '是否显示' AFTER `name`,
+MODIFY COLUMN `view_order`  tinyint(1) NOT NULL COMMENT '排序' AFTER `is_show`,
+MODIFY COLUMN `open_new`  tinyint(1) NOT NULL COMMENT '是否新窗口' AFTER `view_order`,
+MODIFY COLUMN `url`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接' AFTER `open_new`,
+MODIFY COLUMN `type`  varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '位置' AFTER `url`,
+DROP INDEX `ifshow` ,
+ADD INDEX `is_show` (`is_show`) USING BTREE ;
+ALTER TABLE `tp_nav`
+CHANGE COLUMN `type` `position`  varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '位置' AFTER `url`;
+
+

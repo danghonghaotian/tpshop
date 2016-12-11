@@ -73,7 +73,7 @@ return array(
             '友情链接'=>array('company','lst'),
             '验证码管理'=>array('company','lst'),
             '文件权限检测'=>array('company','lst'),
-            '自定义导航栏'=>array('company','lst'),
+            '自定义导航栏'=>array('nav','lst'),
             '站点地图'=>array('company','lst'),
             '图片服务器设置'=>array('company','lst'),
         ),

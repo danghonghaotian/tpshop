@@ -31,6 +31,12 @@ class CommonController extends Controller
             $cateAll = $goodsModel->getChildArr($category);
             $this->assign('cateAll',$cateAll);
 
+            //中间导航栏的数据
+            $navModel = D('Nav');
+            $middleNav = $navModel->where(array('position'=>'middle','is_show'=>1))->order('view_order asc')->select();
+            $this->assign('middleNav',$middleNav);
+
+
             //底部帮助信息
             // 购物保障5
             $articleModel = M('Article');
