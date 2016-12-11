@@ -12,8 +12,21 @@ class GoodsController extends CommonController {
     /**
      * 商品列表页
      */
-    public function lst()
+    public function lst($cid=0)
     {
+        /****找出分类商品****/
+        $goodsModel = D('Goods');
+        $categoryModel = M('Category');
+        $category = $categoryModel ->select();
+        $ids = $goodsModel->getAllIdByPid($category,$cid);
+        $goods = $goodsModel->search($ids);
+//        dump($goods);
+        $this->assign('goods',$goods['data']);
+        $this->assign('page',$goods['page']);
+
+        //面包屑
+        $cate = $goodsModel->getAllParentCatByCatId($category,$cid);
+        $this->assign('cate',$cate);
         $this->display();
     }
 
@@ -39,6 +52,7 @@ class GoodsController extends CommonController {
         $categoryModel = M('Category');
         $category = $categoryModel ->select();
         $cate = $goodsModel->getAllParentCatByCatId($category, $goodsInfo['cat_id']);
+//        dump($cate);
         $this->assign('cate',$cate);
 
         $this->display();

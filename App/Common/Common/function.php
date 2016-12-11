@@ -494,4 +494,14 @@ function http_type()
 }
 
 
+/**
+ * 获取本站完整网址
+ * @return string
+ */
+function getWebsite()
+{
+    return http_type().$_SERVER['SERVER_NAME'];
+}
+
+
 ?>

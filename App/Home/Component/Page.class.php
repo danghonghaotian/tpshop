@@ -1,5 +1,6 @@
 <?php
 /**
+ * 分页类库
  * ============================================================================
  * * 版权所有 2005-2016 跃飞科技网络服务有限公司，并保留所有权利。
  * 网站地址: http://www.gtzhong.com；
@@ -12,7 +13,7 @@
  * $Id: Page.class.php  2016-12-11 10:35:03 钟贵廷 $
 */
 
-namespace Admin\Component;
+namespace Home\Component;
 
 class Page {
 
@@ -126,7 +127,7 @@ class Page {
             $linkPage.="&nbsp;<a href='{$this->uri}&page={$page}'>{$page}</a>&nbsp;";
         }
 
-        $linkPage.="&nbsp;{$this->page}&nbsp;";
+        $linkPage.="&nbsp;<a class='cur'>{$this->page}</a>&nbsp;";
 
 
         for ($i = 1; $i <= $inum; $i++) {
@@ -159,6 +160,7 @@ class Page {
 
         return $html;
     }
+
 
     private function goPage() {
         return '&nbsp;&nbsp;<input type="text" onkeydown="javascript:if(event.keyCode==13){var page=(this.value>' . $this->pageNum . ')?' . $this->pageNum . ':this.value;location=\'' . $this->uri . '&page=\'+page+\'\'}" value="' . $this->page . '" style="width:25px"><input type="button" value="GO" onclick="javascript:var page=(this.previousSibling.value>' . $this->pageNum . ')?' . $this->pageNum . ':this.previousSibling.value;location=\'' . $this->uri . '&page=\'+page+\'\'">&nbsp;&nbsp;';

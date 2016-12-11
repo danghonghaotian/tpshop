@@ -447,7 +447,7 @@
 	<div class="main w1210 mt10 bc">
 		<!-- 面包屑导航 start -->
 		<div class="breadcrumb">
-			<h2>当前位置：<a href="/">首页</a> > <?php foreach ($cate as $k=>$v):?><a href=""><?php echo $v['cat_name'];?></a> > <?php endforeach;?><?php echo $goodsInfo['goods_name'];?></h2>
+			<h2>当前位置：<a href="<?php echo getWebsite();?>">首页</a> > <?php foreach ($cate as $k=>$v):?><a href="<?php echo $v['url'];?>"><?php echo $v['cat_name'];?></a> > <?php endforeach;?><?php echo $goodsInfo['goods_name'];?></h2>
 		</div>
 		<!-- 面包屑导航 end -->
 

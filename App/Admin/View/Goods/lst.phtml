@@ -126,7 +126,7 @@
                         <?php echo $v['goods_name'];?>
                     </a>
                     <?php if(!empty($v['sm_logo'])):?>
-                    <img src="<?php echo $v['sm_logo'];?>" class="goods_thumb"/>
+                    <a href="<?php echo U("Home/Goods/detail",array('id'=>$v['id']))?>" target="_blank" title="查看"><img src="<?php echo $v['sm_logo'];?>" class="goods_thumb"/></a>
                     <?php endif; ?>
                 </td>
                 <td align="center"><?php echo $v['goods_number'];?></td>
