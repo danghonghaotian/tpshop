@@ -285,10 +285,20 @@
             <!-- 商品列表 start-->
             <div class="goodslist mt10">
                 <ul>
-                    <?php foreach ($goods as $k=>$v):?>
+                    <?php
+                        $goodsGalleryModel = M('GoodsGallery');
+                        foreach ($goods as $k=>$v):
+                    ?>
                         <li>
                             <dl>
+                                <?php
+                                    $goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$v['id']))->select();
+                                    if(!empty($goodsGallery)): //商品相册中有图片
+                                ?>
+                                <dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo  $goodsGallery[0]['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+                                 <?php else: ?>  <!--商品相册中没有图片，取商品logo---->
                                 <dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+                                  <?php endif;?>
                                 <dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name'];?></a></dt>
                                 <dd><strong>￥<?php echo $v['shop_price'];?></strong></dt>
                                 <dd><a href=""><em>已有10人评价</em></a></dt>
