@@ -371,4 +371,16 @@ JS;
     }
 
 
+    /**
+     * 清理服务器上传的临时缓存图片
+     */
+    public function clearPic()
+    {
+        $goodsModel = D('Goods');
+        $dir = C('ROOT_PATH').'/assets/admin/tmp';
+        $goodsModel->clearPic($dir);
+        $this->success('清理服务器上传的临时缓存图片成功',U('Admin/Index/main'));
+    }
+
+
 }
