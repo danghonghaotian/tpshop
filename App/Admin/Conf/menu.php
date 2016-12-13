@@ -41,7 +41,7 @@ return array(
         ),
         '广告管理'=>array(
             '广告列表'=>array('Ad','lst'),
-            '广告位置'=>array('Ad','position'),
+            '广告位置'=>array('AdPosition','lst'),
         ),
         '文章管理'=>array(
             '文章分类'=>array('ArticleCat','lst'),

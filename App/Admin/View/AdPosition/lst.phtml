@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo C('shopName');?> - 广告位置列表 </title>
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/AdPosition/add")?>">添加广告位置</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -广告位置列表 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="form-div">
+    <form action="<?php echo U('Admin/AdPosition/lst');?>" name="searchForm" method="get">
+        <img src="{:C('img')}/icon_search.gif" width="26" height="22" border="0" alt="search" />
+        <input type="text" name="keyword" size="50" placeholder="广告位名称" value="<?php echo $_GET['keyword']?>"/>
+        <input type="submit" value=" 搜索 " class="button" />
+    </form>
+</div>
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>编号</th>
+                <th>广告位名称</th>
+                <th>位置宽度(px)</th>
+                <th>位置高度(px)</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($adPosition as $k=>$v):?>
+                <tr>
+                    <td>
+                        <?php echo $v["id"]?>
+                    </td>
+                    <td>
+                        <?php echo $v["adpos_name"]?>
+                    </td>
+                    <td align="center">
+                        <?php echo$v["adpos_width"]?>
+                    </td>
+                    <td align="center"><?php echo $v["adpos_height"];?></td>
+                    <td align="center">
+                        <a href="<?php echo U("Admin/AdPosition/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
+                        <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/AdPosition/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
+                    </td>
+                </tr>
+            <?php endforeach;?>
+            <tr>
+                <td align="center" nowrap="true" colspan="5">
+                    <?php echo $page;?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

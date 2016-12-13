@@ -120,3 +120,13 @@ ALTER TABLE `tp_nav`
 CHANGE COLUMN `type` `position`  varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '位置' AFTER `url`;
 
 
+CREATE TABLE tp_ad_position
+(
+	id mediumint unsigned not null auto_increment comment 'id',
+	adpos_name varchar(30) not null comment '广告位名称',
+	adpos_width smallint unsigned not null comment '广告位的宽',
+	adpos_height smallint unsigned not null comment '广告位的高',
+	primary key (id)
+)engine=InnoDB default charset=utf8 comment '广告位表';
+
+
