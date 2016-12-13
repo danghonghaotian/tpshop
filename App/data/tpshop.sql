@@ -129,4 +129,20 @@ CREATE TABLE tp_ad_position
 	primary key (id)
 )engine=InnoDB default charset=utf8 comment '广告位表';
 
+CREATE TABLE `tp_ad` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `ad_name` varchar(30) NOT NULL,
+  `ad_img` varchar(255) NOT NULL,
+  `adpos_id` mediumint(8) unsigned NOT NULL,
+  `start_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '开始时间',
+  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '结束时间',
+  `ad_url` varchar(255) NOT NULL,
+  `open_new` tinyint(1) NOT NULL DEFAULT '0',
+  `enabled` tinyint(1) NOT NULL DEFAULT '0' COMMENT '开启状态0开启1不开启',
+  PRIMARY KEY (`id`),
+  KEY `adpos_id` (`adpos_id`),
+  CONSTRAINT `ad` FOREIGN KEY (`adpos_id`) REFERENCES `tp_ad_position` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
 

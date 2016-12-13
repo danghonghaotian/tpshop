@@ -77,7 +77,6 @@ class AdPositionController extends AdminController
         // 取出要修改的记录
         $adPosition =  D('AdPosition');
         $data =  $adPosition->find($id);
-        dump($data);
         $this->assign('data', $data);
         $this->display();
     }
