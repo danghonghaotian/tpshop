@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 添加广告 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.css"/ >
+    <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
+    <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.js"></script>
+    <style>
+        #selImg{position:relative;top:-30px;}
+    </style>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Ad/lst") ?>">广告列表</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 添加广告 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/Ad/add") ?>" enctype="multipart/form-data" >
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <input type="hidden" id="logo" size="40" name="ad_img" />
+            <tr>
+                <td class="label">广告名称</td>
+                <td>
+                    <input type="text" name="ad_name" maxlength="60" size="60" value="" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">图片</td>
+                <td>
+                    <img id="pre_img" src="<?php echo C('img');?>/goods_logo.jpg"/>
+                    <input id="selImg" type="button" value="选择图片" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">广告链接</td>
+                <td>
+                    <input type="text" name="site_url" maxlength="60" size="60" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">广告显示位置</td>
+                <td>
+                    <select name="goods[cat_id]">
+                        <option value="">请选择</option>
+                        <?php foreach ($adPosition as $k=>$v): ?>
+                            <option  value="<?php echo $v['id'];?>"><?php echo $v['adpos_name'];?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">开始时间</td>
+                <td>
+                    <input type="text" class="datetime" name="start_time" maxlength="60" size="40" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">结束时间</td>
+                <td>
+                    <input type="text" class="datetime" name="end_time" maxlength="60" size="40" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否新窗口打开</td>
+                <td>
+                    <input type="radio" name="open_new" value="1"/> 是
+                    <input type="radio" name="open_new" value="0"  checked="checked" /> 否
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否开启</td>
+                <td>
+                    <input type="radio" name="enabled" value="1"  checked="checked" /> 是
+                    <input type="radio" name="enabled" value="0"  /> 否
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
+
+<!--图片上传 start-->
+<iframe style="display:none;" name="ifr"></iframe>
+<div id="upload" style="position:absolute;display:none;padding:10px;border:1px solid #CCC;background:#FFF;width:360px;">
+    <form id="pre_form" target="ifr" method="POST" action="<?php echo U('Admin/Ad/ajaxUpload');?>" enctype="multipart/form-data">
+        图片：<input type="file" name="img" onchange="ajaxUpload();"/><input type="submit" value="上传" />
+        <a id="close" href="javascript:void(0);"> [关闭] </a>
+    </form>
+</div>
+<!--图片上传 end-->
+
+<script>
+    $(function(){
+
+        $('.datetime').datetimepicker({
+            lang:'ch', //选择中文
+            format:'Y-m-d H:i:s', //格式化日期时间
+//            timepicker:false, //去掉时间
+//            maxDate:'+1970/01/01',  //最大日期是今天
+            yearStart:2015,  //最小年份
+        });
+
+        //缩略图上传,打开上传的窗体
+        $("#selImg").click(function(){
+            // 获取按钮的位置
+            var p = $(this).position();
+            var div = $("#upload");
+            div.css({
+                "left":p.left+"px",
+                "top":p.top+"px",
+                "display":"block"
+            });
+        });
+
+        //缩略图上传,关闭上传的窗体
+        $("#close").click(function(){
+            $("#upload").hide();
+        });
+    });
+
+    function ajaxUpload()
+    {
+        $('#pre_form').submit();
+        $("#upload").hide();
+    }
+</script>
