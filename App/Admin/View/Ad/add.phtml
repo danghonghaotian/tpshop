@@ -31,7 +31,19 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">图片</td>
+                <td class="label">广告显示位置</td>
+                <td>
+                    <select name="goods[cat_id]">
+                        <option value="">请选择</option>
+                        <?php foreach ($adPosition as $k=>$v): ?>
+                            <option  value="<?php echo $v['id'];?>"><?php echo $v['adpos_name'];?>（<?php echo $v['adpos_width'] ?>*<?php echo $v['adpos_height'] ?>px）</option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="label">广告图片</td>
                 <td>
                     <img id="pre_img" src="<?php echo C('img');?>/goods_logo.jpg"/>
                     <input id="selImg" type="button" value="选择图片" />
@@ -43,17 +55,7 @@
                     <input type="text" name="site_url" maxlength="60" size="60" value="" />
                 </td>
             </tr>
-            <tr>
-                <td class="label">广告显示位置</td>
-                <td>
-                    <select name="goods[cat_id]">
-                        <option value="">请选择</option>
-                        <?php foreach ($adPosition as $k=>$v): ?>
-                            <option  value="<?php echo $v['id'];?>"><?php echo $v['adpos_name'];?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </td>
-            </tr>
+
             <tr>
                 <td class="label">开始时间</td>
                 <td>
