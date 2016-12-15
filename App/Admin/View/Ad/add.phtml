@@ -96,11 +96,20 @@
 </html>
 
 <!--图片上传 start-->
+<!--<iframe style="display:none;" name="ifr"></iframe>-->
+<!--<div id="upload" style="position:absolute;display:;padding:10px;border:1px solid #CCC;background:#FFF;width:360px;">-->
+<!--    <form id="pre_form" target="ifr" method="POST" action="--><?php //echo U('Admin/Ad/ajaxUpload');?><!--" enctype="multipart/form-data">-->
+<!--        图片：<input type="file" name="img" onchange="ajaxUpload();"/><input type="submit" value="上传" />-->
+<!--        <a id="close" href="javascript:void(0);"> [关闭] </a>-->
+<!--    </form>-->
+<!--</div>-->
+<!--图片上传 end-->
+
+<!--图片上传 start-->
 <iframe style="display:none;" name="ifr"></iframe>
-<div id="upload" style="position:absolute;display:none;padding:10px;border:1px solid #CCC;background:#FFF;width:360px;">
+<div id="upload" style="position:absolute;left:587px;top:186px;opacity: 0">
     <form id="pre_form" target="ifr" method="POST" action="<?php echo U('Admin/Ad/ajaxUpload');?>" enctype="multipart/form-data">
-        图片：<input type="file" name="img" onchange="ajaxUpload();"/><input type="submit" value="上传" />
-        <a id="close" href="javascript:void(0);"> [关闭] </a>
+       <input type="file" name="img" onchange="ajaxUpload();"/>
     </form>
 </div>
 <!--图片上传 end-->
@@ -117,26 +126,30 @@
         });
 
         //缩略图上传,打开上传的窗体
-        $("#selImg").click(function(){
-            // 获取按钮的位置
-            var p = $(this).position();
-            var div = $("#upload");
-            div.css({
-                "left":p.left+"px",
-                "top":p.top+"px",
-                "display":"block"
-            });
-        });
+//        $("#selImg").click(function(){
+//            // 获取按钮的位置
+//            var p = $(this).position();
+//            var div = $("#upload");
+//            div.css({
+//                "left":p.left+"px",
+//                "top":p.top+"px",
+//                "display":"block"
+//            });
+//        });
 
         //缩略图上传,关闭上传的窗体
-        $("#close").click(function(){
-            $("#upload").hide();
+//        $("#close").click(function(){
+//            $("#upload").hide();
+//        });
+
+        $("#selImg").click(function(){
+            $("#pre_form input[name='img']").click();
         });
     });
 
     function ajaxUpload()
     {
         $('#pre_form').submit();
-        $("#upload").hide();
+//        $("#upload").hide();
     }
 </script>
