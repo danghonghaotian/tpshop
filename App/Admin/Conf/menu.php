@@ -82,6 +82,10 @@ return array(
             '短信回收站' =>array('Sms','trashList'),
             '邮件列表' =>array('company','lst'),
         ),
+        '团队管理'=>array(
+            '在职团队' =>array('Team','lst'),
+            '离职团队' =>array('Team','trashList'),
+        ),   
         'ERP接口管理'=>array(
             '接口列表' =>array('company','lst'),
         ),
