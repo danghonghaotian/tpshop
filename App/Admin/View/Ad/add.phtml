@@ -45,8 +45,7 @@
             <tr>
                 <td class="label">广告图片</td>
                 <td>
-                    <img id="pre_img" src="<?php echo C('img');?>/goods_logo.jpg"/>
-                    <input id="selImg" type="button" value="选择图片" />
+                    <img id="pre_img" src="<?php echo C('img');?>/goods_logo.jpg" style="cursor: pointer" title="可更换"/>
                 </td>
             </tr>
             <tr>
@@ -96,18 +95,8 @@
 </html>
 
 <!--图片上传 start-->
-<!--<iframe style="display:none;" name="ifr"></iframe>-->
-<!--<div id="upload" style="position:absolute;display:;padding:10px;border:1px solid #CCC;background:#FFF;width:360px;">-->
-<!--    <form id="pre_form" target="ifr" method="POST" action="--><?php //echo U('Admin/Ad/ajaxUpload');?><!--" enctype="multipart/form-data">-->
-<!--        图片：<input type="file" name="img" onchange="ajaxUpload();"/><input type="submit" value="上传" />-->
-<!--        <a id="close" href="javascript:void(0);"> [关闭] </a>-->
-<!--    </form>-->
-<!--</div>-->
-<!--图片上传 end-->
-
-<!--图片上传 start-->
 <iframe style="display:none;" name="ifr"></iframe>
-<div id="upload" style="position:absolute;left:587px;top:186px;opacity: 0">
+<div id="upload" style="display: none">
     <form id="pre_form" target="ifr" method="POST" action="<?php echo U('Admin/Ad/ajaxUpload');?>" enctype="multipart/form-data">
        <input type="file" name="img" onchange="ajaxUpload();"/>
     </form>
@@ -116,7 +105,6 @@
 
 <script>
     $(function(){
-
         $('.datetime').datetimepicker({
             lang:'ch', //选择中文
             format:'Y-m-d H:i:s', //格式化日期时间
@@ -124,25 +112,8 @@
 //            maxDate:'+1970/01/01',  //最大日期是今天
             yearStart:2015,  //最小年份
         });
-
-        //缩略图上传,打开上传的窗体
-//        $("#selImg").click(function(){
-//            // 获取按钮的位置
-//            var p = $(this).position();
-//            var div = $("#upload");
-//            div.css({
-//                "left":p.left+"px",
-//                "top":p.top+"px",
-//                "display":"block"
-//            });
-//        });
-
-        //缩略图上传,关闭上传的窗体
-//        $("#close").click(function(){
-//            $("#upload").hide();
-//        });
-
-        $("#selImg").click(function(){
+        //当点击图片的时候，让它去点击上传按钮，再触发提交表单
+        $('#pre_img').click(function () {
             $("#pre_form input[name='img']").click();
         });
     });
@@ -150,6 +121,5 @@
     function ajaxUpload()
     {
         $('#pre_form').submit();
-//        $("#upload").hide();
     }
 </script>
