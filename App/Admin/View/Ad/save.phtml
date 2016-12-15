@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><?php echo C('shopName');?> - 添加广告 </title>
+    <title><?php echo C('shopName');?> - 修改广告 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
     <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
@@ -13,18 +13,20 @@
 <h1>
     <span class="action-span"><a href="<?php echo U("Admin/Ad/lst") ?>">广告列表</a></span>
     <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
-    <span id="search_id" class="action-span1"> - 添加广告 </span>
+    <span id="search_id" class="action-span1"> - 修改广告 </span>
     <div style="clear:both"></div>
 </h1>
 <div class="main-div">
-    <form method="post" action="<?php echo U("Admin/Ad/add") ?>" enctype="multipart/form-data" >
+    <form method="post" action="<?php echo U("Admin/Ad/save") ?>" enctype="multipart/form-data" >
         <table cellspacing="1" cellpadding="3" width="100%">
-            <input type="hidden" id="logo" size="40" name="ad_img" />
+            <input type="hidden" id="logo" size="40" name="ad_img" value="<?php echo $data['sm2_logo']?>"/>
+            <input type="hidden" name="old_ad_img" value="<?php echo $data['sm2_logo']?>"/>
             <input type="hidden"  size="40" name="ad_size" id="ad_size"/>
+            <input type="hidden"  size="40" name="id" value="<?php echo $data['id'];?>"/>
             <tr>
                 <td class="label">广告名称</td>
                 <td>
-                    <input type="text" name="ad_name" maxlength="60" size="60" value="" />
+                    <input type="text" name="ad_name" maxlength="60" size="60" value="<?php echo $data['ad_name'];?>" />
                     <span class="require-field">*</span>
                 </td>
             </tr>
@@ -34,7 +36,11 @@
                     <select name="adpos_id" id="adpos_id">
                         <option value="">请选择</option>
                         <?php foreach ($adPosition as $k=>$v): ?>
-                            <option  value="<?php echo $v['id'];?>" data-width="<?php echo $v['adpos_width'] ?>" data-height="<?php echo $v['adpos_height'] ?>"><?php echo $v['adpos_name'];?>（<?php echo $v['adpos_width'] ?>*<?php echo $v['adpos_height'] ?>px）</option>
+                            <option
+                                <?php if($v['id'] == $data['adpos_id']):?>
+                                    selected = "selected"
+                                <?php endif;?>
+                                value="<?php echo $v['id'];?>" data-width="<?php echo $v['adpos_width'] ?>" data-height="<?php echo $v['adpos_height'] ?>"><?php echo $v['adpos_name'];?>（<?php echo $v['adpos_width'] ?>*<?php echo $v['adpos_height'] ?>px）</option>
                         <?php endforeach; ?>
                     </select>
                 </td>
@@ -43,40 +49,40 @@
             <tr>
                 <td class="label">广告图片</td>
                 <td>
-                    <img id="pre_img" src="<?php echo C('img');?>/goods_logo.jpg" style="cursor: pointer" title="可更换"/>
+                    <img id="pre_img" src="<?php echo $data['sm1_logo'];?>" style="cursor: pointer" title="可更换"/>
                 </td>
             </tr>
             <tr>
                 <td class="label">广告链接</td>
                 <td>
-                    <input type="text" name="ad_url" maxlength="60" size="60" value="" />
+                    <input type="text" name="ad_url" maxlength="60" size="60" value="<?php echo $data['ad_url'];?>" />
                 </td>
             </tr>
 
             <tr>
                 <td class="label">开始时间</td>
                 <td>
-                    <input type="text" class="datetime" name="start_time" maxlength="60" size="40" value="" />
+                    <input type="text" class="datetime" name="start_time" maxlength="60" size="40" value="<?php echo $data['start_time'];?>" />
                 </td>
             </tr>
             <tr>
                 <td class="label">结束时间</td>
                 <td>
-                    <input type="text" class="datetime" name="end_time" maxlength="60" size="40" value="" />
+                    <input type="text" class="datetime" name="end_time" maxlength="60" size="40" value="<?php echo $data['end_time'];?>" />
                 </td>
             </tr>
             <tr>
                 <td class="label">是否新窗口打开</td>
                 <td>
-                    <input type="radio" name="open_new" value="1"/> 是
-                    <input type="radio" name="open_new" value="0"  checked="checked" /> 否
+                    <input type="radio" name="open_new" value="1" <?php if($data['open_new']==1):?>checked="checked"<?php endif;?>/> 是
+                    <input type="radio" name="open_new" value="0" <?php if($data['open_new']==0):?>checked="checked"<?php endif;?> /> 否
                 </td>
             </tr>
             <tr>
                 <td class="label">是否开启</td>
                 <td>
-                    <input type="radio" name="enabled" value="1"  checked="checked" /> 是
-                    <input type="radio" name="enabled" value="0"  /> 否
+                    <input type="radio" name="enabled" value="1" <?php if($data['enabled']==1):?>checked="checked"<?php endif;?> /> 是
+                    <input type="radio" name="enabled" value="0" <?php if($data['enabled']==0):?>checked="checked"<?php endif;?> /> 否
                 </td>
             </tr>
             <tr>

@@ -144,5 +144,13 @@ CREATE TABLE `tp_ad` (
   CONSTRAINT `ad` FOREIGN KEY (`adpos_id`) REFERENCES `tp_ad_position` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+ALTER TABLE `tp_ad`
+MODIFY COLUMN `enabled`  tinyint(1) NOT NULL DEFAULT 1 COMMENT '开启状态0开启1不开启' AFTER `open_new`;
+ALTER TABLE `tp_ad`
+ADD COLUMN `sm1_logo`  varchar(255) NOT NULL COMMENT '广告等比例缩小图' AFTER `ad_img`,
+ADD COLUMN `sm2_logo`  varchar(255) NOT NULL COMMENT '真正的广告图' AFTER `sm1_logo`;
+
+
+
 
 

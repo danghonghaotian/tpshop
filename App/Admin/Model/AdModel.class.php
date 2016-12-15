@@ -10,6 +10,16 @@ namespace Admin\Model;
 use Think\Model;
 class AdModel extends Model
 {
+
+
+    protected $_validate = array(
+        array('ad_name',"require","广告名称必须!"),
+        array('ad_img',"require","广告图片必须!"),
+        array('ad_id',"require","请选择发布的位置"),
+        array('start_time',"require","开始时间必须!"),
+        array('end_time',"require","结束时间必须"),
+        array('ad_url',"require","广告链接必须"),
+    );
     /**
      * 搜索
      * @return array
@@ -34,4 +44,47 @@ class AdModel extends Model
             'data' => $data,
         );
     }
+
+    /**
+     * 上传图片
+     */
+    public function upload()
+    {
+        // 如果上传了图片，并且图片是在临时目录中的（说明是新上传的）
+        if($this->ad_img && strpos($this->ad_img, 'tmp') !== FALSE)
+        {
+           if(isset($_POST['ad_size']) && !empty($_POST['ad_size']))
+           {
+               list($width,$height) = explode(',',$_POST['ad_size']);
+               //优化代码
+               $rootPath = C('ROOT_PATH');
+               // 构造图片存放目录的路径
+               $date = date('Y-m',time());
+               //目录结构宽高/年月组成
+               $dir =$rootPath."/assets/admin/ad/{$width}x{$height}/$date";
+               if(!is_dir($dir))
+               {
+                   mkdir($dir, 0777,true);
+               }
+               $adName = time().'.'.end(explode('.',$this->ad_img));
+               $imgName = $dir.'/'. $adName; //原图
+               $sm1_logo = $dir.'/sm1_'. $adName;  //100
+               $sm2_logo = $dir.'/sm2_'. $adName;  //真正的广告图
+               copy($rootPath.$this->ad_img, $imgName);
+
+               $image = new \Think\Image();
+               $image->open($imgName);
+               $image->thumb($width, $height)->save($sm2_logo);
+               $image->thumb(100, 100*$height/$width)->save($sm1_logo);
+
+               $this->ad_img = substr($imgName,strlen($rootPath));
+               $this->sm2_logo = substr($sm2_logo,strlen($rootPath));
+               $this->sm1_logo = substr($sm1_logo,strlen($rootPath));
+
+           }
+        }
+    }
+
+
+
 }
