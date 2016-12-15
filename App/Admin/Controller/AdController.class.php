@@ -84,6 +84,12 @@ class AdController extends AdminController
         $adPosition = $adPositionModel->select();
         $this->assign('adPosition',$adPosition);
 
+        //计算出图片大小
+        $sql = "SELECT b.adpos_width,b.adpos_height from ".C('DB_PREFIX')."ad  as a LEFT JOIN ".C('DB_PREFIX')."ad_position as b on a.adpos_id = b.id WHERE a.id = $id";
+        $size = M()->query($sql);
+        $this->assign('size',implode(',',$size[0]));
+
+
         $this->display();
     }
 
