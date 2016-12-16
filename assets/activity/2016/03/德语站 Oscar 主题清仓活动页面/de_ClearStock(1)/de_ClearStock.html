@@ -1,0 +1,581 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>oscar ClearStock</title>
+<style>
+*,html,body,p,ul,li{margin:0; padding:0;}
+body{ font-family:Tahoma,Helvetica,sans-serif;}
+ul,li{ list-style:none;}
+.clear{ clear:both; width:100%; overflow:hidden; height:0; font-size:0; line-height:0;}
+.cs31_banner{ width:100%; overflow:hidden; height:688px; background:url(images/oscar1_banner.jpg) no-repeat center top;}
+.cs31_bg{ 
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;}
+.cs31_bg1{ height:1033px; background:url(images/oscar1_bg1.jpg) no-repeat center top; width:100%;}
+.cs31_bg2{ height:1311px; background:url(images/oscar1_bg2.jpg) no-repeat center top; width:100%; padding-top:110px;}
+.cs31_bg3{ height:985px; background:url(images/oscar1_bg3.jpg) no-repeat center top; width:100%; padding-top:120px;}
+.cs31_bg4{ height:1794px; background:url(images/oscar1_bg4.jpg) no-repeat center top; width:100%;padding-top:180px;}
+.cs31_bg5{ height:289px; background:url(images/oscar1_bg5.jpg) no-repeat center top; width:100%;}
+.cs31_titile{ width:1200px; margin:0 auto; padding-left:220px; position:relative;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+}
+.cs31_titile2 img{position:absolute; left:195px; top:-145px;}
+.cs31_titile3 img{position:absolute; left:170px; top:-195px;}
+.cs31_titile4 img{position:absolute; left:120px; top:-190px;}
+.cs31_prd{ width:1100px; margin:0 auto;}
+.cs31_prd ul li{ width:25%; padding:10px; float:left;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;}
+.cs31_prd_img{ display:block; height:225px; text-align:center;}
+.cs31_prd_img img{ height:100%;}
+.cs31_list{ border:1px solid #d17b32; position:relative;padding:10px;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+-webkit-transition:all 0.4s ease;
+-moz-transition:all 0.4s ease;
+-ms-transition:all 0.4s ease;
+-o-transition:all 0.4s ease;
+transition:all 0.4s ease;
+}
+.cs31_list:hover{
+-webkit-transform:translateY(-5px);
+-moz-transform:translateY(-5px);
+-ms-transform:translateY(-5px);
+-o-transform:translateY(-5px);
+transform:translateY(-5px);	
+}
+.cs31_text{ height:35px; overflow:hidden; line-height:1.2; font-size:12px; padding:5px 5px 0; text-align:center;}
+.cs31_price{ text-align:center;}
+.cs31_price span{ color:#ff2400; font-size:32px; font-weight:bold;}
+.cs31_price del{ font-size:16px; color:#000;}
+.cs31_btn{ display:table; margin:0 auto; padding:5px 15px; background:#612e01; color:#fff; font-size:16px; text-decoration:none;}
+.cs31_banners{ width:1200px; margin:0 auto;}
+.cs31_banner0{ position:relative;}
+.cs_bn_btn{ position:absolute; display:table; padding:8px 20px; background:#ff5500; color:#fff;font-size:22px; z-index:2;
+text-decoration:none;
+-webkit-transition:all 0.4s ease;
+-moz-transition:all 0.4s ease;
+-ms-transition:all 0.4s ease;
+-o-transition:all 0.4s ease;
+transition:all 0.4s ease;
+}
+.cs_bn_btn:hover{ background:#d24701;}
+.cs_bn_btn1{ top:390px;left:590px;}
+.cs_bn_btn2{ top:390px;left:120px;}
+.cs_bn_btn3{ top:350px;left:590px;}
+.banner_text_right{ text-align:right; color:#fff; padding:15px; float:right; font-size:16px;}
+.banner_text_left{text-align:left;}
+.banner_text_left a{ color:#00ee00}
+.cs31_banner0{ margin-top:5px;}
+.cs31_banner0 img{ display:block; overflow:hidden; position:relative;}
+.cs31_banner0:after{ 
+content:"";
+position:absolute;
+top:0; left:0; right:0; bottom:0; width:100%; height:100%; background:#fff; z-index:1; opacity:0;
+-webkit-transition:all 0.4s ease;
+-moz-transition:all 0.4s ease;
+-ms-transition:all 0.4s ease;
+-o-transition:all 0.4s ease;
+transition:all 0.4s ease;
+}
+.cs31_banner0:hover:after{opacity:0.1;}
+.clearStock_zk{ width:70px; height:70; text-align:center; line-height:68px; color:#fff; 
+background:#ff2400; font-size:24px; position:absolute; right:0; top:0;
+-webkit-border-radius:50%;
+-moz-border-radius:50%;
+-ms-border-radius:50%;
+-o-border-radius:50%;
+border-radius:50%;
+}
+</style>
+</head>
+
+<body>
+<div class="clearStock31">
+	<div class="cs31_banner">
+    	<div class="banner_text_right">
+        	<div class="banner_text_left">
+        	GEHEN SIE ZU <a href="http://www.geekvida.de">GEEKVIDA.DE </a> ><br>
+			AKTION: 3-11. MÄRZ</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="cs31_bg cs31_bg1">
+    	<div class="cs31_titile"><img src="images/oscar1_t1.png"></div>
+        <div class="cs31_prd cs31_prd1">
+        	<ul>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="cs31_bg cs31_bg2">
+    	<div class="cs31_titile cs31_titile2"><img src="images/oscar1_t2.png"></div>
+        <div class="cs31_prd cs31_prd1">
+        	<ul>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="cs31_bg cs31_bg3">
+    	<div class="cs31_titile cs31_titile3"><img src="images/oscar1_t3.png"></div>
+        <div class="cs31_prd cs31_prd1">
+        	<ul>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>
+            	<li>
+                	<div class="cs31_list">
+                    	<a class="cs31_prd_img" href="">
+                        	<img src="http://pic.geekvida.com/media/catalog/product/cache/1/small_image/600x/9df78eab33525d08d6e5fb8d27136e95/s/k/sku62891_11.jpg">
+                        </a>
+                        <p class="cs31_text">Holds K3 1GB 16GB huellas dactilares
+Dorado con audífonos regalados</p>
+                        <div class="cs31_price">
+                        	<span>1.99€</span>
+                            <del>1.99€</del>
+                        </div>
+                        <a class="cs31_btn" href="">Jetzt kaufen</a>
+                        <div class="clearStock_zk">21€</div>
+                    </div>
+                </li>	
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="cs31_bg cs31_bg4">
+    	<div class="cs31_titile cs31_titile4"><img src="images/oscar1_t4.png"></div>
+        <div class="cs31_banners">
+        	<div class="cs31_banner2 cs31_banner0">
+            	<img src="images/oscar1_banner2.jpg">
+                <a class="cs_bn_btn cs_bn_btn1" href="http://www.geekvida.de/reservieren-xiaomi-mi4s-4g-touch-id-snapdragon-808-50-zoll-fhd-3gb-64gb-schwarz-p115571.html ">Reservieren</a>
+            </div>
+        	<div class="cs31_banner3 cs31_banner0">
+            	<img src="images/oscar1_banner3.jpg">
+                <a class="cs_bn_btn cs_bn_btn2" href="http://www.geekvida.de/reservieren-xiaomi-mi5-4g-touch-id-nfc-515-zoll-fhd-snapdragon-820-3gb-64gb-weiss-p115587.html">Reservieren</a>
+            </div>
+        	<div class="cs31_banner4 cs31_banner0">
+            	<img src="images/oscar1_banner4.jpg">
+                <a class="cs_bn_btn cs_bn_btn3" href="http://www.geekvida.de/meizu-pro-5-57-zoll-amoled-screen-samsung-exynos-octa-core-3gb-32gb-grau-p106137.html">Reservieren</a>
+            </div>
+        </div>
+    </div>
+    <div class="cs31_bg cs31_bg5"></div>
+</div>
+</body>
+</html>
