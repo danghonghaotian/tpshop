@@ -551,5 +551,38 @@ function getDay($time)
     );
 }
 
+/**
+ * 字符串中是否有中文
+ * @param $str
+ * @return bool
+ */
+function is_cn_font($str,$code='utf-8')
+{
+    if($code == 'utf-8')
+    {
+        if(!preg_match("/^[\x{4e00}-\x{9fa5}A-Za-z0-9_]+$/u",$str)) //UTF-8汉字字母数字下划线正则表达式
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    if($code == 'GB2312')
+    {
+        if(!preg_match("/^[".chr(0xa1)."-".chr(0xff)."A-Za-z0-9_]+$/",$str)) //GB2312汉字字母数字下划线正则表达式
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+
+
 
 ?>
