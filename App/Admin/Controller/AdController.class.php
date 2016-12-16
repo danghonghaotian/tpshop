@@ -59,6 +59,7 @@ class AdController extends AdminController
             $model = D('Ad');
             if($model->create())
             {
+                $model->upload();
                 if($model->save() !== FALSE)
                 {
                     $this->success('修改成功', U('lst'));
@@ -93,9 +94,25 @@ class AdController extends AdminController
         $this->display();
     }
 
+    /**
+     * 删除
+     * @param $id
+     */
     public function delete($id)
     {
-
+        //先找出图片删除
+        $adModel = M('Ad');
+        $ad = $adModel->find($id);
+        foreach ($ad as $k=>$v)
+        {
+            $v = C('ROOT_PATH').$v;
+            if(file_exists($v))
+            {
+                unlink($v);
+            }
+        }
+        $adModel->delete($id);
+        $this->success('删除成功');
     }
 
     /**

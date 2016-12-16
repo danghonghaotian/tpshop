@@ -55,6 +55,22 @@ class AdModel extends Model
         {
            if(isset($_POST['ad_size']) && !empty($_POST['ad_size']))
            {
+               if(isset($this->id))
+               {
+                   // 修改就删除原图
+                   if(isset($_POST['old_ad_img']))
+                   {
+                       foreach ($_POST['old_ad_img'] as $v)
+                       {
+                           $v = C('ROOT_PATH').$v;
+                           if(file_exists($v))
+                           {
+                               unlink($v);
+                           }
+                       }
+                   }
+               }
+
                list($width,$height) = explode(',',$_POST['ad_size']);
                //优化代码
                $rootPath = C('ROOT_PATH');
@@ -66,14 +82,15 @@ class AdModel extends Model
                {
                    mkdir($dir, 0777,true);
                }
+
                $adName = time().'.'.end(explode('.',$this->ad_img));
                $imgName = $dir.'/'. $adName; //原图
                $sm1_logo = $dir.'/sm1_'. $adName;  //100
                $sm2_logo = $dir.'/sm2_'. $adName;  //真正的广告图
-               copy($rootPath.$this->ad_img, $imgName);
-
+               copy($rootPath.$this->ad_img,$imgName);
                $image = new \Think\Image();
                $image->open($imgName);
+
                $image->thumb($width, $height)->save($sm2_logo);
                $image->thumb(100, 100*$height/$width)->save($sm1_logo);
 
