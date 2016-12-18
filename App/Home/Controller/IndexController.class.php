@@ -2,8 +2,18 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends CommonController {
+
+    /**
+     * 首页
+     */
     public function index()
     {
+        //获取广告信息
+        $adModel = M('Ad');
+        $now = date('Y-m-d H:i:s');
+        $where = array('adpos_id'=>1,'start_time'=>array('lt',$now),'end_time'=>array('gt',$now),'enabled'=>1);
+        $ad = $adModel->where($where)->order('id desc')->select();
+        $this->assign('ad', $ad);
         $this->display();
     }
 

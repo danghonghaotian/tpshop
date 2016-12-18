@@ -188,22 +188,19 @@
 			<div class="area">
 				<div class="slide_items">
 					<ul>
-						<li><a href=""><img src="<?php echo C('f-img')?>/index_slide1.jpg" alt="" /></a></li>
-						<li><a href=""><img src="<?php echo C('f-img')?>/index_slide2.jpg" alt="" /></a></li>
-						<li><a href=""><img src="<?php echo C('f-img')?>/index_slide3.jpg" alt="" /></a></li>
-						<li><a href=""><img src="<?php echo C('f-img')?>/index_slide4.jpg" alt="" /></a></li>
-						<li><a href=""><img src="<?php echo C('f-img')?>/index_slide5.jpg" alt="" /></a></li>
-						<li><a href=""><img src="<?php echo C('f-img')?>/index_slide6.jpg" alt="" /></a></li>
+						<?php foreach ($ad as $k=>$v):?>
+						<li><a href="<?php echo $v['ad_url'];?>" <?php if($v['open_new']==1):?>target="_blank"<?php endif;?>><img src="<?php echo $v['sm2_logo'];?>" alt="<?php echo $v['ad_name'];?>" /></a></li>
+						<?php endforeach;?>
 					</ul>
 				</div>
 				<div class="slide_controls">
 					<ul>
-						<li class="on">1</li>
-						<li>2</li>
-						<li>3</li>
-						<li>4</li>
-						<li>5</li>
-						<li>6</li>
+						<?php
+						$count = count($ad);
+						for($i=1;$i<=$count;$i++):
+						?>
+						<li <?php if($i==1):?> class="on"<?php endif;?>><?php echo $i;?></li>
+						<?php endfor;?>
 					</ul>
 				</div>
 			</div>
