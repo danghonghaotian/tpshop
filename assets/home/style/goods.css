@@ -70,8 +70,8 @@
 .detail_bd{width: 989px; overflow: hidden; clear: both;}
 
 .detail_bd .attr{width: 967px; padding: 10px; border:1px solid #efefef;  overflow: hidden;}
-.detail_bd .attr li{float: left; width: 320px; height: 28px; line-height: 28px; color: #666; }
-.detail_bd .desc{width: 969px; padding: 10px; text-align: center;}
+.detail_bd .attr li{float: left; width: 320px; height: 28px; line-height: 28px; color: #666;}
+.detail_bd .desc{width: 969px; padding: 10px;}
 .detail_bd .after_sale{width: 989px; color: #666;}
 .detail_bd .after_sale div{width: 969px; padding: 10px; border-bottom: 1px dotted #ccc; }
 .detail_bd .after_sale div h3{color:#c30; font-weight: bolder;}
