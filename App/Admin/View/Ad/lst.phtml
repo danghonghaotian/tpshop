@@ -26,18 +26,23 @@
             <tr>
                 <th>编号</th>
                 <th>广告名称</th>
+                <th>广告位置</th>
                 <th>广告URL</th>
                 <th>开始时间</th>
                 <th>结束时间</th>
                 <th>操作</th>
             </tr>
-            <?php foreach ($ad as $k=>$v):?>
+            <?php $adposModel = D('AdPosition'); foreach ($ad as $k=>$v):?>
                 <tr>
                     <td>
                         <?php echo $v["id"]?>
                     </td>
                     <td>
                         <?php echo $v["ad_name"]?>
+                    </td>
+                    <td>
+                        <?php $adInfo = $adposModel->getAdPositionInfoByAdId($v["adpos_id"]);?>
+                        <?php echo $adInfo["adpos_name"]?>( <?php echo $adInfo["adpos_width"]?> *<?php echo $adInfo["adpos_height"]?>px)
                     </td>
                     <td>
                         <?php echo $v["ad_url"]?>

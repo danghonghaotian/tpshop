@@ -44,4 +44,11 @@ class AdPositionModel extends Model
         );
     }
 
+
+    public function getAdPositionInfoByAdId($id)
+    {
+        $ad = $this->find($id);
+        return $ad;
+    }
+
 }
