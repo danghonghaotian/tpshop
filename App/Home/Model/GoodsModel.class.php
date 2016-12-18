@@ -30,6 +30,25 @@ class GoodsModel extends Model
     }
 
     /**
+     * 获取商品的唯一属性
+     * @param $goods_id
+     * @return array
+     */
+    public function getUnitAttrByGoodsId($goods_id)
+    {
+        $prefix = C('DB_PREFIX');
+        $sql = 'SELECT a.attr_value,b.attr_name from '.$prefix.'goods_attr as a LEFT JOIN '.$prefix.'attribute as b on  a.attr_id = b.id WHERE a.goods_id = '.$goods_id.' and b.attr_type=0';
+        $attr =  M()->query($sql);
+        $data = array();
+        foreach ($attr as $k=>$v)
+        {
+            $data[$v['attr_name']] = $v['attr_value'];
+        }
+
+        return $data;
+    }
+
+    /**
      * 根据子类id找出所有包含子类与父类的数组(面包屑)
      * @param $cate
      * @param $id

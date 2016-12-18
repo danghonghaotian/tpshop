@@ -52,13 +52,22 @@ class GoodsController extends CommonController {
         //商品属性(单选属性)
         $data =  $goodsModel->getGoodsAttrRadioData($id);
         $this->assign('goods_attr',$data);
-        
+        //商品唯一属性
+        $unitAttr =  $goodsModel-> getUnitAttrByGoodsId($id);
+        $this->assign('unitAttr',$unitAttr);
+
         //面包屑
         $categoryModel = M('Category');
         $category = $categoryModel ->select();
         $cate = $goodsModel->getAllParentCatByCatId($category, $goodsInfo['cat_id']);
 //        dump($cate);
         $this->assign('cate',$cate);
+
+        //商品品牌
+        $brandModel = M('Brand');
+        $brandName = $brandModel->getFieldByBrandId($goodsInfo['brand_id'],'brand_name');
+        $this->assign('brandName',$brandName);
+
         
         $this->display();
     }

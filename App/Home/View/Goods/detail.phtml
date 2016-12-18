@@ -269,17 +269,14 @@
 					<div class="introduce detail_div none">
 						<div class="attr mt15">
 							<ul>
-								<li><span>商品名称：</span>ThinkPadX230(2306 3T4）</li>
-								<li><span>商品编号：</span>979631</li>
-								<li><span>品牌：</span>联想（Thinkpad）</li>
-								<li><span>上架时间：</span>2013-09-18 17:58:12</li>
-								<li><span>商品毛重：</span>2.47kg</li>
-								<li><span>商品产地：</span>中国大陆</li>
-								<li><span>显卡：</span>集成显卡</li>
-								<li><span>触控：</span>非触控</li>
-								<li><span>厚度：</span>正常厚度（>25mm）</li>
-								<li><span>处理器：</span>Intel i5</li>
-								<li><span>尺寸：</span>12英寸</li>
+								<li><span>商品名称：</span><?php echo $goodsInfo['goods_name'];?></li>
+								<li><span>商品编号：</span><?php echo $goodsInfo['goods_sn'];?></li>
+								<li><span>品牌：</span><?php echo $brandName;?></li>
+								<li><span>是否包邮：</span><?php if($goodsInfo['no_postage']==1):?>是<?php else:?>否<?php endif;?></li>
+								<li><span>商品毛重：</span><?php echo $goodsInfo['weight'];?><?php echo $goodsInfo['weight_unit'];?></li>
+								<?php foreach ($unitAttr as $k=>$v):?>
+								<li><span><?php echo $k;?>：</span><?php echo $v;?></li>
+								<?php endforeach;?>
 							</ul>
 						</div>
 
