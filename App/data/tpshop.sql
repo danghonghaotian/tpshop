@@ -150,7 +150,13 @@ ALTER TABLE `tp_ad`
 ADD COLUMN `sm1_logo`  varchar(255) NOT NULL COMMENT '广告等比例缩小图' AFTER `ad_img`,
 ADD COLUMN `sm2_logo`  varchar(255) NOT NULL COMMENT '真正的广告图' AFTER `sm1_logo`;
 
-
+# 首页商品推荐表
+CREATE TABLE `goods_recommendation` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `type_id` tinyint(3) unsigned NOT NULL,
+  `goods_sn` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 

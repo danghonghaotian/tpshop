@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo C('shopName');?> - 商品推荐列表 </title>
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/GoodsRecommendation/add")?>">添加商品推荐</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -商品推荐列表 </span>
+    <div style="clear:both"></div>
+</h1>
+
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>编号</th>
+                <th>推荐位置</th>
+                <th>商品sku</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($data as $k=>$v):?>
+                <tr>
+                    <td>
+                        <?php echo $v["id"]?>
+                    </td>
+                    <td>
+                        <?php echo $type[$v["type_id"]]?>
+                    </td>
+                    <td>
+                        <?php echo $v["goods_sn"]?>
+                    </td>
+                    <td align="center">
+                        <a href="<?php echo U("Admin/GoodsRecommendation/save",array('id'=>$v['id']))?>" title="编辑">编辑</a>
+                    </td>
+                </tr>
+            <?php endforeach;?>
+            <tr>
+                <td align="center" nowrap="true" colspan="7">
+                    <?php echo $page;?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

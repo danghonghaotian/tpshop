@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo C('shopName');?> - 修改商品推荐 </title>
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/GoodsRecommendation/lst") ?>">商品推荐列表</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 修改商品推荐 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/GoodsRecommendation/save") ?>">
+        <input type="hidden" name="id" value="<?php echo  $goodsRecommendation['id']?>" />
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">推荐位置</td>
+                <td>
+                    <select name="type_id" disabled="disabled">
+                        <option value="">请选择...</option>
+                        <?php foreach ($type as $k=>$v): ?>
+                            <option
+                                <?php if($k ==$goodsRecommendation['type_id'] ):?>
+                                selected="selected"
+                                <?php endif;?>
+                                value="<?php echo $k;?>"><?php echo $v;?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">商品sku</td>
+                <td>
+                    <textarea name="goods_sn"  cols="60" rows="2"><?php echo $goodsRecommendation['goods_sn']?></textarea>（请用英文逗号隔开）
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
