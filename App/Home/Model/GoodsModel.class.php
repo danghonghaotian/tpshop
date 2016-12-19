@@ -141,6 +141,18 @@ class GoodsModel extends Model
         }
         return $arr;
     }
+
+
+    /**
+     * 获取最新的5条商品数据
+     * @return mixed
+     */
+    public function getNewGoods()
+    {
+        $goodsModel = M('Goods');
+        $goods = $goodsModel->where(array('is_delete'=>0))->order('id desc')->limit(5)->select();
+        return $goods;
+    }
     
     
     

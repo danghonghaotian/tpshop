@@ -12,6 +12,26 @@ class IndexController extends CommonController {
         $adModel = D('Ad');
         $ad = $adModel->getIndexSlideAd();
         $this->assign('ad', $ad);
+
+        //疯狂抢购商品
+        $goodsRecommendation = D('GoodsRecommendation');
+        $crazyGoods = $goodsRecommendation->getCrazyGoods();
+        $this->assign('crazyGoods', $crazyGoods);
+//        热卖商品
+        $hotGoods = $goodsRecommendation->getHotGoods();
+        $this->assign('hotGoods',  $hotGoods);
+//        商品推荐
+        $recommendGoods = $goodsRecommendation->getRecommendGoods();
+        $this->assign('recommendGoods', $recommendGoods);
+        //猜你喜欢
+        $guessGoods = $goodsRecommendation->getGuessGoods();
+        $this->assign('guessGoods', $guessGoods);
+
+        //最新商品
+        $goods = D('Goods');
+        $newGoods =$goods->getNewGoods();
+        $this->assign('newGoods', $newGoods);
+
         $this->display();
     }
 
