@@ -536,5 +536,20 @@ function isCurrent($url)
     }
 }
 
+/**
+ * 根据当前时间返回周期第一天，跟最后一天
+ * @param $time
+ * @return array
+ */
+function getDay($time)
+{
+    $last_day=date("Y-m-d",strtotime("$time Sunday"));
+    $first_day = date("Y-m-d",strtotime("$last_day - 6 days"));
+    return array(
+        'first_day'=>$first_day,
+        'last_day'=>$last_day
+    );
+}
+
 
 ?>
