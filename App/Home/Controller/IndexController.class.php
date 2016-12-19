@@ -32,6 +32,11 @@ class IndexController extends CommonController {
         $newGoods =$goods->getNewGoods();
         $this->assign('newGoods', $newGoods);
 
+        //手机二级分类
+        $categoryModel = D('Category');
+        $mobileCateInfo = $categoryModel->getSecondCate(1);
+        $this->assign('mobileCateInfo', $mobileCateInfo);
+
         $this->display();
     }
 

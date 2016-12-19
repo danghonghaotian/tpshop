@@ -437,26 +437,15 @@
 		<div class="floor_left fl">
 			<!-- 商品分类信息 start-->
 			<div class="cate fl">
-				<h2>电脑、办公</h2>
+				<h2><a href="<?php echo U('Home/Goods/lst/',array('cid'=>1));?>" style="color:white">手机</a></h2>
 				<div class="cate_wrap">
 					<ul>
-						<li><a href=""><b>.</b>外设产品</a></li>
-						<li><a href=""><b>.</b>鼠标</a></li>
-						<li><a href=""><b>.</b>笔记本</a></li>
-						<li><a href=""><b>.</b>超极本</a></li>
-						<li><a href=""><b>.</b>平板电脑</a></li>
-						<li><a href=""><b>.</b>主板</a></li>
-						<li><a href=""><b>.</b>显卡</a></li>
-						<li><a href=""><b>.</b>打印机</a></li>
-						<li><a href=""><b>.</b>一体机</a></li>
-						<li><a href=""><b>.</b>投影机</a></li>
-						<li><a href=""><b>.</b>路由器</a></li>
-						<li><a href=""><b>.</b>网卡</a></li>
-						<li><a href=""><b>.</b>交换机</a></li>
+						<?php foreach ($mobileCateInfo as $k=>$v):?>
+						<li><a href="<?php echo U('Home/Goods/lst/',array('cid'=>$v['id']));?>"><b>.</b><?php echo $v['cat_name'];?></a></li>
+						<?php endforeach;?>
 					</ul>
 					<p><a href=""><img src="<?php echo C('f-img')?>/notebook.jpg" alt="" /></a></p>
 				</div>
-				
 
 			</div>
 			<!-- 商品分类信息 end-->
@@ -658,7 +647,6 @@
 	</block>
 	<!--1F 电脑办公 start -->
 
-	
 	<div style="clear:both;"></div>
 
 	<!-- 底部导航 start -->
