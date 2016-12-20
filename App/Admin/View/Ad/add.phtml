@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.css"/ >
     <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
     <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.js"></script>
+    <script src="<?php echo C('jq-ui');?>/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+    <script src="<?php echo C('js');?>/validate.js"></script>
 </head>
 <body>
 <h1>
@@ -17,15 +19,14 @@
     <div style="clear:both"></div>
 </h1>
 <div class="main-div">
-    <form method="post" action="<?php echo U("Admin/Ad/add") ?>" enctype="multipart/form-data" >
+    <form method="post" action="<?php echo U("Admin/Ad/add") ?>" id="adForm" enctype="multipart/form-data" >
         <table cellspacing="1" cellpadding="3" width="100%">
             <input type="hidden" id="logo" size="40" name="ad_img" />
             <input type="hidden"  size="40" name="ad_size" id="ad_size"/>
             <tr>
                 <td class="label">广告名称</td>
                 <td>
-                    <input type="text" name="ad_name" maxlength="60" size="60" value="" />
-                    <span class="require-field">*</span>
+                    <input type="text" name="ad_name" maxlength="60" size="60" value=""  />
                 </td>
             </tr>
             <tr>
@@ -43,7 +44,7 @@
             <tr>
                 <td class="label">广告图片</td>
                 <td>
-                    <img id="pre_img" src="<?php echo C('img');?>/goods_logo.jpg" style="cursor: pointer" title="可更换"/>
+                    <img id="pre_img" src="<?php echo C('jq-ui');?>/webuploader/image.png" style="cursor: pointer;border: 1px solid #ccc;" title="可更换"/>
                 </td>
             </tr>
             <tr>
@@ -129,6 +130,7 @@
             }
         });
 
+//        $("#adForm").validate();
 
     });
 

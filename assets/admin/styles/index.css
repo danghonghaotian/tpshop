@@ -69,7 +69,7 @@
 					.weekbody_title strong{font-size:14px;}
 					.weekbody_title span{color:#5a5a5a}
 				.weekbody_main{height:151px;}
-					.weekbody_main_l{float:left; width:74px overflow:hidden; text-align:center}
+					.weekbody_main_l{float:left; width:74px; overflow:hidden; text-align:center}
 					.weekbody_main_r{float:right; width:176px; overflow:hidden}
 					
 				.weekbody_footer{height:33px; padding-left:13px; margin-top:15px}
