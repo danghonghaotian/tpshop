@@ -31,7 +31,6 @@
                 <td class="label">广告名称</td>
                 <td>
                     <input type="text" name="ad_name" maxlength="60" size="60" value="<?php echo $data['ad_name'];?>" />
-                    <span class="require-field">*</span>
                 </td>
             </tr>
             <tr>
@@ -66,13 +65,13 @@
             <tr>
                 <td class="label">开始时间</td>
                 <td>
-                    <input type="text" class="datetime" name="start_time" maxlength="60" size="40" value="<?php echo $data['start_time'];?>" />
+                    <input type="text" class="datetime" name="start_time" id="start_time" maxlength="60" size="40" value="<?php echo $data['start_time'];?>" />
                 </td>
             </tr>
             <tr>
                 <td class="label">结束时间</td>
                 <td>
-                    <input type="text" class="datetime" name="end_time" maxlength="60" size="40" value="<?php echo $data['end_time'];?>" />
+                    <input type="text" class="datetime" name="end_time" id="end_time" maxlength="60" size="40" value="<?php echo $data['end_time'];?>" />
                 </td>
             </tr>
             <tr>
