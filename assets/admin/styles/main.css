@@ -305,8 +305,10 @@ td.micro-label {
 input.button {
   padding: 2px 8px 0px;
   margin: 2px 2px;
-  border: 1px solid #2D5082;
-  background: url(/assets/admin/images/button_bg.gif) repeat-x;
+  background: #fff;
+  color: #335B64;
+  border: 2px solid #BBDDE5;
+  cursor: pointer;
 }
 
 input.capital {
@@ -853,5 +855,3 @@ em, cite, th {
 .cloud_close a{}
 .cloud_close img{ position:absolute; right:10px; top:8px; border:none}
 .Start315{border: 1px solid #CC0000; background: #ffffcc; padding: 10px; margin-bottom: 5px;}
-
-.button{cursor: pointer;}
