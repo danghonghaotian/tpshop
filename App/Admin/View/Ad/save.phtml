@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.css"/ >
     <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
     <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.js"></script>
+    <script src="<?php echo C('jq-ui');?>/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+    <script src="<?php echo C('js');?>/validate.js"></script>
 </head>
 <body>
 <h1>
@@ -17,7 +19,7 @@
     <div style="clear:both"></div>
 </h1>
 <div class="main-div">
-    <form method="post" action="<?php echo U("Admin/Ad/save") ?>" enctype="multipart/form-data" >
+    <form method="post" action="<?php echo U("Admin/Ad/save") ?>" id="adForm" enctype="multipart/form-data" >
         <table cellspacing="1" cellpadding="3" width="100%">
             <input type="hidden" id="logo" size="40" name="ad_img" value="<?php echo $data['sm2_logo']?>"/>
             <input type="hidden" name="old_ad_img[]" value="<?php echo $data['sm2_logo']?>"/>
