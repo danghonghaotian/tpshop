@@ -28,7 +28,10 @@ $(function () {
     //广告管理验证
     $("#adForm").validate({
         // 失去鼠标焦点就验证
-        onfocusout: function(element){
+        // onfocusout: function(element){
+        //     $(element).valid();
+        // },
+        onfocusin: function(element){
             $(element).valid();
         },
 
