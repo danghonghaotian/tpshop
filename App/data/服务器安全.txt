@@ -3,3 +3,70 @@ httpd.conf
 #ServerTokens Full --显示版本号
 ServerTokens Prod 线上环境使用
 
+
+产品经理常用软件
+Mindjet Mindmanager 2016 思维导图
+Axure RP 8  Axure RP是产品经理必备的原型制作工具
+
+
+php开发使用
+wamp
+nginx
+memcache
+RESTClient 火狐浏览器的调试工具 插件
+postman 谷歌浏览器的调试工具 插件
+firebug 火狐浏览器的调试工具 插件
+git
+Git Bash
+http://bitbucket.org/  845272922@qq.com
+https://github.com/ 845272922@qq.com
+sourceTree工具
+HBuilder
+FSCapture 截图
+RedisDesktopManager redis管理工具
+Navicat for MySQL
+Beyond Compare 代码对比工具
+ftp
+phpstorm
+zend studio
+Json格式查看器(JSON Viewer)1.2绿色免费版
+Notepad++
+sublime_text
+Adobe Dreamweaver CS5
+TortoiseSVN
+
+java开发
+myeclipse
+netbeans-8.1-windows
+
+C#开发
+visual studio2012
+
+
+
+运维
+VMware Workstation
+
+
+测试
+持续集成
+
+前端
+Adobe Photoshop CS6
+
+美工
+Adobe Photoshop CS6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
