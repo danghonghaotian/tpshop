@@ -13,6 +13,7 @@ php开发使用
 wamp
 nginx
 memcache
+mongoDB
 RESTClient 火狐浏览器的调试工具 插件
 postman 谷歌浏览器的调试工具 插件
 firebug 火狐浏览器的调试工具 插件
@@ -27,6 +28,7 @@ RedisDesktopManager redis管理工具
 Navicat for MySQL
 Beyond Compare 代码对比工具
 ftp
+FileZilla Client
 phpstorm
 zend studio
 Json格式查看器(JSON Viewer)1.2绿色免费版
@@ -34,6 +36,12 @@ Notepad++
 sublime_text
 Adobe Dreamweaver CS5
 TortoiseSVN
+SQLiteStudio
+gvim
+EditPlus
+Serv-U_6
+UltraEdit_16.00.0.1038_SC
+
 
 java开发
 myeclipse
@@ -53,15 +61,44 @@ VMware Workstation
 
 前端
 Adobe Photoshop CS6
+JetBrains WebStorm 8.0.3
+HBuilder
 
 美工
 Adobe Photoshop CS6
 
+常用办公软件
+DAEMON Tools Lite
+FastCopy
+FoxitPhantom
+FacebookMessengerSetup_v1.2.205.0
+Nero-8.3.6.0_chs_trial
 
 
+网管
+网络岗
+老毛桃WinPe－u盘版
+sztool
+thunder
+sogou_pinyin
+DG_2012_SP3_2050U
+老毛桃WinPe－u盘版
+xiaomaPE
+TeamViewer
+OneKey_7.2.2.702_XiaZaiBa
+OFFICE2003_2007
+DiskGenius_3.8.0_x86_XiaZaiBa
 
-
-
+财务软件
+金蝶2000-标准版V7.0
+深圳网上电子报税企业版V3.0.244安装包
+网上认证3.6 (虹光专版
+防伪开票
+索泰克服务通(WINXP_7版)
+航天信息
+zsht5.0 深圳中税通发票网上认证
+深圳网上电子报税企业版V3.0.263安装包
+航天信息远程抄报税
 
 
 
