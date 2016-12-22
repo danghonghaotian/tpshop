@@ -1,0 +1,5 @@
+httpd.conf
+在浏览器响应头server项
+#ServerTokens Full --显示版本号
+ServerTokens Prod 线上环境使用
+
