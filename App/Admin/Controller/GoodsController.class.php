@@ -77,6 +77,31 @@ class GoodsController extends AdminController
 
     public function save($id)
     {
+        if(IS_POST)
+        {
+            $model = D('Goods');
+            if($model->create($_POST['goods']))
+            {
+                //需要重新赋值模型id
+                $model->id =$id;
+                // 上传图片
+                $model->upload();
+                if($model->save() !== FALSE)
+                {
+                    $this->success('修改成功', U('lst'));
+                    exit;
+                }
+                else
+                {
+                    if(APP_DEBUG)
+                        echo 'SQL为：'.$model->getLastSql();
+                    else
+                        $this->error('发生失败，请重试！');
+                }
+            }
+            else
+                $this->error($model->getError());
+        }
         //商品基本信息
         $goodsModel = D('Goods');
         $goods = $goodsModel->find($id);

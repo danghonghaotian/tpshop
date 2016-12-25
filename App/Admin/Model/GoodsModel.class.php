@@ -198,21 +198,22 @@ class GoodsModel extends Model
         if($this->logo && strpos($this->logo, 'tmp') !== FALSE)
         {
             // 判断是修改商品就先删除原图： 所有修改的表单中都会有一个id的隐藏域
-            if(isset($this->id))
-            {
-                // 修改就删除原图
-                if(isset($_POST['old_pic']))
-                {
-                    foreach ($_POST['old_pic'] as $v)
-                    {
-                        $v = C('ROOT_PATH').$v;
-                        if(file_exists($v))
-                        {
-                            unlink($v);
-                        }
-                    }
-                }
-            }
+//            这边的设计不考虑删除原图，重名的图片会被覆盖，所以这部分代码不用写
+//            if(isset($this->id))
+//            {
+//                // 修改就删除原图
+//                if(isset($_POST['old_pic']))
+//                {
+//                    foreach ($_POST['old_pic'] as $v)
+//                    {
+//                        $v = C('ROOT_PATH').$v;
+//                        if(file_exists($v))
+//                        {
+//                            unlink($v);
+//                        }
+//                    }
+//                }
+//            }
             // 移动原图并生成缩略图
             $arr = $this->_moveAndThumb($this->logo);
             // 把图片的地址赋给模型
@@ -368,6 +369,56 @@ class GoodsModel extends Model
             $data[$v['attr_name']][] = array($v['attr_id'],$v['attr_value']);
         }
         return $data;
+    }
+
+    //重写商品修改
+    public function save()
+    {
+        /*************** 1.修改会员价格的信息 ******************/
+        if(isset($_POST['member_price']))
+        {
+            $mpModel = M('MemberPrice');
+            foreach ($_POST['member_price'] as $k => $v)
+            {
+                // 先判断有没有这个会员价格，如果有就修改，如果没有就添加
+                $level = $mpModel->where(array('goods_id'=>$this->id,'user_rank'=>$k))->count();
+                $v = trim($v);
+                // 如果有就修改
+                if($level)
+                {
+                    // 如果值不为空就修改，否则删除
+                    if($v)
+                    {
+                        $mpModel->where(array('goods_id'=>$this->id,'user_rank'=>$k))->save(array(
+                            'user_price'=>$v,
+                        ));
+                    }
+                    else
+                    {
+                        // 如果要修改的价格为空，就删除这个会员价格
+                        $mpModel->where(array('goods_id'=>$this->id,'user_rank'=>$k))->delete();
+                    }
+                }
+                else
+                {
+                    // 添加新的会员价格，如果有值就添加新的会员价格
+                    if($v)
+                    {
+                        $mpModel->data(array(
+                            'goods_id'=>$this->id,
+                            'user_rank'=>$k,
+                            'user_price'=>$v,
+                        ))->add();
+                    }
+                }
+            }
+        }
+
+
+        /*************** 修改基本信息放到最后，然后修改完之后TP会清空模型接收到的所有的数据 ****************/
+        if(parent::save() === FALSE)
+            return FALSE;
+        return TRUE;
     }
 
 
