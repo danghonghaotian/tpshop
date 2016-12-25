@@ -447,7 +447,34 @@ class GoodsModel extends Model
         }
 
         /*************3、修改商品相册,本系统采用图片重名覆盖原则，不删除图片服务器的图片***************************/
-
+        if(isset($_POST['goods_gallery']) || isset($_POST['OldGoodsPic']))
+        {
+            $ggModel = M('GoodsGallery');
+            if(isset($_POST['OldGoodsPic']))
+            {
+                $where['goods_id'] = $this->id;
+                $where['id']  = array('not in',$_POST['OldGoodsPic']);
+                $ggModel->where($where)->delete();
+            }
+            foreach ($_POST['goods_gallery'] as $v)
+            {
+                // 先把图片移动到商品目录并生成缩略图
+                $arr = $this->_moveAndThumb($v);
+                $ggModel->data(array(
+                    'goods_id'=>$this->id,
+                    'sm_logo'=>$arr[1],
+                    'sm1_logo'=>$arr[2],
+                    'sm2_logo'=>$arr[3],
+                    'logo'=>$arr[0],
+                ))->add();
+            }
+        }
+        else //删除该商品所有相册
+        {
+            $ggModel = M('GoodsGallery');
+            $where['goods_id'] = $this->id;
+            $ggModel->where($where)->delete();
+        }
 
 
         /*************** 修改基本信息放到最后，然后修改完之后TP会清空模型接收到的所有的数据 ****************/
