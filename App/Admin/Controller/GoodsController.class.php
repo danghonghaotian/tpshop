@@ -27,9 +27,6 @@ class GoodsController extends AdminController
     {
         if(IS_POST)
         {
-//            dump($_POST);
-//            file_put_contents('E:/backup/desktop/data1.txt', json_encode($_POST));
-//            die;
             $goodsModel = D('goods');
             if($goodsModel->create($_POST['goods']))
             {
@@ -52,6 +49,10 @@ class GoodsController extends AdminController
                         $this->error('发生失败，请重试！');
                     }
                 }
+            }
+            else
+            {
+                $this->error($goodsModel->getError());  // 输出表单验证失败的原因
             }
         }
         //商品分类

@@ -5,9 +5,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
 <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
-<script src="{:C('js')}/jquery-1.4.2.min.js"></script>
+<script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
 <script src="{:C('ueditor')}/ueditor.config.js"></script>
 <script src="{:C('ueditor')}/ueditor.all.min.js"></script>
+<script src="<?php echo C('jq-ui');?>/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+<script src="<?php echo C('js');?>/validate.js"></script>
 </head>
 <body>
 <h1>
@@ -28,7 +30,7 @@
             <span class="tab-back  gallery">商品相册</span>
         </p>
     </div>
-    <form enctype="multipart/form-data" action="<?php echo U("Admin/Goods/add")?>" method="post">
+    <form id="goodsForm" enctype="multipart/form-data" action="<?php echo U("Admin/Goods/add")?>" method="post">
     <div id="tabbody-div" class="tabbody-div">
             <table width="90%" id="general-table" align="center">
                 <input type="hidden" id="logo" size="40" name="goods[logo]" />
@@ -40,7 +42,7 @@
                 </tr>
                 <tr>
                     <td class="label">商品名称：</td>
-                    <td><input type="text" name="goods[goods_name]" value=""size="80" />
+                    <td><input type="text" name="goods[goods_name]" value=""size="80"/>
                     <span class="require-field">*</span></td>
                 </tr>
                 <tr>

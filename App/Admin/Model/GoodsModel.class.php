@@ -11,6 +11,37 @@ use Think\Model;
 class GoodsModel extends Model
 {
 
+    protected $_validate = array(
+//        array('logo', 'require', '请上传商品图片',self::EXISTS_VALIDATE,regex,self::MODEL_INSERT),
+        array('goods_name', 'require', '商品名称不能为空'),
+        array('goods_sn', 'require', '商品sku不能为空'),
+        array('goods_number', 'require', '商品数量不能为空'),
+        array('goods_number', 'require', '商品数量不能为空'),
+        array('goods_number', 'number', '商品数量不合法，请输入数字'),
+        array('market_price', 'require', '市场价不能为空'),
+        array('market_price', 'is_num', '市场价不合法，请输入数字',self::MUST_VALIDATE,callback),
+        array('shop_price', 'require', '本店价不能为空'),
+        array('shop_price', 'is_num', '本店价不合法，请输入数字',self::MUST_VALIDATE,callback),
+        array('weight', 'require', '商品重量不能为空'),
+        array('cat_id', 'require', '请选择商品分类'),
+        array('is_on_sale', 'require', '请选择商品是否上架'),
+        array('no_postage', 'require', '请选择商品是否包邮'),
+    );
+
+
+    //添加数字校验
+    public function is_num($num)
+    {
+        if(is_float($num) || is_numeric($num))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     /**
      * 上传商品图片到临时目录
      * 使用同名覆盖原则
