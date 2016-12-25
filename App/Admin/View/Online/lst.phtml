@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 在线客服列表 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{:C('js')}/jquery.js"></script>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Online/add")?>">添加客服</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 客服列表 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="form-div">
+    <form action="<?php echo U('Admin/Online/lst');?>" name="searchForm" method="get">
+        <img src="{:C('img')}/icon_search.gif" width="26" height="22" border="0" alt="search" />
+        <input type="text" name="keyword" size="50" placeholder="客服|QQ|淘宝旺旺|微信" value="<?php echo $_GET['keyword']?>"/>
+        <input type="submit" value=" 搜索 " class="button" />
+    </form>
+</div>
+
+<form method="post" action="<?php echo U("Admin/Online/batchDel");?>" name="sms">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th><input type="checkbox" id="allCheck"/>编号</th>
+                <th>客服名称</th>
+                <th>QQ</th>
+                <th>淘宝旺旺</th>
+                <th>微信</th>
+                <th>是否开启</th>
+                <th>排序</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($data as $k=>$v): ?>
+                <tr>
+                    <td align="center">
+                        <input class="online_id" name="id[]" type="checkbox" value="<?php echo $v['id']?>"/> <?php echo $v['id']?>
+                    </td>
+                    <td align="center">
+                        <?php echo $v['onlinename']?>
+                    </td>
+                    <td align="center">
+                        <?php echo $v['qq']?>
+                    </td>
+                    <td align="center">
+                        <?php echo $v['taobao']?>
+                    </td>
+                    <td align="center">
+                        <?php echo $v['weixin']?>
+                    </td>
+                    <td align="center">
+                        <?php if($v['enable'] == 1):?>
+                            开启
+                            <?php else: ?>
+                            禁用
+                         <?php endif;?>
+                    </td>
+                    <td align="center">
+                        <?php echo $v['sort']?>
+                    </td>
+                    <td align="center">
+                        <a href="<?php echo U("Admin/Online/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
+                        <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Online/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+
+        <!-- 分页开始 -->
+        <table id="page-table" cellspacing="0">
+            <tr>
+                <td width="50%"><input onclick="return confirm('确定要删除吗');" id="batch" type="submit" value="批量删除"></td>
+                <td align="center" nowrap="true">
+                    <?php echo $page; ?>
+                </td>
+            </tr>
+        </table>
+        <!-- 分页结束 -->
+    </div>
+</form>
+
+<script>
+    $(function () {
+        //单选不为真，取消全选
+        var checkSize = 0;
+        batchSelect(checkSize);
+        $("#allCheck").click(function () {
+            if($(this).attr("checked"))
+            {
+                $(".online_id").attr("checked","checked");
+                checkSize = $('.online_id').size();
+            }
+            else
+            {
+                $(".online_id").attr("checked","");
+                checkSize = 0;
+            }
+            batchSelect(checkSize);
+        });
+
+        $('.online_id').click(function () {
+
+            if(!$(this).attr("checked"))
+            {
+                $("#allCheck").attr("checked","");
+                checkSize--;
+                if(checkSize < 0)
+                {
+                    checkSize = 0;
+                }
+            }
+            else
+            {
+                checkSize++;
+                if(checkSize > $('.online_id').size())
+                {
+                    checkSize = $('.online_id').size();
+                }
+//                alert(checkSize);
+                if(checkSize ==  $('.online_id').size())
+                {
+                    $("#allCheck").attr("checked","checked");
+                }
+            }
+            batchSelect(checkSize);
+        });
+
+    });
+    //批量删除效果
+    function batchSelect(num) {
+        if(num > 0)
+        {
+            $('#batch').attr("disabled","");
+        }
+        else
+        {
+            $('#batch').attr("disabled","disabled");
+        }
+    }
+
+
+</script>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

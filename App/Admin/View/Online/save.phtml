@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo C('shopName');?> - 修改客服 </title>
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+    <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
+    <script src="<?php echo C('jq-ui');?>/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+    <script src="<?php echo C('js');?>/validate.js"></script>
+</head>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Online/lst") ?>">客服列表</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 修改客服 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" id="onlineForm" action="<?php echo U("Admin/Online/save") ?>">
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <input type="hidden" name="id" value="<?php echo $Online['id'];?>"/>
+            <tr>
+                <td class="label">是否开启</td>
+                <td>
+
+                    <input type="radio" name="enable" value="1" <?php if($Online['enable'] == 1):?>checked="checked" <?php endif;?>/>开启
+                    <input type="radio" name="enable" value="0"<?php if($Online['enable'] == 0):?>checked="checked" <?php endif;?>/>禁用
+                </td>
+            </tr>
+            <tr>
+                <td class="label">客服名称</td>
+                <td>
+                    <input type="text" name="onlinename" size="40" value="<?php echo $Online['onlinename'];?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">qq</td>
+                <td>
+                    <input type="text" name="qq" size="40"  value="<?php echo $Online['qq'];?>"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">淘宝旺旺</td>
+                <td>
+                    <input type="text" name="taobao" size="40"  value="<?php echo $Online['taobao'];?>"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">微信</td>
+                <td>
+                    <input type="text" name="weixin" size="40"  value="<?php echo $Online['weixin'];?>"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">排序</td>
+                <td>
+                    <input type="text" name="sort" size="40" value="<?php echo $Online['sort'];?>" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

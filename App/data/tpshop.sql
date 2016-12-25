@@ -159,4 +159,18 @@ CREATE TABLE `tp_goods_recommendation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+#2016-12-25
+CREATE TABLE `tp_online` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID号',
+  `onlinename` varchar(60) NOT NULL COMMENT '客服名称',
+  `qq` varchar(13) NOT NULL COMMENT 'qq号码',
+  `taobao` varchar(150) NOT NULL DEFAULT '' COMMENT '淘宝旺旺',
+  `weixin` varchar(150) NOT NULL DEFAULT '' COMMENT '微信',
+  `sort` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '排序,数字越小排序越靠前',
+  `enable` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0:不启用 1：启用',
+  PRIMARY KEY (`id`),
+  KEY `enable` (`enable`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='在线客服表';
+
+
 
