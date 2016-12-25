@@ -171,7 +171,7 @@
             <tr>
                 <td class="label">商品类型:</td>
                 <td>
-                    <select id="type_id" name="goods[type_id]">
+                    <select id="type_id" name="goods[type_id]" disabled="disabled">
                         <option value="">请选择商品类型</option>
                         <?php foreach ($goodsTypeData as $k=>$v):?>
                         <option
@@ -212,13 +212,13 @@
 
                         if(empty($v['attr_value']))
                         {
-                            echo '<tr><td class="label">'.$v['attr_name'].'</td><td><input type="text" value="'.$_attrVal.'"/></td></tr>';
+                            echo '<tr><td class="label">'.$v['attr_name'].'</td><td><input name=goods_attr[attr_value]['.$v['id'].'] type="text" value="'.$_attrVal.'"/></td></tr>';
                         }
                         else
                         {
                             echo '<tr><td class="label">'.$v['attr_name'].'</td><td>';
                             $_val = explode(',', trim($v['attr_value']));
-                            echo '<select style="width:120px;" name="goods_attr['.$v['id'].']">';
+                            echo '<select style="width:120px;" name="goods_attr[attr_value]['.$v['id'].']">';
                             foreach ($_val as $k1 => $v1)
                             {
                                 if($v1 == $_attrVal)
@@ -253,7 +253,7 @@
                             echo '<tr><td class="label">'.$v['attr_name'].'</td><td>';
                             // 输出属性的下拉框
                             echo '<a href="javascript:void(0);" onclick="addANewAttRow(this)">'.$_atext.'</a>
-			                <select style="width:120px;"  name="goods_attr['.$v['id'].'][]">';
+			                <select style="width:120px;"  name="goods_attr[attr_value]['.$v['id'].'][]">';
                             foreach ($_val as $k1 => $v1)
                             {
                                 if($v1 == $v2['attr_value'])
@@ -263,7 +263,7 @@
                                 echo '<option '.$selected.' value="'.$v1.'">'.$v1.'</option>';
                             }
                             echo '</select>
-                            <input value="'.$v2['attr_price'].'" type="text" name="attr_price['.$v['id'].'][]" />
+                            <input value="'.$v2['attr_price'].'" type="text" name="goods_attr[attr_price]['.$v['id'].'][]" />
                             ';
                             echo '</td></tr>';
                         }

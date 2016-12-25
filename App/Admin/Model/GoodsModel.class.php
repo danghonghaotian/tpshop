@@ -414,6 +414,41 @@ class GoodsModel extends Model
             }
         }
 
+        /*************2、修改商品属性，先删除原来的属性，再重新添加即可***************************/
+        if(isset($_POST['goods_attr']))
+        {
+            $gaModel = M('GoodsAttr');
+            $gaModel->where(array('goods_id'=>$this->id))->delete();
+            foreach ($_POST['goods_attr']['attr_value'] as $k => $v)
+            {
+                if(is_array($v)) //单选属性
+                {
+                    // 如果一个属性有多个值就循环每个值，一个值一条记录
+                    foreach ($v as $k1 => $v1)
+                    {
+                        $gaModel->data(array(
+                            'goods_id'=>$this->id,
+                            'attr_id'=>$k,
+                            'attr_value'=>$v1,
+                            'attr_price'=>$_POST['goods_attr']['attr_price'][$k][$k1],
+                        ))->add();
+                    }
+                }
+                else //唯一属性
+                {
+                    $gaModel->data(array(
+                        'goods_id'=>$this->id,
+                        'attr_id'=>$k,
+                        'attr_value'=>$v,
+                        'attr_price'=>0.00,
+                    ))->add();
+                }
+            }
+        }
+
+        /*************3、修改商品相册,本系统采用图片重名覆盖原则，不删除图片服务器的图片***************************/
+
+
 
         /*************** 修改基本信息放到最后，然后修改完之后TP会清空模型接收到的所有的数据 ****************/
         if(parent::save() === FALSE)
