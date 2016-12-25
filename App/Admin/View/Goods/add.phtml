@@ -35,8 +35,7 @@
                 <tr>
                     <td class="label">上传商品图片：</td>
                     <td>
-                        <img id="pre_img" src="<?php echo C('img');?>/goods_logo.jpg"/>
-                        <input id="selImg" type="button" value="选择图片" />
+                        <img id="pre_img" src="<?php echo C('jq-ui');?>/webuploader/image.png" style="cursor: pointer;border: 1px solid #ccc;" title="可更换"/>
                     </td>
                 </tr>
                 <tr>
@@ -253,45 +252,25 @@
             tr.remove();
     }
 
-    $("#close,.gallery").click(function(){
-        $("#upload").hide();
+
+    $('#pre_img').click(function () {
+        $("#pre_form input[name='img']").click();
     });
-    $("#bclose,.basic-info").click(function(){
-        $("#bupload").hide();
-    });
-    $("#selImg").click(function(){
-        // 获取按钮的位置
-        var p = $(this).position();
-        var div = $("#upload");
-        div.css({
-            "left":p.left+"px",
-            "top":p.top+"px",
-            "display":""
-        });
-    });
+
     //图片按钮
     $("#selBImg").click(function(){
-        // 获取按钮的位置
-        var p = $(this).position();
-        var div = $("#bupload");
-        div.css({
-            "left":p.left+"px",
-            "top":p.top+"px",
-            "display":""
-        });
+        $("#bpre_form input[name='img']").click();
     });
 
     /**********选择图片，关闭上传窗口************/
     function ajaxUpload()
     {
         $('#pre_form').submit();
-        $("#upload").hide();
     }
     /**********商品相册，关闭上传窗口************/
     function ajaxBUpload()
     {
         $('#bpre_form').submit();
-        $("#bupload").hide();
     }
 
 </script>
