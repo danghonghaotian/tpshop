@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo C('shopName');?> - 团队分类列表 </title>
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/TeamCat/add")?>">添加团队分类</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -团队分类列表 </span>
+    <div style="clear:both"></div>
+</h1>
+<form method="post" action="" name="teamCatForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>编号</th>
+                <th>团队分类名称</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($teamCat as $k=>$v):?>
+                <tr>
+                    <td>
+                        <?php echo $v["id"]?>
+                    </td>
+                    <td>
+                        <?php echo $v["cat_name"]?>
+                    </td>
+                    <td align="center">
+                        <a href="<?php echo U("Admin/TeamCat/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
+                        <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/TeamCat/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
+                    </td>
+                </tr>
+            <?php endforeach;?>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

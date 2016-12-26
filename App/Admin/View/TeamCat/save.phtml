@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 修改团队分类 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.css"/ >
+    <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
+    <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.js"></script>
+    <script src="<?php echo C('jq-ui');?>/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+    <script src="<?php echo C('js');?>/validate.js"></script>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/TeamCat/lst") ?>">团队分类列表</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 修改团队分类 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/TeamCat/save") ?>" id="teamCatForm" >
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <input type="hidden" name="id" value="<?php echo $teamCat['id']?>"/>
+            <tr>
+                <td class="label">团队分类名称</td>
+                <td>
+                    <input type="text" name="cat_name" maxlength="60" size="60" value="<?php echo $teamCat['cat_name']?>"  />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
