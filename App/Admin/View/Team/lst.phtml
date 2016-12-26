@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo C('shopName');?> - 团队列表 </title>
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{:C('js')}/jquery.js"></script>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Team/add")?>">添加团队成员</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -团队列表 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="form-div">
+    <form action="<?php echo U('Admin/Team/lst');?>" name="searchForm" method="get">
+        <img src="{:C('img')}/icon_search.gif" width="26" height="22" border="0" alt="search" />
+        <input type="text" name="keyword" size="50" placeholder="团队成员名称" value="<?php echo $_GET['keyword']?>" autocomplete="off" />
+        <input type="submit" value=" 搜索 " class="button" />
+    </form>
+</div>
+<form method="post" action="<?php echo U("Admin/Team/batchDel");?>" name="teamForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th><input type="checkbox" id="allCheck"/>编号</th>
+                <th>职员</th>
+                <th>分组</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($team as $k=>$v):?>
+                <tr>
+                    <td align="center">
+                        <input class="team_id" type="checkbox" value="<?php echo $v['id']?>"/><?php echo $v['id']?>
+                    </td>
+                    <td align="center">
+                        <?php echo $v['username']?>
+                    </td>
+                    <td align="center">
+                        <?php echo $teamCat[$v['cat_id']];?>
+                    </td>
+                    <td align="center">
+                        <a href="<?php echo U("Admin/Team/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
+                        <a href="<?php echo U("Admin/Team/trash",array('id'=>$v['id']))?>" title="离职">离职</a>
+                    </td>
+                </tr>
+            <?php endforeach;?>
+                <tr align="center">
+                    <td><input onclick="return confirm('确定要离职了吗');" id="batch" type="submit" value="批量离职"></td>
+                    <td align="center" nowrap="true">
+                        <?php echo $page; ?>
+                    </td>
+                </tr>
+        </table>
+    </div>
+</form>
+
+<script>
+    $(function () {
+        //单选不为真，取消全选
+        var checkSize = 0;
+        batchSelect(checkSize);
+        $("#allCheck").click(function () {
+            if($(this).attr("checked"))
+            {
+                $(".team_id").attr("checked","checked");
+                checkSize = $('.team_id').size();
+            }
+            else
+            {
+                $(".team_id").attr("checked","");
+                checkSize = 0;
+            }
+            batchSelect(checkSize);
+        });
+
+        $('.team_id').click(function () {
+
+            if(!$(this).attr("checked"))
+            {
+                $("#allCheck").attr("checked","");
+                checkSize--;
+                if(checkSize < 0)
+                {
+                    checkSize = 0;
+                }
+            }
+            else
+            {
+                checkSize++;
+                if(checkSize > $('.team_id').size())
+                {
+                    checkSize = $('.team_id').size();
+                }
+//                alert(checkSize);
+                if(checkSize ==  $('.team_id').size())
+                {
+                    $("#allCheck").attr("checked","checked");
+                }
+            }
+            batchSelect(checkSize);
+        });
+
+    });
+    //批量删除效果
+    function batchSelect(num) {
+        if(num > 0)
+        {
+            $('#batch').attr("disabled","");
+        }
+        else
+        {
+            $('#batch').attr("disabled","disabled");
+        }
+    }
+
+
+</script>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

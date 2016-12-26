@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 修改团队成员 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="<?php echo C('css');?>/general.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo C('css');?>/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo C('jq-ui');?>/datetimepicker/jquery.datetimepicker.css"/ >
+    <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
+    <script src="<?php echo C('jq-ui');?>/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+    <script src="<?php echo C('js');?>/validate.js"></script>
+    <script src="<?php echo C('ueditor');?>/ueditor.config.js"></script>
+    <script src="<?php echo C('ueditor');?>/ueditor.all.min.js"></script>
+    <style>
+        td.label {width: 10%;}
+    </style>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Team/lst") ?>">团队列表</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 修改团队成员 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/Team/save") ?>" id="teamForm">
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <input type="hidden" id="logo" size="40" name="original" />
+            <input type="hidden" name="id" value="<?php echo $team['id'];?>" />
+            <tr>
+                <td class="label">成员分组</td>
+                <td>
+                    <select name="cat_id">
+                        <option value="">请选择</option>
+                        <?php foreach ($teamCat as $k=>$v): ?>
+                            <option  value="<?php echo $v['id'];?>"
+                            <?php if($v['id'] == $team['cat_id']):?>
+                                selected = "selected"
+                                <?php endif;?>
+                            ><?php echo $v['cat_name'];?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">团队成员名称</td>
+                <td>
+                    <input type="text" name="username" maxlength="60" size="60" value="<?php echo $team['username'];?>"  />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">成员头像</td>
+                <td>
+                    <img id="pre_img" src="<?php echo $team['thumb1'];?>" style="cursor: pointer;border: 1px solid #ccc;" title="可更换"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">工作经历</td>
+                <td>
+                    <textarea name="content" id="content"><?php echo $team['content'];?></textarea>
+                    <script>
+                        // 把textarea替换成一个编辑器
+                        UE.getEditor('content',{
+                            initialFrameWidth:"100%",
+                            initialFrameHeight:"300"
+                        });
+                    </script>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
+
+<!--图片上传 start-->
+<iframe style="display:none;" name="ifr"></iframe>
+<div id="upload" style="display: none">
+    <form id="pre_form" target="ifr" method="POST" action="<?php echo U('Admin/Team/ajaxUpload');?>" enctype="multipart/form-data">
+       <input type="file" name="img" onchange="ajaxUpload();"/>
+    </form>
+</div>
+<!--图片上传 end-->
+
+<script>
+    $(function() {
+        //当点击图片的时候，让它去点击上传按钮，再触发提交表单
+        $('#pre_img').click(function () {
+            $("#pre_form input[name='img']").click();
+        });
+    });
+
+    function ajaxUpload()
+    {
+        $('#pre_form').submit();
+    }
+</script>
