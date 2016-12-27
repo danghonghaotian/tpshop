@@ -9,7 +9,7 @@ use Think\Controller;
 use Think\Model;
 
 //生成模块
-class CreateMController extends Controller {
+class CreateMController extends CommonController {
     public function index(){
 		$this->assign('db_prefix',C('DB_PREFIX'));
 		$tableNameList = getTableNameList();

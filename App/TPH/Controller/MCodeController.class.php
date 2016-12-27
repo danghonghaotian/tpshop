@@ -9,7 +9,7 @@
 namespace TPH\Controller;
 use Think\Controller;
 
-class MCodeController extends Controller {
+class MCodeController extends  CommonController {
 
     public function index(){
 		$this->assign('db_prefix',C('DB_PREFIX'));

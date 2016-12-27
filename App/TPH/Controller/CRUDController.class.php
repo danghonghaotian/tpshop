@@ -8,7 +8,7 @@ namespace TPH\Controller;
 use Think\Controller;
 use Think\Model;
 
-class CRUDController extends Controller {
+class CRUDController extends CommonController {
 	public function crud(){	//生成CRUD代码
 		$this->assign('tableNameList', getTableNameList());
 		$this->assign('moduleNameList', getModuleNameList());
