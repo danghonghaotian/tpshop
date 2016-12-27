@@ -7,7 +7,12 @@
 namespace TPH\Controller;
 use Think\Controller;
 
-class CommonController extends Controller{
+class CommonController extends Controller
+{
+    public function _empty()
+    {
+        $this->redirect('Home/Index/index');
+    }
 
     public function __construct()
     {
@@ -15,18 +20,11 @@ class CommonController extends Controller{
         {
             return parent::__construct();
         }
-
-        if($_GET['pwd'] != '123')
+        else
         {
-            echo '403 forbidden access';
-            die;
+            $this->redirect('TPH/Admin/login');
         }
 
-        if($_GET['pwd'] == '123')
-        {
-            session('test','test');
-            return parent::__construct();
-        }
     }
 }
 
