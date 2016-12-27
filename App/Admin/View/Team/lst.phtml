@@ -21,7 +21,7 @@
         <input type="submit" value=" 搜索 " class="button" />
     </form>
 </div>
-<form method="post" action="<?php echo U("Admin/Team/batchDel");?>" name="teamForm">
+<form method="post" action="<?php echo U("Admin/Team/batchTrash");?>" name="teamForm">
     <div class="list-div" id="listDiv">
         <table cellpadding="3" cellspacing="1">
             <tr>
@@ -33,7 +33,7 @@
             <?php foreach ($team as $k=>$v):?>
                 <tr>
                     <td align="center">
-                        <input class="team_id" type="checkbox" value="<?php echo $v['id']?>"/><?php echo $v['id']?>
+                        <input class="team_id" type="checkbox" value="<?php echo $v['id']?>" name="id[]"/><?php echo $v['id']?>
                     </td>
                     <td align="center">
                         <?php echo $v['username']?>

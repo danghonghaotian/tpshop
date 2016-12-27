@@ -14,7 +14,7 @@
     <div style="clear:both"></div>
 </h1>
 <div class="form-div">
-    <form action="<?php echo U('Admin/Team/lst');?>" name="searchForm" method="get">
+    <form action="<?php echo U('Admin/Team/trashList');?>" name="searchForm" method="get">
         <img src="{:C('img')}/icon_search.gif" width="26" height="22" border="0" alt="search" />
         <input type="text" name="keyword" size="50" placeholder="团队成员名称" value="<?php echo $_GET['keyword']?>" autocomplete="off" />
         <input type="submit" value=" 搜索 " class="button" />
@@ -32,7 +32,7 @@
             <?php foreach ($team as $k=>$v):?>
                 <tr>
                     <td align="center">
-                        <input class="team_id" type="checkbox" value="<?php echo $v['id']?>"/><?php echo $v['id']?>
+                        <input class="team_id" type="checkbox" value="<?php echo $v['id']?>" name="id[]"/><?php echo $v['id']?>
                     </td>
                     <td align="center">
                         <?php echo $v['username']?>
@@ -46,7 +46,7 @@
                 </tr>
             <?php endforeach;?>
             <tr align="center">
-                <td><input onclick="return confirm('确定要删除了吗');" id="batch" type="submit" value="批量删除"></td>
+                <td><input onclick="return confirm('确定要批量删除了吗');" id="batch" type="submit" value="批量删除"></td>
                 <td align="center" nowrap="true">
                     <?php echo $page; ?>
                 </td>

@@ -128,6 +128,22 @@ class TeamController extends AdminController
 		$this->success('删除成功！');
 	}
 
+
+	/**
+	 * 批量删除
+	 */
+	public function batchDel()
+	{
+		if(I('post.id'))
+		{
+			$idArr =  I('post.id');
+			$ids = implode(',',$idArr );
+			$team = M('Team');
+			$team->delete($ids);
+			$this->success("批量删除成功！");
+		}
+	}
+
 	/**
 	 * 离职
 	 * @param $id
@@ -137,6 +153,21 @@ class TeamController extends AdminController
 		$model = D('Team');
 		$model->where(array('id'=>$id))->setField('is_delete',0);
 		$this->success("该成员已经离职");
+	}
+
+	/**
+	 * 批量离职
+	 */
+	public function batchTrash()
+	{
+		if(I('post.id'))
+		{
+			$idArr =  I('post.id');
+			$ids = implode(',',$idArr );
+			$team = M('Team');
+			$team->where(array('id'=>array('in',$ids)))->save(array('is_delete'=>0));
+			$this->success("已经批量离职啦！");
+		}
 	}
 
 
