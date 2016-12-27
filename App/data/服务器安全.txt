@@ -13,7 +13,7 @@ php开发使用
 wamp
 nginx
 memcache
-mongoDB
+mongoDB  RockMongo可视化工具
 RESTClient 火狐浏览器的调试工具 插件
 postman 谷歌浏览器的调试工具 插件
 firebug 火狐浏览器的调试工具 插件
@@ -44,6 +44,7 @@ UltraEdit_16.00.0.1038_SC
 composer 命令
 Teleport Pro V1.54 绿色汉化特别版_扒站工具   可以抓取这个网站静态页面
 Monkey建站工具箱 v0.4 免费绿色版 做dedecms二次开发的好帮手
+doxygen 生成源码文档
 
 
 java开发
