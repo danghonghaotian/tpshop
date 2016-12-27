@@ -11,6 +11,9 @@ https://github.com/
 https://git.oschina.net/
 http://bitbucket.org/
 
+git开源项目
+http://www.shcsinfo.com/china/gitlab.html
+
 git安装包
 https://git-scm.com/download
 git图形化工具
@@ -42,4 +45,6 @@ hy1093063#gtzhong.com
 https://www.dnspod.cn
 gtzhong@126.com
 
+google
+https://www.liujunchen.cc/tizi
 
