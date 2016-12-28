@@ -17,15 +17,13 @@
     <!-- 页面主体 start -->
     <div class="main w1210 bc mt10">
         <div class="crumb w1210">
-            <a class="fst" href="#" target="_blank" title="首页">首页</a>
+            <a class="fst" href="<?php echo  getWebsite();?>" title="首页">首页</a>
+            <?php foreach ( $articleCat as $k=>$v):?>
             <span>&gt;</span>
-            <a href="#">帮助中心首页</a>
+            <a href="javascript:void (0);"><?php echo $v['cat_name'];?></a>
+            <?php endforeach;?>
             <span>&gt;</span>
-            <a href="#">帮助中心</a>
-            <span>&gt;</span>
-            <a href="#">会员帮助</a>
-            <span>&gt;</span>
-            <span class="last">会员权益</span>
+            <?php echo $article['title']?>
         </div>
 
         <!-- 左侧导航菜单 start -->
@@ -33,121 +31,16 @@
         <div class="menu left-nav fl">
             <h2>帮助中心</h2>
             <div class="nav-con">
+                <?php foreach ($helpInfo as $k=>$v):?>
                 <dl>
-                    <dt><em class="on"></em><span class="spcli">会员帮助</span></dt>
-                    <dd>
-                        <a href="#" class="on">会员权益</a>
-                        <a href="#">云钻规则介绍</a>
-                        <a href="#">红孩子会员转化</a>
-                        <a href="#">易购注册登录</a>
-                        <a href="#">数字证书</a>
-                        <a href="#">易购密码相关</a>
-                        <a href="#">会员卡和易购账户绑定</a>
+                    <dt><em class="<?php if($k==0):?>on<?php endif;?>"></em><span <?php if($k==0):?> class="spcli"<?php endif;?>><?php echo $v['cat_name']?></span></dt>
+                    <dd <?php if($k!=0):?>class="hide"<?php endif;?>>
+                        <?php foreach ($v['article'] as $k1=>$v1):?>
+                        <a href="<?php echo U('Home/Help/lst',array('id'=>$v1['article_id']));?>" <?php if(isCurrent(U('Home/Help/lst',array('id'=>$v1['article_id'])))):?>class="on"<?php endif;?> ><?php echo $v1['title']?></a>
+                        <?php endforeach;?>
                     </dd>
                 </dl>
-                <dl>
-                    <dt><em class=""></em><span>购物相关</span></dt>
-                    <dd class="hide">
-                        <a href="#">发票制度</a>
-                        <a href="#">商品举报</a>
-                        <a href="#">隐私声明</a>
-                        <a href="#">促销优惠</a>
-                        <a href="#">评价晒单说明</a>
-                        <a href="#">服务协议说明</a>
-                        <a href="#">错收价款退费说明</a>
-                        <a href="#">苏宁易购价格说明</a>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt><em class=""></em><span>购物相关</span></dt>
-                    <dd class="hide">
-                        <a href="#">发票制度</a>
-                        <a href="#">商品举报</a>
-                        <a href="#">隐私声明</a>
-                        <a href="#">促销优惠</a>
-                        <a href="#">评价晒单说明</a>
-                        <a href="#">服务协议说明</a>
-                        <a href="#">错收价款退费说明</a>
-                        <a href="#">苏宁易购价格说明</a>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt><em class=""></em><span>购物相关</span></dt>
-                    <dd class="hide">
-                        <a href="#">发票制度</a>
-                        <a href="#">商品举报</a>
-                        <a href="#">隐私声明</a>
-                        <a href="#">促销优惠</a>
-                        <a href="#">评价晒单说明</a>
-                        <a href="#">服务协议说明</a>
-                        <a href="#">错收价款退费说明</a>
-                        <a href="#">苏宁易购价格说明</a>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt><em class=""></em><span>购物相关</span></dt>
-                    <dd class="hide">
-                        <a href="#">发票制度</a>
-                        <a href="#">商品举报</a>
-                        <a href="#">隐私声明</a>
-                        <a href="#">促销优惠</a>
-                        <a href="#">评价晒单说明</a>
-                        <a href="#">服务协议说明</a>
-                        <a href="#">错收价款退费说明</a>
-                        <a href="#">苏宁易购价格说明</a>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt><em></em><span>特色服务</span></dt>
-                    <dd class="hide">
-                        <a href="#">二手优品</a>
-                        <a href="#">苏宁海外购</a>
-                        <a href="#">零钱贷</a>
-                        <a href="#">苏宁预售</a>
-                        <a href="#">苏宁互联</a>
-                        <a href="#">苏宁众筹</a>
-                        <a href="#">私募股权</a>
-                        <a href="#">苏宁理财</a>
-                        <a href="#">企业频道</a>
-                        <a href="#">苏宁卡</a>
-                        <a href="#">专属页面</a>
-                        <a href="#">任性付</a>
-                        <a href="#">零钱宝</a>
-                        <a href="#">游戏服务</a>
-                        <a href="#">阳光包</a>
-                        <a href="#">IT帮客</a>
-                        <a href="#">苏宁服务</a>
-                        <a href="#">红孩子专属育儿顾问</a>
-                        <a href="#">退换货运费险</a>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt><em></em><span>易付宝</span></dt>
-                    <dd class="hide">
-                        <a href="#">易付宝注册登录</a>
-                        <a href="#">易付宝公告</a>
-                        <a href="#">易付宝账户补全资料</a>
-                        <a href="#">易付宝实名认证</a>
-                        <a href="#">易付宝密码相关</a>
-                        <a href="#">修改易付宝账户信息</a>
-                        <a href="#">易付宝账户解冻</a>
-                        <a href="#">易付宝充值</a>
-                        <a href="#">易付宝提现</a>
-                        <a href="#">解绑/换绑/绑定易付宝</a>
-                        <a href="#">苏宁金融APP下载及安装</a>
-                        <a href="#">易玺使用说明</a>
-                        <a href="#">安全控件下载及安装</a>
-                        <a href="#">安全控件常见问题</a>
-                        <a href="#">手机云令常见问题</a>
-                        <a href="#">易付宝余额限额说明</a>
-                    </dd>
-                </dl>
-                <dl class="last">
-                    <dt><em></em><span>联系我们</span></dt>
-                    <dd class="hide">
-                        <a href="#">联系我们</a>
-                    </dd>
-                </dl>
+               <?php endforeach;?>
             </div>
         </div>
         <!-- 左侧导航菜单 end -->
@@ -172,21 +65,13 @@
                 </div>
             </div>
 
-
             <div class="address_hd">
-                <h3>会员权益</h3>
+                <h3><?php echo $article['title']?></h3>
                 <dl>
-                    <dt>等级权益介绍</dt>
-                    <dd>为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。</dd>
+                    <dt></dt>
+                    <dd><?php echo htmlspecialchars_decode($article['content'])?></dd>
                 </dl>
-                <dl>
-                    <dt>等级权益介绍</dt>
-                    <dd>为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。为有效提升会员升级体验，我们对会员等级权益进行了升级改版，改版后的苏宁会员等级分为新人、V1、V2、V3和V4会员。</dd>
-                </dl>
-
             </div>
-
-
 
         </div>
         <!-- 右侧内容区域 end -->
