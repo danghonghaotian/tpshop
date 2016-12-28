@@ -656,7 +656,7 @@
 			<h3><b></b> <em>购物指南</em></h3>
 			<ul>
 				<?php foreach ($shop_help as  $k=>$v):?>
-				<li><a href="<?php echo U('Home/Article/lst',array('id'=>$v['article_id']))?>"><?php echo $v['title']?></a></li>
+				<li><a href="<?php echo U('Home/Help/lst',array('id'=>$v['article_id']))?>"><?php echo $v['title']?></a></li>
 				<?php endforeach;?>
 			</ul>
 		</div>
@@ -665,7 +665,7 @@
 			<h3><b></b> <em>配送方式</em></h3>
 			<ul>
 				<?php foreach ($delivery as  $k=>$v):?>
-					<li><a href="<?php echo U('Home/Article/lst',array('id'=>$v['article_id']))?>"><?php echo $v['title']?></a></li>
+					<li><a href="<?php echo U('Home/Help/lst',array('id'=>$v['article_id']))?>"><?php echo $v['title']?></a></li>
 				<?php endforeach;?>
 			</ul>
 		</div>

@@ -7,7 +7,7 @@
 .address_hd{width: 988px; border: 1px solid #e6e6e6; overflow: hidden;}
 .address_hd h3{height: 33px; line-height: 33px; border-bottom: 2px solid #c30; font-size: 14px; color:#cc0000; margin-bottom: 8px; font-weight: bold; padding-left: 20px;}
 .address_hd dl{width:948px; clear: both; margin: 0 20px 5px; border-bottom: 1px dotted #eee; padding-bottom: 10px;}
-.address_hd dl.last{ border-bottom: 0;}
+.address_hd dl.last,.address_hd dl:last-child{ border-bottom: 0;}
 .address_hd dt{line-height: 25px;}
 .address_hd dd{line-height: 25px; padding-right: 7px; color: #999;}
 .address_hd dd a{color: #005ea7;}

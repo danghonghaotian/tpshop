@@ -4,14 +4,38 @@
 @时间：2013年11月15日
 */
 
-.crumb{height: 30px;}
+.crumb{height: 30px;line-height: 30px;}
 .crumb h2 strong{font-size: 16px; font-weight: bolder;}
-.menu{width: 210px;}
+.menu{width: 208px; background: #fff; border: 1px solid #e6e6e6;}
 .menu h3{width: 200px; height: 32px; line-height: 32px; font-weight: bold; font-size: 14px; color: #fff; padding-left:10px;  background: #ccc; border-top: 2px solid #b5b5b5;}
-.menu_wrap{width:208px; border:1px solid #e6e6e6; border-top: 0; }
+.menu_wrap{width:208px;}
 .menu_wrap dt{background: #f1f1f1; height: 28px; line-height: 28px; font-weight: bolder; padding-left: 10px; margin-bottom: 1px; position: relative; cursor: pointer;}
 .menu_wrap dt b{display: block; width: 9px; height: 5px; overflow: hidden; background: url("../images/jdleft.png") -64px 0 no-repeat; position: absolute; left:180px; top:12px;}
 .menu_wrap dt b.off{background-position: -64px -6px;}
 .menu_wrap dd{line-height: 25px; padding-left: 10px;} 
 .menu_wrap dd.cur{font-weight: bold;}
 .menu_wrap dd b{font-family: Arial; color: #aaa; font-size: 14px; margin-right: 5px;}
+
+
+/* help page css */
+.left-nav h2{padding-left:18px;padding-top:16px;padding-bottom:6px;font:14px "Microsoft Yahei";font-weight:bold;color:#333}
+.left-nav .nav-con{padding-bottom:12px}
+.nav-con dt{height:32px;overflow:hidden;cursor:pointer}
+.nav-con span{float:left;padding-left:3px;font:14px/32px "Microsoft Yahei";color:#333}
+.nav-con .spcli{font-weight:700}
+.nav-con em{float:left;margin-left:20px;margin-top:11px;width:9px;height:9px;background:url(../images/LHY_catalog_ico.png) no-repeat;background-position:-10px 0px;overflow:hidden;}
+.nav-con em.on{background-position:0px 0px;}
+.nav-con dd{padding:2px 5px 5px;overflow: hidden;}
+.nav-con dd.hide {display: none;}
+.nav-con dd a{display:block;padding-top:1px;padding-left:25px;height:26px;font:12px/26px "Microsoft YaHei";color:#666}
+.nav-con dd a:hover{text-decoration:underline;color:#c30}
+.nav-con dd .on{color:#c30;font-weight:700;text-decoration:none;}
+.search-frame{height:80px;border:1px solid #e8e8e8;overflow:hidden;background:url("../images/searchlogo.png") no-repeat;margin-bottom: 10px;}
+.h-search{position:relative;left:200px;top:25px}
+.h-search .h-search-box{position:relative;display:inline-block;*display:inline;zoom:1;width:185px;height:28px;border:1px solid #ddd;border-radius:2px;*top:5px}
+.h-search .h-search-box input{padding:8px 0 8px 10px;border:0;height:12px;width:145px;font-size:12px;*margin-top:-1px;}
+.h-search .h-search-box a{display:inline-block;float:right;margin-right:6px;margin-top:-1px;padding-right:0;width:16px;height:28px;_font-size:0;*margin-top:-30px;background:url(../images/search-icon.png);background-repeat:no-repeat;background-position:center center;}
+.h-search .search-hot-pro{height:32px;color:#666}
+.search-hot-pro span{color:#666}
+.search-hot-pro a{padding-right:7px;color:#666}
+.search-hot-pro a:hover{text-decoration:underline;color:#F70}
