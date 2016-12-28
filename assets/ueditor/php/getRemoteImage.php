@@ -9,8 +9,18 @@
     header("Content-Type: text/html; charset=utf-8");
     error_reporting(E_ERROR|E_WARNING);
     //远程抓取图片配置
+
+    $rootPath =  $_SERVER['DOCUMENT_ROOT'];
+    // 构造图片存放目录的路径
+    $date = date('Y-m',time());
+    //目录结构宽高/年月组成
+    $dir =$rootPath."/assets/upload/editor/$date";
+    if(!is_dir($dir))
+    {
+        mkdir($dir, 0777,true);
+    }
     $config = array(
-        "savePath" => "upload/" ,            //保存路径
+        "savePath" => "../../upload/editor/$date/" ,            //保存路径
         "allowFiles" => array( ".gif" , ".png" , ".jpg" , ".jpeg" , ".bmp" ) , //文件允许格式
         "maxSize" => 3000                    //文件大小限制，单位KB
     );

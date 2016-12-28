@@ -19,10 +19,11 @@ class ArticleModel extends Model
         array('add_time','time',self::MODEL_INSERT,'function')
     );
 
-    public function search()
+    public function search($keyword)
     {
         // 搜索所有的数据,如果需要搜索其他字段需要自己添加
         $where = 1;
+        $where .= " and (title like '%$keyword%')";
         /** 翻页 **********/
         //1 . 算出总的记录数
         $count = $this->where($where)->count();
@@ -33,7 +34,7 @@ class ArticleModel extends Model
         // 3. 生成翻页的字符串：上一页、下一页
         $pageStr = $page->show();
         // 4. 取出当前页的数据
-        $data = $this->field('article_id,cat_id,title,article_type,is_open,add_time')->where($where)->limit($page->firstRow.','.$page->listRows)->order("article_id desc")->select();
+        $data = $this->field('article_id,cat_id,title,article_type,is_open,add_time')->where($where)->limit($page->firstRow.','.$page->listRows)->order("cat_id desc,article_id desc")->select();
         return array(
             'page' => $pageStr,
             'data' => $data,

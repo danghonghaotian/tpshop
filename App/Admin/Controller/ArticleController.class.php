@@ -13,10 +13,10 @@ class ArticleController extends AdminController
     /**
      * 文章列表
      */
-    public function lst()
+    public function lst($keyword = '')
     {
        $article_model =  D('article');
-       $data = $article_model->search();
+       $data = $article_model->search(trim($keyword));
        $article_data = $data["data"];
        $page = $data['page'];//分页
         //获取分类名
