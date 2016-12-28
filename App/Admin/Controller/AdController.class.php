@@ -123,7 +123,7 @@ class AdController extends AdminController
         // 读取上传图片的配置
         $config = C('UPLOAD_CONFIG');
         // 设置上传路径
-        $config['savePath'] = '/assets/admin/tmp/';
+        $config['savePath'] = '/assets/upload/tmp/';
         $upload = new \Think\Upload($config);
         //图片名称
         $skuName = $_FILES['img']['name'];

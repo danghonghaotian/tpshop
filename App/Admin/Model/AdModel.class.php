@@ -77,7 +77,7 @@ class AdModel extends Model
                // 构造图片存放目录的路径
                $date = date('Y-m',time());
                //目录结构宽高/年月组成
-               $dir =$rootPath."/assets/admin/ad/{$width}x{$height}/$date";
+               $dir =$rootPath."/assets/upload/ad/{$width}x{$height}/$date";
                if(!is_dir($dir))
                {
                    mkdir($dir, 0777,true);

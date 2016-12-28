@@ -103,7 +103,7 @@ class TeamModel extends Model
 		//优化代码
 		$rootPath = C('ROOT_PATH');
 		// 构造图片存放目录的路径
-		$dir =$rootPath."/assets/admin/team/{$user_name}/original";
+		$dir =$rootPath."/assets/upload/team/{$user_name}/original";
 		if(!is_dir($dir))
 		{
 			mkdir($dir, 0777,true);
@@ -113,9 +113,9 @@ class TeamModel extends Model
 		// 执行移动
 		copy($rootPath.$img, $imgName);
 		// 生成三张缩略图的路径，以及新图片的名称
-		$thumb_dir1 = $rootPath."/assets/admin/team/{$user_name}/thumb/600x";
-		$thumb_dir2 = $rootPath."/assets/admin/team/{$user_name}/thumb/300x";
-		$thumb_dir3 = $rootPath."/assets/admin/team/{$user_name}/thumb/100x";
+		$thumb_dir1 = $rootPath."/assets/upload/team/{$user_name}/thumb/600x";
+		$thumb_dir2 = $rootPath."/assets/upload/team/{$user_name}/thumb/300x";
+		$thumb_dir3 = $rootPath."/assets/upload/team/{$user_name}/thumb/100x";
 
 		if(!is_dir($thumb_dir1))
 		{

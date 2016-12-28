@@ -280,7 +280,7 @@ class GoodsController extends AdminController
         // 读取上传图片的配置
         $config = C('UPLOAD_CONFIG');
         // 设置上传路径
-        $config['savePath'] = '/assets/admin/tmp/';
+        $config['savePath'] = '/assets/upload/tmp/';
         $upload = new \Think\Upload($config);
         //图片名称
         $skuName = $_FILES['img']['name'];
@@ -338,7 +338,7 @@ JS;
         // 读取上传图片的配置
         $config = C('UPLOAD_CONFIG');
         // 设置上传路径
-        $config['savePath'] = '/assets/admin/tmp/';
+        $config['savePath'] = '/assets/upload/tmp/';
         $upload = new \Think\Upload($config);
         //图片名称
         $skuName = $_FILES['img']['name'];
@@ -403,7 +403,7 @@ JS;
     public function clearPic()
     {
         $goodsModel = D('Goods');
-        $dir = C('ROOT_PATH').'/assets/admin/tmp';
+        $dir = C('ROOT_PATH').'/assets/upload/tmp';
         $goodsModel->clearPic($dir);
         $this->success('清理服务器上传的临时缓存图片成功',U('Admin/Index/main'));
     }

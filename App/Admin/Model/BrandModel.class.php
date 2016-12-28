@@ -55,14 +55,23 @@ class BrandModel extends Model
             // 读取上传图片的配置
             $config = C('UPLOAD_CONFIG');
             // 设置上传路径
-            $config['savePath'] = '/assets/admin/brand/';
+            $config['savePath'] = '/assets/upload/brand/';
+            //优化代码
+            $rootPath = C('ROOT_PATH');
+            // 构造图片存放目录的路径
+            $dir =$rootPath."/assets/upload/brand";
+            if(!is_dir($dir))
+            {
+                mkdir($dir, 0777,true);
+            }
+
             $upload = new \Think\Upload($config);
             //品牌名称
             $brandName = current(explode('.', $_FILES['brand_logo']['name']));
             //上传生成的子目录位置
             $upload->subName =  $brandName.'/original';
             //如果已经存在该文件，先删除再重新上传，也就是同名覆盖
-            $uploadFile = C('ROOT_PATH').'/assets/admin/brand/'.$brandName.'/original/'.$_FILES['brand_logo']['name'];
+            $uploadFile = C('ROOT_PATH').'/assets/upload/brand/'.$brandName.'/original/'.$_FILES['brand_logo']['name'];
             if(file_exists($uploadFile))
             {
                 unlink($uploadFile);

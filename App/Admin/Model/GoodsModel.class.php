@@ -56,14 +56,14 @@ class GoodsModel extends Model
             // 读取上传图片的配置
             $config = C('UPLOAD_CONFIG');
             // 设置上传路径
-            $config['savePath'] = '/assets/admin/tmp/';
+            $config['savePath'] = '/assets/upload/tmp/';
             $upload = new \Think\Upload($config);
             //图片名称
             $imgName = current(explode('.', $_FILES['img']['name']));
             //上传生成的子目录位置
             $upload->subName =  $imgName.'/original';
             //如果已经存在该文件，先删除再重新上传，也就是同名覆盖
-            $uploadFile = C('ROOT_PATH').'/assets/admin/tmp/'.$imgName.'/original/'.$_FILES['img']['name'];
+            $uploadFile = C('ROOT_PATH').'/assets/upload/tmp/'.$imgName.'/original/'.$_FILES['img']['name'];
             if(file_exists($uploadFile))
             {
                 unlink($uploadFile);
@@ -277,7 +277,7 @@ class GoodsModel extends Model
         //优化代码
         $rootPath = C('ROOT_PATH');
         // 构造图片存放目录的路径
-        $dir =$rootPath."/assets/admin/product/{$sku}/original";
+        $dir =$rootPath."/assets/upload/product/{$sku}/original";
         if(!is_dir($dir))
         {
             mkdir($dir, 0777,true);
@@ -287,9 +287,9 @@ class GoodsModel extends Model
         // 执行移动
         copy($rootPath.$img, $imgName);
         // 生成三张缩略图的路径，以及新图片的名称
-        $thumb_dir1 = $rootPath."/assets/admin/product/{$sku}/thumb/600x";
-        $thumb_dir2 = $rootPath."/assets/admin/product/{$sku}/thumb/300x";
-        $thumb_dir3 = $rootPath."/assets/admin/product/{$sku}/thumb/100x";
+        $thumb_dir1 = $rootPath."/assets/upload/product/{$sku}/thumb/600x";
+        $thumb_dir2 = $rootPath."/assets/upload/product/{$sku}/thumb/300x";
+        $thumb_dir3 = $rootPath."/assets/upload/product/{$sku}/thumb/100x";
 
         if(!is_dir($thumb_dir1))
         {
