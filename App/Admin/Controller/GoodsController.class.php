@@ -32,6 +32,8 @@ class GoodsController extends AdminController
             {
                 //上传图片
                 $goodsModel->upload();
+                //过滤百度编辑器图片
+                $goodsModel->replaceImgUrl();
                 // 插入数据库
                 if(($goods_id=$goodsModel->add()) !== FALSE)
                 {
@@ -87,6 +89,8 @@ class GoodsController extends AdminController
                 $model->id =$id;
                 // 上传图片
                 $model->upload();
+                //过滤百度编辑器图片
+                $model->replaceImgUrl();
                 if($model->save() !== FALSE)
                 {
                     $this->success('修改成功', U('lst'));

@@ -282,7 +282,7 @@
 
 						<div class="desc mt10">
 							<!-- 此处的内容 一般是通过在线编辑器添加保存到数据库，然后直接从数据库中读出 -->
-							<?php echo $goodsInfo['goods_desc'];?>
+							<?php echo htmlspecialchars_decode($goodsInfo['goods_desc']);?>
 						</div>
 					</div>
 					<!-- 商品介绍 end -->

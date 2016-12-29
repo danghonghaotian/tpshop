@@ -515,6 +515,25 @@ class GoodsModel extends Model
     }
 
 
+    /**
+     * 将百度编辑器上传的图片路径美化
+     * $content = <<<EOF
+     *  <img src="http://www.tpshop.com/assets/ueditor/php/../../upload/editor/2016-12/77351482974478.jpg" title="" style="width: 700px; height: 173px;" width="700" vspace="0" hspace="0" height="173" border="0">
+     *  <img src="http://www.tpshop.com/assets/ueditor/php/../../upload/editor/2016-12/90691482974478.jpg" width="700">
+     *  EOF;
+     *  $content = preg_replace('/src=\"(.*)ueditor\/php\/..\/..\/(.*)\"/U',"src= \"/assets/$2\"", $content);
+     *  echo $content;
+     *
+     */
+    public function replaceImgUrl()
+    {
+        //添加
+        $this->goods_desc = preg_replace('/src=\"(.*)ueditor\/php\/..\/..\/(.*)\"/U',"src= &quot;/assets/$2&quot;",$this->goods_desc);
+        //修改时候，有可能双引号被转义
+        $this->goods_desc = preg_replace('/src=&quot;(.*)ueditor\/php\/..\/..\/(.*)&quot;/U',"src= &quot;/assets/$2&quot;",$this->goods_desc);
+    }
+
+
 
 
 }
