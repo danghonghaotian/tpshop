@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="icon" href="<?php echo C('img');?>/logo.ico" type="image/x-icon"/>
+    <block name="header_meta">
+    <title>用户注册 -<?php echo C('company');?></title>
+    <link rel="stylesheet" href="<?php echo C('f-css')?>/base.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo C('f-css')?>/global.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo C('f-css')?>/header.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo C('f-css')?>/login.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo C('f-css')?>/footer.css" type="text/css">
+    <script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
+    <script src="<?php echo C('jq-ui');?>/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+    <script src="<?php echo C('f-js');?>/validate.js"></script>
+    </block>
+</head>
+<body>
+
+<block name="nav">
+<!-- 顶部导航 start -->
+<div class="topnav">
+    <div class="topnav_bd w990 bc">
+        <div class="topnav_left">
+
+        </div>
+        <div class="topnav_right fr">
+            <ul>
+                <li>您好，欢迎来到gv！[<a href="<?php echo U('Home/User/login')?>">登录</a>] [<a href="<?php echo U('Home/User/register')?>">免费注册</a>] </li>
+                <?php foreach($topNav as $k=>$v):?>
+                    <li class="line">|</li>
+                    <li><a href="<?php echo $v['url'];?>" <?php if($v['open_new'] == 1):?>target="_blank" <?php endif;?>><?php echo $v['name']?></a></li>
+                <?php endforeach;?>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 顶部导航 end -->
+
+<div style="clear:both;"></div>
+
+<!-- 页面头部 start -->
+<div class="header w990 bc mt15">
+    <div class="logo w990">
+        <h2 class="fl"><a href="/"><img src="<?php echo C('f-img')?>/logo.png" alt="京西商城"></a></h2>
+    </div>
+</div>
+<!-- 页面头部 end -->
+</block>
+
+<block name="main">
+<!-- 登录主体部分start -->
+<div class="login w990 bc mt10 regist">
+    <div class="login_hd">
+        <h2>用户注册</h2>
+        <b></b>
+    </div>
+    <div class="login_bd">
+        <div class="login_form fl">
+            <form id="userForm" action="<?php echo U('Home/User/register');?>" method="post">
+                <ul>
+                    <li>
+                        <label for="">用户名：</label>
+                        <input type="text" class="txt" name="email" placeholder="电子邮箱"/>
+                        <p>请输入有效的电子邮箱</p>
+                    </li>
+                    <li>
+                        <label for="">密码：</label>
+                        <input type="password" class="txt" name="password" id="password" />
+                        <p>6-20位字符，可使用字母、数字和符号的组合，不建议使用纯数字、纯字母、纯符号</p>
+                    </li>
+                    <li>
+                        <label for="">确认密码：</label>
+                        <input type="password" class="txt" name="re_password" id="re_password"/>
+                        <p> <span>请再次输入密码</p>
+                    </li>
+                    <li class="checkcode">
+                        <label for="">验证码：</label>
+                        <input type="text"  name="verify" />
+                        <img id="verify" onclick="this.src='__CONTROLLER__/verifyImg/'+Math.random();" style="cursor:pointer;" src="__CONTROLLER__/verifyImg" />
+                        <span>看不清？<a href="javascript:void(0);" onclick="changeImg();">换一张</a></span>
+                    </li>
+                    <li>
+                        <label for="">&nbsp;</label>
+                        <input type="checkbox" class="chb" checked="checked" /> 我已阅读并同意《用户注册协议》
+                    </li>
+                    <li>
+                        <label for="">&nbsp;</label>
+                        <input type="submit" value="" class="login_btn" />
+                    </li>
+                </ul>
+            </form>
+
+
+        </div>
+
+        <div class="mobile fl">
+            <h3>手机快速注册</h3>
+            <p>中国大陆手机用户，编辑短信 “<strong>XX</strong>”发送到：</p>
+            <p><strong>1069099988</strong></p>
+        </div>
+
+    </div>
+</div>
+<!-- 登录主体部分end -->
+
+<div style="clear:both;"></div>
+</block>
+<block name="footer">
+<!-- 底部版权 start -->
+<div class="footer w1210 bc mt15">
+    <p class="links">
+        <?php foreach ($bottomNav as $k=>$v):?>
+            <a href="<?php echo $v['url'];?>" <?php if($v['open_new'] == 1):?>target="_blank" <?php endif;?>><?php echo $v['name']?></a> <?php if($v != end($bottomNav)):?>|<?php endif;?>
+        <?php endforeach;?>
+    </p>
+    <p class="copyright">
+        © 2015-2016 跃飞商城 版权所有，并保留所有权利。  ICP备案证书号:京ICP证88888号
+    </p>
+    <p class="auth">
+        <a href=""><img src="<?php echo C('f-img')?>/xin.png" alt="" /></a>
+        <a href=""><img src="<?php echo C('f-img')?>/kexin.jpg" alt="" /></a>
+        <a href=""><img src="<?php echo C('f-img')?>/police.jpg" alt="" /></a>
+        <a href=""><img src="<?php echo C('f-img')?>/beian.gif" alt="" /></a>
+    </p>
+</div>
+<!-- 底部版权 end -->
+</block>
+
+<script>
+    function changeImg() {
+        var url = '__CONTROLLER__/verifyImg/'+Math.random();
+        $('#verify').attr('src',url);
+    }
+
+</script>
+
+</body>
+</html>
