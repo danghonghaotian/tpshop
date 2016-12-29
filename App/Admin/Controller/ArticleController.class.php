@@ -39,6 +39,7 @@ class ArticleController extends AdminController
             // 接收并验证表单
             if($model->create())
             {
+                $model->replaceImgUrl(); //美化百度编辑器上传图片的地址
                 // 插入数据库
                 if($model->add() !== FALSE)
                 {
@@ -75,6 +76,9 @@ class ArticleController extends AdminController
             $model = D('Article');
             if($model->create())
             {
+
+                $model->replaceImgUrl(); //美化百度编辑器上传图片的地址
+
                 if($model->save() !== FALSE)
                 {
                     $this->success('修改成功', U('lst'));
