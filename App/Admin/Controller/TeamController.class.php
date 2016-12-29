@@ -54,6 +54,7 @@ class TeamController extends AdminController
 			if($model->create())
 			{
 				$model->upload();
+				$model->replaceImgUrl(); //美化百度编辑器上传图片的地址
 				// 插入数据库
 				if($model->add() !== FALSE)
 				{
@@ -90,6 +91,7 @@ class TeamController extends AdminController
 			if($model->create())
 			{
 				$model->upload();
+				$model->replaceImgUrl(); //美化百度编辑器上传图片的地址
 				if($model->save() !== FALSE)
 				{
 					$this->success('修改成功', U('lst'));
