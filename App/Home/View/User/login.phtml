@@ -35,7 +35,7 @@
 						</li>
 						<li class="checkcode">
 							<label for="">验证码：</label>
-							<input type="text"  name="verify" />
+							<input type="text"  name="verify"  maxlength="4"/>
 							<img id="verify" onclick="this.src='__CONTROLLER__/verifyImg/'+Math.random();" style="cursor:pointer;" src="__CONTROLLER__/verifyImg" />
 							<span>看不清？<a href="javascript:void(0);" onclick="changeImg();">换一张</a></span>
 						</li>
