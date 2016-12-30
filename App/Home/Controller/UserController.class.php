@@ -55,6 +55,20 @@ class UserController extends CommonController {
         $Verify = new \Think\Verify($arr);
         $Verify->entry();
     }
+    
+    /**
+     * 异步验证码校验
+     * @param $code
+     * @return bool
+     */
+    public function ajaxCheckCode($code, $id = '')
+    {
+        $config = array('reset'=>false);
+        $verify = new \Think\Verify($config);
+        $res = $verify->check($code, $id);
+        $this->ajaxReturn($res, 'json');
+    }
+
 
     public function userCenter()
     {
