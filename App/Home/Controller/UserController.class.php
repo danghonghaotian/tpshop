@@ -69,6 +69,18 @@ class UserController extends CommonController {
         $this->ajaxReturn($res, 'json');
     }
 
+    /**
+     * 异步校验邮箱是否被注册
+     * @param $email
+     * @return bool
+     */
+    public function ajaxCheckEmail($email)
+    {
+       $user = D('User');
+       $res = $user->ajaxCheckEmail($email);
+       $this->ajaxReturn($res, 'json');
+    }
+
 
     public function userCenter()
     {

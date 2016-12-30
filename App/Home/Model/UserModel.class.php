@@ -15,7 +15,7 @@ class UserModel extends Model
         array('verify', 'check_verify', '验证码不正确', 0, 'callback'),
 
         array('email',"require","电子邮箱不能为空!"),
-        array('email',"email","电子邮箱格式不正确!"),
+        array('email',"is_email","电子邮箱格式不正确!",self::MUST_VALIDATE,callback),
         array("email","","该电子邮件已经被注册",self::MUST_VALIDATE,'unique'),
 
         array('password', 'require', '密码不能为空！', 1, 'regex', self::MODEL_INSERT),
@@ -25,11 +25,35 @@ class UserModel extends Model
 
 
     protected $_auto = array (
-        array('password','md5',1,'function') , // 对password字段在新增的时候使md5函数处理
-        array('reg_time','time',1,'function') // 对reg_time字段在更新的时候写入当前时间戳
+        array('password','md5',1,'function') ,
+        array('reg_time','time',1,'function')
     );
 
-    
+
+    /**
+     * 自定义校验邮箱，抄袭ec_shop
+     * @param $user_email
+     * @return bool
+     */
+    public function is_email($user_email)
+    {
+        $chars = "/^([a-z0-9+_]|\\-|\\.)+@(([a-z0-9_]|\\-)+\\.)+[a-z]{2,3}\$/i";
+        if (strpos($user_email, '@') !== false && strpos($user_email, '.') !== false)
+        {
+            if (preg_match($chars, $user_email))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
     /**
      * 验证码校验
      * @param $code
@@ -65,7 +89,7 @@ class UserModel extends Model
      */
     public function checkPasswordValid($re_password)
     {
-        if($this->password != $re_password)
+        if($_POST['password'] != $re_password)
         {
             return false;
         }
@@ -73,5 +97,16 @@ class UserModel extends Model
         {
             return true;
         }
+    }
+
+    /**
+     * 异步校验邮箱是否被注册
+     * @param $email
+     * @return bool
+     */
+    public function ajaxCheckEmail($email)
+    {
+        $res = $this->where(array('email'=>$email))->find();
+        return $res?false:true;
     }
 }
