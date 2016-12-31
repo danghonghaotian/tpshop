@@ -173,7 +173,10 @@ class Dispatcher {
             // 加载模块的扩展配置文件
             load_ext_file(MODULE_PATH);
         }else{
-            E(L('_MODULE_NOT_EXIST_').':'.MODULE_NAME);
+//            E(L('_MODULE_NOT_EXIST_').':'.MODULE_NAME);
+            //如果模块不存在，跳转到首页或者404
+            header('Location:'.getWebsite());
+            exit;
         }
 
         if(!defined('__APP__')){
