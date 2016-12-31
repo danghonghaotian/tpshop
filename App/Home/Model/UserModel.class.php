@@ -109,4 +109,36 @@ class UserModel extends Model
         $res = $this->where(array('email'=>$email))->find();
         return $res?false:true;
     }
+
+
+    /**
+     * 用户注册邮箱模板
+     * @param $email
+     * @param $website
+     * @return string
+     */
+    public function getRegisterTemplate($email,$website)
+    {
+        $content = <<<EOF
+        <table width="675" border="0" style="font-family:Helvetica, Arial, sans-serif">
+            <tr>
+                <td height="132" align="left">
+                    <a href="$website">
+                        <img title="gv商城" alt="tpshop" src="$website/assets/home/images/logo.png"  width="221" height="39" longdesc="$website" />
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left"> 
+                   恭喜你注册成功，请在24小时内激活邮箱登陆<a href="$website/index.php/Home/User/active/email/$email">$website/index.php/Home/User/active/email/$email</a>
+                </td>
+            </tr>
+        </table>
+EOF;
+        return $content;
+
+    }
+
+
+
 }

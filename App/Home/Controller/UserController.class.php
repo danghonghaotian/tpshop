@@ -22,7 +22,15 @@ class UserController extends CommonController {
                 // 插入数据库
                 if($model->add() !== FALSE)
                 {
-                    $this->success('注册成功，请登录邮箱去激活你的账号');
+                    //发送邮件给用户激活账户
+                    $email =base64_encode($_POST['email']);  //将邮箱加密
+                    $content = $model->getRegisterTemplate($email,getWebsite());
+                    
+                    $flag = sendEmail($_POST['email'],'','gv商城激活登陆账户',$content);
+                    if($flag)
+                    {
+                        $this->success('注册成功，请登录邮箱去激活你的账号');
+                    }
                     exit;
                 }
                 else
@@ -82,6 +90,12 @@ class UserController extends CommonController {
     }
 
 
+    public function active($email)
+    {
+        echo $email.'你的账户已经激活！';
+    }
+
+
     public function userCenter()
     {
         $this->display();
@@ -120,39 +134,7 @@ class UserController extends CommonController {
 //        M('state')->addAll($data);
     }
 
-    /**
-     * 发送邮件测试
-     * 已经成功
-     */
-    public function email()
-    {
-        $content = file_get_contents('./assets/template/email/test.html');
-        set_time_limit(0);
-        $flag = sendEmail('845272922@qq.com','钟贵廷','gv活动'.$i,$content);
-        if($flag !== true )
-        {
-            $this->error("发送失败",'',10);
-        }
-        else
-        {
-            $this->success('发送成功',U('Home/index/index'));
-        }
-//        for ($i=0;$i<10;$i++)
-//        {
-//              //每个2分钟发送一次
-//
-//              $flag = sendEmail('845272922@qq.com','钟贵廷','gv活动'.$i,$content);
-////                if($flag !== true )
-////                {
-////                    $this->error("发送失败",'',10);
-////                }
-////                else
-////                {
-////                    $this->success('发送成功',U('Home/index/index'));
-////                }
-//             sleep(2000);
-//        }
-    }
+
 
 
     public function testIP()
