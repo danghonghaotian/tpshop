@@ -173,4 +173,6 @@ CREATE TABLE `tp_online` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='在线客服表';
 
 
+ALTER TABLE `tp_user`
+ADD COLUMN `active`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '0：未激活，1激活' AFTER `reg_time`;
 

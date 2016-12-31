@@ -48,8 +48,34 @@ class UserController extends CommonController {
         $this->display();
     }
 
+    /**
+     * 用户登录
+     */
     public function login()
     {
+        if(IS_POST)
+        {
+            $model = D('User');
+            if($model->create('',$model::MODEL_UPDATE))  //登录不做唯一性验证
+            {
+                if(($login = $model->login()) === TRUE)
+                {
+                    $this->success('登录成功', U('Home/User/userCenter'));
+                    exit;
+                }
+                else
+                {
+                    if($login == \Home\Model\UserModel::NO_USERNAME)
+                        $this->error('还没注册或者还没激活');
+                    elseif ($login == \Home\Model\UserModel::PASSWORD_ERROR )
+                        $this->error('用户名或者密码错误！');
+                    else
+                        $this->error('未知错误！');
+                }
+            }
+            else
+                $this->error($model->getError());
+        }
         $this->display();
     }
 
@@ -90,12 +116,46 @@ class UserController extends CommonController {
     }
 
 
+    /**
+     * 24小时内激活邮箱
+     * @param $email
+     */
     public function active($email)
     {
-        echo $email.'你的账户已经激活！';
+        $email =base64_decode($email);  //将邮箱解密
+        $user = D('User');
+        //判断注册时间是否过了24小时
+        $reg_time = $user->where(array('email'=>$email))->getField('reg_time');
+        if($reg_time) //看下有没有这个邮箱
+        {
+            $now = time();
+            if($now - $reg_time < 86400) //注册邮箱一天内有效
+            {
+                $res = $user->where(array('email'=>$email))->setField('active',1);
+                if($res)
+                {
+                    $this->success('恭喜你激活成功',U('Home/User/login'));
+                }
+                else
+                {
+                    $this->error('你已经是本站用户',U('Home/User/login'));
+                }
+            }
+            else
+            {
+                $this->error('该链接已经失效，请重新注册',U('Home/User/register'));
+            }
+        }
+        else
+        {
+            $this->error('本站还没有这个用户，来加入我们吧',U('Home/User/register'));
+        }
     }
 
 
+    /**
+     * 用户中心
+     */
     public function userCenter()
     {
         $this->display();

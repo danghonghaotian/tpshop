@@ -11,16 +11,19 @@ use Think\Model;
 
 class UserModel extends Model
 {
+    const NO_USERNAME = -1;
+    const PASSWORD_ERROR = -2;
+
     protected $_validate = array(
         array('verify', 'check_verify', '验证码不正确', 0, 'callback'),
 
         array('email',"require","电子邮箱不能为空!"),
         array('email',"is_email","电子邮箱格式不正确!",self::MUST_VALIDATE,callback),
-        array("email","","该电子邮件已经被注册",self::MUST_VALIDATE,'unique'),
+        array("email","","该电子邮件已经被注册",self::MUST_VALIDATE,'unique',self::MODEL_INSERT), //注册验证，登录不验证
 
         array('password', 'require', '密码不能为空！', 1, 'regex', self::MODEL_INSERT),
         array('password',"checkPasswordLength","6-20位字符，可使用字母、数字和符号的组合，不建议使用纯数字、纯字母、纯符号",self::MUST_VALIDATE,callback),
-        array('re_password',"checkPasswordValid","确认密码不一致",self::MUST_VALIDATE,callback),
+        array('re_password',"checkPasswordValid","确认密码不一致",self::EXISTS_VALIDATE,callback), //存在就验证，登录不用
     );
 
 
@@ -137,6 +140,43 @@ class UserModel extends Model
 EOF;
         return $content;
 
+    }
+
+
+
+    /**
+     * 用户登录
+     * @return bool|int
+     */
+    public function login()
+    {
+        //1. 根据用户名查询数据库看有没有这个用户
+        $user = $this->where(array('email'=>$this->email,'active'=>1))->find();
+        //注意这里不能使用静态自动完成加密
+        if($user)
+        {
+            if($user['password'] == md5(I('post.password')))
+            {
+                // 把用户的ID和用户名存到SESSION中
+                session('user_id',$user['user_id']);
+                session('user_email',$user['email']);
+                // 如果用户选择要自动登录那么把用户名和密码保存到COOKIE中N
+                if(isset($_POST['remember']))
+                {
+                    cookie('user_email', $user['email'], 7 * 86400);
+                    cookie('user_password', I('post.password'), 7 * 86400);
+                }
+                return TRUE;
+            }
+            else
+            {
+                return self::PASSWORD_ERROR ;
+            }
+        }
+        else
+        {
+            return self::NO_USERNAME ;
+        }
     }
 
 
