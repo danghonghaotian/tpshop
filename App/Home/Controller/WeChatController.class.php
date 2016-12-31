@@ -10,6 +10,14 @@ use Think\Controller;
 class WeChatController extends Controller
 {
     /**
+     *没有的控制器，直接跳到首页
+     */
+    public function _empty()
+    {
+        $this->error('404,该页面不存在',U('Home/Index/index'),1);
+    }
+
+    /**
      * 微信基础接入与响应
      */
     public function index()

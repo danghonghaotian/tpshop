@@ -7,8 +7,17 @@
  */
 namespace Home\Controller;
 use Think\Controller;
-class GoodsController extends CommonController {
-    
+class GoodsController extends CommonController
+{
+
+    /**
+     *没有的控制器，直接跳到首页
+     */
+    public function _empty()
+    {
+        $this->error('404,该页面不存在',U('Home/Index/index'),1);
+    }
+
     /**
      * 商品列表页
      */

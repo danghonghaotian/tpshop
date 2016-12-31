@@ -18,12 +18,12 @@ class UserModel extends Model
         array('verify', 'check_verify', '验证码不正确', 0, 'callback'),
 
         array('email',"require","电子邮箱不能为空!"),
-        array('email',"is_email","电子邮箱格式不正确!",self::MUST_VALIDATE,callback),
+        array('email',"is_email","电子邮箱格式不正确!",self::MUST_VALIDATE,'callback'),
         array("email","","该电子邮件已经被注册",self::MUST_VALIDATE,'unique',self::MODEL_INSERT), //注册验证，登录不验证
 
         array('password', 'require', '密码不能为空！', 1, 'regex', self::MODEL_INSERT),
-        array('password',"checkPasswordLength","6-20位字符，可使用字母、数字和符号的组合，不建议使用纯数字、纯字母、纯符号",self::MUST_VALIDATE,callback),
-        array('re_password',"checkPasswordValid","确认密码不一致",self::EXISTS_VALIDATE,callback), //存在就验证，登录不用
+        array('password',"checkPasswordLength","6-20位字符，可使用字母、数字和符号的组合，不建议使用纯数字、纯字母、纯符号",self::MUST_VALIDATE,'callback'),
+        array('re_password',"checkPasswordValid","确认密码不一致",self::EXISTS_VALIDATE,'callback'), //存在就验证，登录不用
     );
 
 

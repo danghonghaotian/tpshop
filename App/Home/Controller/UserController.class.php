@@ -8,6 +8,15 @@
 namespace Home\Controller;
 use Think\Controller;
 class UserController extends CommonController {
+
+    /**
+     *没有的控制器，直接跳到首页
+     */
+    public function _empty()
+    {
+        $this->error('手贱咯',U('Home/Index/index'),1);
+    }
+
     /**
      * 用户注册
      */

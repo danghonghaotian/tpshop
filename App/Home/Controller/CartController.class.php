@@ -8,7 +8,16 @@
 
 namespace Home\Controller;
 use Think\Controller;
-class CartController extends CommonController {
+class CartController extends CommonController
+{
+    /**
+     *没有的控制器，直接跳到首页
+     */
+    public function _empty()
+    {
+        $this->error('404,该页面不存在',U('Home/Index/index'),1);
+    }
+
     
     public function flow1()
     {
