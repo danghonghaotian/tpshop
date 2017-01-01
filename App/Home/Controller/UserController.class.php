@@ -69,7 +69,7 @@ class UserController extends CommonController {
             {
                 if(($login = $model->login()) === TRUE)
                 {
-                    $this->success('登录成功', U('Home/User/userCenter'));
+                    $this->success('登录成功', U('Home/Member/index'));
                     exit;
                 }
                 else
