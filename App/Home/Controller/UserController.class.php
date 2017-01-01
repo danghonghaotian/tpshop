@@ -62,6 +62,12 @@ class UserController extends CommonController {
      */
     public function login()
     {
+        if(session("?user_id"))
+        {
+            $this->success('已经登录，无需再登录',U('Home/Member/index'));
+            die;
+        }
+
         if(IS_POST)
         {
             $model = D('User');
@@ -86,6 +92,14 @@ class UserController extends CommonController {
                 $this->error($model->getError());
         }
         $this->display();
+    }
+
+
+    public function logout()
+    {
+        $model = D('User');
+        $model->logout();
+        $this->success('欢迎下次光临', U('Home/Index/index'));
     }
 
 

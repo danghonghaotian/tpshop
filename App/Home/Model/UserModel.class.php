@@ -180,5 +180,17 @@ EOF;
     }
 
 
+    /**
+     * 用户退出登录
+     */
+    public function logout()
+    {
+        session('user_id',null);
+        session('user_email',null);
+        cookie('user_email',null);
+        cookie('user_password',null);
+    }
+
+
 
 }

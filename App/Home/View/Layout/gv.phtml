@@ -27,7 +27,14 @@
 			</div>
 			<div class="topnav_right fr">
 				<ul>
-					<li>您好，欢迎来到gv！[<a href="<?php echo U('Home/User/login')?>">登录</a>] [<a href="<?php echo U('Home/User/register')?>">免费注册</a>] </li>
+					<li>您好，<?php if(session('?user_email')):?><font color="red"><?php echo session('user_email');?></font><?php endif;?> 欢迎来到gv！
+						<?php if(session('?user_id')):?>
+							[<a href="<?php echo U('Home/User/logout')?>">退出</a>]
+						<?php else:?>
+							[<a href="<?php echo U('Home/User/login')?>">登录</a>]
+							[<a href="<?php echo U('Home/User/register')?>">免费注册</a>]
+						<?php endif;?>
+					</li>
 					<?php foreach($topNav as $k=>$v):?>
 					<li class="line">|</li>
 					<li><a href="<?php echo $v['url'];?>" <?php if($v['open_new'] == 1):?>target="_blank" <?php endif;?>><?php echo $v['name']?></a></li>
@@ -78,7 +85,12 @@
 					</dt>
 					<dd>
 						<div class="prompt">
-							您好，请<a href="">登录</a>
+							您好，<?php if(session('?user_email')):?><font color="red"><?php echo session('user_email');?></font><?php endif;?>
+							<?php if(session('?user_id')):?>
+								[<a href="<?php echo U('Home/User/logout')?>">退出</a>]
+							<?php else:?>
+								[<a href="<?php echo U('Home/User/login')?>">请登录</a>]
+							<?php endif;?>
 						</div>
 						<div class="uclist mt10">
 							<ul class="list1 fl">

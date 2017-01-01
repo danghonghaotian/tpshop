@@ -14,6 +14,9 @@ class MemberController extends MemberCommonController
 
     public function index()
     {
+        $userModel = D('User');
+        $user = $userModel->where(array('email'=>session('user_email')))->find();
+        $this->assign('user',$user);
         $this->display();
     }
 
