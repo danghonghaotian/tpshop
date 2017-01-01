@@ -27,8 +27,8 @@
 			</div>
 			<div class="topnav_right fr">
 				<ul>
-					<li>您好，<?php if(session('?user_email')):?><font color="red"><?php echo session('user_email');?></font><?php endif;?> 欢迎来到gv！
-						<?php if(session('?user_id')):?>
+					<li>您好，<?php $user_email = cookie('user_email'); if(isset($user_email) || session("?user_email")):?><font color="red"><?php if($user_email){echo $user_email;}else{echo session('user_email'); }?></font><?php endif;?> 欢迎来到gv！
+						<?php if(isset($user_email) || session("?user_email")):?>
 							[<a href="<?php echo U('Home/User/logout')?>">退出</a>]
 						<?php else:?>
 							[<a href="<?php echo U('Home/User/login')?>">登录</a>]
@@ -80,13 +80,13 @@
 				<dl>
 					<dt>
 						<em></em>
-						<a href="">用户中心</a>
+						<a href="<?php echo U('Home/Member/index');?>">用户中心</a>
 						<b></b>
 					</dt>
 					<dd>
 						<div class="prompt">
-							您好，<?php if(session('?user_email')):?><font color="red"><?php echo session('user_email');?></font><?php endif;?>
-							<?php if(session('?user_id')):?>
+							您好，<?php $user_email = cookie('user_email'); if(isset($user_email) || session("?user_email")):?><font color="red"><?php if($user_email){echo $user_email;}else{echo session('user_email'); }?></font><?php endif;?>
+							<?php if(isset($user_email) || session("?user_email")):?>
 								[<a href="<?php echo U('Home/User/logout')?>">退出</a>]
 							<?php else:?>
 								[<a href="<?php echo U('Home/User/login')?>">请登录</a>]

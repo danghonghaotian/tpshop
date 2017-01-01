@@ -155,7 +155,7 @@ EOF;
         //注意这里不能使用静态自动完成加密
         if($user)
         {
-            if($user['password'] == md5(I('post.password')))
+            if($user['password'] == $this->password)
             {
                 // 把用户的ID和用户名存到SESSION中
                 session('user_id',$user['user_id']);

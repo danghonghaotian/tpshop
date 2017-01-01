@@ -177,14 +177,6 @@ class UserController extends CommonController {
 
 
     /**
-     * 用户中心
-     */
-    public function userCenter()
-    {
-        $this->display();
-    }
-
-    /**
      * 测试导出excel格式数据
      */
     public function test()

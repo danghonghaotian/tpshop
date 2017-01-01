@@ -25,20 +25,20 @@ class MemberCommonController extends CommonController
             if($email && $password)
             {
                 $model = D('User');
-                // 把用户名和密码赋值给管理员模型，并执行非空的验证
+                // 把用户名和密码赋值给用户模型，在修改的时候不校验
                 if($model->create(array(
                     'email' => $email,
                     'password' => $password,
-                )))
+                ),$model::MODEL_UPDATE))//在修改的时候不校验
                 {
                     if($model->login() === TRUE)
                     {
-                        $this->redirect(U('/Home/Member/index'));
+                        header('Location:'.U('/Home/Member/index'));
                         exit;
                     }
                 }
             }
-            $this->error('没有登录',U('/Home/User/login'));
+            $this->error('还没有登录呢',U('/Home/User/login'));
         }
     }
 }
