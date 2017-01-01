@@ -1,0 +1,80 @@
+<extend name="Layout/gv" />
+
+<block name="header_meta">
+	<title>订单页面</title>
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/base.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/global.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/header.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/home.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/order.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/bottomnav.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/footer.css" type="text/css">
+
+	<script type="text/javascript" src="<?php echo C('f-js')?>/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/header.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/home.js"></script>
+</block>
+
+<block name="main">
+	<!-- 页面主体 start -->
+	<div class="main w1210 bc mt10">
+		<div class="crumb w1210">
+			<h2><strong>会员中心</strong><span>> 我的订单</span></h2>
+		</div>
+
+		<!-- 左侧导航菜单 start -->
+		<?php include "/App/Home/View/Layout/user_left.phtml";?>
+		<!-- 左侧导航菜单 end -->
+
+		<!-- 右侧内容区域 start -->
+		<div class="content fl ml10">
+			<div class="order_hd">
+				<h3>我的订单</h3>
+				<dl>
+					<dt>便利提醒：</dt>
+					<dd>待付款（0）</dd>
+					<dd>待确认收货（0）</dd>
+					<dd>待自提（0）</dd>
+				</dl>
+
+				<dl>
+					<dt>特色服务：</dt>
+					<dd><a href="">我的预约</a></dd>
+					<dd><a href="">夺宝箱</a></dd>
+				</dl>
+			</div>
+
+			<div class="order_bd mt10">
+				<table class="orders">
+					<thead>
+					<tr>
+						<th width="10%">订单号</th>
+						<th width="20%">订单商品</th>
+						<th width="10%">收货人</th>
+						<th width="20%">订单金额</th>
+						<th width="20%">下单时间</th>
+						<th width="10%">订单状态</th>
+						<th width="10%">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php for($i=0;$i<6;$i++):?>
+					<tr>
+						<td><a href="">xxxxxxxxxxxx</a></td>
+						<td><a href=""><img src="<?php echo C('f-img')?>/order1.jpg" alt="" /></a></td>
+						<td>xxx</td>
+						<td>￥35.00 货到付款</td>
+						<td>2017-1-1 16:28:14</td>
+						<td>已取消</td>
+						<td><a href="">查看</a> | <a href="">删除</a></td>
+					</tr>
+					<?php endfor;?>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 右侧内容区域 end -->
+	</div>
+	<!-- 页面主体 end-->
+</block>

@@ -8,11 +8,12 @@ namespace Home\Controller;
 use Think\Controller;
 class OrderController extends MemberCommonController
 {
-
+    /**
+     * 订单展示
+     */
     public function index()
     {
-       echo '我的订单，待开发';
-//        $this->display();
+        $this->display();
     }
 
 

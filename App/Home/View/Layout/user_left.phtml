@@ -1,0 +1,15 @@
+<!-- 左侧导航菜单 start -->
+<div class="menu fl">
+    <h3>会员中心</h3>
+    <div class="menu_wrap">
+        <?php foreach (C('menu') as $k=>$v):?>
+        <dl>
+            <dt><?php echo $k;?><b></b></dt>
+            <?php foreach ($v as $k1=>$v1):?>
+            <dd <?php if(isCurrent(U("Home/$v1[0]/$v1[1]"))):?>class="cur" <?php endif;?>><b>.</b><a href="<?php echo U("Home/$v1[0]/$v1[1]")?>"><?php echo $k1;?></a></dd>
+            <?php endforeach;?>
+        </dl>
+        <?php endforeach;?>
+    </div>
+</div>
+<!-- 左侧导航菜单 end -->

@@ -1,5 +1,7 @@
 <?php
-return array(
+
+$menu = require 'menu.php'; //会员中心菜单配置
+$config = array(
 	//'配置项'=>'配置值'
 //    'SHOW_PAGE_TRACE'   => false,
 
@@ -18,4 +20,8 @@ return array(
     'company' =>'丹宏昊天',
     'goods_page' => 12
 
+);
+
+return array_merge(
+    $menu,$config
 );
