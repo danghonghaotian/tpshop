@@ -18,7 +18,8 @@ $config = array(
 //        'read'=>array('{id}',60)
     ),
     'company' =>'丹宏昊天',
-    'goods_page' => 12
+    'goods_page' => 12,
+    'userCenter' => "我的gv",
 
 );
 
