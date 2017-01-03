@@ -10,6 +10,7 @@ git代码托管平台
 https://github.com/
 https://git.oschina.net/
 http://bitbucket.org/
+https://coding.net/git  weiphp代码在这个网站托管
 
 git开源项目
 http://www.shcsinfo.com/china/gitlab.html
