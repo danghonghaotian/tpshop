@@ -70,7 +70,7 @@
 
 /*商品列表*/
 .goodslist{width: 989px; overflow: auto;}
-.goodslist li{float:left; display: inline; width: 225px; text-align: center; padding: 10px;}
+.goodslist li{float:left; display: inline; width: 225px; height: 280px;text-align: center; padding: 10px;}
 .goodslist li img{width: 160px; height: 160px;}
 .goodslist dd{padding: 5px 0;}
 .goodslist strong{color: #c30; font-weight: bolder; }
