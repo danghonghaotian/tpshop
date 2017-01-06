@@ -12,6 +12,7 @@
     <script type="text/javascript" src="<?php echo C('f-js')?>/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="<?php echo C('f-js')?>/header.js"></script>
     <script type="text/javascript" src="<?php echo C('f-js')?>/list.js"></script>
+    <script type="text/javascript" src="<?php echo C('f-js')?>/goods.js"></script>
 </block>
 
 <block name="main">
@@ -133,17 +134,14 @@
 
             <!-- 最近浏览 start -->
             <div class="viewd leftbar mt10">
-                <h2><a href="">清空</a><strong>最近浏览过的商品</strong></h2>
-                <div class="leftbar_wrap">
-                    <dl>
-                        <dt><a href=""><img src="<?php echo C('f-img')?>/hpG4.jpg" alt="" /></a></dt>
-                        <dd><a href="">惠普G4-1332TX 14英寸笔记...</a></dd>
-                    </dl>
-
-                    <dl class="last">
-                        <dt><a href=""><img src="<?php echo C('f-img')?>/crazy4.jpg" alt="" /></a></dt>
-                        <dd><a href="">直降200元！TCL正1.5匹空调</a></dd>
-                    </dl>
+                <h2><a href="javascript:clearHistory()">清空</a><strong>最近浏览过的商品</strong></h2>
+                <div class="leftbar_wrap" id="clearHistory">
+                    <?php foreach ($goodsHistory as $k=>$v):?>
+                        <dl>
+                            <dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']))?>"><img src="<?php echo $v['sm_logo']?>" alt="<?php echo $v['goods_name']?>" /></a></dt>
+                            <dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']))?>"><?php echo $v['goods_name']?></a></dd>
+                        </dl>
+                    <?php endforeach;?>
                 </div>
             </div>
             <!-- 最近浏览 end -->

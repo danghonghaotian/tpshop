@@ -40,6 +40,9 @@ class GoodsController extends CommonController
         $cateData = $categoryModel->find($cid);
         $this->assign('title',$cateData['cat_name']);
 
+        //历史记录
+        $goodsHistory = $goodsModel->getGoodsListHistory();
+        $this->assign('goodsHistory',$goodsHistory);
 
         $this->display();
     }

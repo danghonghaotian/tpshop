@@ -189,6 +189,21 @@ class GoodsModel extends Model
 
         return  $data;
     }
+
+
+    public function getGoodsListHistory()
+    {
+        $goods = cookie('goodsHistory'); // 1,2,3,4,5
+        $goodsArr = explode(',',$goods);
+
+        $data =array();
+        foreach ($goodsArr as $k=>$v)
+        {
+            $data[] = $this->field('id,sm_logo,goods_name')->find($v);
+        }
+
+        return  $data;
+    }
     
     
     
