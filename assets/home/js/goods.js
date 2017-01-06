@@ -82,3 +82,19 @@ $(function(){
 		$(this).addClass("on").siblings().removeClass("on");
 	});
 });
+
+/**
+ * 清空历史记录
+ */
+function clearHistory()
+{
+	$.ajax({
+		type : "GET",
+		url : "/index.php/Home/Goods/clearGoodsHistory",
+		success : function(data)
+		{
+			if(data == 1)
+				$("#clearHistory").html('');
+		}
+	});
+}

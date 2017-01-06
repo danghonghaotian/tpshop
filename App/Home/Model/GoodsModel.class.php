@@ -153,6 +153,42 @@ class GoodsModel extends Model
         $goods = $goodsModel->where(array('is_delete'=>0))->order('id desc')->limit(5)->select();
         return $goods;
     }
+
+    /**
+     * 获取商品历史记录
+     * @param $goods_id
+     */
+    public function getGoodsHistory($goods_id)
+    {
+        $goods_id = (int)$goods_id;
+        // 先从COOKIE中取出这前浏览过的商品
+        $goods = cookie('goodsHistory'); // 1,2,3,4,5
+        $goods = explode(',', $goods);
+        // 把当前浏览的商品放到数组中的第一个位置上
+        array_unshift($goods, $goods_id);
+        // 去重
+        $goods = array_unique($goods);
+        if(count($goods) > 5)
+        {
+            $goods = array_splice($goods, 0, 5); //只保存前5件商品记录
+        }
+        $goods = implode(',', $goods);
+        $goods = trim($goods, ',');
+
+        // 存回到COOKIE
+        cookie('goodsHistory', $goods, 'expire='.(30*86400).'&path=/');
+        // cookie中的path和domain有什么用？
+        /********* 根据商品ID取出商品信息 *************/
+        $goodsArr = explode(',',$goods);
+
+        $data =array();
+        foreach ($goodsArr as $k=>$v)
+        {
+            $data[] = $this->field('id,sm_logo,goods_name')->find($v);
+        }
+
+        return  $data;
+    }
     
     
     

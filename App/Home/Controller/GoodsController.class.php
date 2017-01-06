@@ -77,8 +77,20 @@ class GoodsController extends CommonController
         $brandName = $brandModel->getFieldByBrandId($goodsInfo['brand_id'],'brand_name');
         $this->assign('brandName',$brandName);
 
+        //获取浏览历史
+        $goodsHistory = $goodsModel->getGoodsHistory($id);
+        $this->assign('goodsHistory',$goodsHistory);
         
         $this->display();
+    }
+
+    /**
+     * 清空最近浏览过的商品
+     */
+    public function clearGoodsHistory()
+    {
+        cookie('goodsHistory',null);
+        echo '1';
     }
 
 
