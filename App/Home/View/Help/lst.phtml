@@ -33,7 +33,7 @@
             <div class="nav-con">
                 <?php foreach ($helpInfo as $k=>$v):?>
                 <dl>
-                    <dt><em class="<?php if($k==0):?>on<?php endif;?>"></em><span <?php if($k==0):?> class="spcli"<?php endif;?>><?php echo $v['cat_name']?></span></dt>
+                    <dt><em></em><span><?php echo $v['cat_name']?></span></dt>
                     <dd <?php if($k!=0):?>class="hide"<?php endif;?>>
                         <?php foreach ($v['article'] as $k1=>$v1):?>
                         <a href="<?php echo U('Home/Help/lst',array('id'=>$v1['article_id']));?>" <?php if(isCurrent(U('Home/Help/lst',array('id'=>$v1['article_id'])))):?>class="on"<?php endif;?> ><?php echo $v1['title']?></a>

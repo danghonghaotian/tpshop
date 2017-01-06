@@ -1,9 +1,5 @@
 /*
- * 跃飞科技版权所有 @2016
- */
-
-/*
-@功能：订单页面js,帮助中心js
+@功能：订单页面js
 @作者：diamondwang
 @时间：2013年11月15日
 */
@@ -20,7 +16,6 @@
     });
 
 
-    //帮助中心js start hyLi
     $(".left-nav").find("dt").click(function(){
       if($(this).next("dd").is(":visible")){
         $(this).next("dd").slideUp("200");
@@ -42,8 +37,11 @@
       $(".left-nav").find("dt").find("span").removeClass("spcli");
       $(this).find("span").addClass("spcli");
     })
-  //帮助中心js end
 
-
+   var initialObj = $(".left-nav dd a").siblings(".on");
+   $(".left-nav dd").addClass("hide");
+   $(".left-nav dt").find("em").removeClass("on").end().find("span").removeClass("spcli");
+   initialObj.parent("dd").removeClass("hide").siblings("dt").find("em").addClass("on").end().find("span").addClass("spcli");
+   
   });
 })(jQuery)
