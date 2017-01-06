@@ -176,7 +176,7 @@ class GoodsModel extends Model
         $goods = trim($goods, ',');
         $domain = strstr($_SERVER['HTTP_HOST'],'.');
         // 存回到COOKIE
-        cookie('goodsHistory', $goods, 'expire='.(30*86400).'&path=/&domain='.$domain);
+        cookie('goodsHistory', $goods, 'expire='.(30*86400).'&path=/');
         // cookie中的path和domain有什么用？
         //.tpshop.com 代表所有域名都可以访问到
         // path /表示当前目录及子目录下可以访问
