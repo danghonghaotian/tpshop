@@ -333,12 +333,21 @@
 				<!-- 疯狂抢购 start-->
 				<div class="crazy">
 					<ul>
-						<?php foreach ($crazyGoods as $k=>$v):?>
+						<?php
+						$goodsGalleryModel = M('GoodsGallery');
+						foreach ($crazyGoods as $k=>$v):?>
 						<li>
 							<dl>
-								<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name']?>" /></a></dt>
-								<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name']?></a></dd>
-								<dd><span>售价：</span><strong> ￥<?php echo $v['shop_price']?></strong></dd>
+								<?php
+								$goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$v['id']))->select();
+								if(!empty($goodsGallery)): //商品相册中有图片
+									?>
+									<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo  $goodsGallery[0]['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+								<?php else: ?>  <!--商品相册中没有图片，取商品logo---->
+									<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+								<?php endif;?>
+								<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name'];?></a></dt>
+								<dd><strong>￥<?php echo $v['shop_price'];?></strong></dt>
 							</dl>
 						</li>
 						<?php endforeach;?>
@@ -352,9 +361,16 @@
 						<?php foreach ($hotGoods as $k=>$v):?>
 							<li>
 								<dl>
-									<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name']?>" /></a></dt>
-									<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name']?></a></dd>
-									<dd><span>售价：</span><strong> ￥<?php echo $v['shop_price']?></strong></dd>
+									<?php
+									$goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$v['id']))->select();
+									if(!empty($goodsGallery)): //商品相册中有图片
+										?>
+										<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo  $goodsGallery[0]['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+									<?php else: ?>  <!--商品相册中没有图片，取商品logo---->
+										<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+									<?php endif;?>
+									<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name'];?></a></dt>
+									<dd><strong>￥<?php echo $v['shop_price'];?></strong></dt>
 								</dl>
 							</li>
 						<?php endforeach;?>
@@ -368,9 +384,16 @@
 						<?php foreach ($recommendGoods as $k=>$v):?>
 							<li>
 								<dl>
-									<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name']?>" /></a></dt>
-									<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name']?></a></dd>
-									<dd><span>售价：</span><strong> ￥<?php echo $v['shop_price']?></strong></dd>
+									<?php
+									$goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$v['id']))->select();
+									if(!empty($goodsGallery)): //商品相册中有图片
+										?>
+										<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo  $goodsGallery[0]['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+									<?php else: ?>  <!--商品相册中没有图片，取商品logo---->
+										<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+									<?php endif;?>
+									<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name'];?></a></dt>
+									<dd><strong>￥<?php echo $v['shop_price'];?></strong></dt>
 								</dl>
 							</li>
 						<?php endforeach;?>
@@ -381,12 +404,20 @@
 				<!-- 新品上架 start-->
 				<div class="new none">
 					<ul>
-						<?php foreach ($newGoods as $k=>$v):?>
+						<?php
+						foreach ($newGoods as $k=>$v):?>
 							<li>
 								<dl>
-									<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name']?>" /></a></dt>
-									<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name']?></a></dd>
-									<dd><span>售价：</span><strong> ￥<?php echo $v['shop_price']?></strong></dd>
+									<?php
+									$goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$v['id']))->select();
+									if(!empty($goodsGallery)): //商品相册中有图片
+										?>
+										<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo  $goodsGallery[0]['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+									<?php else: ?>  <!--商品相册中没有图片，取商品logo---->
+										<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+									<?php endif;?>
+									<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name'];?></a></dt>
+									<dd><strong>￥<?php echo $v['shop_price'];?></strong></dt>
 								</dl>
 							</li>
 						<?php endforeach;?>
@@ -397,12 +428,20 @@
 				<!-- 猜您喜欢 start -->
 				<div class="guess none">
 					<ul>
-						<?php foreach ($guessGoods as $k=>$v):?>
+						<?php
+						foreach ($guessGoods as $k=>$v):?>
 							<li>
 								<dl>
-									<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name']?>" /></a></dt>
-									<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name']?></a></dd>
-									<dd><span>售价：</span><strong> ￥<?php echo $v['shop_price']?></strong></dd>
+									<?php
+									$goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$v['id']))->select();
+									if(!empty($goodsGallery)): //商品相册中有图片
+										?>
+										<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo  $goodsGallery[0]['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+									<?php else: ?>  <!--商品相册中没有图片，取商品logo---->
+										<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+									<?php endif;?>
+									<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name'];?></a></dt>
+									<dd><strong>￥<?php echo $v['shop_price'];?></strong></dt>
 								</dl>
 							</li>
 						<?php endforeach;?>
