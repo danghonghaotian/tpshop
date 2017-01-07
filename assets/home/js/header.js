@@ -1,7 +1,7 @@
 /*
 @功能：头部js
-@作者：diamondwang
-@时间：2013年11月13日
+@作者：钟贵廷
+@时间：2017年1月7日
 */
 /* 注意，要在页面中先引入jquery*/
 $(function(){
@@ -50,6 +50,19 @@ $(function(){
 		$(".cat1 .cat_hd").addClass("off").removeClass("on");
 		$(".cat1 .cat_bd").hide();
 	});
+
+	//搜索
+	$("#searchForm").submit(
+		function () {
+			$keyword = $(this).find('.txt').val();
+			if($keyword == '' || $keyword == '商品名称|商品sku')
+			{
+				return false;
+			}
+			else
+				return true;
+		}
+	);
 
 
 });

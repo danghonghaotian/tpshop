@@ -96,10 +96,17 @@ class GoodsModel extends Model
      * @param $ids
      * @return array
      */
-    public function search($ids)
+    public function search($ids,$keyword='')
     {
         // 搜索所有的数据,如果需要搜索其他字段需要自己添加
-        $where = array('cat_id'=> array('in',$ids),'is_on_sale'=>1,'is_delete'=>0);
+        if($ids)
+        {
+             $where = array('cat_id'=> array('in',$ids),'is_on_sale'=>1,'is_delete'=>0);
+        }
+        if($keyword)
+        {
+            $where = array('goods_name'=> array('like',"%$keyword%"),'is_on_sale'=>1,'is_delete'=>0);
+        }
 //        dump($where);die;
         //1 . 算出总的记录数
         $count = $this->where($where)->count();

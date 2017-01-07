@@ -57,8 +57,8 @@
 			<div class="search fl">
 				<div class="search_form">
 					<div class="form_left fl"></div>
-					<form action="" name="serarch" method="get" class="fl">
-						<input type="text" class="txt" value="商品名称|商品sku" /><input type="submit" class="btn" value="搜索" />
+					<form action="<?php echo U('Home/Goods/search');?>"  method="get" class="fl" id="searchForm">
+						<input type="text" class="txt" value="<?php if (isset($_GET['keyword'])){echo $_GET['keyword'];}else{echo "商品名称|商品sku";}?>" name="keyword"  /><input type="submit" class="btn" value="搜索" />
 					</form>
 					<div class="form_right fl"></div>
 				</div>
@@ -67,10 +67,8 @@
 
 				<div class="hot_search">
 					<strong>热门搜索:</strong>
-					<a href="">D-Link无线路由</a>
-					<a href="">休闲男鞋</a>
-					<a href="">TCL空调</a>
-					<a href="">耐克篮球鞋</a>
+					<a href="<?php echo U('Home/Goods/search',array('keyword'=>'Redmi'));?>">Redmi</a>
+					<a href="<?php echo U('Home/Goods/search',array('keyword'=>'meizu'));?>">meizu</a>
 				</div>
 			</div>
 			<!-- 头部搜索 end -->

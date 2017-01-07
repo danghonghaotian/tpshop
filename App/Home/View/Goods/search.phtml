@@ -1,0 +1,122 @@
+<extend name="Layout/gv" />
+<block name="header_meta">
+	<title><?php echo $title;?> - <?php echo C('company');?></title>
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/base.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/global.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/header.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/list.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/common.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/bottomnav.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/footer.css" type="text/css">
+
+	<script type="text/javascript" src="<?php echo C('f-js')?>/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/header.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/list.js"></script>
+</block>
+
+<block name="main">
+	<!-- 列表主体 start -->
+	<div class="list w1210 bc mt10">
+		<!-- 面包屑导航 start -->
+		<div class="breadcrumb">
+			<h2>全部结果： > "<span style="color:red;font-weight:bold"><?php echo $_GET['keyword'];?></span>"</h2>
+		</div>
+		<!-- 面包屑导航 end -->
+
+		<!-- 左侧内容 start -->
+		<div class="list_left fl mt10">
+
+			<!-- 新品推荐 start -->
+			<div class="newgoods leftbar mt10">
+				<h2><strong>新品推荐</strong></h2>
+				<div class="leftbar_wrap">
+					<ul>
+						<li>
+							<dl>
+								<dt><a href=""><img src="<?php echo C('f-img')?>/list_hot1.jpg" alt="" /></a></dt>
+								<dd><a href="">美即流金丝语悦白美颜新年装4送3</a></dd>
+								<dd><strong>￥777.50</strong></dd>
+							</dl>
+						</li>
+
+						<li>
+							<dl>
+								<dt><a href=""><img src="<?php echo C('f-img')?>/list_hot2.jpg" alt="" /></a></dt>
+								<dd><a href="">领券满399减50 金斯利安多维片</a></dd>
+								<dd><strong>￥239.00</strong></dd>
+							</dl>
+						</li>
+
+						<li class="last">
+							<dl>
+								<dt><a href=""><img src="<?php echo C('f-img')?>/list_hot3.jpg" alt="" /></a></dt>
+								<dd><a href="">皮尔卡丹pierrecardin 男士长...</a></dd>
+								<dd><strong>￥1240.50</strong></dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 新品推荐 end -->
+
+
+		</div>
+		<!-- 左侧内容 end -->
+
+		<!-- 列表内容 start -->
+		<div class="list_bd fl ml10 mt10">
+
+			<!-- 排序 start -->
+			<div class="sort mt10">
+				<dl>
+					<dt>排序：</dt>
+					<dd class="cur"><a href="">销量</a></dd>
+					<dd><a href="">价格</a></dd>
+					<dd><a href="">评论数</a></dd>
+					<dd><a href="">上架时间</a></dd>
+				</dl>
+			</div>
+			<!-- 排序 end -->
+
+			<div style="clear:both;"></div>
+
+			<!-- 商品列表 start-->
+			<div class="goodslist mt10">
+				<ul>
+					<?php
+					$goodsGalleryModel = M('GoodsGallery');
+					foreach ($goods as $k=>$v):
+						?>
+						<li>
+							<dl>
+								<?php
+								$goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$v['id']))->select();
+								if(!empty($goodsGallery)): //商品相册中有图片
+									?>
+									<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo  $goodsGallery[0]['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+								<?php else: ?>  <!--商品相册中没有图片，取商品logo---->
+									<dt><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><img src="<?php echo $v['sm1_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a></dt>
+								<?php endif;?>
+								<dd><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']));?>"><?php echo $v['goods_name'];?></a></dt>
+								<dd><strong>￥<?php echo $v['shop_price'];?></strong></dt>
+								<dd><a href=""><em>已有10人评价</em></a></dt>
+							</dl>
+						</li>
+					<?php endforeach;?>
+				</ul>
+			</div>
+			<!-- 商品列表 end-->
+
+			<!-- 分页信息 start -->
+			<div class="page mt20">
+				<?php echo $page;?>
+			</div>
+			<!-- 分页信息 end -->
+
+		</div>
+		<!-- 列表内容 end -->
+	</div>
+	<!-- 列表主体 end-->
+
+</block>
+

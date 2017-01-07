@@ -97,4 +97,22 @@ class GoodsController extends CommonController
     }
 
 
+    /**
+     * 商品搜索，注意跟列表页兼容
+     * @param string $keyword
+     */
+    public function search($keyword)
+    {
+        if(empty($keyword) || $keyword=='商品名称|商品sku')
+        {
+            $this->error("请搜索商品名称|商品sku");
+        }
+        $goodsModel = D('Goods');
+        $goods = $goodsModel->search('',$keyword);
+        $this->assign('goods',$goods['data']);
+        $this->assign('page',$goods['page']);
+        $this->display();
+    }
+
+
 }
