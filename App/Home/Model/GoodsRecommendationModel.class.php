@@ -18,7 +18,7 @@ class GoodsRecommendationModel extends Model
     //疯狂抢购
     public function getCrazyGoods()
     {
-        $data = $this->find(self::CRAZY);
+        $data = $this->where(array('type_id'=>self::CRAZY))->find();
         $goodsArr = explode(',',$data['goods_sn']);
         $goodsModel = M('Goods');
         $goods = $goodsModel->where(array('goods_sn'=>array('in',$goodsArr)))->select();
@@ -29,7 +29,7 @@ class GoodsRecommendationModel extends Model
     //热卖商品
     public function getHotGoods()
     {
-        $data = $this->find(self::HOT);
+        $data = $this->where(array('type_id'=>self::HOT))->find();
         $goodsArr = explode(',',$data['goods_sn']);
         $goodsModel = M('Goods');
         $goods = $goodsModel->where(array('goods_sn'=>array('in',$goodsArr)))->select();
@@ -40,7 +40,7 @@ class GoodsRecommendationModel extends Model
     //推荐商品
     public function getRecommendGoods()
     {
-        $data = $this->find(self::RECOMMEND);
+        $data = $this->where(array('type_id'=>self::RECOMMEND))->find();
         $goodsArr = explode(',',$data['goods_sn']);
         $goodsModel = M('Goods');
         $goods = $goodsModel->where(array('goods_sn'=>array('in',$goodsArr)))->select();
@@ -52,7 +52,7 @@ class GoodsRecommendationModel extends Model
     //猜你喜欢
     public function getGuessGoods()
     {
-        $data = $this->find(self::GUESS);
+        $data = $this->where(array('type_id'=>self::GUESS))->find();
         $goodsArr = explode(',',$data['goods_sn']);
         $goodsModel = M('Goods');
         $goods = $goodsModel->where(array('goods_sn'=>array('in',$goodsArr)))->select();
