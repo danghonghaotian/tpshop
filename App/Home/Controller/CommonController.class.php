@@ -47,6 +47,10 @@ class CommonController extends Controller
                 $topNav = $navModel->where(array('position'=>'top','is_show'=>1))->order('view_order asc')->select();
                 $this->assign('topNav',$topNav);
 
+                //历史记录
+                $goodsHistory = $goodsModel->getGoodsListHistory();
+                $this->assign('goodsHistory',$goodsHistory);
+
 
                 //底部帮助信息
                 // 购物保障5

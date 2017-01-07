@@ -110,9 +110,9 @@
 						<div class="viewlist mt10">
 							<h3>最近浏览的商品：</h3>
 							<ul>
-								<li><a href=""><img src="<?php echo C('f-img')?>/view_list1.jpg" alt="" /></a></li>
-								<li><a href=""><img src="<?php echo C('f-img')?>/view_list2.jpg" alt="" /></a></li>
-								<li><a href=""><img src="<?php echo C('f-img')?>/view_list3.jpg" alt="" /></a></li>
+								<?php foreach ($goodsHistory as $k=>$v):?>
+								<li><a href="<?php echo U('Home/Goods/detail',array('id'=>$v['id']))?>"><img src="<?php echo $v['sm_logo']?>" alt="<?php echo $v['goods_name']?>" /></a></li>
+								<?php endforeach;?>
 							</ul>
 						</div>
 					</dd>
