@@ -60,5 +60,28 @@ class GoodsRecommendationModel extends Model
         return $goods;
     }
 
+    /**
+     * 获取封面图片的方法（测试用）
+     * @param $goodsModel
+     * @param $goods_id
+     * @return string
+     */
+    private static function getIndexPic($goodsModel,$goods_id)
+    {
+        $indexPic = '';
+        $goodsGalleryModel = M('GoodsGallery');
+        $goodsGallery = $goodsGalleryModel->where(array('goods_id'=>$goods_id))->select();
+        if(!empty($goodsGallery))
+        {
+            $indexPic =  $goodsGallery[0]['sm1_logo'];
+        }
+        else
+        {
+            $goods = $goodsModel->find($goods_id);
+            $indexPic = $goods['sm1_logo'];
+        }
+        return $indexPic;
+    }
+
 
 }
