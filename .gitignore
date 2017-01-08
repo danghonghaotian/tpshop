@@ -12,3 +12,7 @@ assets/admin/team
 /assets/admin/brand/
 /assets/upload
 .idea/
+
+不上传字体，太大了
+/assets/home/font
+/assets/ueditor/php/font

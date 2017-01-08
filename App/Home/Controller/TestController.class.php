@@ -48,15 +48,20 @@ class TestController extends Controller
     {
 //       $info =  \Home\Component\ImageTool::getImageInfo('E:\php\tpshop\assets\home\images\cart_goods1.jpg');
 //        dump($info);
-//        $info =  \Home\Component\ImageTool::water('E:\backup\desktop\test\index_slide3.jpg','E:\backup\desktop\test\water.jpg');
+        $info =  \Home\Component\ImageTool::water('E:\backup\desktop\test\index_slide4.jpg','E:\backup\desktop\test\test.jpg','E:\backup\desktop\test\dfsfd.jpg',1,30);
 //        $info =  \Home\Component\ImageTool::thumb('E:\backup\desktop\test\index_slide3.jpg','E:\backup\desktop\test\testsss.jpg',200,50);
-//        dump($info);
-        \Home\Component\ImageTool::captcha();
+        dump($info);
+//        \Home\Component\ImageTool::captcha();
     }
 
     public function test5()
     {
         echo session('code');
+    }
+
+    public function test6()
+    {
+        \Home\Component\ImageTool::text('E:\backup\desktop\test\index_slide4.jpg','跃飞科技','E:\php\tpshop\assets\home\font\simkai.ttf');
     }
 
 }

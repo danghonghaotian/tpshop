@@ -109,8 +109,9 @@ class Uploader
 
         //给图片加上水印
         include "ImageTool.class.php";
-        ImageTool::water($this->fullName,$this->config['waterImg'],$this->config['afterSavePath'],$this->config['location'] );
-
+//        ImageTool::water($this->fullName,$this->config['waterImg'],$this->config['afterSavePath'],$this->config['location'] );
+        //文字水印
+        ImageTool::text($this->fullName,$this->config['text'],$this->config['fontLocation'],$this->config['afterSavePath'],$this->config['size'],$this->config['color'],$this->config['location']);
     }
 
     /**

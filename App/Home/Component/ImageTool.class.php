@@ -284,4 +284,138 @@ class ImageTool
     }
 
 
+    /**
+     * 图像添加文字
+     * @param  string  $dst 原图
+     * @param  string  $save 存在位置
+     * @param  string  $text   添加的文字
+     * @param  string  $font   字体路径
+     * @param  integer $size   字号
+     * @param  string  $color  文字颜色
+     * @param  integer $locate 文字写入位置
+     * @param  integer $offset 文字相对当前位置的偏移量
+     * @param  integer $angle  文字倾斜角度
+     */
+    public static function text($dst,$text, $font, $save=null,$size=40, $color = '#ffffff',$locate = self::IMAGE_WATER_SOUTHEAST, $offset = 0, $angle = 30)
+    {
+        //资源检测
+        if(empty($dst)) die('没有可以被写入文字的图像资源');
+        if(!is_file($font)) die("不存在的字体文件：{$font}");
+
+        $dst_info = self::getImageInfo($dst);
+
+        $dst_fun   = 'imagecreatefrom' . $dst_info['ext'];
+        $new_dst = $dst_fun($dst);
+
+        //获取文字信息
+        $info = imagettfbbox($size, $angle, $font, $text);
+        $minx = min($info[0], $info[2], $info[4], $info[6]);
+        $maxx = max($info[0], $info[2], $info[4], $info[6]);
+        $miny = min($info[1], $info[3], $info[5], $info[7]);
+        $maxy = max($info[1], $info[3], $info[5], $info[7]);
+
+        /* 计算文字初始坐标和尺寸 */
+        $x = $minx;
+        $y = abs($miny);
+        $w = $maxx - $minx;
+        $h = $maxy - $miny;
+
+        /* 设定文字位置 */
+        switch ($locate) {
+            /* 右下角文字 */
+            case self::IMAGE_WATER_SOUTHEAST:
+                $x += $dst_info['width']  - $w;
+                $y += $dst_info['height'] - $h;
+                break;
+
+            /* 左下角文字 */
+            case self::IMAGE_WATER_SOUTHWEST:
+                $y += $dst_info['height'] - $h;
+                break;
+
+            /* 左上角文字 */
+            case self::IMAGE_WATER_NORTHWEST:
+                // 起始坐标即为左上角坐标，无需调整
+                break;
+
+            /* 右上角文字 */
+            case self::IMAGE_WATER_NORTHEAST:
+                $x += $dst_info['width'] - $w;
+                break;
+
+            /* 居中文字 */
+            case self::IMAGE_WATER_CENTER:
+                $x += ($dst_info['width']  - $w)/2;
+                $y += ($dst_info['height'] - $h)/2;
+                break;
+
+            /* 下居中文字 */
+            case self::IMAGE_WATER_SOUTH:
+                $x += ($dst_info['width'] - $w)/2;
+                $y += $dst_info['height'] - $h;
+                break;
+
+            /* 右居中文字 */
+            case self::IMAGE_WATER_EAST:
+                $x += $dst_info['width'] - $w;
+                $y += ($dst_info['height'] - $h)/2;
+                break;
+
+            /* 上居中文字 */
+            case self::IMAGE_WATER_NORTH:
+                $x += ($dst_info['width'] - $w)/2;
+                break;
+
+            /* 左居中文字 */
+            case self::IMAGE_WATER_WEST:
+                $y += ($dst_info['height'] - $h)/2;
+                break;
+
+            default:
+                /* 自定义文字坐标 */
+                if(is_array($locate)){
+                    list($posx, $posy) = $locate;
+                    $x += $posx;
+                    $y += $posy;
+                } else {
+                    die('不支持的文字位置类型');
+                }
+        }
+
+        /* 设置偏移量 */
+        if(is_array($offset)){
+            $offset = array_map('intval', $offset);
+            list($ox, $oy) = $offset;
+        } else{
+            $offset = intval($offset);
+            $ox = $oy = $offset;
+        }
+
+        /* 设置颜色 */
+        if(is_string($color) && 0 === strpos($color, '#')){
+            $color = str_split(substr($color, 1), 2);
+            $color = array_map('hexdec', $color);
+            if(empty($color[3]) || $color[3] > 127){
+                $color[3] = 0;
+            }
+        } elseif (!is_array($color)) {
+            die('错误的颜色值');
+        }
+
+        if(!$save)
+        {
+            $save = $dst;
+            unlink($dst);
+        }
+
+        /* 写入文字 */
+        $col = imagecolorallocatealpha($new_dst, $color[0], $color[1], $color[2], $color[3]);
+        imagettftext($new_dst, $size, $angle, $x + $ox, $y + $oy, $col, $font, $text);
+        $createfunc = 'image' . $dst_info ['ext'];
+        $createfunc($new_dst,$save);
+        imagedestroy($new_dst);
+
+    }
+
+
 }

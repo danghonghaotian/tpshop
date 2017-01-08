@@ -34,7 +34,11 @@
         "fileNameFormat" => $_POST['fileNameFormat'],
         "waterImg" =>'./upload/water.jpg', //水印图片
         "location" =>5, //水印位置，居中（请看扩展类ImageTool）；
-        "afterSavePath" =>null //添加水印后图片保存位置，默认原图替换
+        "afterSavePath" =>null, //添加水印后图片保存位置，默认原图替换
+        "text" =>'跃飞科技版权所有',//水印文字
+        "fontLocation" =>'./font/simkai.ttf', //字体位置
+        "color" =>'#fd0303', //字体颜色
+        "size"=>60
     );
 
     if ( empty( $path ) ) {
