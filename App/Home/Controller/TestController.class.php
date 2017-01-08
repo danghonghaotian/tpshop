@@ -43,4 +43,13 @@ class TestController extends Controller
         echo('输入的时间星期最后一天是：'.$lastday);
     }
 
+
+    public function test4()
+    {
+//       $info =  \Home\Component\ImageTool::getImageInfo('E:\php\tpshop\assets\home\images\cart_goods1.jpg');
+//        dump($info);
+        $info =  \Home\Component\ImageTool::water('E:\backup\desktop\test\index_slide3.jpg','E:\backup\desktop\test\water.jpg');
+        dump($info);
+    }
+
 }

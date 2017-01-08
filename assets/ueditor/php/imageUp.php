@@ -31,7 +31,10 @@
         "savePath" => $imgSavePathConfig,
         "maxSize" => 1000, //单位KB
         "allowFiles" => array(".gif", ".png", ".jpg", ".jpeg", ".bmp"),
-        "fileNameFormat" => $_POST['fileNameFormat']
+        "fileNameFormat" => $_POST['fileNameFormat'],
+        "waterImg" =>'./upload/water.jpg', //水印图片
+        "location" =>5, //水印位置，居中（请看扩展类ImageTool）；
+        "afterSavePath" =>null //添加水印后图片保存位置，默认原图替换
     );
 
     if ( empty( $path ) ) {

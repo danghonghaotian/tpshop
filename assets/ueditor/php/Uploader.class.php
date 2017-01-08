@@ -106,6 +106,11 @@ class Uploader
                 $this->stateInfo = $this->getStateInfo( "MOVE" );
             }
         }
+
+        //给图片加上水印
+        include "ImageTool.class.php";
+        ImageTool::water($this->fullName,$this->config['waterImg'],$this->config['afterSavePath'],$this->config['location'] );
+
     }
 
     /**

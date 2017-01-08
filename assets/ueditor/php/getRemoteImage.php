@@ -22,7 +22,10 @@
     $config = array(
         "savePath" => "../../upload/editor/$date/" ,            //保存路径
         "allowFiles" => array( ".gif" , ".png" , ".jpg" , ".jpeg" , ".bmp" ) , //文件允许格式
-        "maxSize" => 3000                    //文件大小限制，单位KB
+        "maxSize" => 3000,                    //文件大小限制，单位KB
+        "waterImg" =>'./upload/water.jpg', //水印图片
+        "location" =>5, //水印位置，居中（请看扩展类ImageTool）；
+        "afterSavePath" =>null //添加水印后图片保存位置，默认原图替换
     );
     $uri = htmlspecialchars( $_POST[ 'upfile' ] );
     $uri = str_replace( "&amp;" , "&" , $uri );
@@ -98,6 +101,14 @@
                 array_push( $tmpNames , "error" );
             }
         }
+
+        //给远程图片添加水印
+        include "ImageTool.class.php";
+        foreach ($tmpNames as $k=>$v)
+        {
+            ImageTool::water($v,$config['waterImg'],$config['afterSavePath'],$config['location'] );
+        }
+
         /**
          * 返回数据格式
          * {
