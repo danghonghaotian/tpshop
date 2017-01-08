@@ -527,10 +527,10 @@ class GoodsModel extends Model
      */
     public function replaceImgUrl()
     {
-        //添加
-        $this->goods_desc = preg_replace('/src=\"(.*)ueditor\/php\/..\/..\/(.*)\"/U',"src= &quot;/assets/$2&quot;",$this->goods_desc);
-        //修改时候，有可能双引号被转义
-        $this->goods_desc = preg_replace('/src=&quot;(.*)ueditor\/php\/..\/..\/(.*)&quot;/U',"src= &quot;/assets/$2&quot;",$this->goods_desc);
+            $this->goods_desc = preg_replace('/src=\"http(.*)ueditor\/php\/..\/..\/(.*)\"/U',"src= &quot;/assets/$2&quot;",$this->goods_desc);
+            //修改时候，有可能双引号被转义
+            $this->goods_desc = preg_replace('/src=&quot;(.*)ueditor\/php\/..\/..\/(.*)&quot;/U',"src= &quot;/assets/$2&quot;",$this->goods_desc);
+
     }
 
 

@@ -54,7 +54,7 @@ class ArticleModel extends Model
     public function replaceImgUrl()
     {
         //添加
-        $this->content = preg_replace('/src=\"(.*)ueditor\/php\/..\/..\/(.*)\"/U',"src= &quot;/assets/$2&quot;", $this->content);
+        $this->content = preg_replace('/src=\"http(.*)ueditor\/php\/..\/..\/(.*)\"/U',"src= &quot;/assets/$2&quot;", $this->content);
         //修改时候，有可能双引号被转义
         $this->content = preg_replace('/src=&quot;(.*)ueditor\/php\/..\/..\/(.*)&quot;/U',"src= &quot;/assets/$2&quot;",  $this->content);
     }
