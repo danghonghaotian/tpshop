@@ -1,0 +1,6 @@
+ #git回滚到指定版本
+ git reset --hard 7089aad
+
+数据库授权，给test用户在任何一台电脑上操作tres库，密码为Qhg12345678
+语法 grant ALL  on (数据库).(数据表) to '(用户名)'@'(ip)' IDENTIFIED BY  '(密码)';
+grant ALL  on tres3.* to 'test'@'%' IDENTIFIED BY  'Qhg12345678';
