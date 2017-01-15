@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?php echo C('shopName');?> - 商品货号管理 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="<?php echo C('css');?>/general.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo C('css');?>/main.css" rel="stylesheet" type="text/css" />
+	<script src="<?php echo C('jq-ui');?>/datetimepicker/jquery.js"></script>
+</head>
+<body>
+<h1>
+	<span class="action-span"><a href="<?php echo U("Admin/Goods/lst")?>">商品列表</a></span>
+    <span class="action-span1"><a href="#"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 商品货号管理(<span style="color:green;font-weight: normal"><?php echo $goodsName;?></span>) </span>
+    <div style="clear:both"></div>
+</h1>
+
+<form method="post" action="__SELF__" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+            	<?php foreach ($data as $k => $v): ?>
+            	<th><?php echo $k; ?></th>
+            	<?php endforeach; ?>
+				<th>库存</th>
+                <th>操作</th>
+            </tr>
+            <!-- 输出现有的货品 信息--->
+            <?php foreach ($proData as $k2 => $v2): ?>
+            	<tr>
+					<?php foreach ($data as $k => $v): ?>
+	            	<td>
+	            		<select name="goodsattr_id[<?php echo $v[0]['attr_id']; ?>][]">
+	            		<option value="">请选择...</option>
+	            		<?php foreach ($v as $k1 => $v1): 
+	            		if(strpos(','.$v2['goodsattr_id'].',', ','.$v1['id'].',') !== FALSE)
+	            			$_select = 'selected="selected"';
+	            		else
+	            			$_select = '';
+	            		?>
+	            			<option <?php echo $_select; ?> value="<?php echo $v1['id']; ?>"><?php echo $v1['attr_value']; ?></option>
+	            		<?php endforeach; ?>
+	            		</select>
+	            	</td>
+	            	<?php endforeach; ?>
+	            	<td><input type="text" name="goods_number[]" value="<?php echo $v2['goods_number']; ?>" /></td>
+	            	<td><input onclick="addNewRow(this)" type="button" value="-" /></td>
+				</tr>
+            <?php endforeach; ?>
+			<tr>
+				<?php foreach ($data as $k => $v): ?>
+            	<td>
+            		<select name="goodsattr_id[<?php echo $v[0]['attr_id']; ?>][]">
+            		<option value="">请选择...</option>
+            		<?php foreach ($v as $k1 => $v1): ?>
+            			<option value="<?php echo $v1['id']; ?>"><?php echo $v1['attr_value']; ?></option>
+            		<?php endforeach; ?>
+            		</select>
+            	</td>
+            	<?php endforeach; ?>
+            	<td><input type="text" name="goods_number[]" /></td>
+            	<td><input onclick="addNewRow(this)" type="button" value="+" /></td>
+			</tr>
+			<tr><td align="center" colspan="<?php echo $k+4; ?>"><input type="submit" value="提交" /></tr>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
+<script>
+function addNewRow(o)
+{
+	var tr = $(o).parent().parent();
+	if($(o).val() == "+")
+	{
+		var newtr = tr.clone();
+		newtr.find(":button").val("-");
+		tr.before(newtr);
+	}
+	else
+		tr.remove();
+}
+</script>

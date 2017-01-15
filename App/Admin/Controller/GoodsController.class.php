@@ -390,16 +390,6 @@ JS;
         echo $js;
     }
 
-    /**
-     * 商品货号列表
-     * @param $id
-     */
-    public function productList($id)
-    {
-
-        echo '商品货号';
-    }
-
 
     /**
      * 清理服务器上传的临时缓存图片
