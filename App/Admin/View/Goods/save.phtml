@@ -205,19 +205,22 @@
                             if($v1['attr_id'] == $v['id'])
                             {
                                 $_attrVal = $v1['attr_value'];
+                                $_goods_attr_id = $v1['id'];
                                 break ;
                             }
                         }
 
                         if(empty($v['attr_value']))
                         {
-                            echo '<tr><td class="label">'.$v['attr_name'].'</td><td><input name=goods_attr[attr_value]['.$v['id'].'] type="text" value="'.$_attrVal.'"/></td></tr>';
+                            echo '<tr><td class="label">'.$v['attr_name'].'</td><td><input name=goods_attr['.$_goods_attr_id.'][attr_value] type="text" value="'.$_attrVal.'"/>';
+                            echo '<input type="hidden" name="goods_attr['.$_goods_attr_id.'][attr_id]" value="'.$v['id'].'"/>';
+                            echo '</td></tr>';
                         }
                         else
                         {
                             echo '<tr><td class="label">'.$v['attr_name'].'</td><td>';
                             $_val = explode(',', trim($v['attr_value']));
-                            echo '<select style="width:120px;" name="goods_attr[attr_value]['.$v['id'].']">';
+                            echo '<select style="width:120px;" name="goods_attr['.$_goods_attr_id.'][attr_value]">';
                             foreach ($_val as $k1 => $v1)
                             {
                                 if($v1 == $_attrVal)
@@ -227,6 +230,8 @@
                                 echo '<option '.$selected.' value="'.$v1.'">'.$v1.'</option>';
                             }
                             echo '</select>';
+                            echo '<input type="hidden" name="goods_attr['.$_goods_attr_id.'][attr_id]" value="'.$v['id'].'"/>';
+
                             echo '</td></tr>';
                         }
                     }
@@ -239,7 +244,15 @@
                         foreach ($goodsAttrData as $k2 => $v2)
                         {
                             if($v2['attr_id'] != $v['id'])
+                            {
+
                                 continue ;
+                            }
+                             else
+                            {
+                                $_goods_attr_id = $v2['id'];
+                            }
+
                             // 判断这个属性是否是第一次遇到
                             if(!in_array($v['id'], $_hasArr))
                             {
@@ -252,7 +265,7 @@
                             echo '<tr><td class="label">'.$v['attr_name'].'</td><td>';
                             // 输出属性的下拉框
                             echo '<a href="javascript:void(0);" onclick="addANewAttRow(this)">'.$_atext.'</a>
-			                <select style="width:120px;"  name="goods_attr[attr_value]['.$v['id'].'][]">';
+			                <select style="width:120px;"  name="goods_attr['.$_goods_attr_id.'][attr_value]">';
                             foreach ($_val as $k1 => $v1)
                             {
                                 if($v1 == $v2['attr_value'])
@@ -262,7 +275,8 @@
                                 echo '<option '.$selected.' value="'.$v1.'">'.$v1.'</option>';
                             }
                             echo '</select>
-                            <input value="'.$v2['attr_price'].'" type="text" name="goods_attr[attr_price]['.$v['id'].'][]" />
+                            <input value="'.$v2['attr_price'].'" type="text" name="goods_attr['.$_goods_attr_id.'][attr_price]" />
+                            <input value="'.$v2['attr_id'].'" type="hidden" name="goods_attr['.$_goods_attr_id.'][attr_id]" />
                             ';
                             echo '</td></tr>';
                         }
@@ -362,7 +376,24 @@
         {
             // 复制tr
             var newTr = tr.clone();
+            var select_name = newTr.find("select").attr("name");
+            select_name = select_name.replace(/\[\d+\]/,'') + "[]";
+            newTr.find("select").attr("name",select_name);
+
+            //新添加的属性价格
+            var input_attr_price = newTr.find("input").eq(0);
+            var input_attr_price_name = input_attr_price.attr("name");
+            input_attr_price_name = input_attr_price_name.replace(/\[\d+\]/,'') + "[]";
+            input_attr_price.attr("name",input_attr_price_name);
+
+            //新添加的属性id
+            var input_attr_id = newTr.find("input").eq(1);
+            var input_attr_id_name = input_attr_id.attr("name");
+            input_attr_id_name = input_attr_id_name.replace(/\[\d+\]/,'') + "[]";
+            input_attr_id.attr("name",input_attr_id_name);
+
             newTr.find("a").html("[-]");
+            input_attr_price.val(''); //属性价格默认为空
             tr.after(newTr);
         }
         else

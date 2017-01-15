@@ -446,36 +446,103 @@ class GoodsModel extends Model
         }
 
         /*************2、修改商品属性，先删除原来的属性，再重新添加即可***************************/
-        if(isset($_POST['goods_attr']))
+        $newAttr = array();
+        $oldAttr = array();
+        foreach ($_POST['goods_attr'] as $k=>$v)
         {
-            $gaModel = M('GoodsAttr');
-            $gaModel->where(array('goods_id'=>$this->id))->delete();
-            foreach ($_POST['goods_attr']['attr_value'] as $k => $v)
+            if(is_numeric($k)) //如果是数字，代表的是旧的，因为新添加的是没有id的
             {
-                if(is_array($v)) //单选属性
-                {
-                    // 如果一个属性有多个值就循环每个值，一个值一条记录
-                    foreach ($v as $k1 => $v1)
-                    {
-                        $gaModel->data(array(
-                            'goods_id'=>$this->id,
-                            'attr_id'=>$k,
-                            'attr_value'=>$v1,
-                            'attr_price'=>$_POST['goods_attr']['attr_price'][$k][$k1],
-                        ))->add();
-                    }
-                }
-                else //唯一属性
-                {
-                    $gaModel->data(array(
-                        'goods_id'=>$this->id,
-                        'attr_id'=>$k,
-                        'attr_value'=>$v,
-                        'attr_price'=>0.00,
-                    ))->add();
-                }
+                $oldAttr[$k] = $v;
+            }
+            else
+            {
+                $newAttr[$k] = $v;
             }
         }
+
+        //找出这件商品属性的id
+        $goodsAttrModel = M('GoodsAttr');
+        $goods_attr_id_arr = $goodsAttrModel ->where(array('goods_id'=>$this->id))->field('id')->select();
+        $db_attr_id = array();
+        foreach ($goods_attr_id_arr as $k=>$v)
+        {
+            $db_attr_id[$k] = (int)$v['id'];
+        }
+        $old_attr_id = array_keys($oldAttr);
+        $deleteId =  array_diff($db_attr_id,$old_attr_id); //取出差集，删除修改后的数据
+
+        if(!empty($deleteId)) //删除记录
+        {
+            $goodsAttrModel->where(array('id'=>array('in',$deleteId)))->delete();
+        }
+
+        //修改记录
+        foreach ($oldAttr as $k=>$v)
+        {
+            $goodsAttrModel->id = $k;
+            $goodsAttrModel->goods_id = $this->id;
+            $goodsAttrModel->attr_id = $v['attr_id'];
+            $goodsAttrModel->attr_price = $v['attr_price']?$v['attr_price']:0;
+            $goodsAttrModel->attr_value = $v['attr_value'];
+            $goodsAttrModel->save();
+        }
+
+        //添加记录
+        if(!empty($newAttr))
+        {
+
+            foreach ($newAttr['attr_value'] as $k=>$v)
+            {
+                $data = array();
+                $data['goods_id'] =  $this->id;
+                $data['attr_value'] = $v;
+                $data['attr_price'] = $newAttr['attr_price'][$k];
+                $data['attr_id'] = $newAttr['attr_id'][$k];
+                $goodsAttrModel->add($data);
+            }
+        }
+
+
+//        dump($db_attr_id);
+//        dump($old_attr_id);
+//
+//        dump($goods_attr_id_arr);
+//        dump($oldAttr);
+//        dump($newAttr);
+//        die;
+         //旧的修改属性方法，这样会删掉id,做库存就不对了
+//        if(isset($_POST['goods_attr']))
+//        {
+//            $gaModel = M('GoodsAttr');
+//            $gaModel->where(array('goods_id'=>$this->id))->delete();
+//            foreach ($_POST['goods_attr']['attr_value'] as $k => $v)
+//            {
+//                if(is_array($v)) //单选属性
+//                {
+//                    // 如果一个属性有多个值就循环每个值，一个值一条记录
+//                    foreach ($v as $k1 => $v1)
+//                    {
+//                        $gaModel->data(array(
+//                            'goods_id'=>$this->id,
+//                            'attr_id'=>$k,
+//                            'attr_value'=>$v1,
+//                            'attr_price'=>$_POST['goods_attr']['attr_price'][$k][$k1],
+//                        ))->add();
+//                    }
+//                }
+//                else //唯一属性
+//                {
+//                    $gaModel->data(array(
+//                        'goods_id'=>$this->id,
+//                        'attr_id'=>$k,
+//                        'attr_value'=>$v,
+//                        'attr_price'=>0.00,
+//                    ))->add();
+//                }
+//            }
+//        }
+//
+//        die;
 
         /*************3、修改商品相册,本系统采用图片重名覆盖原则，不删除图片服务器的图片***************************/
         if(isset($_POST['goods_gallery']) || isset($_POST['OldGoodsPic']))
