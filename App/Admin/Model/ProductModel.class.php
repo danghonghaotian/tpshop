@@ -17,39 +17,42 @@ class ProductModel extends Model
 		$this->where('goods_id='.$_GET['goods_id'])->delete();
 		// 如果商品没有单选属性
 		$goods_number = array_sum($_POST['goods_number']);
-		//更新商品表的库存量
-		$goodsModel = M('Goods');
-		$goodsModel-> where(array('id'=>$_GET['goods_id']))->setField('goods_number',$goods_number);
+
 		if(!isset($_POST['goodsattr_id']))
 		{
-			return parent::add(array(
+			parent::add(array(
 				'goods_id'=>$_GET['goods_id'],
 				'goods_number'=>$goods_number,
 				'goodsattr_id'=>'',
 			));
 		}
-		// 先取出所有的属性ID
-		$attr_id = array_keys($_POST['goodsattr_id']);
-		foreach ($_POST['goodsattr_id'][$attr_id[0]] as $k => $v)
+		else
 		{
-			if($v)
+			// 先取出所有的属性ID
+			$attr_id = array_keys($_POST['goodsattr_id']);
+			foreach ($_POST['goodsattr_id'][$attr_id[0]] as $k => $v)
 			{
-				$_goodsattr = array();
-				// 循环每一个属性，拿出ID
-				foreach ($attr_id as $k3 => $v3)
+				if($v)
 				{
-					$_goodsattr[] = $_POST['goodsattr_id'][$v3][$k];
+					$_goodsattr = array();
+					// 循环每一个属性，拿出ID
+					foreach ($attr_id as $k3 => $v3)
+					{
+						$_goodsattr[] = $_POST['goodsattr_id'][$v3][$k];
+					}
+					sort($_goodsattr);
+					$_goodsattr = implode(',', $_goodsattr);
+					parent::add(array(
+						'goods_id'=>$_GET['goods_id'],
+						'goods_number'=>$_POST['goods_number'][$k],
+						'goodsattr_id'=>$_goodsattr,
+					));
 				}
-				sort($_goodsattr);	
-				$_goodsattr = implode(',', $_goodsattr);	
-				parent::add(array(
-					'goods_id'=>$_GET['goods_id'],
-					'goods_number'=>$_POST['goods_number'][$k],
-					'goodsattr_id'=>$_goodsattr,
-				));
 			}
 		}
 
-
+		//更新商品表的库存量
+		$goodsModel = M('Goods');
+		$goodsModel-> where(array('id'=>$_GET['goods_id']))->setField('goods_number',$goods_number);
 	}
 }
