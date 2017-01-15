@@ -176,3 +176,12 @@ CREATE TABLE `tp_online` (
 ALTER TABLE `tp_user`
 ADD COLUMN `active`  tinyint(1) NOT NULL DEFAULT 0 COMMENT '0：未激活，1激活' AFTER `reg_time`;
 
+#2017-1-15
+CREATE TABLE `tp_product` (
+  `goods_id` mediumint(8) unsigned NOT NULL COMMENT '商品',
+  `goods_number` int(10) unsigned NOT NULL COMMENT '库存量',
+  `goodsattr_id` varchar(30) NOT NULL COMMENT '属性的ID，如果有多个属性，那么先根据ID升序排序然后再用，号隔开,关联的是sh_goods_attr表的ID',
+  KEY `goods_id` (`goods_id`),
+  KEY `goodsattr_id` (`goodsattr_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='货品表';
+
