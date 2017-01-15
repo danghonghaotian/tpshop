@@ -11,13 +11,30 @@ use Think\Controller;
 
 class ProductController extends AdminController 
 {
-	protected static $radioAttr = 1; //单选
+	const radioAttr = 1; //单选
 
 	public function lst($goods_id)
 	{
 		if(IS_POST)
 		{
 			$model = D('Product');
+			//库存数字校验
+			foreach ($_POST['goods_number'] as $k=>$v)
+			{
+				if(end($_POST['goods_number']) == $v)
+				{
+					break;
+				}
+				if(!is_numeric($v))
+				{
+					$this->error('库存量应该为正整数');
+				}
+				if($v <0)
+				{
+					$this->error('库存量应该为正整数');
+				}
+			}
+
 			if($model->add() !== FALSE)
 			{
 				$this->success('保存成功');
@@ -33,7 +50,7 @@ class ProductController extends AdminController
 					$this->error('发生失败，请重试！');
 		}
 		// 取出这件商品所有的单选的属性
-		$sql = 'SELECT a.id,a.attr_id,a.attr_value,b.attr_name FROM '.C('DB_PREFIX').'goods_attr a LEFT JOIN '.C('DB_PREFIX').'attribute b ON a.attr_id=b.id WHERE a.goods_id='.$goods_id.' AND b.attr_type='.self::$radioAttr;
+		$sql = 'SELECT a.id,a.attr_id,a.attr_value,b.attr_name FROM '.C('DB_PREFIX').'goods_attr a LEFT JOIN '.C('DB_PREFIX').'attribute b ON a.attr_id=b.id WHERE a.goods_id='.$goods_id.' AND b.attr_type='.self::radioAttr;
 		$m = M('Product');
 		$_data = $m->query($sql);
 		// 重新处理一下数组的结构
