@@ -54,3 +54,8 @@ gtzhong@126.com
 google
 https://www.liujunchen.cc/tizi
 
+Jquery EasyUI教程
+http://www.jeasyui.net/tutorial/index.html 中文教程
+http://www.jeasyui.com/index.php 官网
+
+
