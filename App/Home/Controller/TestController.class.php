@@ -64,4 +64,9 @@ class TestController extends Controller
         \Home\Component\ImageTool::text('E:\backup\desktop\test\index_slide4.jpg','跃飞科技','E:\php\tpshop\assets\home\font\simkai.ttf');
     }
 
+    public function test7()
+    {
+       echo  str_replace('world','php','hello world' );
+    }
+
 }
