@@ -58,4 +58,7 @@ Jquery EasyUI教程
 http://www.jeasyui.net/tutorial/index.html 中文教程
 http://www.jeasyui.com/index.php 官网
 
+Ionic一款接近原生的Html5移动App开发框架　会html css js就可以开发app
+http://www.ionic.wang/
+
 
