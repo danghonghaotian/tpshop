@@ -60,5 +60,14 @@ http://www.jeasyui.com/index.php 官网
 
 Ionic一款接近原生的Html5移动App开发框架　会html css js就可以开发app
 http://www.ionic.wang/
+http://ionicframework.com/
+
+https://nodejs.org/en/
+
+https://www.npmjs.com/
+https://npm.taobao.org/ 淘宝 NPM 镜像
+
+http://www.typescriptlang.org/index.html
+
 
 
