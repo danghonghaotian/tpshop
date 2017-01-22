@@ -31,14 +31,19 @@ class MemberCommonController extends CommonController
                     'password' => $password,
                 ),$model::MODEL_UPDATE))//在修改的时候不校验
                 {
-                    if($model->login() === TRUE)
+                    $user = $model->login();
+                    if($user['success'] == 'ok')
                     {
-                        header('Location:'.U('/Home/Member/index'));
+                        header('Location:'.session('redirectUrl'));
                         exit;
                     }
                 }
             }
-            $this->error('还没有登录呢',U('/Home/User/login'));
+            else
+            {
+                session('redirectUrl',$_SERVER['REQUEST_URI']);
+                $this->error('还没有登录呢',U('/Home/User/login'));
+            }
         }
     }
 }

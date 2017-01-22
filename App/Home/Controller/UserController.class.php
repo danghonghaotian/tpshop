@@ -81,7 +81,7 @@ class UserController extends CommonController {
                     $cartModel = D('Cart');
                     $cartModel->addCookieGoodsToDatabase($user['user_id']);
 
-                    $this->success('登录成功', U('Home/Member/index'));
+                    $this->success('登录成功',  session('redirectUrl'));
                     exit;
                 }
                 else
