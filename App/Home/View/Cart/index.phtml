@@ -73,7 +73,7 @@
 			<?php
 			$totalPrice = 0;
 			foreach ($goods as $k=>$v):?>
-			<tr>
+			<tr data-goods_id="<?php echo $v['goods_id']; ?>" data-goods_attr="<?php echo $v['goods_attr_id']; ?>">
 				<td class="col1"><a href="<?php echo U('Home/goods/detail',array('id'=>$v['goods_id']));?>"><img src="<?php echo $v['sm_logo'];?>" alt="<?php echo $v['goods_name'];?>" /></a>  <strong><a href="<?php echo U('Home/goods/detail',array('id'=>$v['goods_id']));?>"><?php echo $v['goods_name'];?></a></strong></td>
 				<td class="col2"> <p><?php echo $v['goods_attr_str'];?></p> </td>
 				<td class="col3">￥<span><?php echo $v['shop_price'];?></span></td>
@@ -106,5 +106,27 @@
 		</div>
 	</div>
 	<!-- 主体部分 end -->
+
+	<script>
+		//异步更新购物车数量
+		function ajaxUpdateCartGoodsNumber(goods_id, goods_attr, goods_number)
+		{
+			$.ajax({
+				type : "POST",
+				url : "<?php echo U('Home/Cart/ajaxUpdateCartGoodsNumber'); ?>",
+				data:{
+					'goods_id':goods_id,
+					'goods_attr':goods_attr,
+					'goods_number':goods_number
+				},
+				success : function(result)
+				{
+
+				}
+			});
+		}
+
+	</script>
+
 
 </block>

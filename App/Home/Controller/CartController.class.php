@@ -56,4 +56,20 @@ class CartController extends CommonController
     {
         $this->display();
     }
+
+    /**
+     * 更新购物车数量
+     */
+    public function ajaxUpdateCartGoodsNumber()
+    {
+        $goods_id = (int)$_POST['goods_id'];
+        $goods_number = (int)$_POST['goods_number'];
+        $goods_attr = $_POST['goods_attr'];
+        $cartModel = D('Cart');
+        if($cartModel->updateGoodsNumber($goods_id, $goods_number, $goods_attr) === FALSE)
+            echo 0;
+        else
+            echo 1;
+    }
+
 }
