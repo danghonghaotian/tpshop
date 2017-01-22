@@ -87,7 +87,7 @@
 						<?php
 						$_price = $v['shop_price'] * $v['goods_number'];
 						$totalPrice += $_price;
-						echo $_price;
+						echo sprintf("%.2f",$_price);
 						?>
 					</span></td>
 				<td class="col6"><a href="">删除</a></td>
@@ -96,7 +96,7 @@
 			</tbody>
 			<tfoot>
 			<tr>
-				<td colspan="6">购物金额总计： <strong>￥ <span id="total"><?php echo $totalPrice;?></span></strong></td>
+				<td colspan="6">购物金额总计： <strong>￥ <span id="total"><?php echo sprintf("%.2f",$totalPrice);?></span></strong></td>
 			</tr>
 			</tfoot>
 		</table>
