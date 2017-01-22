@@ -59,6 +59,7 @@ class UserController extends CommonController {
 
     /**
      * 用户登录
+     * 登陆成功要将购物车商品转换为登陆者购买的商品
      */
     public function login()
     {
@@ -73,16 +74,21 @@ class UserController extends CommonController {
             $model = D('User');
             if($model->create('',$model::MODEL_UPDATE))  //登录不做唯一性验证
             {
-                if(($login = $model->login()) === TRUE)
+                $user = $model->login();
+                if($user['success'] == 'ok')
                 {
+                    //如果购物车中有未登陆时添加的商品，登陆后需要转到数据库保存
+                    $cartModel = D('Cart');
+                    $cartModel->addCookieGoodsToDatabase($user['user_id']);
+
                     $this->success('登录成功', U('Home/Member/index'));
                     exit;
                 }
                 else
                 {
-                    if($login == \Home\Model\UserModel::NO_USERNAME)
+                    if($user['status'] == \Home\Model\UserModel::NO_USERNAME)
                         $this->error('还没注册或者还没激活');
-                    elseif ($login == \Home\Model\UserModel::PASSWORD_ERROR )
+                    elseif ($user['status'] == \Home\Model\UserModel::PASSWORD_ERROR )
                         $this->error('用户名或者密码错误！');
                     else
                         $this->error('未知错误！');

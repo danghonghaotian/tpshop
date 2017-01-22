@@ -17,6 +17,15 @@ class OrderController extends MemberCommonController
     }
 
 
+    /**
+     * 填写核对订单信息
+     */
+    public function flow1()
+    {
+        $this->display();
+    }
+
+
 
 
 

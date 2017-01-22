@@ -14,12 +14,12 @@ class CartModel extends Model
     // 加入购物车
     public function addToCart($goods_id, $goods_number, $goods_attr)
     {
-        $mid = session('mid');
+        $user_id = session('user_id');
         // 1. 先判断用户有没有登录
-        if($mid)
+        if($user_id)
         {
             // 先判断购物车中有没有这件商品
-            $info = $this->where("goods_id=$goods_id AND goods_attr='$goods_attr' AND member_id=$mid")->find();
+            $info = $this->where("goods_id=$goods_id AND goods_attr='$goods_attr' AND user_id=$user_id")->find();
             if($info)
             {
                 // 修改商品数量
@@ -29,7 +29,7 @@ class CartModel extends Model
             else
             {
                 return $this->add(array(
-                    'member_id' => $mid,
+                    'user_id' => $user_id,
                     'goods_id' => $goods_id,
                     'goods_number' => $goods_number,
                     'goods_attr' => $goods_attr,
@@ -57,11 +57,11 @@ class CartModel extends Model
     public function get($idOnly = FALSE)
     {
         /********* 购物车中商品的ID ************/
-        $mid = session('mid');
+        $user_id = session('user_id');
         // 1. 先判断用户有没有登录
-        if($mid)
+        if($user_id)
         {
-            $cart = $this->where('member_id='.$mid)->select();
+            $cart = $this->where('user_id='.$user_id)->select();
         }
         else
         {
@@ -81,7 +81,7 @@ class CartModel extends Model
                         'goods_id' => $_k[0],
                         'goods_attr' => $_k[1],
                         'goods_number' => $v,
-                        'member_id'=>0,
+                        'user_id'=>0,
                     );
                 }
                 $cart = $_cart;
@@ -140,12 +140,12 @@ class CartModel extends Model
      */
     public function updateGoodsNumber($goods_id, $goods_number, $goods_attr)
     {
-        $mid = session('mid');
+        $user_id = session('user_id');
         // 1. 先判断用户有没有登录
-        if($mid)
+        if($user_id)
         {
             // 先判断购物车中有没有这件商品
-            $info = $this->where("goods_id=$goods_id AND goods_attr='$goods_attr' AND member_id=$mid")->find();
+            $info = $this->where("goods_id=$goods_id AND goods_attr='$goods_attr' AND user_id=$user_id")->find();
             if($info)
             {
                 // 修改商品数量
@@ -181,12 +181,12 @@ class CartModel extends Model
      */
     public function del($goods_id, $goods_attr)
     {
-        $mid = session('mid');
+        $user_id = session('user_id');
         // 1. 先判断用户有没有登录
-        if($mid)
+        if($user_id)
         {
             // 先判断购物车中有没有这件商品
-            return $this->where("goods_id=$goods_id AND goods_attr='$goods_attr' AND member_id=$mid")->delete();
+            return $this->where("goods_id=$goods_id AND goods_attr='$goods_attr' AND user_id=$user_id")->delete();
         }
         else
         {
@@ -204,6 +204,46 @@ class CartModel extends Model
                 cookie('Cart', serialize($cart), 'expire='.(30*86400));
             }
             return TRUE;
+        }
+    }
+
+
+    /**
+     * 登陆后将购物车中cookie的值转到数据库中保存,然后清空cookie
+     * @param $user_id
+     */
+    public function addCookieGoodsToDatabase($user_id)
+    {
+        // 1. 先从COOKIE中取出购物车的数组
+        $cart = cookie('Cart');
+        // 2. 反序列化成数组
+        $cart = $cart ? unserialize($cart) : array();
+        if($cart)
+        {
+            foreach ($cart as $k => $v)
+            {
+                $_k = explode('-', $k);
+                $where = array(
+                    'goods_id' => $_k[0],
+                    'goods_attr' => $_k[1],
+                    'user_id'=> $user_id,
+                );
+                $cartInfo = $this->where($where)->find();
+                $data = $where;
+                $data['goods_number'] = $v;
+
+                //先查询，如果存在就更新，否则添加
+                if($cartInfo)
+                {
+                    $this->where($where)->setInc('goods_number',$data['goods_number']); // 购物数量累加
+                }
+                else
+                {
+                    $this->add($data);
+                }
+
+            }
+            cookie('Cart',null);
         }
     }
 

@@ -166,16 +166,22 @@ EOF;
                     cookie('user_email', $user['email'], 7 * 86400);
                     cookie('user_password', I('post.password'), 7 * 86400);
                 }
-                return TRUE;
+//                return TRUE;
+                $data = array('success'=>'ok','user_id'=>$user['user_id']);
+                return $data;
             }
             else
             {
-                return self::PASSWORD_ERROR ;
+//                return self::PASSWORD_ERROR ;
+                $data = array('success'=>'fail','status'=>self::PASSWORD_ERROR);
+                return $data;
             }
         }
         else
         {
-            return self::NO_USERNAME ;
+//            return self::NO_USERNAME ;
+            $data = array('success'=>'fail','status'=>self::NO_USERNAME);
+            return $data;
         }
     }
 
