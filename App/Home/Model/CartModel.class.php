@@ -28,6 +28,7 @@ class CartModel extends Model
             }
             else
             {
+                $goods_attr= $goods_attr?$goods_attr:'';  //修复商品属性不能为空，数据库做了限定
                 return $this->add(array(
                     'user_id' => $user_id,
                     'goods_id' => $goods_id,

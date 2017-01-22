@@ -200,6 +200,12 @@ CREATE TABLE `tp_cart` (
   CONSTRAINT `cat_user` FOREIGN KEY (`user_id`) REFERENCES `tp_user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='购物车表';
 
+#这id是多余的，删掉
+ALTER TABLE `tp_cart`
+DROP COLUMN `id`,
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`user_id`, `goods_id`, `goods_attr`);
+
 #属性字符串连接方法
 SELECT GROUP_CONCAT(CONCAT(b.attr_name,':',a.attr_value) SEPARATOR '
 ') goodsAttrStr FROM tp_goods_attr a LEFT JOIN tp_attribute b ON a.attr_id=b.id WHERE a.id IN(181,183);
