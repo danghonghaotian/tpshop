@@ -172,4 +172,39 @@ class CartModel extends Model
         }
     }
 
+
+    /**
+     * 删除购物车中的商品
+     * @param $goods_id
+     * @param $goods_attr
+     * @return bool|mixed
+     */
+    public function del($goods_id, $goods_attr)
+    {
+        $mid = session('mid');
+        // 1. 先判断用户有没有登录
+        if($mid)
+        {
+            // 先判断购物车中有没有这件商品
+            return $this->where("goods_id=$goods_id AND goods_attr='$goods_attr' AND member_id=$mid")->delete();
+        }
+        else
+        {
+            // 没登录
+            // 1. 先从COOKIE中取出购物车的数组
+            $cart = cookie('Cart');
+            // 2. 反序列化成数组
+            $cart = $cart ? unserialize($cart) : array();
+            // 3. 判断如果商品已经存在就只加商品的数量，如果商品不存在就添加新的商品
+            if($cart)
+            {
+                $_key = $goods_id . '-'. $goods_attr;
+                unset($cart[$_key]);
+                // 4. 存回到COOKIE，保存一个月
+                cookie('Cart', serialize($cart), 'expire='.(30*86400));
+            }
+            return TRUE;
+        }
+    }
+
 }

@@ -83,14 +83,14 @@
 					<a href="javascript:;" class="add_num"></a>
 				</td>
 				<td class="col5">￥
-					<span>
+					<span class="price">
 						<?php
 						$_price = $v['shop_price'] * $v['goods_number'];
 						$totalPrice += $_price;
 						echo sprintf("%.2f",$_price);
 						?>
 					</span></td>
-				<td class="col6"><a href="">删除</a></td>
+				<td class="col6"><a onclick="del(this)" href="javascript:void(0);">删除</a></td>
 			</tr>
 			<?php endforeach;?>
 			</tbody>
@@ -124,6 +124,34 @@
 
 				}
 			});
+		}
+
+		//删除购物车中的商品
+		function del(o)
+		{
+			if(confirm("确定要删除吗？"))
+			{
+				var _tr = $(o).parent().parent();
+				var goods_id = _tr.data('goods_id');
+				var goods_attr = _tr.data("goods_attr");
+				$.ajax({
+					type : "POST",
+					url : "<?php echo U('Home/Cart/del'); ?>",
+					data:{
+						'goods_id':goods_id,
+						'goods_attr':goods_attr,
+					},
+					success : function(result)
+					{
+						_tr.remove();
+					}
+				});
+
+				// 取出总价
+				var newTP = (parseFloat($("#total").html()) - parseFloat(_tr.find(".price").html())).toFixed(2);
+				$("#total").html(newTP);
+
+			}
 		}
 
 	</script>

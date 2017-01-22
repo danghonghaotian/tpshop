@@ -72,4 +72,16 @@ class CartController extends CommonController
             echo 1;
     }
 
+    /**
+     * 删除购物车中的商品
+     */
+    public function del()
+    {
+        // 处理一个表单中的属性ID
+        $goods_id = (int)$_POST['goods_id'];
+        $goods_attr = $_POST['goods_attr'];
+        $cartModel = D('Cart');
+        $cartModel->del($goods_id, $goods_attr);
+    }
+
 }
