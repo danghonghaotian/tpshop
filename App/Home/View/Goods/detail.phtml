@@ -215,7 +215,7 @@
 										<dt><?php echo $k;?>：</dt>
 										<dd>
 											<?php foreach ($v as $k1=>$v1):?>
-												<a <?php if($k1 == 0):?>class="selected" <?php endif;?> href="javascript:;"><?php echo $v1['attr_value'];?> <input type="radio" name="goods_attr_id[<?php echo $v1['attr_id']?>]" value="<?php echo $v1['id']?>" <?php if($k1 == 0):?>checked="checked"<?php endif;?>  /></a>
+												<a <?php if($k1 == 0):?>class="selected" <?php endif;?> href="javascript:;"><?php echo $v1['attr_value'];?> <input type="radio" name="goods_attr_id[<?php echo $v1['attr_id']?>]" value="<?php echo $v1['id']?>" <?php if($k1 == 0):?>checked="checked"<?php endif;?> class="goods_attr_id" /></a>
 											<?php endforeach;?>
 										</dd>
 									</dl>
@@ -231,7 +231,10 @@
 										<input type="text" name="amount" value="1" class="amount"/>
 										<a href="javascript:;" id="add_num"></a>
 									</dd>
+									<dd id="goodsNumber">
+									</dd>
 								</dl>
+
 							</li>
 
 							<li>
@@ -507,5 +510,46 @@
 
 	</div>
 	<!-- 商品页面主体 end -->
+
+	<script>
+		//初始化库存量
+		function getGoodsNumber()
+		{
+			// 商品的数量
+			var goods_number = $("input[name='amount']").val();
+			// 被选中的商品的属性
+			var goods_attr_id = []; // 定义一个空数组
+			$(".goods_attr_id:checked").each(function(k,v){
+				goods_attr_id.push($(v).val());
+			});
+			// 排序goods_attr_id数组－升序
+			goods_attr_id.sort();
+			// 转化成一个字符串
+			goods_attr_id = goods_attr_id.join(",");
+			$.ajax({
+				type : "POST",
+				url : "<?php echo U('Home/Goods/ajaxGetGoodsNumber');?>",
+				data:{
+					'goods_number':goods_number,
+					'goods_attr_id':goods_attr_id,
+					'goods_id':<?php echo $_GET['id']?>
+				},
+				success : function(result)
+				{
+					if(result == 0)
+					{
+						$("#goodsNumber").attr('style','color:red');
+						$("#goodsNumber").html('无货');
+					}
+					else
+					{
+						$("#goodsNumber").html('(库存'+result+'件)');
+					}
+				}
+			});
+		}
+		getGoodsNumber();
+
+	</script>
 </block>
 

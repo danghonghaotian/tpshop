@@ -116,5 +116,25 @@ class GoodsController extends CommonController
         $this->display();
     }
 
+    /**
+     * 异步获取库存量
+     */
+   public function ajaxGetGoodsNumber()
+   {
+       $goods_id = (int)$_POST['goods_id'];
+       $goods_number = (int)$_POST['goods_number'];
+       $goods_attr_id = $_POST['goods_attr_id'];
+       $productModel = D('Product');
+       $product = $productModel->where(array('goods_id'=>$goods_id,'goodsattr_id'=>$goods_attr_id))->field('goods_number')->find();
+       if($product['goods_number'] > $goods_number)
+       {
+           echo $product['goods_number']; //实际库存量
+       }
+       else //库存不足
+       {
+            echo '0';
+       }
+   }
+
 
 }
