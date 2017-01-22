@@ -186,4 +186,20 @@ CREATE TABLE `tp_product` (
   KEY `goodsattr_id` (`goodsattr_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='货品表';
 
+ALTER TABLE `tp_user`
+ENGINE=InnoDB;
 
+CREATE TABLE `tp_cart` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user_id` mediumint(8) unsigned NOT NULL COMMENT '会员的ID',
+  `goods_id` mediumint(8) unsigned NOT NULL COMMENT '商品的ID',
+  `goods_number` int(10) unsigned NOT NULL COMMENT '商品的数量',
+  `goods_attr` varchar(150) NOT NULL DEFAULT '' COMMENT '商品属性的ID',
+  PRIMARY KEY (`id`),
+  KEY `cat_user` (`user_id`),
+  CONSTRAINT `cat_user` FOREIGN KEY (`user_id`) REFERENCES `tp_user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='购物车表';
+
+#属性字符串连接方法
+SELECT GROUP_CONCAT(CONCAT(b.attr_name,':',a.attr_value) SEPARATOR '
+') goodsAttrStr FROM tp_goods_attr a LEFT JOIN tp_attribute b ON a.attr_id=b.id WHERE a.id IN(181,183);

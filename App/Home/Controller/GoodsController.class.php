@@ -55,6 +55,7 @@ class GoodsController extends CommonController
         //商品基本信息
         $goodsModel = D('Goods');
         $goodsInfo = $goodsModel->find($id);
+//        dump($goodsInfo);
         $this->assign('goodsInfo',$goodsInfo);
         //商品相册
         $goodsGalleryModel = M('GoodsGallery');

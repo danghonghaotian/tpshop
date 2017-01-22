@@ -18,10 +18,32 @@ class CartController extends CommonController
         $this->error('404,该页面不存在',U('Home/Index/index'),1);
     }
 
-    
+    public function add()
+    {
+        if(IS_POST)
+        {
+            // 处理一个表单中的属性ID
+            $goods_id = (int)$_POST['goods_id'];
+            $amount = (int)$_POST['amount'];
+            $goods_attr = implode(',', $_POST['goods_attr_id']);
+            $cartModel = D('Cart');
+            if($cartModel->addToCart($goods_id, $amount, $goods_attr) === FALSE)
+                $this->error('购物失败!');
+            else
+                $this->success("购物成功", U('index'));
+        }
+    }
+
+
+    /**
+     * 购物车列表
+     */
     public function index()
     {
-//        dump($_POST);
+        $cartModel = D('Cart');
+        $goods = $cartModel->get();
+//        dump($goods);
+        $this->assign('goods', $goods);
         $this->display();
     }
 
