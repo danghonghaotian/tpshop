@@ -24,7 +24,7 @@ class GoodsModel extends Model
         $data = array();
         foreach ($attr as $k=>$v)
         {
-            $data[$v['attr_name']][] = array($v['attr_id'],$v['attr_value']);
+            $data[$v['attr_name']][] = array('id'=>$v['id'],'attr_value'=>$v['attr_value'],'attr_id'=>$v['attr_id']);
         }
         return $data;
     }

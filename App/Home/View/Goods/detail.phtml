@@ -215,7 +215,7 @@
 										<dt><?php echo $k;?>：</dt>
 										<dd>
 											<?php foreach ($v as $k1=>$v1):?>
-												<a <?php if($k1 == 0):?>class="selected" <?php endif;?> href="javascript:;"><?php echo $v1[1];?> <input type="radio" name="goods_attr_id[<?php echo $v1[0]?>]" value="<?php echo $v1[1]?>" <?php if($k1 == 0):?>checked="checked"<?php endif;?>  /></a>
+												<a <?php if($k1 == 0):?>class="selected" <?php endif;?> href="javascript:;"><?php echo $v1['attr_value'];?> <input type="radio" name="goods_attr_id[<?php echo $v1['attr_id']?>]" value="<?php echo $v1['id']?>" <?php if($k1 == 0):?>checked="checked"<?php endif;?>  /></a>
 											<?php endforeach;?>
 										</dd>
 									</dl>

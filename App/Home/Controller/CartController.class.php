@@ -21,6 +21,7 @@ class CartController extends CommonController
     
     public function flow1()
     {
+//        dump($_POST);
         $this->display();
     }
 

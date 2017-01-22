@@ -63,6 +63,8 @@ class GoodsController extends CommonController
 
         //商品属性(单选属性)
         $data =  $goodsModel->getGoodsAttrRadioData($id);
+
+//        dump($data);
         $this->assign('goods_attr',$data);
         //商品唯一属性
         $unitAttr =  $goodsModel-> getUnitAttrByGoodsId($id);
