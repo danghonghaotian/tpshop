@@ -126,7 +126,7 @@ class GoodsController extends CommonController
        $goods_attr_id = $_POST['goods_attr_id'];
        $productModel = D('Product');
        $product = $productModel->where(array('goods_id'=>$goods_id,'goodsattr_id'=>$goods_attr_id))->field('goods_number')->find();
-       if($product['goods_number'] > $goods_number)
+       if($product['goods_number'] >= $goods_number)
        {
            echo $product['goods_number']; //实际库存量
        }

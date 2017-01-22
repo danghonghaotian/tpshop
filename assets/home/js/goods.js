@@ -50,6 +50,7 @@ $(function(){
 		$(this).find("input").attr({checked:"checked"});
 		//去除虚边框
 		$(this).blur();
+		getGoodsNumber();
 	});
 
 
@@ -60,12 +61,14 @@ $(function(){
 			alert("商品数量最少为1");
 		} else{
 			$(".amount").val(parseInt($(".amount").val()) - 1);
+			getGoodsNumber();
 		}
 	});
 
 	//增加
 	$("#add_num").click(function(){
 		$(".amount").val(parseInt($(".amount").val()) + 1);
+		getGoodsNumber();
 	});
 
 	//直接输入
@@ -73,6 +76,10 @@ $(function(){
 		if (parseInt($(".amount").val()) < 1){
 			alert("商品数量最少为1");
 			$(this).val(1);
+		}
+		else
+		{
+			getGoodsNumber();
 		}
 	});
 
