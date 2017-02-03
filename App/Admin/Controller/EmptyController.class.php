@@ -13,4 +13,15 @@ class EmptyController extends Controller
     {
        $this->redirect('Admin/Index/index');
     }
+
+    /**
+     * 还不确定后台什么原因，不走index
+     * @param string $fun
+     * @param array $vars
+     */
+    public function __call($fun,$vars)
+    {
+        $this->redirect('Admin/Index/index');
+    }
+
 }

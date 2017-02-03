@@ -10,6 +10,16 @@ namespace Admin\Controller;
 use Think\Controller;
 class  ManagerController extends Controller
 {
+
+    /**
+     *
+     * @param string $function
+     * @param array $vars
+     */
+    public function __call($function,$vars)
+    {
+        $this->redirect('Home/Index/index');
+    }
     /**
      * 管理员登录
      */
