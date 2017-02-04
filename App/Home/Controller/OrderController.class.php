@@ -22,6 +22,11 @@ class OrderController extends MemberCommonController
      */
     public function flow1()
     {
+        //收货人信息
+        $addressModel = D('Address');
+        $userAddressInfo = $addressModel->getUserAddressInfo();
+//        dump($userAddressInfo);
+        $this->assign('userAddressInfo', $userAddressInfo);
         //商品清单信息
         $cartModel = D('Cart');
         $goods = $cartModel->get();

@@ -10,7 +10,7 @@ $(function () {
         $.ajax({
             type: "POST",
             url: "/index.php/Home/Address/ajaxGetCity",
-            data: {provinceId:provinceId},
+            data: {provinceId:provinceId,id:id},
             success: function(msg){
                 //删除大于0的选项
                 $('#city').find('option:gt(0)').remove();
@@ -21,13 +21,21 @@ $(function () {
                     var cityData = $.parseJSON(msg);
                     var str = '';
                     $.each(cityData,function(i,city){
-                        str+='<option value="'+city.region_id+'">'+city.region_name+'</option>'
+                        if(i > 0)
+                        {
+                            str+='<option value="'+city.region_id+'"';
+                            if(city.region_id == parseInt(cityData.userCityId))
+                            {
+                                str+=' selected = "selected"';
+                            }
+                            str+='>'+city.region_name+'</option>'
+                        }
                     });
                     $('#city').append(str);
                 }
             }
         });
-    });
+    }).change(); //自动触发
     //城市改变
     $('#city').change(function(){
         var cityId = $(this).val();
@@ -51,5 +59,5 @@ $(function () {
                 }
             }
         });
-    });
+    }).change(); //自动触发
 });

@@ -71,10 +71,17 @@ class AddressController extends MemberCommonController
     public function ajaxGetCity()
     {
         $provinceId = $_POST['provinceId'];
+        $id = $_POST['id'];
         if($provinceId != -1)
         {
             $region = M('Region');
             $city = $region->where(array('region_type'=>2,'parent_id'=>$provinceId))->select();
+            if($id != -1)  //修改地址时
+            {
+                $addressModel = M('Address');
+                $userCityId = $addressModel->getFieldById($id,'city');
+                $city['userCityId'] = $userCityId;
+            }
             echo json_encode($city);
         }
         else
