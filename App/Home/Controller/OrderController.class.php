@@ -22,6 +22,10 @@ class OrderController extends MemberCommonController
      */
     public function flow1()
     {
+        //商品清单信息
+        $cartModel = D('Cart');
+        $goods = $cartModel->get();
+        $this->assign('goods', $goods);
         $this->display();
     }
 
