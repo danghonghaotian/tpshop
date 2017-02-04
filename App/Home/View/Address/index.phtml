@@ -1,0 +1,73 @@
+<extend name="Layout/gv" />
+
+<block name="header_meta">
+	<title>收货地址- <?php echo C('company');?></title>
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/base.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/global.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/header.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/home.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/user.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/bottomnav.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/footer.css" type="text/css">
+
+	<script type="text/javascript" src="<?php echo C('f-js')?>/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/header.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/home.js"></script>
+</block>
+
+<block name="main">
+	<!-- 页面主体 start -->
+	<div class="main w1210 bc mt10">
+		<div class="crumb w1210">
+			<h2><strong><?php echo C('userCenter');?></strong><span>> 收货地址</span></h2>
+		</div>
+
+		<!-- 左侧导航菜单 start -->
+		<?php include "/App/Home/View/Layout/user_left.phtml";?>
+		<!-- 左侧导航菜单 end -->
+
+		<!-- 右侧内容区域 start -->
+		<div class="content fl ml10">
+			<div class="user_hd">
+				<h3>
+					<a href="<?php echo U('Home/Address/add');?>">添加收货地址</a>
+					<span class="address_title">您已创建<?php echo count($addressInfo);?> 个收货地址，最多可创建5个</span>
+				</h3>
+			</div>
+
+			<div class="user_bd mt10">
+				<?php foreach ($addressInfo as $k=>$v):?>
+				<fieldset>
+					<legend><span style="font-weight: bold;font-size: 14px;"><?php echo $v['consignee'];?></span>的收货信息 <?php if($v['is_default']==1):?>[默认]<?php endif;?></legend>
+				<table class="consignee">
+					<tr>
+						<td class="left">收货人 :</td>
+						<td colspan="2"><?php echo $v['consignee'];?></td>
+					</tr>
+					<tr>
+						<td class="left">所在地区 :</td>
+						<td colspan="2"><?php echo $v['location'];?></td>
+					</tr>
+					<tr>
+						<td class="left">详细地址 :</td>
+						<td colspan="2"><?php echo $v['address'];?></td>
+					</tr>
+					<tr>
+						<td width="60" class="left">手机 :</td>
+						<td><?php echo $v['tel'];?></td>
+						<td width="120" align="right">
+							<a href="<?php echo U('Home/Address/setDefault',array('id'=>$v['id']));?>"><?php if($v['is_default']==0):?>设为默认<?php endif;?></a>
+							<a href="<?php echo U('Home/Address/save',array('id'=>$v['id']));?>">编辑</a>
+							<a onclick="return confirm('确定要删除吗');"  href="<?php echo U('Home/Address/delete',array('id'=>$v['id']));?>">删除</a>
+						</td>
+					</tr>
+				</table>
+				</fieldset>
+				<?php endforeach;?>
+
+			</div>
+		</div>
+		<!-- 右侧内容区域 end -->
+	</div>
+	<!-- 页面主体 end-->
+</block>

@@ -209,3 +209,20 @@ ADD PRIMARY KEY (`user_id`, `goods_id`, `goods_attr`);
 #属性字符串连接方法
 SELECT GROUP_CONCAT(CONCAT(b.attr_name,':',a.attr_value) SEPARATOR '
 ') goodsAttrStr FROM tp_goods_attr a LEFT JOIN tp_attribute b ON a.attr_id=b.id WHERE a.id IN(181,183);
+
+#2017-2-4
+CREATE TABLE tp_address
+(
+	id mediumint unsigned not null auto_increment comment 'id',
+	user_id mediumint(8) unsigned not null comment '会员的ID',
+	consignee varchar(30) not null comment '收货人姓名',
+	province varchar(30) not null comment '省',
+	city varchar(30) not null comment '市',
+	area varchar(30) not null comment '地区',
+	address varchar(150) not null comment '详细地址',
+	tel varchar(150) not null comment '收货人电话',
+	is_default tinyint unsigned not null default '1' comment '是否默认的地址',
+	primary key (id),
+	foreign key (user_id) references tp_user(user_id) on delete cascade
+)engine=InnoDB default charset=utf8 comment '用户收货地址表';
+

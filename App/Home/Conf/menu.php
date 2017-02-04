@@ -34,7 +34,7 @@ return array(
         ),
         '账户设置'=>array(
             '个人信息' =>array('Member','index'),
-            '收货地址' =>array('Goods','add'),
+            '收货地址' =>array('Address','index'),
         ),
     )
 );

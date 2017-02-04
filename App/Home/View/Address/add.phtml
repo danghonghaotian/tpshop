@@ -1,0 +1,77 @@
+<extend name="Layout/gv" />
+
+<block name="header_meta">
+	<title>添加收货地址- <?php echo C('company');?></title>
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/base.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/global.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/header.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/home.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/user.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/bottomnav.css" type="text/css">
+	<link rel="stylesheet" href="<?php echo C('f-css')?>/footer.css" type="text/css">
+
+	<script type="text/javascript" src="<?php echo C('f-js')?>/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/header.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/home.js"></script>
+	<script type="text/javascript" src="<?php echo C('f-js')?>/address.js"></script>
+</block>
+
+<block name="main">
+	<!-- 页面主体 start -->
+	<div class="main w1210 bc mt10">
+		<div class="crumb w1210">
+			<h2><strong><?php echo C('userCenter');?></strong><span>> 添加收货地址</span></h2>
+		</div>
+
+		<!-- 左侧导航菜单 start -->
+		<?php include "/App/Home/View/Layout/user_left.phtml";?>
+		<!-- 左侧导航菜单 end -->
+
+		<!-- 右侧内容区域 start -->
+		<div class="content fl ml10">
+			<div class="user_hd">
+				<h3>添加收货地址</h3>
+			</div>
+
+			<div class="user_bd mt10">
+				<form action="<?php echo U('Home/Address/add');?>" method="post">
+					<ul>
+						<li>
+							<label for="">收货人：</label>
+							<input type="text" class="txt" name="consignee"/>
+						</li>
+						<li>
+							<label for="">所在地区：</label>
+							<select name="province" id="province" class="location">
+								<option value="-1">省份</option>
+								<?php foreach ($province as $v):?>
+								<option value="<?= $v['region_id']; ?>"><?= $v['region_name'];?></option>
+								<?php endforeach;?>
+							</select>
+							<select name="city" id="city" class="location">
+								<option value="-1">城市</option>
+							</select>
+							<select name="area" id="area" class="location">
+								<option value="-1">县城</option>
+							</select>
+						</li>
+						<li>
+							<label for="">详细地址：</label>
+							<input type="text" class="txt" name="address" />
+						</li>
+						<li>
+							<label for="">手机号码：</label>
+							<input type="text" class="txt"  name="tel" />
+						</li>
+						<li>
+							<label for="">&nbsp;</label>
+							<input type="submit" value="添加" class="sbtn" />
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+		<!-- 右侧内容区域 end -->
+	</div>
+	<!-- 页面主体 end-->
+</block>
