@@ -2,7 +2,7 @@
 
 <block name="header_meta">
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>填写核对订单信息</title>
+	<title>订单结算页-<?php echo C('company');?></title>
 	<link rel="stylesheet" href="<?php echo C('f-css');?>/base.css" type="text/css">
 	<link rel="stylesheet" href="<?php echo C('f-css');?>/global.css" type="text/css">
 	<link rel="stylesheet" href="<?php echo C('f-css');?>/header.css" type="text/css">
@@ -260,7 +260,7 @@
 
 			<!-- 商品清单 start -->
 			<div class="goods">
-				<h3>商品清单</h3>
+				<h3>送货清单 <span><a href="<?php echo U('Home/Cart/index');?>">[修改购物车]</a></span></h3>
 				<table>
 					<thead>
 					<tr>
