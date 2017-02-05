@@ -41,6 +41,19 @@ class OrderController extends MemberCommonController
         $this->display();
     }
 
+    /**
+     * 提交订单
+     */
+    public function flow2()
+    {
+        dump($_POST);
+        if(IS_POST)
+        {
+            $orderModel = D('Order');
+            $orderModel->finishShopping();
+        }
+    }
+
 
 
 

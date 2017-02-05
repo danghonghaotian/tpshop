@@ -92,4 +92,21 @@ class AddressModel extends Model
         $res = $this->where(array('user_id'=>session('user_id'),'id'=>$id))->delete();
         return $res;
     }
+
+    /**
+     * 获取收货人信息
+     * @param $id
+     * @return array
+     */
+    public function getConsigneeInfo($id)
+    {
+        $consigneeInfo = $this->where(array('id'=>$id,'user_id'=>session('user_id')))->find();
+        $location =self::convertToLocation($consigneeInfo['province'],$consigneeInfo['city'],$consigneeInfo['area']);
+        $address = $location.$consigneeInfo['address'];
+        $arr = array();
+        $arr['address'] = $address;
+        $arr['tel'] = $consigneeInfo['tel'];
+        $arr['consignee'] = $consigneeInfo['consignee'];
+        return $arr;
+    }
 }

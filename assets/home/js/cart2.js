@@ -38,7 +38,7 @@ $(function(){
 		$(".pay_select").show();
 	})
 
-	$("input[name=pay]").click(function(){
+	$("input[name=pay_id]").click(function(){
 		$(this).parent().parent().addClass("cur").siblings().removeClass("cur");
 	});
 
@@ -59,7 +59,7 @@ $(function(){
 
 
 	//配送至
-	$("input[name=address]").eq(0).click(function(){
+	$("input[name=address_id]").eq(0).click(function(){
 		var consignee = $(this).data('consignee');
 		var address = $(this).data('address');
 		var tel = $(this).data('tel');
@@ -68,7 +68,7 @@ $(function(){
 		$(this).parent().addClass("cur").siblings().removeClass("cur");
 	}).trigger('click'); //自动触发选中默认
 
-	$("input[name=address]").click(function(){
+	$("input[name=address_id]").click(function(){
 		var consignee = $(this).data('consignee');
 		var address = $(this).data('address');
 		var tel = $(this).data('tel');

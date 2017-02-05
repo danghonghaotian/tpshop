@@ -67,7 +67,7 @@
 		<div class="fillin_hd">
 			<h2>填写并核对订单信息</h2>
 		</div>
-
+		<form method="post" action="<?php echo U('Home/Order/flow2');?>" id="order_form">
 		<div class="fillin_bd">
 			<!-- 收货人信息  start-->
 			<div class="address">
@@ -76,7 +76,7 @@
 					<ul>
 						<?php foreach ($userAddressInfo as $k=>$v):?>
 						<li>
-							<input type="radio" name="address" <?php if($v['is_default'] == 1):?>checked="checked"<?php endif;?> value="<?php echo $v['id'];?>" data-consignee="<?php echo $v['consignee'];?>" data-address="<?php echo $v['address'];?>" data-tel="<?php echo $v['tel'];?>"/><?php echo $v['consignee'];?>　<?php echo $v['address'];?>　<?php echo $v['tel'];?>
+							<input type="radio" name="address_id" <?php if($v['is_default'] == 1):?>checked="checked"<?php endif;?> value="<?php echo $v['id'];?>" data-consignee="<?php echo $v['consignee'];?>" data-address="<?php echo $v['address'];?>" data-tel="<?php echo $v['tel'];?>"/><?php echo $v['consignee'];?>　<?php echo $v['address'];?>　<?php echo $v['tel'];?>
 							<?php if($v['is_default'] == 0):?><a href="<?php echo U('Home/Address/setDefault',array('id'=>$v['id']));?>">设为默认地址</a><?php endif;?>
 							<a href="<?php echo U('Home/Address/save',array('id'=>$v['id']));?>">编辑</a>
 							<a onclick="return confirm('确定要删除吗');"  href="<?php echo U('Home/Address/delete',array('id'=>$v['id']));?>">删除</a>
@@ -110,7 +110,7 @@
 					<table>
 						<?php foreach ($payment as $k=>$v):?>
 						<tr>
-							<td class="col1"><input type="radio" name="pay" value="<?php echo $v['id']?>"/><?php echo $v['pay_name']?></td>
+							<td class="col1"><input type="radio" name="pay_id" value="<?php echo $v['id']?>"/><?php echo $v['pay_name']?></td>
 							<td class="col2"><?php echo $v['pay_desc']?></td>
 						</tr>
 						<?php endforeach;?>
@@ -130,19 +130,19 @@
 							</li>
 							<li>
 								<label for="">发票类型：</label>
-								<input type="radio" name="type" checked="checked"/>普通发票
-								<input type="radio" name="type" />增值税发票
+								<input type="radio" name="invoice_type" checked="checked" value="普通发票"/>普通发票
+								<input type="radio" name="invoice_type" value="增值税发票" />增值税发票
 							</li>
 							<li>
 								<label for="">发票抬头：</label>
-								<input type="radio" name="is_company" checked="checked" class="personal" />个人
-								<input type="radio" name="is_company" class="company"/>单位
-								<input type="text" class="txt company_input" disabled="disabled" placeholder="请输入公司全称" />
+								<input type="radio" name="invoice_header" checked="checked" class="personal" value="个人"/>个人
+								<input type="radio" name="invoice_header" class="company" value="单位"/>单位
+								<input type="text" class="txt company_input" disabled="disabled" name="invoice_company" placeholder="请输入公司全称" />
 							</li>
 							<li>
 								<label for="">发票内容：</label>
-								<input type="radio" name="content" checked="checked" />不开发票
-								<input type="radio" name="content" />明细
+								<input type="radio" name="invoice_content" checked="checked" value="不开发票" />不开发票
+								<input type="radio" name="invoice_content" value="明细" />明细
 							</li>
 						</ul>
 				</div>
@@ -218,10 +218,11 @@
 		</div>
 
 		<div class="fillin_ft">
-			<a href="<?php echo U('Home/Cart/flow3');?>"><span>提交订单</span></a>
+			<a href="javascript:void(0)" onclick="$('#order_form').submit();"><span>提交订单</span></a>
 			<p>应付总额：<strong>￥<?php echo sprintf("%.2f",$totalPrice+$fee);?></strong></p>
 
 		</div>
+		</form>
 	</div>
 	<!-- 主体部分 end -->
 </block>
