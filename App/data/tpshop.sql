@@ -226,3 +226,16 @@ CREATE TABLE tp_address
 	foreign key (user_id) references tp_user(user_id) on delete cascade
 )engine=InnoDB default charset=utf8 comment '用户收货地址表';
 
+
+CREATE TABLE `tp_payment` (
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `pay_code` varchar(20) NOT NULL DEFAULT ''  comment '支付方式英文类名',
+  `pay_name` varchar(120) NOT NULL DEFAULT ''  comment '支付方式中文名称',
+  `pay_fee` varchar(10) NOT NULL DEFAULT '0'  comment '手续费',
+  `pay_desc` text NOT NULL  comment '支付的描述',
+  `pay_order` tinyint(3) unsigned NOT NULL DEFAULT '0'  comment '排序',
+  `pay_config` text NOT NULL  comment '序列化的配置信息',
+  `enabled` tinyint(1) unsigned NOT NULL DEFAULT '1'  comment '是否开启，1开启。0关闭',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pay_code` (`pay_code`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

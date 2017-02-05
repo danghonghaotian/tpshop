@@ -108,14 +108,12 @@
 				<h3>支付方式</h3>
 				<div class="pay_select">
 					<table>
+						<?php foreach ($payment as $k=>$v):?>
 						<tr>
-							<td class="col1"><input type="radio" name="pay" />支付宝支付</td>
-							<td class="col2">支付宝担保交易，保障安全</td>
+							<td class="col1"><input type="radio" name="pay" value="<?php echo $v['id']?>"/><?php echo $v['pay_name']?></td>
+							<td class="col2"><?php echo $v['pay_desc']?></td>
 						</tr>
-						<tr>
-							<td class="col1"><input type="radio" name="pay" />微信支付</td>
-							<td class="col2">微信支付，简单快捷</td>
-						</tr>
+						<?php endforeach;?>
 					</table>
 				</div>
 			</div>

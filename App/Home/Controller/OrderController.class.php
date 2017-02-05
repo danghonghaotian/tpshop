@@ -27,6 +27,13 @@ class OrderController extends MemberCommonController
         $userAddressInfo = $addressModel->getUserAddressInfo();
 //        dump($userAddressInfo);
         $this->assign('userAddressInfo', $userAddressInfo);
+
+        //支付方式
+        $paymentModel = D('Payment');
+        $payment = $paymentModel->getPaymentInfo();
+//        dump($payment);
+        $this->assign('payment', $payment);
+
         //商品清单信息
         $cartModel = D('Cart');
         $goods = $cartModel->get();

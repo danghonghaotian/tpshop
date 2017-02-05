@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 修改<?php echo $payment['pay_name']?>支付 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Payment/lst") ?>">支付方式</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 修改<?php echo $payment['pay_name']?>支付 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/Payment/save",array('pay_code'=>$payment['pay_code'])) ?>"enctype="multipart/form-data" >
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <input type="hidden" name="id" value="<?php echo $payment['id']?>"/>
+            <tr>
+                <td class="label">支付方式名称</td>
+                <td>
+                    <input type="text" name="pay_name" maxlength="60" value="<?php echo $payment['pay_name']?>" readonly/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">支付方式描述</td>
+                <td>
+                    <textarea  name="pay_desc" cols="60" rows="4"  ><?php echo $payment['pay_desc']?></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">微信商家帐户 </td>
+                <td>
+                    <input type="text" name="pay_config[account]" maxlength="60" value="<?php echo $payment['pay_config']['account']?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">安全校验码(Key)</td>
+                <td>
+                    <input type="text" name="pay_config[key]" maxlength="60" value="<?php echo $payment['pay_config']['key']?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">授权码 </td>
+                <td>
+                    <input type="text" name="pay_config[partner]" maxlength="60" value="<?php echo $payment['pay_config']['partner']?>" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">支付手续费</td>
+                <td>
+                    <input type="text" name="pay_fee" maxlength="60" value="<?php echo $payment['pay_fee']?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否开启</td>
+                <td>
+                    <input type="radio" name="enabled" value="1" <?php if($payment['enabled'] == 1):?>checked="checked"<?php endif;?>/>开启
+                    <input type="radio" name="enabled" value="0" <?php if($payment['enabled'] == 0):?>checked="checked"<?php endif;?>/>关闭
+                </td>
+            </tr>
+            <tr>
+                <td class="label">排序</td>
+                <td>
+                    <input type="text" name="pay_order" maxlength="60" value="<?php echo $payment['pay_order']?>" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

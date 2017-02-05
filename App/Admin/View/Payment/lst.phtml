@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 支付方式 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -支付方式 </span>
+    <div style="clear:both"></div>
+</h1>
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>支付方式名称</th>
+                <th>支付方式描述</th>
+                <th>手续费</th>
+                <th>排序</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($payment as $k=>$v):?>
+            <tr>
+                <td class="first-cell">
+                    <?php echo $v['pay_name'];?>
+                </td>
+                <td align="center">
+                    <?php echo $v['pay_desc'];?>
+                </td>
+                <td align="center"> <?php echo $v['pay_fee'];?></td>
+                <td align="center"> <?php echo $v['pay_order'];?></td>
+                <td align="center">
+                    <a href="<?php echo U('Admin/Payment/save',array('pay_code'=>$v['pay_code']));?>" title="编辑">编辑</a> |
+                    <?php if($v['enabled'] == 1):?>
+                         <a href="<?php echo U('Admin/Payment/enabled',array('pay_code'=>$v['pay_code'],'enabled'=>0));?>" title="关闭">关闭</a>
+                    <?php elseif($v['enabled'] == 0):?>
+                        <a href="<?php echo U('Admin/Payment/enabled',array('pay_code'=>$v['pay_code'],'enabled'=>1));?>" title="开启">开启</a>
+                    <?php endif;?>
+                </td>
+            </tr>
+            <?php endforeach;?>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
