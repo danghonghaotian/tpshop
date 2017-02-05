@@ -76,7 +76,7 @@
 					<ul>
 						<?php foreach ($userAddressInfo as $k=>$v):?>
 						<li>
-							<input type="radio" name="address" <?php if($v['is_default'] == 1):?>checked="checked"<?php endif;?> value="<?php echo $v['id'];?>"/><?php echo $v['consignee'];?>　<?php echo $v['address'];?>　<?php echo $v['tel'];?>
+							<input type="radio" name="address" <?php if($v['is_default'] == 1):?>checked="checked"<?php endif;?> value="<?php echo $v['id'];?>" data-consignee="<?php echo $v['consignee'];?>" data-address="<?php echo $v['address'];?>" data-tel="<?php echo $v['tel'];?>"/><?php echo $v['consignee'];?>　<?php echo $v['address'];?>　<?php echo $v['tel'];?>
 							<?php if($v['is_default'] == 0):?><a href="<?php echo U('Home/Address/setDefault',array('id'=>$v['id']));?>">设为默认地址</a><?php endif;?>
 							<a href="<?php echo U('Home/Address/save',array('id'=>$v['id']));?>">编辑</a>
 							<a onclick="return confirm('确定要删除吗');"  href="<?php echo U('Home/Address/delete',array('id'=>$v['id']));?>">删除</a>
@@ -89,12 +89,12 @@
 
 			<!-- 配送方式 start -->
 			<div class="delivery">
-				<h3>送货方式</h3>
+				<h3>配送方式</h3>
 				<div class="delivery_select">
 					<table>
 						<tr>
 							<td>
-								商家安排快递公司发货，默认圆通快递
+								由商家选择合作快递为您配送（配送时间:如有发货疑问请咨询客服）
 							</td>
 							<td>每张订单不满100.00元,运费10.00元，超过100.00元免邮</td>
 						</tr>
@@ -126,17 +126,23 @@
 				<div class="receipt_select">
 						<ul>
 							<li>
+								<label for="">温馨提示:开发票需收取发票费用按商品总金额的6%收取,不开发票可以开收据</label>
+							</li>
+							<li>
+								<label for="">发票类型：</label>
+								<input type="radio" name="type" checked="checked"/>普通发票
+								<input type="radio" name="type" />增值税发票
+							</li>
+							<li>
 								<label for="">发票抬头：</label>
-								<input type="radio" name="type" checked="checked" class="personal" />个人
-								<input type="radio" name="type" class="company"/>单位
-								<input type="text" class="txt company_input" disabled="disabled" />
+								<input type="radio" name="is_company" checked="checked" class="personal" />个人
+								<input type="radio" name="is_company" class="company"/>单位
+								<input type="text" class="txt company_input" disabled="disabled" placeholder="请输入公司全称" />
 							</li>
 							<li>
 								<label for="">发票内容：</label>
-								<input type="radio" name="content" checked="checked" />明细
-								<input type="radio" name="content" />办公用品
-								<input type="radio" name="content" />体育休闲
-								<input type="radio" name="content" />耗材
+								<input type="radio" name="content" checked="checked" />不开发票
+								<input type="radio" name="content" />明细
 							</li>
 						</ul>
 				</div>
@@ -196,11 +202,12 @@
 									<span>运费：</span>
 									<em>￥<?php echo  $fee = $totalPrice>100?0:10; ?></em>
 								</li>
-								<li>
-									<span>应付总额：</span>
-									<em>￥<?php echo sprintf("%.2f",$totalPrice+$fee);?></em>
-								</li>
 							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5" class="consignee">
+<!--							寄送至：xx：张三 137****3587-->
 						</td>
 					</tr>
 					</tfoot>
@@ -212,7 +219,7 @@
 
 		<div class="fillin_ft">
 			<a href="<?php echo U('Home/Cart/flow3');?>"><span>提交订单</span></a>
-			<p>应付总额：<strong>￥<?php echo sprintf("%.2f",$totalPrice+$fee);?>元</strong></p>
+			<p>应付总额：<strong>￥<?php echo sprintf("%.2f",$totalPrice+$fee);?></strong></p>
 
 		</div>
 	</div>

@@ -118,8 +118,31 @@ class AddressController extends MemberCommonController
         }
     }
 
+    
     public function save($id)
     {
+        if(IS_POST)
+        {
+            $model = D('Address');
+            if($model->create())
+            {
+                if($model->save() !== FALSE)
+                {
+                    $this->success('修改成功');
+                    exit;
+                }
+                else
+                {
+                    if(APP_DEBUG)
+                        echo 'SQL为：'.$model->getLastSql();
+                    else
+                        $this->error('发生失败，请重试！');
+                }
+            }
+            else
+                $this->error($model->getError());
+        }
+
         $addressModel =  D('Address');
         $province =  $addressModel->getProvince();
         $addressInfo = $addressModel->find($id);
