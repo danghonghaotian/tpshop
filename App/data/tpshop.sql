@@ -269,6 +269,11 @@ CREATE TABLE tp_order
 	key order_status(order_status)
 )engine=InnoDB default charset=utf8 comment '订单基本信息表';
 
+-- 2017-2-5
+ALTER TABLE `tp_order`
+CHANGE COLUMN `addtime` `add_time`  int(10) NOT NULL COMMENT '下单时间' AFTER `address`;
+
+
 --创建订单明细表,即商品订单关系表（多对多）2017-2-5
 CREATE TABLE tp_order_goods
 (

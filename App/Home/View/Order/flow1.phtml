@@ -222,6 +222,10 @@
 			<p>应付总额：<strong>￥<?php echo sprintf("%.2f",$totalPrice+$fee);?></strong></p>
 
 		</div>
+
+			<input type="hidden" name="total_price" value="<?php echo sprintf("%.2f",$totalPrice+$fee);?>"/>
+			<input type="hidden" name="postage" value="<?php echo  $fee; ?>"/>
+			<input type="hidden" name="goods_number" value="<?php echo $totalGoodsNum;?>"/>
 		</form>
 	</div>
 	<!-- 主体部分 end -->

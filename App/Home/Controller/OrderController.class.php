@@ -46,11 +46,19 @@ class OrderController extends MemberCommonController
      */
     public function flow2()
     {
-        dump($_POST);
+//        dump($_POST);
         if(IS_POST)
         {
             $orderModel = D('Order');
-            $orderModel->finishShopping();
+            $flag = $orderModel->finishShopping();
+            if($flag)
+            {
+                $this->display();
+            }
+            else
+            {
+                $this->error('订单提交失败');
+            }
         }
     }
 
