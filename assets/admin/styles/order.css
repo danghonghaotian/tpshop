@@ -9,3 +9,8 @@
 .order_goods .order_number {width: 80px; font-weight: bold;}
 .order_goods .order_attr {width: 80px; font-weight: bold;}
 .order_goods .order_total_price {width: 80px; font-weight: bold;}
+
+
+/*订单详情*/
+.first-cell{position: relative;cursor: pointer}
+.goods_logo{position: absolute;z-index: 3;left: 280px;top:-3px;border: 1px solid #ccc;display: none}

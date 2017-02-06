@@ -47,7 +47,7 @@
             </tr>
             <?php foreach ($orderBasicInfo as $k=>$v):?>
             <tr>
-                <td class="first-cell"><a href="<?php echo U('Home/Order/detail',array('id'=>$v['id']));?>"><?php echo $v['order_sn'];?></a>
+                <td class="first-cell"><a href="<?php echo U('Admin/Order/detail',array('id'=>$v['id']));?>"><?php echo $v['order_sn'];?></a>
                  <table class="order_goods">
                      <tr class="header">
                          <td class="order_img">商品名称</td>

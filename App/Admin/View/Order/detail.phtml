@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><?php echo C('shopName');?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+<link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo C('css');?>/order.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo C('js');?>/jquery.js"></script>
+<script type="text/javascript">
+    //鼠标滑过显示品牌图片的动态效果
+    $(function () {
+        $('.first-cell').hover(function () {
+            $(this).find('.goods_logo').show();
+        },function () {
+            $(this).find('.goods_logo').hide();
+        });
+    })
+</script>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Order/lst")?>">订单列表</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -订单信息 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="list-div">
+    <table cellspacing='1' cellpadding='3'>
+        <tr>
+            <th colspan="4" class="group-title" style="text-align: center;font-weight: bold">基本信息</th>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">订单号:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['order_sn'];?></td>
+            <td width="20%" align="right"  style="font-weight: bold">订单状态:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['order_status'];?></td>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">购买会员:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['email'];?></td>
+            <td width="20%" align="right"  style="font-weight: bold">下单时间:</td>
+            <td width="30%" align="left"><?php echo formatDate($orderDetail['add_time']);?></td>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">支付方式:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['pay_id'];?></td>
+            <td width="20%" align="right"  style="font-weight: bold">付款时间:</td>
+            <td width="30%" align="left">xxxx</td>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">配送方式:</td>
+            <td width="30%" align="left">xxx</td>
+            <td width="20%" align="right"  style="font-weight: bold">发货时间:</td>
+            <td width="30%" align="left">111</td>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">发货单号:</td>
+            <td width="30%" align="left">xx</td>
+            <td width="20%" align="right"  style="font-weight: bold">订单来源:</td>
+            <td width="30%" align="left">45454</td>
+        </tr>
+    </table>
+</div>
+<!-- end order statistics -->
+<br />
+<!-- start goods statistics -->
+<div class="list-div">
+    <table cellspacing='1' cellpadding='3'>
+        <tr>
+            <th colspan="4" class="group-title" style="text-align: center;font-weight: bold">发票信息</th>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">发票类型:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['invoice_type'];?></td>
+            <td width="20%" align="right"  style="font-weight: bold">发票抬头:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['invoice_header'];?></td>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">发票内容:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['invoice_content'];?></td>
+            <td width="20%" align="right"  style="font-weight: bold">公司名称:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['invoice_company'];?></td>
+        </tr>
+
+
+    </table>
+</div>
+<!-- end order statistics -->
+<br />
+<!-- start system information -->
+<div class="list-div">
+    <table cellspacing='1' cellpadding='3'>
+        <tr>
+            <th colspan="4" class="group-title" style="text-align: center;font-weight: bold">收货人信息</th>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">收货人:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['consignee'];?></td>
+            <td width="20%" align="right"  style="font-weight: bold">手机:</td>
+            <td width="30%" align="left"><?php echo $orderDetail['tel'];?></td>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="font-weight: bold">地址:</td>
+            <td width="30%" align="left" colspan="3"><?php echo $orderDetail['address'];?></td>
+        </tr>
+    </table>
+</div>
+<br />
+<!-- start 商品信息 -->
+<div class="list-div">
+    <table cellspacing='1' cellpadding='3'>
+        <tr>
+            <th colspan="5" class="group-title" style="text-align: center;font-weight: bold">商品信息</th>
+        </tr>
+        <tr>
+            <td width="20%" align="center"  style="font-weight: bold">商品名称</td>
+            <td width="20%" align="center"  style="font-weight: bold">价格</td>
+            <td width="20%" align="center"  style="font-weight: bold">数量</td>
+            <td width="20%" align="center"  style="font-weight: bold" >属性</td>
+            <td width="20%" align="center"  style="font-weight: bold">小计</td>
+        </tr>
+        <?php
+        $totalPrice = 0;
+        foreach ($orderDetail['orderGoods'] as $k=>$v):
+        ?>
+        <tr>
+            <td width="20%" align="center" class="first-cell">
+                <a href="<?php echo U('Home/Goods/detail',array('id'=>$v['goods_id']));?>" target="_blank"><?php echo $v['goods_name'];?></a>
+                <a href="<?php echo U('Home/Goods/detail',array('id'=>$v['goods_id']));?>" target="_blank"> <img src="<?php echo $v['goods_logo'];?>" class="goods_logo"/></a>
+            </td>
+            <td width="20%" align="center">￥<?php echo $v['price'];?>元</td>
+            <td width="20%" align="center"><?php echo $v['goods_number'];?></td>
+            <td width="20%" align="center"><?php echo $v['goods_attr'];?></td>
+            <td width="20%" align="center">
+                ￥
+                <?php
+                $price = $v['price']*$v['goods_number'];
+                $totalPrice +=$price;
+                echo formatPrice($price);?>
+                元
+            </td>
+        </tr>
+        <?php endforeach;?>
+        <tr>
+            <td width="80%" colspan="4" style="text-align: right;font-weight: bold">合计:</td>
+            <td width="20%" align="center">￥<?php echo formatPrice($totalPrice);?>元</td>
+        </tr>
+
+    </table>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

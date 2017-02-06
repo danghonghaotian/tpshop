@@ -20,4 +20,18 @@ class OrderController extends AdminController
         $this->assign('page', $orderBasicInfo['page']);
         $this->display();
     }
+
+    /**
+     * 订单详情
+     * @param $id
+     */
+    public function detail($id)
+    {
+        $orderModel =  D('Order');
+        $orderDetail = $orderModel->getOrderDetailById($id);
+//        dump($orderDetail);
+        $this->assign('orderDetail',$orderDetail);
+        $this->display();
+    }
+
 }

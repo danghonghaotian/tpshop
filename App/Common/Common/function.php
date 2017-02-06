@@ -582,7 +582,24 @@ function is_cn_font($str,$code='utf-8')
     }
 }
 
+/**
+ * 格式化价格为两位小数
+ * @param $num
+ * @return string
+ */
+function formatPrice($num)
+{
+    return sprintf("%.2f",$num);
+}
 
-
+/**
+ * 将时间戳转换成时间格式
+ * @param $time
+ * @return string
+ */
+function formatDate($time)
+{
+    return date("Y-m-d H:i:s",$time);
+}
 
 ?>

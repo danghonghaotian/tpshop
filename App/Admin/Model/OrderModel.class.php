@@ -59,4 +59,32 @@ class OrderModel extends Model
         return $orderGoods;
     }
 
+
+    /**
+     * 获取订单详情
+     * @param $id
+     * @return mixed
+     */
+    public function getOrderDetailById($id)
+    {
+        $orderInfo = $this->find($id);
+        $email = self::getUserName($orderInfo['user_id']);
+        $orderGoods = self::getOrderGoods($orderInfo['id']);
+        $orderInfo['email'] = $email;
+        $orderInfo['orderGoods'] =  $orderGoods;
+        return $orderInfo;
+    }
+
+    /**
+     * 获取用户邮箱
+     * @param $userId
+     * @return mixed
+     */
+    private static function getUserName($userId)
+    {
+        $userModel = D('User');
+        $email =  $userModel->getFieldByUserId($userId,'email');
+        return $email;
+    }
+
 }
