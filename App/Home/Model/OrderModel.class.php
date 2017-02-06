@@ -94,4 +94,34 @@ class OrderModel extends Model
     {
 
     }
+
+    /**
+     * 获取用户订单列表
+     */
+    public function getOrderInfo()
+    {
+        $orderInfo = $this->where(array('user_id'=>session('user_id')))->order('add_time desc')->select();
+        $arr = array();
+        foreach ($orderInfo as $k=>$v)
+        {
+            $arr[$k] = $v;
+            $arr[$k]['goods'] = self::getOrderGoods($v['id']);
+        }
+
+        return $arr;
+
+    }
+
+
+    /**
+     * 获取订单下的商品
+     * @param $id
+     * @return array
+     */
+    private static function getOrderGoods($id)
+    {
+        $orderGoodsModel = M('OrderGoods');
+        $orderGoods = $orderGoodsModel->where(array('order_id'=>$id))->select();
+        return $orderGoods;
+    }
 }

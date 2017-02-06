@@ -13,6 +13,10 @@ class OrderController extends MemberCommonController
      */
     public function index()
     {
+        $orderModel = D('Order');
+        $orderInfo = $orderModel->getOrderInfo();
+        $this->assign('orderInfo', $orderInfo);
+//dump($orderInfo);
         $this->display();
     }
 

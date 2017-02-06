@@ -44,35 +44,38 @@
 				</dl>
 			</div>
 
+			<?php
+			foreach($orderInfo as $k=>$v):?>
 			<div class="order_bd mt10">
+
 				<table class="orders">
 					<thead>
 					<tr>
-						<th width="10%">订单号</th>
-						<th width="20%">订单商品</th>
-						<th width="10%">收货人</th>
-						<th width="20%">订单金额</th>
-						<th width="20%">下单时间</th>
-						<th width="10%">订单状态</th>
-						<th width="10%">操作</th>
+						<th colspan="8" style="text-align: left;padding-left: 10px;"><?php echo formatDate($v['add_time']);?> 　订单号：<?php echo $v['order_sn'];?> 　跃飞商城</th>
 					</tr>
 					</thead>
 					<tbody>
-					<?php for($i=0;$i<6;$i++):?>
+					<?php foreach ($v['goods'] as $k1=>$v1):?>
 					<tr>
-						<td><a href="">xxxxxxxxxxxx</a></td>
-						<td><a href=""><img src="<?php echo C('f-img')?>/order1.jpg" alt="" /></a></td>
-						<td>xxx</td>
-						<td>￥35.00 货到付款</td>
-						<td>2017-1-1 16:28:14</td>
-						<td>已取消</td>
-						<td><a href="">查看</a> | <a href="">删除</a></td>
+						<td width="10%"><a href="<?php echo U('Home/Goods/detail',array('id'=>$v1['goods_id']));?>" target="_blank"><img src="<?php echo $v1['goods_logo'];?>" alt="" /></a></td>
+						<td width="35%" class="goods_name"><a href="<?php echo U('Home/Goods/detail',array('id'=>$v1['goods_id']));?>" target="_blank"><?php echo $v1['goods_name'];?></a></td>
+						<td width="5%">x<?php echo $v1['goods_number'];?></td>
+						<td width="10%">申请售后</td>
+						<?php if($k1==0):?>
+						<td width="10%" rowspan="<?php echo count($v['goods'])?>"><?php echo $v['consignee'];?></td>
+						<td width="10%" rowspan="<?php echo count($v['goods'])?>">
+							总额 ¥<?php echo $v['total_price'];?><br/>
+							在线支付
+						</td>
+						<td width="10%" rowspan="<?php echo count($v['goods'])?>">订单详情</td>
+						<td width="10%" rowspan="<?php echo count($v['goods'])?>"><a href="">立即购买</a></td>
+						<?php endif;?>
 					</tr>
-					<?php endfor;?>
-
+					<?php endforeach;?>
 					</tbody>
 				</table>
 			</div>
+			<?php endforeach;?>
 		</div>
 		<!-- 右侧内容区域 end -->
 	</div>
