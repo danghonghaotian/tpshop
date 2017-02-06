@@ -13,6 +13,11 @@ class OrderController extends AdminController
 {
     public function lst()
     {
-        echo '订单模块，待开发';
+        $orderModel =  D('Order');
+        $orderBasicInfo =  $orderModel->search();
+//        dump($orderBasicInfo);
+        $this->assign('orderBasicInfo', $orderBasicInfo['data']);
+        $this->assign('page', $orderBasicInfo['page']);
+        $this->display();
     }
 }

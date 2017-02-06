@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 订单列表 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="<?php echo C('css');?>/general.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo C('css');?>/main.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo C('css');?>/order.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<?php echo C('js');?>/jquery.js"></script>
+    <script type="text/javascript">
+        //鼠标滑过显示品牌图片的动态效果
+        $(function () {
+            $('.first-cell').hover(function () {
+                $(this).find('.order_goods').show();
+            },function () {
+                $(this).find('.order_goods').hide();
+            });
+        })
+    </script>
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/ArticleCat/lst")?>">订单查询</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -订单列表 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="form-div">
+    <form action="<?php echo U('Admin/Goods/lst');?>" name="searchForm" method="get">
+        <img src="{:C('img')}/icon_search.gif" width="26" height="22" border="0" alt="search" />
+        <input type="text" name="keyword" size="50" placeholder="订单号|购买会员" value="<?php echo $_GET['keyword']?>" autocomplete="off" />
+        <input type="submit" value=" 搜索 " class="button" />
+    </form>
+</div>
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>订单号</th>
+                <th>下单时间</th>
+                <th>购买会员</th>
+                <th>收货人</th>
+                <th>总金额</th>
+                <th>应付金额</th>
+                <th>订单状态</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($orderBasicInfo as $k=>$v):?>
+            <tr>
+                <td class="first-cell"><a href="<?php echo U('Home/Order/detail',array('id'=>$v['id']));?>"><?php echo $v['order_sn'];?></a>
+                 <table class="order_goods">
+                     <tr class="header">
+                         <td class="order_img">商品名称</td>
+                         <td class="order_price">价格</td>
+                         <td  class="order_number">数量</td>
+                         <td  class="order_attr">属性</td>
+                         <td  class="order_total_price">小计</td>
+                     </tr>
+                     <?php foreach ($v['orderGoods'] as $k1=>$v1):?>
+                     <tr>
+                         <td><a href="<?php echo U('Home/Goods/detail',array('id'=>$v1['goods_id']));?>" target="_blank"><img src="<?php echo $v1['goods_logo'];?>" /></a><br/><?php echo $v1['goods_name'];?></td>
+                         <td><?php echo $v1['price'];?></td>
+                         <td><?php echo $v1['goods_number'];?></td>
+                         <td><?php echo $v1['goods_attr'];?></td>
+                         <td><?php echo sprintf("%.2f",$v1['price']*$v1['goods_number']);?></td>
+                     </tr>
+                    <?php endforeach;?>
+                 </table>
+                </td>
+                <td align="center"><?php echo date('Y-m-d H;i:s',$v['add_time']);?></td>
+                <td align="center"><?php echo $v['email']?></td>
+                <td align="center"><?php echo $v['consignee']?></td>
+                <td align="center"><?php echo $v['total_price']?></td>
+                <td align="center"><?php echo $v['total_price']?></td>
+                <td align="center"><?php echo $v['order_status']?></td>
+                <td align="center">
+                    <a href="#" title="查看">查看</a>
+                </td>
+            </tr>
+            <?php endforeach;?>
+            <tr>
+                <td align="center" nowrap="true" colspan="8">
+                    <?php echo $page;?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
