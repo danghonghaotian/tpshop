@@ -67,14 +67,14 @@
                     <?php endforeach;?>
                  </table>
                 </td>
-                <td align="center"><?php echo date('Y-m-d H;i:s',$v['add_time']);?></td>
+                <td align="center"><?php echo formatDate($v['add_time']);?></td>
                 <td align="center"><?php echo $v['email']?></td>
                 <td align="center"><?php echo $v['consignee']?></td>
                 <td align="center"><?php echo $v['total_price']?></td>
                 <td align="center"><?php echo $v['total_price']?></td>
                 <td align="center"><?php echo $v['order_status']?></td>
                 <td align="center">
-                    <a href="#" title="查看">查看</a>
+                    <a href="<?php echo U('Admin/Order/detail',array('id'=>$v['id']));?>">查看</a>
                 </td>
             </tr>
             <?php endforeach;?>

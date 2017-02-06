@@ -29,7 +29,7 @@ class OrderModel extends Model
         $pageStr = $page->fpage();
         // 4. 取出当前页的数据
         $prefix = C('DB_PREFIX');
-        $sql = "SELECT * from {$prefix}order as a LEFT JOIN {$prefix}user as b on a.user_id = b.user_id LIMIT {$page->limit}";
+        $sql = "SELECT * from {$prefix}order as a LEFT JOIN {$prefix}user as b on a.user_id = b.user_id ORDER BY add_time desc LIMIT {$page->limit}";
         $orderBasicInfo = $this->query($sql);
 
         //获取订单下的商品
