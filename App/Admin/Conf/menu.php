@@ -67,7 +67,7 @@ return array(
             '会员注册设置'=>array('company','lst'),
             '申请商家管理'=>array('company','lst'),
             '支付方式'=>array('Payment','lst'),
-            '配送方式'=>array('company','lst'),
+            '配送方式'=>array('Shipping','lst'),
             '邮件服务器设置'=>array('company','lst'),
             '地区列表'=>array('company','lst'),
             '计划任务'=>array('company','lst'),

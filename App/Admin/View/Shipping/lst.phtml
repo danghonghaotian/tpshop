@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 配送方式 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="<?php echo C('css');?>/general.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo C('css');?>/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Shipping/add")?>">添加合作快递</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index")?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> -配送方式 </span>
+    <div style="clear:both"></div>
+</h1>
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>配送方式名称</th>
+                <th>配送方式描述</th>
+                <th>是否开启</th>
+                <th>操作</th>
+            </tr>
+            <?php foreach ($shipping as $k=>$v):?>
+            <tr>
+                <td align="center"><?php echo $v['shipping_name'];?></td>
+                <td align="center"><?php echo $v['shipping_desc'];?></td>
+                <td align="center"><?php echo $v['enabled']?'开启':'关闭';?></td>
+                <td align="center">
+                    <a href="<?php echo U("Admin/Shipping/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
+                    <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Shipping/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
+                </td>
+            </tr>
+            <?php endforeach;?>
+            <tr>
+                <td align="right" nowrap="true" colspan="4">
+                    <?php echo $page;?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>

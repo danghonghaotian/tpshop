@@ -293,3 +293,13 @@ CREATE TABLE tp_order_goods
 ALTER TABLE `tp_role_node`
 ADD PRIMARY KEY (`role_id`, `node_id`);
 
+
+ -- 创建送货方式表2017-2-6
+create table tp_shipping(
+	id tinyint unsigned not null auto_increment primary key comment '编号',
+	shipping_name varchar(30) not null default '' comment '送货方式名称',
+	shipping_desc varchar(255) not null default '' comment '送货方式描述',
+	enabled tinyint unsigned not null default 1 comment '是否启用，默认启用'
+)engine=MyISAM charset=utf8;
+
+

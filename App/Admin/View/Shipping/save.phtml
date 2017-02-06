@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 编辑合作快递 </title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="<?php echo U("Admin/Shipping/lst") ?>">配送方式</a></span>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 编辑合作快递 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/Shipping/save") ?>">
+        <input type="hidden" name="id" value="<?= $data['id']?>">
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">配送方式名称</td>
+                <td>
+                    <input type="text" name="shipping_name" maxlength="60" value="<?= $data['shipping_name']?>" />
+                    <span class="require-field">*</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">配送方式描述</td>
+                <td>
+                    <textarea  name="shipping_desc" cols="60" rows="4"  ><?= $data['shipping_desc']?></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">是否开启</td>
+                <td>
+                    <input type="radio" name="enabled" value="1" <?php if($data['enabled'] == 1):?>checked="checked" <?php endif;?>/> 是
+                    <input type="radio" name="enabled" value="0"  <?php if($data['enabled'] == 0):?>checked="checked" <?php endif;?>/> 否
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
