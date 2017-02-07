@@ -1,0 +1,39 @@
+做网站前端，碰上不会写，会抄不？小编教你轻松搞定，首先打开一个漂亮的网页，页面另存为，即可保存下来！通过firebug工具，
+可以找到还没下载下来的图片，css,js，全部下载后，在public目录下分别建立，css,images,js三个文件夹，对应的用来存放css,
+图片，跟js,开始使用notepad++编辑器ctrl+f采用正则替换，使用下面的规则，就能轻松搞定一个漂亮的网站！
+
+替换图片
+src=".+/(.+)\.(png|jpg|gif)"
+src="public/images/$1.$2"
+
+替换js
+src=".+/(.+)\.js"
+src="public/js/$1.js"
+
+替换Css
+href=".+/(.+)\.css"
+href="public/css/$1.css"
+
+替换搜索引擎关键字描述
+content=".+?"
+content="#"
+这里注意字符编码content="text/html; charset=UTF-8"这个不用换，换完别的，替换回去
+
+替换<a> 标签里里面的href
+<a href =".+?"
+<a href ="#"
+
+href="http://.+?"
+href="#"
+
+上面两个可以合成一个写，可要考虑到css里面的href属性，要不连那个也换了
+href="(http://)?.+?"
+href="#"
+
+替换标题
+title=".+?"
+title="#"
+
+替换alt
+alt=".+?"
+alt="#"
