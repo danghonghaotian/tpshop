@@ -1,7 +1,7 @@
 <extend name="Layout/gv" />
 
 <block name="header_meta">
-	<title>订单页面</title>
+	<title><?php echo C('userCenter');?>-我的订单</title>
 	<link rel="stylesheet" href="<?php echo C('f-css')?>/base.css" type="text/css">
 	<link rel="stylesheet" href="<?php echo C('f-css')?>/global.css" type="text/css">
 	<link rel="stylesheet" href="<?php echo C('f-css')?>/header.css" type="text/css">
@@ -51,7 +51,7 @@
 				<table class="orders">
 					<thead>
 					<tr>
-						<th colspan="8" style="text-align: left;padding-left: 10px;"><?php echo formatDate($v['add_time']);?> 　订单号：<?php echo $v['order_sn'];?> 　跃飞商城</th>
+						<th colspan="8" style="text-align: left;padding-left: 10px;"><?php echo formatDate($v['add_time']);?> 　订单号：<?php echo $v['order_sn'];?> 　<?php echo C('company');?></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -68,7 +68,11 @@
 							在线支付
 						</td>
 						<td width="10%" rowspan="<?php echo count($v['goods'])?>">订单详情</td>
-						<td width="10%" rowspan="<?php echo count($v['goods'])?>"><a href="">立即购买</a></td>
+						<td width="10%" rowspan="<?php echo count($v['goods'])?>">
+							<a href="<?php echo U('Home/GoodsComment/lst',array('id'=>$v['id']));?>">评价</a>
+							<br/>
+							<a href="">立即购买</a>
+						</td>
 						<?php endif;?>
 					</tr>
 					<?php endforeach;?>

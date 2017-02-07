@@ -303,3 +303,25 @@ create table tp_shipping(
 )engine=MyISAM charset=utf8;
 
 
+
+-- 商品评论表
+CREATE TABLE `tp_goods_comment` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT comment '用户评论的自增id ',
+  `goods_id` mediumint(8) unsigned NOT NULL DEFAULT '0' comment '商品对应的是goods的goods_id',
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' comment '发表该评论的用户的用户id,取值user的user_id',
+  `email` varchar(60) NOT NULL DEFAULT '' comment '评论是提交的Email地址,默认取的user的email',
+  `user_name` varchar(60) NOT NULL DEFAULT '' comment '取值users的user_name ',
+  `comment_rank` tinyint(1) unsigned NOT NULL DEFAULT '0' comment '商品的重星级;只有1到5星;由数字代替;其中5代表5星',
+  `content` text NOT NULL comment '评论的内容',
+  `images` varchar(150) NOT NULL DEFAULT '' comment '评论图片，用逗号隔开，最多6张',
+  `add_time` int(10) unsigned NOT NULL DEFAULT '0' comment '评论的时间 ',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT '0' comment '是否被管理员批准显示;1是;0未批准显示 ',
+  `parent_id` int(10) unsigned NOT NULL DEFAULT '0' comment '评论的父节点,取值该表的id字段,如果该字段为0,则是一个普通评论,否则该条评论就是该字段的值所对应的评论的回复',
+  PRIMARY KEY (`id`),
+  KEY `parent_id` (`parent_id`),
+  KEY `goods_id` (`goods_id`),
+  foreign key (goods_id) references tp_goods(id) on delete cascade
+) engine=InnoDB  DEFAULT CHARSET=utf8 comment '商品评论表';
+
+
+

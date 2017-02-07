@@ -17,7 +17,7 @@ $config = array(
         //'静态地址'    =>     '静态规则',
 //        'read'=>array('{id}',60)
     ),
-    'company' =>'丹宏昊天',
+    'company' =>'gv商城',
     'goods_page' => 12,
     'userCenter' => "我的gv",
 
