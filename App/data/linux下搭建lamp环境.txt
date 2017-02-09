@@ -1,0 +1,27 @@
+来源：http://www.2cto.com/os/201605/505074.html
+1、配置防火墙，开启80端口、3306端口
+vi /etc/sysconfig/iptables
+-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT #允许80端口通过防火墙
+-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT #允许3306端口通过防火墙
+
+将以上内容添加到 -A INPUT -m state –state NEW -m tcp -p tcp –dport 22 -j ACCEPT 的下面
+
+/etc/init.d/iptables restart #最后重启防火墙使配置生效
+
+***************************************
+发现redhat下没有iptables不知道正确的不呢
+ iptables --version
+ service iptables start
+ iptables --list
+***************************************
+
+#服务器部分系统参数
+uname --a   （Linux查看版本当前操作系统内核信息） #Linux ip-172-31-27-193.us-west-2.compute.internal 3.10.0-514.el7.x86_64 #1 SMP Wed Oct 19 11:24:13 EDT 2016 x86_64 x86_64 x86_64 GNU/Linux
+cat /proc/version （Linux查看当前操作系统版本信息）# Red Hat 4.8.5-11
+cat /etc/redhat-release（Linux查看版本当前操作系统发行版信息）#Red Hat Enterprise Linux Server release 7.3 (Maipo)
+cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核信息等）
+lscpu 查询cpu相关信息
+top 内存等信息
+w 查看谁在线
+
+
