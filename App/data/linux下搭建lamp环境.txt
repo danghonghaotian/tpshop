@@ -23,5 +23,64 @@ cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核
 lscpu 查询cpu相关信息
 top 内存等信息
 w 查看谁在线
+systemctl
+chkconfig --list|more
+screen -S lnmp
+
+1、安装wget
+# yum list wget
+# yum install wget.x86_64 1.14-13.el7
+#rpm -qa | grep wget
+
+2、下载安装包
+#cd /
+#wget -c http://soft.vpser.net/lnmp/lnmp1.3-full.tar.gz
+
+单独下载mysql解压即可使用
+https://dev.mysql.com/downloads/file/?id=467684
+wget -c https://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.54-linux2.6-x86_64.tar.gz #下载
+
+
+#tar zxf lnmp1.3-full.tar.gz
+du -sh mysql-5.5.54-linux2.6-x86_64 #查看大小
+
+#cd lnmp1.3-full
+#vim lnmp.conf 指定配置文件的安装目录
+
+Download_Mirror='http://soft.vpser.net'
+Nginx_Modules_Options=''
+PHP_Modules_Options=''
+##MySQL/MariaDB database directory##
+MySQL_Data_Dir='/data/db/mysql'
+MariaDB_Data_Dir='/data/db/mariadb'
+##Default website home directory##
+Default_Website_Dir='/data'
+
+#./install.sh lnmp
+
+/data/yeafy
+
+
+数据库root 密码
+
+注意了，亚马逊的主机，需要到控制台去设置才能访问到网站80端口，默认只是开启了22
+#开启亚马逊主机端口--安全组
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

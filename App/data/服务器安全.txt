@@ -64,6 +64,11 @@ visual studio2012
 
 运维
 VMware Workstation
+Xshell    远程登录linux操作系统工具
+secureCRT    远程登录linux操作系统工具
+putty   远程登录linux操作系统工具
+
+
 
 
 测试
