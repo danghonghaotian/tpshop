@@ -67,6 +67,10 @@ Default_Website_Dir='/data'
 #开启亚马逊主机端口--安全组
 
 
+cd /usr/local/nginx/conf/vhost/
+
+
+
 
 
 
