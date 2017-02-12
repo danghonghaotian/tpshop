@@ -103,4 +103,10 @@ class UserModel extends Model
             'data' => $data,
         );
     }
+    
+
+    public function test12()
+    {
+        return array('test','test1');
+    }
 }

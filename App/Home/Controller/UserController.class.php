@@ -345,6 +345,16 @@ class UserController extends CommonController {
 
     }
 
+    /**
+     * 测试跨模块调用模型里的方法
+     */
+    public function test12()
+    {
+        $userModel = D('Admin/User');
+        $arr = $userModel->test12();
+        dump($arr);
+    }
+
 
 
 
