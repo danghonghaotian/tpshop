@@ -22,7 +22,14 @@ class GoodsRecommendationModel extends Model
         $goodsArr = explode(',',$data['goods_sn']);
         $goodsModel = M('Goods');
         $goods = $goodsModel->where(array('goods_sn'=>array('in',$goodsArr)))->select();
-        shuffle($goods);
+        foreach ($goods as $k=>$v)
+        {
+          $key = array_search($v['goods_sn'],$goodsArr );
+          $goods[$k]['sort'] = $key;
+        }
+
+        usort($goods,'goods_sort');
+
         return $goods;
     }
 
@@ -33,7 +40,12 @@ class GoodsRecommendationModel extends Model
         $goodsArr = explode(',',$data['goods_sn']);
         $goodsModel = M('Goods');
         $goods = $goodsModel->where(array('goods_sn'=>array('in',$goodsArr)))->select();
-        shuffle($goods);
+        foreach ($goods as $k=>$v)
+        {
+            $key = array_search($v['goods_sn'],$goodsArr );
+            $goods[$k]['sort'] = $key;
+        }
+        usort($goods,'goods_sort');
         return $goods;
     }
 
@@ -44,7 +56,12 @@ class GoodsRecommendationModel extends Model
         $goodsArr = explode(',',$data['goods_sn']);
         $goodsModel = M('Goods');
         $goods = $goodsModel->where(array('goods_sn'=>array('in',$goodsArr)))->select();
-        shuffle($goods);
+        foreach ($goods as $k=>$v)
+        {
+            $key = array_search($v['goods_sn'],$goodsArr );
+            $goods[$k]['sort'] = $key;
+        }
+        usort($goods,'goods_sort');
         return $goods;
     }
 
@@ -56,7 +73,12 @@ class GoodsRecommendationModel extends Model
         $goodsArr = explode(',',$data['goods_sn']);
         $goodsModel = M('Goods');
         $goods = $goodsModel->where(array('goods_sn'=>array('in',$goodsArr)))->select();
-        shuffle($goods);
+        foreach ($goods as $k=>$v)
+        {
+            $key = array_search($v['goods_sn'],$goodsArr );
+            $goods[$k]['sort'] = $key;
+        }
+        usort($goods,'goods_sort');
         return $goods;
     }
 

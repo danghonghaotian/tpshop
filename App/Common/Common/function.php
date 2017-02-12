@@ -602,4 +602,18 @@ function formatDate($time)
     return date("Y-m-d H:i:s",$time);
 }
 
+
+/**
+ * 自定义二位数组排序，配合usort($arr,'goods_sort')使用
+ * @param $a
+ * @param $b
+ * @return int
+ */
+function goods_sort($a,$b)
+{
+    if ($a['sort'] == $b['sort'])
+        return 0;
+    return ($a['sort'] < $b['sort']) ? -1 : 1;
+}
+
 ?>
