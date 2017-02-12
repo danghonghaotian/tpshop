@@ -21,22 +21,21 @@ class IndexController extends CommonController
         $this->assign('ad', $ad);
 
         //疯狂抢购商品
-        $goodsRecommendation = D('GoodsRecommendation');
-        $crazyGoods = $goodsRecommendation->getCrazyGoods();
+        $goodsModel = D('Goods');
+        $crazyGoods = $goodsModel->getRecommendationGoodsByType($goodsModel::CRAZY);
         $this->assign('crazyGoods', $crazyGoods);
 //        热卖商品
-        $hotGoods = $goodsRecommendation->getHotGoods();
+        $hotGoods = $goodsModel->getRecommendationGoodsByType($goodsModel::HOT);
         $this->assign('hotGoods',  $hotGoods);
 //        商品推荐
-        $recommendGoods = $goodsRecommendation->getRecommendGoods();
+        $recommendGoods = $goodsModel->getRecommendationGoodsByType($goodsModel::RECOMMEND);
         $this->assign('recommendGoods', $recommendGoods);
         //猜你喜欢
-        $guessGoods = $goodsRecommendation->getGuessGoods();
+        $guessGoods = $goodsModel->getRecommendationGoodsByType($goodsModel::GUESS);
         $this->assign('guessGoods', $guessGoods);
 
         //最新商品
-        $goods = D('Goods');
-        $newGoods =$goods->getNewGoods();
+        $newGoods =$goodsModel->getNewGoods();
         $this->assign('newGoods', $newGoods);
 
         //手机二级分类

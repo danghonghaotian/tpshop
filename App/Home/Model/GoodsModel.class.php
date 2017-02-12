@@ -11,6 +11,11 @@ use Think\Model;
 class GoodsModel extends Model
 {
 
+    const CRAZY = 1; //疯狂抢购
+    const HOT = 2; //热卖商品
+    const RECOMMEND = 3; //推荐商品
+    const GUESS = 4; //猜你喜欢
+
     /**
      * 获取商品的单选属性数据
      * @param $id
@@ -213,9 +218,29 @@ class GoodsModel extends Model
 
         return  $data;
     }
-    
-    
-    
+
+
+    /**
+     * 根据类型获取自定义推荐商品，并排序
+     * @param $type
+     * @return mixed
+     */
+    public function getRecommendationGoodsByType($type)
+    {
+        $goodsRecommendationModel = M('GoodsRecommendation');
+        $data = $goodsRecommendationModel->where(array('type_id'=>$type))->find();
+        $goodsArr = explode(',',$data['goods_sn']);
+        $goods = $this->where(array('goods_sn'=>array('in',$goodsArr)))->select();
+        foreach ($goods as $k=>$v)
+        {
+            $key = array_search($v['goods_sn'],$goodsArr );
+            $goods[$k]['sort'] = $key;
+        }
+
+        usort($goods,'goods_sort');
+
+        return $goods;
+    }
 
 
 
