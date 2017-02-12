@@ -161,8 +161,13 @@ class GoodsModel extends Model
      */
     public function getNewGoods()
     {
-        $goodsModel = M('Goods');
-        $goods = $goodsModel->where(array('is_delete'=>0))->order('id desc')->limit(5)->select();
+        $prefix = C('DB_PREFIX');
+        $sql = "SELECT goods.id,goods.goods_name,goods.sm_logo,goods.shop_price,gallery.sm1_logo as gallery_logo from {$prefix}goods as goods LEFT JOIN {$prefix}goods_gallery as gallery on goods.id = gallery.goods_id WHERE goods.is_on_sale=1 and  goods.is_delete=0 GROUP BY goods.id ORDER BY goods.id desc";
+        $goods = $this->query($sql);
+        foreach ($goods as $k=>$v)
+        {
+            $goods[$k]['img'] = $v['gallery_logo']?$v['gallery_logo']:$v['sm_logo'];
+        }
         return $goods;
     }
 
@@ -194,12 +199,13 @@ class GoodsModel extends Model
         // path /表示当前目录及子目录下可以访问
         /********* 根据商品ID取出商品信息 *************/
         $goodsArr = explode(',',$goods);
-
-        $data =array();
-        foreach ($goodsArr as $k=>$v)
+        $data = $this->where(array('id'=>array('in',$goodsArr)))->select();
+        foreach ($data as $k=>$v)
         {
-            $data[] = $this->field('id,sm_logo,goods_name')->find($v);
+            $key = array_search($v['id'],$goodsArr );
+            $data[$k]['sort'] = $key;
         }
+        usort($data,'goods_sort');
 
         return  $data;
     }
@@ -210,12 +216,13 @@ class GoodsModel extends Model
         $goods = cookie('goodsHistory'); // 1,2,3,4,5
         $goodsArr = explode(',',$goods);
 
-        $data =array();
-        foreach ($goodsArr as $k=>$v)
+        $data = $this->where(array('id'=>array('in',$goodsArr)))->select();
+        foreach ($data as $k=>$v)
         {
-            $data[] = $this->field('id,sm_logo,goods_name')->find($v);
+            $key = array_search($v['id'],$goodsArr );
+            $data[$k]['sort'] = $key;
         }
-
+        usort($data,'goods_sort');
         return  $data;
     }
 
@@ -230,15 +237,23 @@ class GoodsModel extends Model
         $goodsRecommendationModel = M('GoodsRecommendation');
         $data = $goodsRecommendationModel->where(array('type_id'=>$type))->find();
         $goodsArr = explode(',',$data['goods_sn']);
-        $goods = $this->where(array('goods_sn'=>array('in',$goodsArr)))->select();
+        $arr = array();
+        foreach ($goodsArr as $k=>$v)
+        {
+            $arr[$k] = "'$v'";
+        }
+        $str =  implode($arr,',' );
+        $prefix = C('DB_PREFIX');
+        $sql = "SELECT goods.id,goods.goods_name,goods.sm_logo,goods.shop_price,goods.goods_sn,gallery.sm1_logo as gallery_logo from {$prefix}goods as goods LEFT JOIN {$prefix}goods_gallery as gallery on goods.id = gallery.goods_id  WHERE goods.goods_sn IN ({$str}) GROUP BY goods.id";
+        $goods = $this->query($sql);
+
         foreach ($goods as $k=>$v)
         {
             $key = array_search($v['goods_sn'],$goodsArr );
             $goods[$k]['sort'] = $key;
+            $goods[$k]['img'] = $v['gallery_logo']?$v['gallery_logo']:$v['sm_logo'];
         }
-
         usort($goods,'goods_sort');
-
         return $goods;
     }
 
