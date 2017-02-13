@@ -68,6 +68,16 @@ Xshell    远程登录linux操作系统工具
 secureCRT    远程登录linux操作系统工具
 putty   远程登录linux操作系统工具
 
+Shadowsocks.exe  代理翻墙工具
+服务器ip www.liujunchen.cc
+服务器端口 8443
+密码：liujunchen
+加密：aes-256-cfb
+代理端口：1080
+
+浏览器代理
+手动配置代理下的sockets主机：127.0.0.1 1080   v5
+
 
 
 
