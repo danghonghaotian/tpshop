@@ -162,7 +162,7 @@ class GoodsModel extends Model
     public function getNewGoods()
     {
         $prefix = C('DB_PREFIX');
-        $sql = "SELECT goods.id,goods.goods_name,goods.sm_logo,goods.shop_price,gallery.sm1_logo as gallery_logo from {$prefix}goods as goods LEFT JOIN {$prefix}goods_gallery as gallery on goods.id = gallery.goods_id WHERE goods.is_on_sale=1 and  goods.is_delete=0 GROUP BY goods.id ORDER BY goods.id desc";
+        $sql = "SELECT goods.id,goods.goods_name,goods.sm_logo,goods.shop_price,gallery.sm1_logo as gallery_logo from {$prefix}goods as goods LEFT JOIN {$prefix}goods_gallery as gallery on goods.id = gallery.goods_id WHERE goods.is_on_sale=1 and  goods.is_delete=0 GROUP BY goods.id ORDER BY goods.id desc limit 5";
         $goods = $this->query($sql);
         foreach ($goods as $k=>$v)
         {
