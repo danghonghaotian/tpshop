@@ -173,4 +173,6 @@ function charsetDecode($input,$_input_charset ,$_output_charset) {
 	} else die("sorry, you have no libs support for charset changes.");
 	return $output;
 }
+
+
 ?>
