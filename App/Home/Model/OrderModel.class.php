@@ -26,6 +26,7 @@ class OrderModel extends Model
 //        dump($goods);
         $this->user_id = session('user_id'); //会员的ID
         $this->order_sn = date('Ymd').uniqid(); //订单号
+        $orderNum =  $this->order_sn;
         $this->pay_status = 0; //支付状态
         $this->post_status = 0; //发货状态：0：未发货 1：已发货 2：已收货
         $this->order_status = 0; //订单状态，0：未确认 1：已确认 2：取消 3：申请退货 4.退货成功 5：正常结束
@@ -40,6 +41,7 @@ class OrderModel extends Model
         $this->invoice_company = I('invoice_company'); //留空或者是单位名称
         $this->invoice_content = I('invoice_content'); //发票内容
         $this->total_price = I('total_price'); //订单总价
+        $totalPrice = $this->total_price; //订单总价
         $this->goods_number = I('goods_number'); //订单中商品的数量
         $this->postage = I('postage'); //运费
 
@@ -69,7 +71,14 @@ class OrderModel extends Model
                 self::clearCar();
                 //减去相应的库存
                 self::minusGoodsNum();
-                $flag = true;
+                //返回数据提供支付
+                $payInfo = array(
+                    'orderNum'=>  $orderNum,
+                    'orderName'=> "{$orderNum}-订单支付",
+                    'totalPrice'=>$totalPrice,
+                    'goodsDesc'=> ''
+                );
+                $flag = $payInfo;
             }
         }
 

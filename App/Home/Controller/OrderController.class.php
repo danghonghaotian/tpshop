@@ -16,7 +16,7 @@ class OrderController extends MemberCommonController
         $orderModel = D('Order');
         $orderInfo = $orderModel->getOrderInfo();
         $this->assign('orderInfo', $orderInfo);
-//dump($orderInfo);
+        //dump($orderInfo);
         $this->display();
     }
 
@@ -47,16 +47,27 @@ class OrderController extends MemberCommonController
 
     /**
      * 提交订单
+     * 支付
      */
     public function flow2()
     {
 //        dump($_POST);
+        $paymentModel = D('Payment');
+        $payCode = $paymentModel->getFieldById(I('pay_id'),'pay_code');
+        $controllerName = ucfirst($payCode);
         if(IS_POST)
         {
             $orderModel = D('Order');
-            $flag = $orderModel->finishShopping();
-            if($flag)
+            $payInfo = $orderModel->finishShopping();
+            if($payInfo)
             {
+                //支付宝支付按钮
+                if($payCode == 'alipay')
+                {
+                    $payModel = A($controllerName);
+                    $goPay = $payModel->pay($payInfo,'post');
+                }
+                $this->assign('goPay',$goPay);
                 $this->display();
             }
             else

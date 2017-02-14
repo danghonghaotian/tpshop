@@ -23,19 +23,19 @@ class AlipayController extends Controller
     /**
      * 支付宝支付，跳转到支付宝网关
      */
-    public function pay()
+    public function pay($payInfo,$method="get",$Info="支付宝支付")
     {
         //获取数据库配置信息
         $paymentModel = D('Payment');
         $payConfig = $paymentModel->getPayConfigByPayCode('alipay');
         //商户订单号，商户网站订单系统中唯一订单号，必填
-        $orderNum = 'fsdfsafsaf';
+        $orderNum = $payInfo['orderNum'];
         //订单名称，必填
-        $orderName = 'fdsfsaf';
+        $orderName = $payInfo['orderName'];
         //付款金额，必填
-        $totalPrice = 'fdsfsaf';
+        $totalPrice = $payInfo['totalPrice'];
         //商品描述，可空
-        $goodsDesc = 'fdsafsa';
+        $goodsDesc =$payInfo['goodsDesc'];
 
         //构造要请求的参数数组，无需改动
         $service =  "create_direct_pay_by_user";
@@ -72,8 +72,8 @@ class AlipayController extends Controller
         $alipayConfig['exter_invoke_ip'] = "";
 
         $alipaySubmit = new \Alipay\AlipaySubmit($alipayConfig);
-        $html_text = $alipaySubmit->buildRequestForm($parameter,"get", "支付宝支付");
-        echo $html_text;
+        $html_text = $alipaySubmit->buildRequestForm($parameter,$method,$Info);
+        return $html_text;
     }
     
 }
