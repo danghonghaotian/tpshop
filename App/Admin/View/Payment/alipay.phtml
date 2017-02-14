@@ -79,6 +79,14 @@
                 </td>
             </tr>
             <tr>
+                <td class="label">表单提交方式</td>
+                <td>
+                    <input type="radio" name="pay_config[method]" value="get" <?php if($payment['pay_config']['method'] == 'get'):?>checked="checked"<?php endif;?>/>get
+                    <input type="radio" name="pay_config[method]" value="post" <?php if($payment['pay_config']['method'] == 'post'):?>checked="checked"<?php endif;?>/>post
+                    <span class="notice-span" style="display:block">支付跳转时使用get还是post提交到支付宝网关</span>
+                </td>
+            </tr>
+            <tr>
                 <td class="label">是否开启</td>
                 <td>
                     <input type="radio" name="enabled" value="1" <?php if($payment['enabled'] == 1):?>checked="checked"<?php endif;?>/>开启

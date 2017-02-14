@@ -65,7 +65,7 @@ class OrderController extends MemberCommonController
                 if($payCode == 'alipay')
                 {
                     $payModel = A($controllerName);
-                    $goPay = $payModel->pay($payInfo,'post');
+                    $goPay = $payModel->pay($payInfo);
                 }
                 $this->assign('goPay',$goPay);
                 $this->display();

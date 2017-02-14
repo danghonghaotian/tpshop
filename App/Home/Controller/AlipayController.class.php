@@ -23,7 +23,7 @@ class AlipayController extends Controller
     /**
      * 支付宝支付，跳转到支付宝网关
      */
-    public function pay($payInfo,$method="get",$Info="支付宝支付")
+    public function pay($payInfo,$Info="支付宝支付")
     {
         //获取数据库配置信息
         $paymentModel = D('Payment');
@@ -72,7 +72,7 @@ class AlipayController extends Controller
         $alipayConfig['exter_invoke_ip'] = "";
 
         $alipaySubmit = new \Alipay\AlipaySubmit($alipayConfig);
-        $html_text = $alipaySubmit->buildRequestForm($parameter,$method,$Info);
+        $html_text = $alipaySubmit->buildRequestForm($parameter,$payConfig['method'],$Info);
         return $html_text;
     }
     
