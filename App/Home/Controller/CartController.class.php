@@ -30,7 +30,8 @@ class CartController extends CommonController
             if($cartModel->addToCart($goods_id, $amount, $goods_attr) === FALSE)
                 $this->error('购物失败!');
             else
-                $this->success("购物成功", U('index'));
+//                $this->success("购物成功", U('index'));
+                header('Location:'.getWebsite().U('Home/Cart/index'));
         }
     }
 
