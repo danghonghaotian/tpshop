@@ -18,6 +18,12 @@
         <table cellspacing="1" cellpadding="3" width="100%">
             <input type="hidden" name="id" value="<?php echo $payment['id']?>"/>
             <tr>
+                <td class="label">接口类型</td>
+                <td>
+                    网站即时到帐交易接口
+                </td>
+            </tr>
+            <tr>
                 <td class="label">支付方式名称</td>
                 <td>
                     <input type="text" name="pay_name" maxlength="60" value="<?php echo $payment['pay_name']?>" readonly/>
@@ -30,37 +36,46 @@
                 </td>
             </tr>
             <tr>
-                <td class="label">支付宝帐户 </td>
+                <td class="label">合作身份者ID，签约账号</td>
                 <td>
-                    <input type="text" name="pay_config[account]" maxlength="60" value="<?php echo $payment['pay_config']['account']?>" />
+                    <input type="text" name="pay_config[partner]" maxlength="16" value="<?php echo $payment['pay_config']['partner']?>" />
+                    <span class="notice-span" style="display:block">合作身份者ID，签约账号，以2088开头由16位纯数字组成的字符串，查看地址：https://b.alipay.com/order/pidAndKey.htm</span>
                 </td>
             </tr>
             <tr>
-                <td class="label">安全校验码(Key)</td>
+                <td class="label">收款支付宝账号</td>
                 <td>
-                    <input type="text" name="pay_config[key]" maxlength="60" value="<?php echo $payment['pay_config']['key']?>" />
+                    <input type="text" name="pay_config[seller_id]" maxlength="16" value="<?php echo $payment['pay_config']['seller_id']?>" />
+                    <span class="notice-span" style="display:block">收款支付宝账号，以2088开头由16位纯数字组成的字符串，一般情况下收款账号就是签约账号</span>
                 </td>
             </tr>
             <tr>
-                <td class="label">合作者身份(Pid) </td>
+                <td class="label">MD5密钥，安全检验码</td>
                 <td>
-                    <input type="text" name="pay_config[partner]" maxlength="60" value="<?php echo $payment['pay_config']['partner']?>" />
+                    <input type="text" name="pay_config[key]" maxlength="32" size="35" value="<?php echo $payment['pay_config']['key']?>" />
+                    <span class="notice-span" style="display:block">MD5密钥，安全检验码，由数字和字母组成的32位字符串，查看地址：https://b.alipay.com/order/pidAndKey.htm</span>
                 </td>
             </tr>
             <tr>
-                <td class="label">选择接口类型</td>
+                <td class="label">服务器异步通知页面路径</td>
                 <td>
-                    <select name="pay_config[alipay_pay_method]">
-                        <option value="0" <?php if($payment['pay_config']['alipay_pay_method'] == 0):?>selected="selected"<?php endif;?>>使用标准双接口</option>
-                        <option value="1" <?php if($payment['pay_config']['alipay_pay_method'] == 1):?>selected="selected"<?php endif;?>>使用担保交易接口</option>
-                        <option value="2" <?php if($payment['pay_config']['alipay_pay_method'] == 2):?>selected="selected"<?php endif;?>>使用即时到帐交易接口</option>
-                    </select>
+                    <input type="text" name="pay_config[notify_url]" maxlength="100" size="100" value="<?php echo $payment['pay_config']['notify_url']?>" />
+                    <span class="notice-span" style="display:block">服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问</span>
                 </td>
             </tr>
             <tr>
-                <td class="label">支付手续费</td>
+                <td class="label">页面跳转同步通知页面路径</td>
                 <td>
-                    <input type="text" name="pay_fee" maxlength="60" value="<?php echo $payment['pay_fee']?>" />
+                    <input type="text" name="pay_config[return_url]" maxlength="100" size="100" value="<?php echo $payment['pay_config']['return_url']?>" />
+                    <span class="notice-span" style="display:block">页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">访问模式</td>
+                <td>
+                    <input type="radio" name="pay_config[transport]" value="http" <?php if($payment['pay_config']['transport'] == 'http'):?>checked="checked"<?php endif;?>/>http
+                    <input type="radio" name="pay_config[transport]" value="https" <?php if($payment['pay_config']['transport'] == 'https'):?>checked="checked"<?php endif;?>/>https
+                    <span class="notice-span" style="display:block">访问模式,根据自己的服务器是否支持ssl访问，若支持请选择https；若不支持请选择http</span>
                 </td>
             </tr>
             <tr>

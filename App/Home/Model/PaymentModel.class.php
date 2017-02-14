@@ -50,4 +50,15 @@ class PaymentModel extends Model
         return $arr;
     }
 
+    /**
+     * 获取配置信息
+     * @param $payCode
+     * @return mixed
+     */
+    public function getPayConfigByPayCode($payCode)
+    {
+        $payConfig = $this->getFieldByPayCode($payCode,'pay_config');
+        $payConfig = unserialize($payConfig);
+        return $payConfig;
+    }
 }
