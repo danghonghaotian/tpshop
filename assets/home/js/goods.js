@@ -88,6 +88,16 @@ $(function(){
 		$(".detail_div").hide().eq($(this).index()).show();
 		$(this).addClass("on").siblings().removeClass("on");
 	});
+
+	//不能输入不是数字的字符，并且最小为1
+	$('.amount').keyup(function () {
+		var amount = $(this).val().replace(/\D/g,'');
+		if(amount == '' || amount == 0)
+		{
+			amount = 1;
+		}
+		$(this).val(amount);
+	});
 });
 
 /**
