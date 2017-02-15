@@ -76,6 +76,9 @@ https://wanwang.aliyun.com/hosting/free?spm=5176.8006371.1003.5.hUpeRF
 https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:
 https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId
 
+支付宝集成
+http://www.yzmedu.com/course/51
+
 
 
 
