@@ -356,6 +356,12 @@ class UserController extends CommonController {
     }
 
 
+    public function test13()
+    {
+        pConst();
+    }
+
+
 
 
 }

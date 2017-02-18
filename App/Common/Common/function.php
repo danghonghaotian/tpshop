@@ -616,4 +616,26 @@ function goods_sort($a,$b)
     return ($a['sort'] < $b['sort']) ? -1 : 1;
 }
 
+
+/**
+ * 格式化打印函数
+ * @param  [type] $arr [数组]
+ * @return [type]      [description]
+ */
+function p($arr)
+{
+    echo '<pre style="color: red;">';
+    print_r($arr);
+    echo '</pre>';
+}
+
+/**
+ * 打印系统常量
+ */
+function pConst()
+{
+    $const = get_defined_constants(TRUE);
+    dump($const['user']);
+}
+
 ?>
