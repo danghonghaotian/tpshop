@@ -35,6 +35,10 @@ http://pan.baidu.com
 框架
 http://www.yiichina.com/
 http://www.thinkphp.cn/
+https://laravel.com/docs/5.4/queries
+http://codeigniter.org.cn/
+http://symfony.newlifeclan.com/
+http://symfonychina.com/
 
 域名购买
 https://sg.godaddy.com/zh/
