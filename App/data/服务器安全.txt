@@ -31,7 +31,8 @@ sourceTree工具
 HBuilder
 FSCapture 截图
 RedisDesktopManager redis管理工具
-Navicat for MySQL
+Navicat for MySQL MySQL图形管理工具
+SQLyog  MySQL图形管理工具
 Beyond Compare 代码对比工具
 ftp
 FileZilla Client
