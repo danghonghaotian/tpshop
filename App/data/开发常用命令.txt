@@ -49,6 +49,15 @@ nginx -s reload
  git remote add origin https://git.oschina.net/yeafy/tp-shop.git
  git push -u origin master
 
+ 在window下操作wamp2.5的apache跟mysql服务
+ net start wampmysqld
+ net stop wampmysqld
+
+ net start wampapache64
+ net stop wampapache64
+
+
+
 
 
 
