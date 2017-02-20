@@ -111,7 +111,31 @@
   float:right;  
 }
 </style>
-
+<script>
+window.onload=function(){
+//定时器每秒调用一次fnDate()
+    setInterval(function(){
+        fnDate();
+    },1000);
+}
+//js 获取当前时间
+function fnDate(){
+    var oDiv=document.getElementById("currentTime");
+    var date=new Date();
+    var year=date.getFullYear();//当前年份
+    var month=date.getMonth();//当前月份
+    var data=date.getDate();//天
+    var hours=date.getHours();//小时
+    var minute=date.getMinutes();//分
+    var second=date.getSeconds();//秒
+    var time=year+"-"+fnW((month+1))+"-"+fnW(data)+" "+fnW(hours)+":"+fnW(minute)+":"+fnW(second);
+    oDiv.innerHTML='当前时间:'+time;
+}
+//补位 当某个字段不是两位数时补0
+function fnW(str){
+    return str>10?str:'0'+str;
+}
+</script>
 </head>
 <body>
 <div id="header-div">
@@ -120,6 +144,7 @@
     </div>
     <div id="submenu-div">
         <ul>
+            <li style="color:#ffffff" id="currentTime">当前时间:<?php echo date('Y-m-d H:i:s');?></li>
             <li style="color: red;font-weight: bold">当前管理员:<?php echo session('username'); ?></li>
             <li><a href="<?php echo getWebsite();?>" target="_blank">查看网店</a></li>
             <li><a href="<?php echo U('Admin/AdminMember/save',array('id'=>$_SESSION['userId']));?>" target="main-frame">个人设置</a></li>
