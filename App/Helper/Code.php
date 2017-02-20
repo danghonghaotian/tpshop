@@ -46,7 +46,7 @@ class Code
         if(!empty($arr)){
            extract($arr); 
         } 
-        $this->font = BASEPATH . "fonts/font.ttf";       
+        $this->font =  "./assets/home/font/consola.ttf";
         if (!is_file($this->font)) {
             error("验证码字体文件不存在");
         }
