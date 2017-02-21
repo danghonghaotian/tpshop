@@ -332,3 +332,6 @@ CREATE TABLE `tp_activity` (
   PRIMARY KEY (`id`)
 ) ENGINE=myIsam AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 comment '活动表';
 
+ALTER TABLE `tp_activity`
+ADD COLUMN `keyword`  tinytext NULL AFTER `link`,
+ADD COLUMN `desc`  tinytext NULL AFTER `keyword`;

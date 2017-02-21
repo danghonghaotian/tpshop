@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><?php echo C('shopName');?> - 添加活动 </title>
+    <title><?php echo C('shopName');?> - 修改活动 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
     <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
@@ -10,40 +10,41 @@
 <h1>
     <span class="action-span"><a href="<?php echo U("Admin/Activity/lst") ?>">活动列表</a></span>
     <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
-    <span id="search_id" class="action-span1"> - 添加活动 </span>
+    <span id="search_id" class="action-span1"> - 修改活动 </span>
     <div style="clear:both"></div>
 </h1>
 <div class="main-div">
-    <form method="post" action="<?php echo U("Admin/Activity/add") ?>" >
+    <form method="post" action="<?php echo U("Admin/Activity/save") ?>" >
         <table cellspacing="1" cellpadding="3" width="100%">
+            <input type="hidden" name="id"  value="<?php echo $data['id'];?>" />
             <tr>
                 <td class="label">活动标题</td>
                 <td>
-                    <input type="text" name="title" maxlength="50" size="80" value="" />
+                    <input type="text" name="title" maxlength="50" size="80" value="<?php echo $data['title'];?>" />
                 </td>
             </tr>
             <tr>
                 <td class="label">商品sn</td>
                 <td>
-                    <textarea name="goods_sn" id="" cols="80" rows="10"></textarea>
+                    <textarea name="goods_sn" id="" cols="80" rows="10"><?php echo $data['goods_sn'];?></textarea>
                 </td>
             </tr>
             <tr>
                 <td class="label">活动链接</td>
                 <td>
-                    <input type="text" name="link" maxlength="255" size="100" value="http://" />
+                    <input type="text" name="link" maxlength="255" size="100" value="<?php echo $data['link'];?>" />
                 </td>
             </tr>
             <tr>
                 <td class="label">关键词</td>
                 <td>
-                    <textarea name="keyword" id="" cols="80" rows="5"></textarea>
+                    <textarea name="keyword" id="" cols="80" rows="5"><?php echo $data['keyword'];?></textarea>
                 </td>
             </tr>
             <tr>
                 <td class="label">描述</td>
                 <td>
-                    <textarea name="desc" id="" cols="80" rows="5"></textarea>
+                    <textarea name="desc" id="" cols="80" rows="5"><?php echo $data['desc'];?></textarea>
                 </td>
             </tr>
             <tr>

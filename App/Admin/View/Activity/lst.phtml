@@ -14,9 +14,9 @@
     <div style="clear:both"></div>
 </h1>
 <div class="form-div">
-    <form action="" name="searchForm">
-        <img src="<?php echo C('img');?>/icon_search.gif" width="26" height="22" border="0" alt="search" />
-        <input type="text" name="brand_name" size="15" />
+    <form action="<?php echo U('Admin/Activity/lst');?>" name="searchForm" method="get">
+        <img src="{:C('img')}/icon_search.gif" width="26" height="22" border="0" alt="search" />
+        <input type="text" name="keyword" size="50" placeholder="标题|链接" value="<?php echo $_GET['keyword']?>"/>
         <input type="submit" value=" 搜索 " class="button" />
     </form>
 </div>
@@ -27,36 +27,27 @@
                 <th>活动id</th>
                 <th>活动标题</th>
                 <th>商品sn</th>
+                <th>链接</th>
                 <th>发布时间</th>
                 <th>操作</th>
             </tr>
+            <?php foreach ($activity as $k=>$v):?>
             <tr>
-                <td class="first-cell"></td>
-                <td align="center"></td>
-                <td align="center"></td>
-                <td align="center"></td>
+                <td class="first-cell"><?php echo $v['id'];?></td>
+                <td align="center"><?php echo $v['title'];?></td>
+                <td align="center"><?php echo $v['goods_sn'];?></td>
+                <td align="center"><?php echo $v['link'];?></td>
+                <td align="center"><?php echo formatDate($v['add_time']);?></td>
                 <td align="center">
-                    <a href="#" title="编辑">编辑</a> |
-                    <a href="#" title="编辑">移除</a>
+                    <a href="<?php echo $v['link'];?>" target="_blank" title="查看">查看</a> |
+                    <a href="<?php echo U("Admin/Activity/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
+                    <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/Activity/delete",array('id'=>$v['id']))?>" title="移除">移除</a>
                 </td>
             </tr>
+            <?php endforeach;?>
             <tr>
-                <td align="right" nowrap="true" colspan="5">
-                    <div id="turn-page">
-                        总计 <span id="totalRecords">11</span>
-                        个记录分为 <span id="totalPages">1</span>
-                        页当前第 <span id="pageCurrent">1</span>
-                        页，每页 <input type='text' size='3' id='pageSize' value="15" />
-                        <span id="page-link">
-                            <a href="#">第一页</a>
-                            <a href="#">上一页</a>
-                            <a href="#">下一页</a>
-                            <a href="#">最末页</a>
-                            <select id="gotoPage">
-                                <option value='1'>1</option>
-                            </select>
-                        </span>
-                    </div>
+                <td align="center" nowrap="true" colspan="6">
+                    <?php echo $page;?>
                 </td>
             </tr>
         </table>
