@@ -26,7 +26,7 @@ return array(
         ),
         '促销管理'=>array(
             '优惠券类型' =>array('news','lst'),
-            '活动管理' =>array('news','lst'),
+            '活动管理' =>array('Activity','lst'),
             '每日清仓' =>array('news','lst'),
             '首页商品推荐' =>array('GoodsRecommendation','lst'),
         ),

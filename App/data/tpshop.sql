@@ -323,5 +323,12 @@ CREATE TABLE `tp_goods_comment` (
   foreign key (goods_id) references tp_goods(id) on delete cascade
 ) engine=InnoDB  DEFAULT CHARSET=utf8 comment '商品评论表';
 
-
+CREATE TABLE `tp_activity` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(50) NOT NULL comment '活动标题',
+  `goods_sn` text NOT NULL comment '商品sn ',
+  `add_time` int(10) unsigned NOT NULL comment '发布时间',
+  `link` VARCHAR(255) not null comment '活动链接',
+  PRIMARY KEY (`id`)
+) ENGINE=myIsam AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 comment '活动表';
 
