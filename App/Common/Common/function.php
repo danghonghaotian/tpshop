@@ -638,4 +638,47 @@ function pConst()
     dump($const['user']);
 }
 
+/**
+ * 格式化json输出
+ * @param string $data
+ * @param string $message
+ * @param bool $success
+ * @param string $is_debug
+ */
+function json_output($data='',$message='',$success=false,$is_debug='')
+{
+    header("Content-type:application/json; charset=utf-8");
+    $json_data = array(
+        'success' => $success,
+        'message' => $message,
+        'data' => $data,
+    );
+    if (empty($data) && empty($message))
+    {
+        $json_data['message'] = '参数不能为空';
+    }
+    echo json_encode($json_data);
+    if (empty($is_debug))
+    {
+        exit;
+    }
+}
+
+/**
+ *  输出日志到文件
+ * @param string $logData
+ */
+function log_output($logData = '')
+{
+    $logStr = PHP_EOL.'------------'.date('Y-m-d H:i:s').'-------------'.PHP_EOL;
+    $logStr .= var_export($logData,true);
+    $logFileName = 'runLog'.date('y-m-d').'.log';
+    $logPath = RUNTIME_PATH.'Logs/run/';
+    if(!is_dir($logPath))
+    {
+        mkdir($logPath,0777,true);
+    }
+    file_put_contents(RUNTIME_PATH.'Logs/run/'.$logFileName, $logStr, FILE_APPEND);
+}
+
 ?>

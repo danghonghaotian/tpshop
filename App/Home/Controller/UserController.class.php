@@ -358,7 +358,10 @@ class UserController extends CommonController {
 
     public function test13()
     {
-        pConst();
+//        $data = pConst();
+//        $data = array('user'=>'admin');
+//        json_output($data);
+        log_output('test!!!!!ff!!');
     }
 
 
