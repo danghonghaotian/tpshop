@@ -335,3 +335,11 @@ CREATE TABLE `tp_activity` (
 ALTER TABLE `tp_activity`
 ADD COLUMN `keyword`  tinytext NULL AFTER `link`,
 ADD COLUMN `desc`  tinytext NULL AFTER `keyword`;
+
+
+CREATE TABLE `tp_config` (
+  `key` varchar(30) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY (`key`,`value`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

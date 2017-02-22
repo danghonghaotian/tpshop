@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><?php echo C('shopName');?> - 更新系统配置 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{:C('css')}/general.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('css')}/main.css" rel="stylesheet" type="text/css" />
+    <script src="{:C('js')}/jquery-1.4.2.min.js"></script>
+</head>
+<body>
+<h1>
+    <span class="action-span1"><a href="<?php echo U("Admin/Index/index") ?>"><?php echo C('shopName');?></a></span>
+    <span id="search_id" class="action-span1"> - 更新系统配置 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="main-div">
+    <form method="post" action="<?php echo U("Admin/Config/save") ?>" id="configForm" enctype="multipart/form-data" >
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">后台管理中心:</td>
+                <td>
+                    <input type="text" name="shopName" maxlength="60" size="60" value="<?php echo $shopName;?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">前台版权信息:</td>
+                <td>
+                    <input type="text" name="copy_right" maxlength="60" size="60" value="<?php echo $copy_right;?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">公司地址：</td>
+                <td>
+                    <input type="text" name="Address" maxlength="60" size="60" value="<?php echo $Address;?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">联系电话：</td>
+                <td>
+                    <input type="text" name="Phone" maxlength="60" size="60" value="<?php echo $Phone;?>" />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center"><br />
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<?php include_once "/assets/template/footer.php";?>
+</body>
+</html>
+
+<!--图片上传 start-->
+<iframe style="display:none;" name="ifr"></iframe>
+<div id="upload" style="display: none">
+    <form id="pre_form" target="ifr" method="POST" action="<?php echo U('Admin/Ad/ajaxUpload');?>" enctype="multipart/form-data">
+       <input type="file" name="img" onchange="ajaxUpload();"/>
+    </form>
+</div>
+<!--图片上传 end-->
+
+<script>
+    $(function(){
+        //当点击图片的时候，让它去点击上传按钮，再触发提交表单
+        $('#pre_img').click(function () {
+            $("#pre_form input[name='img']").click();
+        });
+    });
+
+    function ajaxUpload()
+    {
+        $('#pre_form').submit();
+    }
+</script>

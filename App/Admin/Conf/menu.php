@@ -63,7 +63,7 @@ return array(
             '供货商列表'=>array('company','lst'),
         ),
         '系统设置'=>array(
-            '商店设置'=>array('company','lst'),
+            '配置信息设置'=>array('Config','save'),
             '会员注册设置'=>array('company','lst'),
             '申请商家管理'=>array('company','lst'),
             '支付方式'=>array('Payment','lst'),
