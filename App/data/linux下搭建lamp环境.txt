@@ -23,6 +23,7 @@ cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核
 lscpu 查询cpu相关信息
 top 内存等信息
 w 查看谁在线
+lsof -i :port 查看端口被那个进程占用
 systemctl
 chkconfig --list|more
 screen -S lnmp
@@ -68,6 +69,8 @@ Default_Website_Dir='/data'
 
 
 cd /usr/local/nginx/conf/vhost/
+
+
 
 
 

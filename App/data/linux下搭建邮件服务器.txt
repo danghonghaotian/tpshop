@@ -1,0 +1,28 @@
+1、查看是否安装
+rpm -qa | grep postifx
+2、安装
+yum install postfix
+-----发现安装过程有点慢，请慢慢等一会-------------
+
+systemctl restart postfix.service
+systemctl stop postfix.service
+systemctl start postfix.service
+lsof -i :25
+echo "postqueue -p 查看邮件队列" |mail -s postqueue查看邮件队列 845272922@qq.com
+
+postqueue -p 查看邮件队列
+hostnamectl status 查看主机名
+vim  /etc/sysconfig/network
+hostnamectl set-hostname gtzhong 或者 hostname gtzhong
+watch -n 1 lsof -i :25 每一秒钟查看链接的进程
+
+配置php.ini
+cd /usr/local/php
+
+
+编写定时任务
+vim etc/crontab
+#使用命令去执行，每隔2分钟执行一次
+#*/2 * * * * root  /usr/bin/php /data/yeafy/1.php
+#使用curl去执行，每隔2分钟执行一次
+#*/2 * * * * root  curl http://www.yeafy.com/1.php
