@@ -62,7 +62,7 @@ Default_Website_Dir='/data'
 /data/yeafy
 
 
-数据库root 密码
+数据库root root888
 
 注意了，亚马逊的主机，需要到控制台去设置才能访问到网站80端口，默认只是开启了22
 #开启亚马逊主机端口--安全组

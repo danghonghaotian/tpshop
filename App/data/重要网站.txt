@@ -11,6 +11,8 @@ https://github.com/
 https://git.oschina.net/
 http://bitbucket.org/
 https://coding.net/git  weiphp代码在这个网站托管
+https://about.gitlab.com/
+https://code.csdn.net/
 
 git开源项目
 http://www.shcsinfo.com/china/gitlab.html
