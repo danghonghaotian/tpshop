@@ -681,4 +681,17 @@ function log_output($logData = '')
     file_put_contents(RUNTIME_PATH.'Logs/run/'.$logFileName, $logStr, FILE_APPEND);
 }
 
+/**
+ * 带有域名的U方法
+ * @param string $url
+ * @param string $vars
+ * @param bool $suffix
+ * @param bool $domain
+ * @return string
+ */
+function UU($url='',$vars='',$suffix=true,$domain=false)
+{
+    return getWebsite().U($url,$vars,$suffix,$domain);
+}
+
 ?>
