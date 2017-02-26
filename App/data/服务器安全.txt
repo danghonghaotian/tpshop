@@ -72,6 +72,8 @@ secureCRT    远程登录linux操作系统工具
 putty   远程登录linux操作系统工具
 KeePass 密码管理软件
 sendmaill , exim,postfix+dovecot linux下邮件服务器
+rsync 实现网站的备份，文件的同步，不同系统的文件的同步
+vsftpd ftp服务
 
 windows下邮件服务器
 hMailServer-5.6.5-B2367.exe
