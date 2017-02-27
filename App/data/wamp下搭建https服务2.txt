@@ -4,5 +4,7 @@ D:\wamp2\bin\apache\apache2.4.9\bin>openssl req -new -out server.csr -config ../
 
 D:\wamp2\bin\apache\apache2.4.9\bin>openssl rsa -in privkey.pem -out server.key
 
-10、注意了，如果启动不了，很可能是虚拟机vm占用了443端口了，用netstat -anb|more 查看
+D:\wamp2\bin\apache\apache2.4.9\bin>openssl req -x509 -days 365 -key server.key -in server.csr > server.crt
+
+10、注意了，如果启动不了，很可能是虚拟机vm或者VisualSVNServer占用了443端口了，用netstat -anb|more 查看
 
