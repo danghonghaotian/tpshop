@@ -1,0 +1,60 @@
+1、回到配置项
+C:\Users\zhong>cd /d D:\wamp2\bin\apache\apache2.4.9\conf
+2、设置环境变量
+D:\wamp2\bin\apache\apache2.4.9\conf>set OPENSSL_CONF=..\conf\openssl.cnf
+3、回到bin目录
+D:\wamp2\bin\apache\apache2.4.9\conf>cd ../bin
+4、生成server.key到D:\wamp2\bin\apache\apache2.4.9\bin
+D:\wamp2\bin\apache\apache2.4.9\bin>openssl genrsa 1024>server.key
+5、生成server.csr
+D:\wamp2\bin\apache\apache2.4.9\bin>openssl req -new -key server.key > server.csr
+
+Country Name (2 letter code) [AU]:CN
+State or Province Name (full name) [Some-State]:Guangdong
+Locality Name (eg, city) []:shenzhen
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:yeafy
+Organizational Unit Name (eg, section) []:IT
+Common Name (e.g. server FQDN or YOUR name) []:www.tpshop.com
+Email Address []:gtzhong@126.com
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+6、生成server.crt，证书有效期365天
+D:\wamp2\bin\apache\apache2.4.9\bin>openssl req -x509 -days 365 -key server.key -in server.csr > server.crt
+
+6、将生成的三个文件拷贝到D:\wamp2\bin\apache\apache2.4.9\conf\key\tpshop
+server.crt
+server.csr
+server.key
+
+7、解开
+Include conf/extra/httpd-ssl.conf
+LoadModule ssl_module modules/mod_ssl.so
+LoadModule socache_shmcb_module modules/mod_socache_shmcb.so
+
+<Directory />
+    Options FollowSymLinks
+   AllowOverride All
+   Order deny,allow
+  Deny from all
+</Directory>
+换成
+<Directory />
+Options FollowSymLinks
+AllowOverride None
+Order deny,allow
+Deny from all
+</Directory>
+
+8、D:\wamp2\bin\apache\apache2.4.9\conf\extra\httpd-ssl.conf
+SSLCertificateKeyFile "D:/wamp2/bin/apache/apache2.4.9/conf/key/tpshop/server.key"
+SSLSessionCache        "shmcb:D:/wamp2/bin/apache/apache2.4.9/logs/ssl_scache(512000)"
+
+9、httpd -t 查看apache配置信息是否有错
+
+10、注意了，如果启动不了，很可能是虚拟机vm占用了443端口了，用netstat -anb|more 查看
+
+
+阿里云免费证书
+https://common-buy.aliyun.com/?commodityCode=cas#/buy

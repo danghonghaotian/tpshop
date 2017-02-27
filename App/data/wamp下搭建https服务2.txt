@@ -1,0 +1,8 @@
+C:\Users\zhong>cd /d D:\wamp2\bin\apache\apache2.4.9\bin
+
+D:\wamp2\bin\apache\apache2.4.9\bin>openssl req -new -out server.csr -config ../conf/openssl.cnf
+
+D:\wamp2\bin\apache\apache2.4.9\bin>openssl rsa -in privkey.pem -out server.key
+
+10、注意了，如果启动不了，很可能是虚拟机vm占用了443端口了，用netstat -anb|more 查看
+
