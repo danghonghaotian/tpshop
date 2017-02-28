@@ -84,10 +84,11 @@ class AdPositionController extends AdminController
     /**
      * 删除
      */
-    public function del($id)
+    public function delete($id)
     {
-        $adPosition = M("AdPosition");
+        $adPosition = D("AdPosition");
         $adPosition->delete($id);
+        //删除改广告位下的广告
         $this->success('删除成功！');
     }
 

@@ -51,4 +51,11 @@ class AdPositionModel extends Model
         return $ad;
     }
 
+    public function delete($id)
+    {
+        parent::delete($id);
+        $adModel =  M('Ad');
+        $adModel->where(array('adpos_id'=>$id))->delete();
+    }
+
 }

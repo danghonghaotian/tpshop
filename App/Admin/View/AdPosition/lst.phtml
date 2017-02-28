@@ -44,7 +44,7 @@
                     <td align="center"><?php echo $v["adpos_height"];?></td>
                     <td align="center">
                         <a href="<?php echo U("Admin/AdPosition/save",array('id'=>$v['id']))?>" title="编辑">编辑</a> |
-                        <a onclick="return confirm('确定要删除吗');" href="<?php echo U("Admin/AdPosition/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
+                        <a onclick="return confirm('确定要删除吗,该广告位下的所有广告即将被删除');" href="<?php echo U("Admin/AdPosition/delete",array('id'=>$v['id']))?>" title="删除">移除</a>
                     </td>
                 </tr>
             <?php endforeach;?>
