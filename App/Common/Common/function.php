@@ -694,4 +694,46 @@ function UU($url='',$vars='',$suffix=true,$domain=false)
     return getWebsite().U($url,$vars,$suffix,$domain);
 }
 
+/**
+ * 截取UTF-8编码下字符串的函数
+ * @param   string      $str        被截取的字符串
+ * @param   int         $length     截取的长度
+ * @param   bool        $append     是否附加省略号
+ * @return  string
+ */
+function sub_str($str, $length = 0, $append = true)
+{
+    $str = trim($str);
+    $str_length = strlen($str);
+    if ($length == 0 || $length >= $str_length)
+    {
+        return $str;
+    }
+    elseif ($length < 0)
+    {
+        $length = $str_length + $length;
+        if ($length < 0)
+        {
+            $length = $str_length;
+        }
+    }
+    if (function_exists('mb_substr'))
+    {
+        $new_str = mb_substr($str, 0, $length, 'utf-8');
+    }
+    elseif (function_exists('iconv_substr'))
+    {
+        $new_str = iconv_substr($str, 0, $length, 'utf-8');
+    }
+    else
+    {
+        $new_str = substr($str, 0, $length);
+    }
+    if ($append && $str != $new_str)
+    {
+        $new_str .= '...';
+    }
+    return $new_str;
+}
+
 ?>
