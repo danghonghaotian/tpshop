@@ -17,8 +17,35 @@ hostnamectl set-hostname gtzhong 或者 hostname gtzhong
 watch -n 1 lsof -i :25 每一秒钟查看链接的进程
 
 配置php.ini
-cd /usr/local/php
+cd /usr/local/php/etc/
+vim php.ini
+which sendmail
+sendmail_path = '/sbin/sendmail -t -i';
+重启php
+/etc/init.d/php-fpm restart
 
+usermod  -l noreply www
+ 1039  hostname
+ 1040  hostname yeafy.com
+ 1041  vim /ect/hostname
+ 1044  cat /etc/passwd
+ 1046  ps -ef |grep "php"
+ 1047  usermod  -h
+ 1048  usermod  -l noreply www
+ 1049  id www
+ 1050  ps -ef|grep www
+ 1051  /etc/init.d/php-fpm stop
+ 1052  usermod  -l noreply www
+ 1054  /etc/init.d/nginx stop
+ 1055  usermod  -l noreply www
+ 1056  id www
+ 1059  id noreply
+ 1060  /etc/init.d/php-fpm start
+ 1061  vim /usr/local/php/etc/php-fpm.conf
+ 1062  /etc/init.d/php-fpm start
+ 1064  groupmod  -n noreply www
+ 1066  vim /usr/local/nginx/conf/nginx.conf
+ 1067  /etc/init.d/nginx start
 
 编写定时任务
 vim etc/crontab
