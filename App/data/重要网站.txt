@@ -37,7 +37,14 @@ http://pan.baidu.com
 框架
 http://www.yiichina.com/
 http://www.thinkphp.cn/
+
 https://laravel.com/docs/5.4/queries
+https://lumen.laravel-china.org/
+
+Laravel 5.1 LTS 速查表
+https://cs.laravel-china.org/
+http://www.golaravel.com/
+
 http://codeigniter.org.cn/
 http://symfony.newlifeclan.com/
 http://symfonychina.com/
