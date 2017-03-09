@@ -15,8 +15,23 @@ mkdir -p /usr/local/redis/conf
 cp /data/redis-stable/redis.conf /usr/local/redis/conf
 
 启动redis服务
- (redis-server /usr/local/redis/conf/redis.conf &)
-ps -ef |grep redis  查看进程是否启动
+ [root@yeafy ec2-user]#(redis-server /usr/local/redis/conf/redis.conf &)
+
+将其放到后台
+[root@yeafy ec2-user]# ctrl+z
+[root@yeafy ec2-user]#bg
+回到前台
+[root@yeafy ec2-user]#fg
+
+ 查看进程是否启动
+[root@yeafy ec2-user]# ps -ef |grep redis
+
+查看redis 默认端口号6379占用情况
+[root@yeafy ec2-user]# netstat -tunpl|grep 6379
+tcp        0      0 0.0.0.0:6379            0.0.0.0:*               LISTEN      12221/redis-server
+
+停止redis服务
+[root@yeafy ec2-user]# pkill redis-server
 
  ss -tln 监听端口连接
 [ec2-user@yeafy ~]$ ss -tln
@@ -30,15 +45,11 @@ LISTEN     0      128                                   *:8388                  
 LISTEN     0      128                                  :::22                                               :::*
 LISTEN     0      100                                 ::1:25                                               :::*
 
- 将其放到后台
- ctrl+z bg 放到后台 fg回到前台
-
-设置内核参数
-sysctl vm.overcommit_memory=1
 
 如果要远程连接需要修改配置文件
 将bind 127.0.0.1 改成了bind 0.0.0.0。
 然后重启
+
 telnet ip 6379
 或者用客户端
 RedisDesktopManager 去连接
