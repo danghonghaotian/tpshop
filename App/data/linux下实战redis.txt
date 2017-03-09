@@ -87,6 +87,18 @@ redis-cli
 "gtzhong@qq.comm"
 127.0.0.1:6379> mset name gtzhong age 28 批量设置
 
+hash数据类型总结
+有补全功能，以h开头，tab会补全并出现提示功能
+但是不能直接修改数据，得先删除再添加进去
+如
+hget test name
+hdel test name
+hset test name zhong
+这样好像很麻烦，如果要批量删除，估计得用程序foreach删除了吧？
+有下面的技巧哦
+如del test test 即可把test这整个hash删了
+
+
 
 
 
