@@ -15,13 +15,44 @@ mkdir -p /usr/local/redis/conf
 cp /data/redis-stable/redis.conf /usr/local/redis/conf
 
 启动redis服务
- redis-server /usr/local/redis/conf/redis.conf
+ (redis-server /usr/local/redis/conf/redis.conf &)
+ps -ef |grep redis  查看进程是否启动
+
+ ss -tln 监听端口连接
+[ec2-user@yeafy ~]$ ss -tln
+State      Recv-Q Send-Q                    Local Address:Port                                   Peer Address:Port
+LISTEN     0      50                                    *:3306                                              *:*
+LISTEN     0      128                                   *:6379                                              *:*
+LISTEN     0      128                                   *:80                                                *:*
+LISTEN     0      128                                   *:22                                                *:*
+LISTEN     0      100                           127.0.0.1:25                                                *:*
+LISTEN     0      128                                   *:8388                                              *:*
+LISTEN     0      128                                  :::22                                               :::*
+LISTEN     0      100                                 ::1:25                                               :::*
 
  将其放到后台
  ctrl+z bg 放到后台 fg回到前台
 
 设置内核参数
 sysctl vm.overcommit_memory=1
+
+如果要远程连接需要修改配置文件
+将bind 127.0.0.1 改成了bind 0.0.0.0。
+然后重启
+telnet ip 6379
+或者用客户端
+RedisDesktopManager 去连接
+
+Redis数据丢失问题
+Redis配置了持久化（RDB 和 AOF）之后，重启依旧数据丢失，
+检查Linux系统中vm.overcommit_memory参数是否为0，
+若为0系统不允许回写，可将参数vm.overcommit_memory = 1。
+步骤：
+1）vi /etc/sysctl.conf
+2）内容添加vm.overcommit_memory = 1
+3）使生效sysctl -p
+
+
 
 客户端操作
 redis-cli
