@@ -1,0 +1,58 @@
+参考网站
+https://redis.io/topics/quickstart
+最新版本：redis_version:3.2.8
+
+安装
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+
+为了方便维护，拷贝这些
+sudo cp src/redis-server /usr/local/bin/
+sudo cp src/redis-cli /usr/local/bin/
+mkdir -p /usr/local/redis/conf
+cp /data/redis-stable/redis.conf /usr/local/redis/conf
+
+启动redis服务
+ redis-server /usr/local/redis/conf/redis.conf
+
+ 将其放到后台
+ ctrl+z bg 放到后台 fg回到前台
+
+设置内核参数
+sysctl vm.overcommit_memory=1
+
+客户端操作
+redis-cli
+127.0.0.1:6379>info 可以参看信息
+
+客户端常用的命令
+127.0.0.1:6379>set name gtzhong
+127.0.0.1:6379>get name
+
+127.0.0.1:6379>setnx name gtzhong
+如果成功返回(integer) 1，不成功返回(integer) 0
+
+127.0.0.1:6379>get test 如何test不存在在返回(nil)
+
+127.0.0.1:6379> setex color 10 red  设置color有效期为10秒
+
+127.0.0.1:6379> set email gtzhong@126.com
+127.0.0.1:6379> setrange email 8 qq.com 这里返回的应该是替换后的长度，可见的是qq.comm而不是qq.com,看来不够的是不能换掉的了
+(integer) 15
+127.0.0.1:6379> get email
+"gtzhong@qq.comm"
+127.0.0.1:6379> mset name gtzhong age 28 批量设置
+
+
+
+
+
+
+
+
+
+
+
+

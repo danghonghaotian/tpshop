@@ -70,24 +70,15 @@ Default_Website_Dir='/data'
 
 cd /usr/local/nginx/conf/vhost/
 
+授权给mysql
+grant ALL  on *.* to 'root'@'%' IDENTIFIED BY  'root456';
 
+启动mysql
+/etc/init.d/mysql start
 
+杀死进程
+kill id
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+亚马逊连接数据库
+35.166.18.181
+root root456
