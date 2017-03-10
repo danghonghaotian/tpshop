@@ -87,7 +87,7 @@ redis-cli
 "gtzhong@qq.comm"
 127.0.0.1:6379> mset name gtzhong age 28 批量设置
 
-hash数据类型总结
+hash数据类型总结，hash有点像是php中的一维数组
 有补全功能，以h开头，tab会补全并出现提示功能
 但是不能直接修改数据，得先删除再添加进去
 如
@@ -97,6 +97,16 @@ hset test name zhong
 这样好像很麻烦，如果要批量删除，估计得用程序foreach删除了吧？
 有下面的技巧哦
 如del test test 即可把test这整个hash删了
+
+数据库默认连接上来的就是0这个库，可以通过select index来切换数据库
+
+keys * 可以查看出当前这个库所有的键
+type key 可以查看出key的类型，根据类型使用相应的命令获取相应的值
+
+list 列表有row有value
+
+
+
 
 
 
