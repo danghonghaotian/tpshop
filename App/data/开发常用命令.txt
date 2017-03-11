@@ -8,6 +8,40 @@
  如果有冲突
   git reset
 
+记得是先创建一个空的项目
+修改提交地址
+git remote set-url origin https://git.oschina.net/yeafy/SentCMS5.0.git
+git remote set-url origin https://git.oschina.net/yeafy/SentCMS3.2.3.git
+git remote set-url origin https://git.oschina.net/yeafy/ewsdCMS.git
+git remote set-url origin https://git.oschina.net/yeafy/Hifone.git
+git remote set-url origin  https://git.oschina.net/yeafy/YFCMF.git
+git remote set-url origin  https://git.oschina.net/yeafy/oscshop2.git
+
+https://git.oschina.net/wstmall/wstmall.git
+git remote set-url origin  https://git.oschina.net/yeafy/wstmall.git
+
+https://git.oschina.net/wstmall/wstmart.git
+git remote set-url origin  https://git.oschina.net/yeafy/wstmart.git
+
+https://git.oschina.net/foryoufeng/thinkshop.git
+git remote set-url origin  https://git.oschina.net/yeafy/thinkshop.git
+
+https://git.oschina.net/eshophp/ThinkWechat.git
+git remote set-url origin  https://git.oschina.net/yeafy/ThinkWechat.git
+
+https://git.oschina.net/eshophp/weiqing.git
+git fetch && git checkout v1.0
+git fetch && git checkout developing
+git remote set-url origin https://git.oschina.net/yeafy/weiqing.git
+
+git remote set-url origin https://git.oschina.net/yeafy/PHPVideo.git
+
+git remote set-url origin https://git.oschina.net/yeafy/dhht_tomrepair.git
+git remote set-url origin https://gtzhong@bitbucket.org/tomrepair/tomrepair_main.git
+
+git remote set-url origin  https://git.oschina.net/rainfer/YFCMF.git 这份代码有两个分支
+git fetch && git checkout dev 拉取开发分支的代码
+然后推送
 
  ssh root@35.166.18.181
 
