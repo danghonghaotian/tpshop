@@ -45,6 +45,10 @@ git remote set-url origin https://git.oschina.net/yeafy/Verydows.git
 git remote set-url origin https://git.oschina.net/yeafy/ci_stock.git
 git remote set-url origin https://git.oschina.net/yeafy/ci_startbbs.git
 
+#跃飞商城切换
+git remote set-url origin https://git.oschina.net/yeafy/yeafy_shop.git
+git remote set-url origin https://github.com/danghonghaotian/tpshop.git
+
 git remote set-url origin  https://git.oschina.net/rainfer/YFCMF.git 这份代码有两个分支
 git fetch && git checkout dev 拉取开发分支的代码
 然后推送
