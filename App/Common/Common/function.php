@@ -736,4 +736,16 @@ function sub_str($str, $length = 0, $append = true)
     return $new_str;
 }
 
+//获得本地真实IP
+function get_online_ip()
+{
+    $ip_json = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=myip");
+    $ip_arr=json_decode(stripslashes($ip_json),1);
+    if($ip_arr['code']==0)
+    {
+        return $ip_arr['data']['ip'];
+    }
+}
+
+
 ?>

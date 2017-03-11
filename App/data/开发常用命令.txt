@@ -39,6 +39,12 @@ git remote set-url origin https://git.oschina.net/yeafy/PHPVideo.git
 git remote set-url origin https://git.oschina.net/yeafy/dhht_tomrepair.git
 git remote set-url origin https://gtzhong@bitbucket.org/tomrepair/tomrepair_main.git
 
+git remote set-url origin https://git.oschina.net/yeafy/TP_shop.git
+git remote set-url origin https://git.oschina.net/yeafy/ci_jingrong.git
+git remote set-url origin https://git.oschina.net/yeafy/Verydows.git
+git remote set-url origin https://git.oschina.net/yeafy/ci_stock.git
+git remote set-url origin https://git.oschina.net/yeafy/ci_startbbs.git
+
 git remote set-url origin  https://git.oschina.net/rainfer/YFCMF.git 这份代码有两个分支
 git fetch && git checkout dev 拉取开发分支的代码
 然后推送
